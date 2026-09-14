@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-09-14T10:49:01.745Z",
+  "notes": [
+    "Keyword overlap is not semantic answer accuracy.",
+    "Expected source hit measures location overlap, not entailment.",
+    "Question validity and entailment need separate review.",
+    "No learning outcome was measured."
+  ],
+  "development": {
+    "baseline": {
+      "runs": 40,
+      "success": 37,
+      "answerableAnswered": 17,
+      "answerableTotal": 20,
+      "unanswerableRefused": 8,
+      "unanswerableTotal": 10,
+      "quizCorrect": 7,
+      "quizTotal": 10,
+      "expectedSourceHit": 17,
+      "keywordCheckPass": 14,
+      "medianMs": 6596
+    },
+    "grounded": {
+      "runs": 40,
+      "success": 37,
+      "answerableAnswered": 18,
+      "answerableTotal": 20,
+      "unanswerableRefused": 6,
+      "unanswerableTotal": 10,
+      "quizCorrect": 7,
+      "quizTotal": 10,
+      "expectedSourceHit": 17,
+      "keywordCheckPass": 17,
+      "medianMs": 3385
+    }
+  },
+  "holdout": {
+    "baseline": {
+      "runs": 40,
+      "success": 37,
+      "answerableAnswered": 19,
+      "answerableTotal": 20,
+      "unanswerableRefused": 6,
+      "unanswerableTotal": 10,
+      "quizCorrect": 7,
+      "quizTotal": 10,
+      "expectedSourceHit": 19,
+      "keywordCheckPass": 18,
+      "medianMs": 6247
+    },
+    "grounded": {
+      "runs": 40,
+      "success": 38,
+      "answerableAnswered": 20,
+      "answerableTotal": 20,
+      "unanswerableRefused": 4,
+      "unanswerableTotal": 10,
+      "quizCorrect": 9,
+      "quizTotal": 10,
+      "expectedSourceHit": 20,
+      "keywordCheckPass": 20,
+      "medianMs": 3206
+    }
+  },
+  "all": {
+    "baseline": {
+      "runs": 80,
+      "success": 74,
+      "answerableAnswered": 36,
+      "answerableTotal": 40,
+      "unanswerableRefused": 14,
+      "unanswerableTotal": 20,
+      "quizCorrect": 14,
+      "quizTotal": 20,
+      "expectedSourceHit": 36,
+      "keywordCheckPass": 32,
+      "medianMs": 6295
+    },
+    "grounded": {
+      "runs": 80,
+      "success": 75,
+      "answerableAnswered": 38,
+      "answerableTotal": 40,
+      "unanswerableRefused": 10,
+      "unanswerableTotal": 20,
+      "quizCorrect": 16,
+      "quizTotal": 20,
+      "expectedSourceHit": 37,
+      "keywordCheckPass": 37,
+      "medianMs": 3214
+    }
+  }
+}

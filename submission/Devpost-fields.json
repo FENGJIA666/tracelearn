@@ -1,0 +1,21 @@
+{
+  "name": "TraceLearn: Learning That Can Show Its Work",
+  "pitch": "A private, local AI study workspace that connects source evidence, misconception-aware practice, and transfer checks\u2014so students can inspect why an answer holds, not just read one.",
+  "tags": [
+    "react",
+    "typescript",
+    "node.js",
+    "sqlite",
+    "ollama",
+    "qwen3"
+  ],
+  "images": 7,
+  "coverUploaded": true,
+  "storyTemplateRemoved": true,
+  "links": [
+    "https://github.com/FENGJIA666/tracelearn",
+    "https://github.com/FENGJIA666/tracelearn/blob/v1.0.0/submission/TraceLearn-Technical-Report.pdf",
+    "https://github.com/FENGJIA666/tracelearn/releases/download/v1.0.0/TraceLearn-Complete-v1.0.0.zip"
+  ],
+  "scope": "Reference copy of the project content and material links. Read the actual submission status on Devpost."
+}

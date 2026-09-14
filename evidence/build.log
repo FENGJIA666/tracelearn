@@ -1,0 +1,14 @@
+
+> tracelearn@1.0.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 1872 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.42 kB │ gzip:  0.29 kB
+dist/assets/index-Blu1la1Z.css   17.70 kB │ gzip:  4.67 kB
+dist/assets/index-z8AM8Gl-.js   249.66 kB │ gzip: 79.57 kB
+
+✓ built in 118ms

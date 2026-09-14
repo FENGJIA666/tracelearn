@@ -1,0 +1,78 @@
+Browser tab: 2, Title: "TraceLearn · Follow the evidence", URL: "http://127.0.0.1:4317/".
+0 AXWebArea TraceLearn · Follow the evidence, URL: 127.0.0.1:4317/
+	1 container root
+		2 link Description: Skip to learning workspace, Value: 127.0.0.1:4317/#main
+		3 container
+			4 link Description: TraceLearn home, Value: 127.0.0.1:4317/
+			5 text YOUR WORKSPACE Course
+			6 pop up button (collapsed, settable) Course, Value: revision-notes, ID: course-select, Secondary Actions: Expand
+				7 menu
+					8 Database foundations
+					157 (selected) revision-notes
+			9 button Import your own notes ↗
+				10 text Import your own notes
+				158 text ↗
+			12 text LEARNING PATH 0
+			13 container Course concepts
+			44 button Learning notebook 0
+				45 text Learning notebook
+				46 text 0
+			47 text Your notes. Your device. Runs locally after model download. No API key required.
+			48 button Local setup
+			49 text BUILD CHALLENGE 3.0 2026
+		50 container
+			51 text Workspace revision-notes
+			52 button Local AI ready
+			53 button 中文
+		54 container main
+			55 text YOUR PRIVATE SOURCE
+			56 heading From “I think” to “I understand.”, Value: 1
+				57 text From “I think” to “I understand.”
+			58 text Find the evidence. Spot the misconception. Test the idea again.
+			59 text 1
+			60 text source passages
+			61 container Learning workflow
+				62 text 1 Diagnose 2 Trace evidence 3 Transfer & reflect
+			174 container
+				175 text Generation cancelled
+				176 button Dismiss
+			63 tab group Learning mode
+				64 tab (selectable, settable, boolean) Practice, Value: 0
+				65 tab (selected, settable, boolean) Ask the source, Value: 1
+				66 tab (selectable, settable, boolean) Notebook, Value: 0
+				67 button Toggle source
+			159 container
+				160 text LOCAL AI · GROUNDED IN YOUR SOURCE
+				161 heading Understand the why., Value: 2
+					162 text Understand the why.
+				163 text An explanation you can trace back. If the source does not establish the answer, we say so.
+				164 text Question about the source
+				165 text entry area (settable) Question about the source, ID: question
+				166 text 0 /1200
+				167 button (disabled) Ask the source
+				168 button Why does salary <> 100 exclude NULL?
+				169 button How is 3NF different from BCNF?
+				170 button What will be on my university exam?
+			171 button Generate an AI practice question
+			172 text Uses the first five passages. Source matching does not guarantee a correct question.
+			92 container Source evidence
+				93 text BACK TO THE SOURCE LOCAL revision-notes p.  1
+				94 heading Small revision note: COUNT and missing values, Value: 2, ID: source-heading
+					95 text Small revision note: COUNT and missing values
+				96 text # Small revision note: COUNT and missing values
+
+A table contains score values 10, 20, and NULL. COUNT(*) counts every row, including a row whose score is NULL, so its result is 3. COUNT(score) counts only non-NULL scores, so its result is 2. AVG(score) ignores NULL values and computes (10 + 20) / 2 = 15. NULL means missing or unknown information; it is not the number zero.
+
+A WHERE clause keeps only rows whose condition is TRUE. A comparison between NULL and an ordinary value produces UNKNOWN. To include missing scores explicitly, use score IS NULL. These notes do not establish any student's exam schedule or personal grade.
+				128 text p1-1
+				129 text Source text is inspectable. AI interpretations still need judgment.
+				130 text Browse passages
+				131 pop up button (collapsed, settable) Browse passages, Value: p.1 · Small revision note: COUNT and missing values, ID: passage, Secondary Actions: Expand
+					132 menu
+						173 (selected) p.1 · Small revision note: COUNT and missing values
+				153 button (collapsed) Source fingerprint, Secondary Actions: Expand
+					154 text Source fingerprint
+			155 container
+				156 text LOCAL PROCESSING · NO ACCOUNT · NO API FEES TraceLearn 1.0  ·  Follow the evidence.
+
+The focused UI element is 0 AXWebArea TraceLearn · Follow the evidence, URL: 127.0.0.1:4317/

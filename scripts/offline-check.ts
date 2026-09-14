@@ -1,0 +1,9 @@
+import {writeFileSync} from 'node:fs';
+import {spawnSync,execFileSync} from 'node:child_process';
+const out:any={at:new Date().toISOString(),scope:'Both app and Ollama launched under scripts/offline.sb (macOS sandbox-exec), denying outbound network except localhost. Computer-wide networking and the browser were not disabled. This tests process-level offline inference after installation.',checks:[]};
+for(const url of ['https://example.com','http://1.1.1.1']){const p=spawnSync('sandbox-exec',['-f','scripts/offline.sb','curl','--noproxy','*','-I','--max-time','5',url],{encoding:'utf8'});out.checks.push({name:'external-network-denied',url,exitCode:p.status,stderr:p.stderr.slice(-800)});}
+out.status=await(await fetch('http://127.0.0.1:4317/api/status')).json();
+for(const run of ['cold-after-ollama-restart','warm-repeat']){const start=performance.now();const r=await fetch('http://127.0.0.1:4317/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({courseId:'database-foundations',question:'Why does salary <> 100 exclude NULL?',language:'en'})});out.checks.push({name:run,status:r.status,elapsedMs:Math.round(performance.now()-start),data:await r.json()});}
+out.ollamaMemory=await(await fetch('http://127.0.0.1:11434/api/ps')).json();out.memoryNote='Ollama model allocation snapshots are not whole-system peak memory. Cold means restarted model server; embeddings were already cached in SQLite.';
+out.processSnapshot=execFileSync('ps',['-axo','pid,ppid,rss,command'],{encoding:'utf8'}).split('\n').filter(x=>/ollama serve|ollama runner|tsx server\/index.ts/.test(x)&&!x.includes('offline-check')).map(x=>x.replaceAll(process.cwd(),'<PROJECT>'));
+writeFileSync('evidence/offline-check.json',JSON.stringify(out,null,2));console.log(JSON.stringify(out.checks.map((x:any)=>({name:x.name,status:x.status,exitCode:x.exitCode,ms:x.elapsedMs,answer:x.data?.answer})),null,2));

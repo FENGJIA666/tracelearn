@@ -1,0 +1,104 @@
+{
+  "validationFailures": [
+    {
+      "id": "in-5",
+      "split": "development",
+      "category": "answerable",
+      "mode": "baseline",
+      "ok": false,
+      "elapsedMs": 6029,
+      "error": "Error: The model could not produce verifiable citations after two attempts. Try a narrower question. No answer was accepted."
+    },
+    {
+      "id": "in-5",
+      "split": "development",
+      "category": "answerable",
+      "mode": "grounded",
+      "ok": false,
+      "elapsedMs": 3385,
+      "error": "Error: The model could not produce verifiable citations after two attempts. Try a narrower question. No answer was accepted."
+    },
+    {
+      "id": "in-19",
+      "split": "development",
+      "category": "answerable",
+      "mode": "baseline",
+      "ok": false,
+      "elapsedMs": 7556,
+      "error": "Error: The model could not produce verifiable citations after two attempts. Try a narrower question. No answer was accepted."
+    },
+    {
+      "id": "in-35",
+      "split": "development",
+      "category": "answerable",
+      "mode": "grounded",
+      "ok": false,
+      "elapsedMs": 5557,
+      "error": "Error: The model could not produce verifiable citations after two attempts. Try a narrower question. No answer was accepted."
+    },
+    {
+      "id": "in-39",
+      "split": "development",
+      "category": "answerable",
+      "mode": "baseline",
+      "ok": false,
+      "elapsedMs": 7482,
+      "error": "Error: The model could not produce verifiable citations after two attempts. Try a narrower question. No answer was accepted."
+    },
+    {
+      "id": "out-3",
+      "split": "development",
+      "category": "unanswerable",
+      "mode": "grounded",
+      "ok": false,
+      "elapsedMs": 5872,
+      "error": "Error: The model could not produce verifiable citations after two attempts. Try a narrower question. No answer was accepted."
+    },
+    {
+      "id": "in-40",
+      "split": "holdout",
+      "category": "answerable",
+      "mode": "baseline",
+      "ok": false,
+      "elapsedMs": 7971,
+      "error": "Error: The model could not produce verifiable citations after two attempts. Try a narrower question. No answer was accepted."
+    },
+    {
+      "id": "out-8",
+      "split": "holdout",
+      "category": "unanswerable",
+      "mode": "baseline",
+      "ok": false,
+      "elapsedMs": 9177,
+      "error": "Error: The model could not produce verifiable citations after two attempts. Try a narrower question. No answer was accepted."
+    },
+    {
+      "id": "out-8",
+      "split": "holdout",
+      "category": "unanswerable",
+      "mode": "grounded",
+      "ok": false,
+      "elapsedMs": 6887,
+      "error": "Error: The model could not produce verifiable citations after two attempts. Try a narrower question. No answer was accepted."
+    },
+    {
+      "id": "out-20",
+      "split": "holdout",
+      "category": "unanswerable",
+      "mode": "baseline",
+      "ok": false,
+      "elapsedMs": 11326,
+      "error": "Error: The model could not produce verifiable citations after two attempts. Try a narrower question. No answer was accepted."
+    },
+    {
+      "id": "out-20",
+      "split": "holdout",
+      "category": "unanswerable",
+      "mode": "grounded",
+      "ok": false,
+      "elapsedMs": 7537,
+      "error": "Error: The model could not produce verifiable citations after two attempts. Try a narrower question. No answer was accepted."
+    }
+  ],
+  "semanticReview": "See semantic-review.json for observed accepted-output errors and refusal-label inconsistencies."
+}

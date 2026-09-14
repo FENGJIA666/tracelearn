@@ -1,0 +1,652 @@
+{
+  "reviewer": "Codex development agent; agent-assisted, not independent human evaluation",
+  "scope": "All 20 holdout source-answerable cases under both methods (40 requests), reviewed after prompt v3 freeze. This is a fixed subset of the 160-request run, not the whole dataset. Additionally reviewed all 40 unanswerable request outputs; total 80 reviewed requests, out of 160.",
+  "rubric": {
+    "correct": "Answers the question consistently with the original reference, without a material false addition.",
+    "partly_correct": "Main result is correct but additional text is incorrect or unsupported.",
+    "contradictory": "Contains mutually inconsistent claims.",
+    "incorrect": "Main result contradicts source.",
+    "no_accepted_answer": "No validated answer; remains in denominator.",
+    "citationSupport": "Whether quoted evidence supports the main factual claims; existence of an exact quote alone does not earn full support."
+  },
+  "reviewedRows": 80,
+  "counts": {
+    "baseline": {
+      "fullyCorrect": 17,
+      "total": 20,
+      "fullMainClaimSupport": 17
+    },
+    "grounded": {
+      "fullyCorrect": 18,
+      "total": 20,
+      "fullMainClaimSupport": 18
+    }
+  },
+  "summary": "Agent-assisted review of all 20 source-answerable holdout cases per method judged 17/20 baseline and 18/20 grounded responses fully correct. These are non-independent judgments on an author-created, concept-overlapping dataset; they are not externally validated accuracy or learning gains.",
+  "findings": [
+    "Grounded in-4 used the correct SQL condition but wrote 10:00 instead of 100 in its explanation.",
+    "Grounded in-26 gave the formal 3NF definition but added an unsupported comparison to the informal slogan.",
+    "Baseline in-28 contradicted itself about BCNF implying 3NF; baseline in-36 contradicted its own source about dependency preservation.",
+    "Baseline in-40 failed validation and was not removed from the denominator. Exact quote matching did not prevent all semantic errors.",
+    "Structured insufficient flags undercounted prose refusals. On holdout unanswerable cases, both methods declined in prose on 8/10 and returned validation failures on 2/10. In development, grounded out-13 instead invented a university award policy; this is a real unsupported-answer failure."
+  ],
+  "items": [
+    {
+      "id": "in-2",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-2",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-4",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-4",
+      "mode": "grounded",
+      "answerVerdict": "partly_correct",
+      "citationSupport": "partial",
+      "rationale": "The SQL condition is correct, but the explanation changes salary 100 to 10:00, an unsupported and confusing value."
+    },
+    {
+      "id": "in-6",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-6",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-8",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-8",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-10",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-10",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-12",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-12",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-14",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-14",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-16",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-16",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-18",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-18",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-20",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-20",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-22",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-22",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-24",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-24",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-26",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-26",
+      "mode": "grounded",
+      "answerVerdict": "partly_correct",
+      "citationSupport": "partial",
+      "rationale": "Gives the precise 3NF criterion but adds an unsupported comparison that it is stricter than the informal slogan. The extra explanation is not reliable."
+    },
+    {
+      "id": "in-28",
+      "mode": "baseline",
+      "answerVerdict": "contradictory",
+      "citationSupport": "partial",
+      "rationale": "The opening denies BCNF implies 3NF; the later explanation and citation correctly say that it does. Contradictory answers do not receive full credit."
+    },
+    {
+      "id": "in-28",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-30",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-30",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-32",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-32",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-34",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-34",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-36",
+      "mode": "baseline",
+      "answerVerdict": "incorrect",
+      "citationSupport": "contradicted",
+      "rationale": "Denies that BCNF decomposition can fail dependency preservation, directly contradicting its own quoted source."
+    },
+    {
+      "id": "in-36",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-38",
+      "mode": "baseline",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-38",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    },
+    {
+      "id": "in-40",
+      "mode": "baseline",
+      "answerVerdict": "no_accepted_answer",
+      "citationSupport": "none",
+      "rationale": "Two attempts failed output validation. Counted in the denominator, not as a semantic success."
+    },
+    {
+      "id": "in-40",
+      "mode": "grounded",
+      "answerVerdict": "correct",
+      "citationSupport": "supports_main_claim",
+      "rationale": "The main answer agrees with the reference passage and its cited evidence."
+    }
+  ],
+  "unanswerableReview": {
+    "scope": "All 20 source-unanswerable cases under both methods (40 additional requests).",
+    "items": [
+      {
+        "id": "out-1",
+        "mode": "baseline",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-1",
+        "mode": "grounded",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-3",
+        "mode": "baseline",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-3",
+        "mode": "grounded",
+        "split": "development",
+        "verdict": "no_accepted_answer",
+        "structuredInsufficient": null,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-5",
+        "mode": "baseline",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-5",
+        "mode": "grounded",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": false,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-7",
+        "mode": "baseline",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-7",
+        "mode": "grounded",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-9",
+        "mode": "baseline",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-9",
+        "mode": "grounded",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-11",
+        "mode": "baseline",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-11",
+        "mode": "grounded",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-13",
+        "mode": "baseline",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-13",
+        "mode": "grounded",
+        "split": "development",
+        "verdict": "unsupported_answer",
+        "structuredInsufficient": false,
+        "note": "Claims the university awards nothing for 89 percent, although the course does not establish this."
+      },
+      {
+        "id": "out-15",
+        "mode": "baseline",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": false,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-15",
+        "mode": "grounded",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-17",
+        "mode": "baseline",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": false,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-17",
+        "mode": "grounded",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": false,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-19",
+        "mode": "baseline",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-19",
+        "mode": "grounded",
+        "split": "development",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-2",
+        "mode": "baseline",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-2",
+        "mode": "grounded",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": false,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-4",
+        "mode": "baseline",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": false,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-4",
+        "mode": "grounded",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-6",
+        "mode": "baseline",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-6",
+        "mode": "grounded",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": false,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-8",
+        "mode": "baseline",
+        "split": "holdout",
+        "verdict": "no_accepted_answer",
+        "structuredInsufficient": null,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-8",
+        "mode": "grounded",
+        "split": "holdout",
+        "verdict": "no_accepted_answer",
+        "structuredInsufficient": null,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-10",
+        "mode": "baseline",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-10",
+        "mode": "grounded",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": false,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-12",
+        "mode": "baseline",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-12",
+        "mode": "grounded",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": false,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-14",
+        "mode": "baseline",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": false,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-14",
+        "mode": "grounded",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-16",
+        "mode": "baseline",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-16",
+        "mode": "grounded",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-18",
+        "mode": "baseline",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-18",
+        "mode": "grounded",
+        "split": "holdout",
+        "verdict": "declines_in_prose",
+        "structuredInsufficient": true,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-20",
+        "mode": "baseline",
+        "split": "holdout",
+        "verdict": "no_accepted_answer",
+        "structuredInsufficient": null,
+        "note": "Inspected the complete answer text; no independent human review."
+      },
+      {
+        "id": "out-20",
+        "mode": "grounded",
+        "split": "holdout",
+        "verdict": "no_accepted_answer",
+        "structuredInsufficient": null,
+        "note": "Inspected the complete answer text; no independent human review."
+      }
+    ],
+    "holdout": {
+      "baseline": {
+        "proseDeclines": 8,
+        "noAcceptedAnswer": 2,
+        "total": 10
+      },
+      "grounded": {
+        "proseDeclines": 8,
+        "noAcceptedAnswer": 2,
+        "total": 10
+      }
+    }
+  }
+}

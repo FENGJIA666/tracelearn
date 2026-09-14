@@ -1,0 +1,29 @@
+{
+  "checks": [
+    {
+      "mainHeading": "From “I think” to “I understand.”",
+      "overflow": false,
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "mainHeading": "From “I think” to “I understand.”",
+      "overflow": false,
+      "scrollWidth": 768,
+      "width": 768
+    },
+    {
+      "mainHeading": "From “I think” to “I understand.”",
+      "overflow": false,
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "mainHeading": "From “I think” to “I understand.”",
+      "overflow": false,
+      "scrollWidth": 1440,
+      "width": 1440
+    }
+  ],
+  "method": "Actual rendered DOM dimensions; representative desktop and 320px screenshots inspected separately."
+}

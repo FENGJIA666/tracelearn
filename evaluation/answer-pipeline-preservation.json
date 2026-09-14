@@ -1,0 +1,6 @@
+{
+  "benchmarkPrompt": "v3",
+  "frozenSourceFile": "evaluation/answer-pipeline-v3.ts.txt",
+  "unchangedAnswerPipelinePrefixSha256": "0f185429c05ba39434a7d9c21af0c3426d412acee7cb80b2c18f4c6199e9a79a",
+  "scope": "The entire retrieval/answering/validation prefix remains byte-identical to benchmark v3. Only imported-source practice generation changed after separate UI acceptance: source-derived cloze answers, Qwen-proposed distractors, and deterministic reconstruction. No holdout answers were used to tune the frozen answer pipeline."
+}

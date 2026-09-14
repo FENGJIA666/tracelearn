@@ -1,0 +1,91 @@
+Browser tab: 2, Title: "TraceLearn · Follow the evidence", URL: "http://127.0.0.1:4317/".
+1 AXWebArea TraceLearn · Follow the evidence, URL: 127.0.0.1:4317/
+	2 container root
+		3 link Description: Skip to learning workspace, Value: 127.0.0.1:4317/#main
+		4 container
+			5 link Description: TraceLearn home, Value: 127.0.0.1:4317/
+			6 text YOUR WORKSPACE Course
+			7 pop up button (collapsed, settable) Course, Value: revision-notes, ID: course-select, Secondary Actions: Expand
+				8 menu
+					9 Database foundations
+					10 (selected) revision-notes
+					11 injection-test
+			12 button Import your own notes ↗
+				13 text Import your own notes
+				14 text ↗
+			15 text LEARNING PATH 1
+			16 container Course concepts
+				62 button Source recall · Small revision note: COUNT and missing values
+			17 button Learning notebook 1
+				18 text Learning notebook
+				19 text 1
+			20 text Your notes. Your device. Runs locally after model download. No API key required.
+			21 button Local setup
+			22 text BUILD CHALLENGE 3.0 2026
+		23 container
+			24 text Workspace revision-notes
+			25 button Local AI ready
+			26 button 中文
+		27 container main
+			28 text YOUR PRIVATE SOURCE
+			29 heading From “I think” to “I understand.”, Value: 1
+				30 text From “I think” to “I understand.”
+			31 text Find the evidence. Spot the misconception. Test the idea again.
+			32 text 1
+			33 text source passages
+			34 container Learning workflow
+				35 text 1 Diagnose 2 Trace evidence 3 Transfer & reflect
+			36 tab group Learning mode
+				37 tab (selected, settable, boolean) Practice, Value: 1
+				38 tab (selectable, settable, boolean) Ask the source, Value: 0
+				39 tab (selectable, settable, boolean) Notebook, Value: 0
+				40 button Toggle source
+			65 container
+				66 text 01 AI-GENERATED · SOURCE RECALL
+				67 heading Value: 2, Complete the exact statement from your notes (verbatim recall). A table contains score values 10, 20, and _____.
+					68 text Complete the exact statement from your notes (verbatim recall). A table contains score values 10, 20, and _____.
+				69 text Choose one answer. A confident mistake is an opportunity to learn.
+				70 container Select an answer
+					71 text Select an answer
+					72 container
+						73 radio button (disabled, settable, integer) Description: A NULL, Value: 1
+						74 text A NULL
+					75 container
+						76 radio button (disabled, settable, integer) Description: B 10, Value: 0
+						77 text B 10
+					78 container
+						79 radio button (disabled, settable, integer) Description: C 20, Value: 0
+						80 text C 20
+					81 container
+						82 radio button (disabled, settable, integer) Description: D score, Value: 0
+						83 text D score
+				84 text ANSWER CORRECT
+				85 heading You matched the original source statement., Value: 3
+					86 text You matched the original source statement.
+				87 text The original source states: A table contains score values 10, 20, and NULL.
+				88 button p1-1
+				89 button Explore this reasoning with local AI
+				90 button Retry
+			44 button Generate an AI practice question
+			46 text Verbatim source recall from the first five passages. Answers are checked against the original quote.
+			47 container Source evidence
+				48 text BACK TO THE SOURCE LOCAL revision-notes p.  1
+				49 heading Small revision note: COUNT and missing values, Value: 2, ID: source-heading
+					50 text Small revision note: COUNT and missing values
+				51 text # Small revision note: COUNT and missing values
+
+A table contains score values 10, 20, and NULL. COUNT(*) counts every row, including a row whose score is NULL, so its result is 3. COUNT(score) counts only non-NULL scores, so its result is 2. AVG(score) ignores NULL values and computes (10 + 20) / 2 = 15. NULL means missing or unknown information; it is not the number zero.
+
+A WHERE clause keeps only rows whose condition is TRUE. A comparison between NULL and an ordinary value produces UNKNOWN. To include missing scores explicitly, use score IS NULL. These notes do not establish any student's exam schedule or personal grade.
+				52 text p1-1
+				53 text Source text is inspectable. AI interpretations still need judgment.
+				54 text Browse passages
+				55 pop up button (collapsed, settable) Browse passages, Value: p.1 · Small revision note: COUNT and missing values, ID: passage, Secondary Actions: Expand
+					56 menu
+						57 (selected) p.1 · Small revision note: COUNT and missing values
+				58 button (collapsed) Source fingerprint, Secondary Actions: Expand
+					59 text Source fingerprint
+			60 container
+				61 text LOCAL PROCESSING · NO ACCOUNT · NO API FEES TraceLearn 1.0  ·  Follow the evidence.
+
+The focused UI element is 1 AXWebArea TraceLearn · Follow the evidence, URL: 127.0.0.1:4317/

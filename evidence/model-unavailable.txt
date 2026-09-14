@@ -1,0 +1,73 @@
+Browser tab: 2, Title: "TraceLearn · Follow the evidence", URL: "http://127.0.0.1:4317/".
+1 AXWebArea TraceLearn · Follow the evidence, URL: 127.0.0.1:4317/
+	2 container root
+		3 link Description: Skip to learning workspace, Value: 127.0.0.1:4317/#main
+		4 container
+			5 link Description: TraceLearn home, Value: 127.0.0.1:4317/
+			6 text YOUR WORKSPACE Course
+			7 pop up button (collapsed, settable) Course, Value: revision-notes, ID: course-select, Secondary Actions: Expand
+				8 menu
+					9 Database foundations
+					10 (selected) revision-notes
+					11 injection-test
+			12 button Import your own notes ↗
+				13 text Import your own notes
+				14 text ↗
+			15 text LEARNING PATH 0
+			16 container Course concepts
+			17 button Learning notebook 0
+				18 text Learning notebook
+				19 text 0
+			20 text Your notes. Your device. Runs locally after model download. No API key required.
+			21 button Local setup
+			22 text BUILD CHALLENGE 3.0 2026
+		23 container
+			24 text Workspace revision-notes
+			25 button Set up local AI
+			26 button 中文
+		61 text Local runtime setup
+		62 text Run these commands inside the project directory. First model download is approximately 3.2 GB; later inference is local.
+		63 text npm run setup
+		64 text npm start
+		65 text qwen3:4b + qwen3-embedding:0.6b · 127.0.0.1 only
+		66 button Check connection
+		27 container main
+			28 text YOUR PRIVATE SOURCE
+			29 heading From “I think” to “I understand.”, Value: 1
+				30 text From “I think” to “I understand.”
+			31 text Find the evidence. Spot the misconception. Test the idea again.
+			32 text 1
+			33 text source passages
+			34 container Learning workflow
+				35 text 1 Diagnose 2 Trace evidence 3 Transfer & reflect
+			36 tab group Learning mode
+				37 tab (selected, settable, boolean) Practice, Value: 1
+				38 tab (selectable, settable, boolean) Ask the source, Value: 0
+				39 tab (selectable, settable, boolean) Notebook, Value: 0
+				40 button Toggle source
+			41 heading Your next insight starts here, Value: 2
+				42 text Your next insight starts here
+			43 text Ask a question about your source, or generate an AI practice question.
+			44 button (disabled) Generate an AI practice question
+			45 text Uses the first five passages. Source matching does not guarantee a correct question.
+			46 container Source evidence
+				47 text BACK TO THE SOURCE LOCAL revision-notes p.  1
+				48 heading Small revision note: COUNT and missing values, Value: 2, ID: source-heading
+					49 text Small revision note: COUNT and missing values
+				50 text # Small revision note: COUNT and missing values
+
+A table contains score values 10, 20, and NULL. COUNT(*) counts every row, including a row whose score is NULL, so its result is 3. COUNT(score) counts only non-NULL scores, so its result is 2. AVG(score) ignores NULL values and computes (10 + 20) / 2 = 15. NULL means missing or unknown information; it is not the number zero.
+
+A WHERE clause keeps only rows whose condition is TRUE. A comparison between NULL and an ordinary value produces UNKNOWN. To include missing scores explicitly, use score IS NULL. These notes do not establish any student's exam schedule or personal grade.
+				51 text p1-1
+				52 text Source text is inspectable. AI interpretations still need judgment.
+				53 text Browse passages
+				54 pop up button (collapsed, settable) Browse passages, Value: p.1 · Small revision note: COUNT and missing values, ID: passage, Secondary Actions: Expand
+					55 menu
+						56 (selected) p.1 · Small revision note: COUNT and missing values
+				57 button (collapsed) Source fingerprint, Secondary Actions: Expand
+					58 text Source fingerprint
+			59 container
+				60 text LOCAL PROCESSING · NO ACCOUNT · NO API FEES TraceLearn 1.0  ·  Follow the evidence.
+
+The focused UI element is 25 button Set up local AI

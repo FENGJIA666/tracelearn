@@ -1,0 +1,24 @@
+{
+  "raw": "{\n  \"concept\": \"SQL NULL handling\",\n  \"prompt\": \"In SQL, when a table contains score values 10, 20, and NULL, what does COUNT(*) return?\",\n  \"options\": [\n    \"1\",\n    \"2\",\n    \"3\",\n    \"4\"\n  ],\n  \"correct\": 2,\n  \"explanation\": \"COUNT(*) counts every row, including rows with NULL values. In this case, there are 3 rows (10, 20, NULL), so COUNT(*) returns 3. However, the question asks for COUNT(*) in the context of the given values, which are 10, 2: 10, 20, and NULL. Wait, the question says 'score values 10, 20, and NULL' so there are 3 rows. COUNT(*) returns 3. But the options have 3 as option 2 (index 2) and 2 as option 1 (index 1). Let me re-read the question carefully.\\n\\nThe question says: 'what does COUNT(*) return?' with the values 10, 20, and NULL. So there are 3 rows. COUNT(*) returns 3. So the correct answer should be 3, which is option 2 (index 2). But the options are: [\\\"1\\\", \\\"2\\\", \\\"3\\\", \\\"4\\\"] so 3 is the third option (index 2). The correct answer is 3, so the correct option index is 2.\\n\\nWait, the source says: 'COUNT(*) counts every row, including a row whose score is NULL, so its result is 3.' So the answer is 3. The options are: 1, 2, 3, 4. So the correct answer is 3, which is the third option (index 2). So the correct option is 2 (the index in the options array).\",\n  \"sourceIds\": [\"p1-1\"],\n  \"quote\": \"COUNT(*) counts every row, including a row whose score is NULL, so its result is 3.\"\n}",
+  "data": {
+    "concept": "SQL NULL handling",
+    "prompt": "In SQL, when a table contains score values 10, 20, and NULL, what does COUNT(*) return?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct": 2,
+    "explanation": "COUNT(*) counts every row, including rows with NULL values. In this case, there are 3 rows (10, 20, NULL), so COUNT(*) returns 3. However, the question asks for COUNT(*) in the context of the given values, which are 10, 2: 10, 20, and NULL. Wait, the question says 'score values 10, 20, and NULL' so there are 3 rows. COUNT(*) returns 3. But the options have 3 as option 2 (index 2) and 2 as option 1 (index 1). Let me re-read the question carefully.\n\nThe question says: 'what does COUNT(*) return?' with the values 10, 20, and NULL. So there are 3 rows. COUNT(*) returns 3. So the correct answer should be 3, which is option 2 (index 2). But the options are: [\"1\", \"2\", \"3\", \"4\"] so 3 is the third option (index 2). The correct answer is 3, so the correct option index is 2.\n\nWait, the source says: 'COUNT(*) counts every row, including a row whose score is NULL, so its result is 3.' So the answer is 3. The options are: 1, 2, 3, 4. So the correct answer is 3, which is the third option (index 2). So the correct option is 2 (the index in the options array).",
+    "sourceIds": [
+      "p1-1"
+    ],
+    "quote": "COUNT(*) counts every row, including a row whose score is NULL, so its result is 3."
+  },
+  "stats": {
+    "totalDurationMs": 6386.248375,
+    "promptTokens": 227,
+    "outputTokens": 450
+  }
+}

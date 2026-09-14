@@ -1,0 +1,8 @@
+{
+  "sha256": "e2eab651cdbb82544f09a1493b77a059f184442151beab5fe606460e082217ef",
+  "createdAt": "2026-09-14T10:17:13.134Z",
+  "count": 80,
+  "development": 40,
+  "holdout": 40,
+  "policy": "Freeze before tuning; do not modify prompts based on holdout outputs. Keyword checks are diagnostics, not semantic accuracy."
+}

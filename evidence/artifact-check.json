@@ -1,0 +1,50 @@
+{
+  "media": [
+    {
+      "file": "00-cover.png",
+      "size": 77061,
+      "width": 1500,
+      "height": 1000
+    },
+    {
+      "file": "01-learning-workspace.png",
+      "size": 101064,
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "02-misconception-evidence.png",
+      "size": 119529,
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "03-transfer-check.png",
+      "size": 116465,
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "04-local-ai-citations.png",
+      "size": 118475,
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "05-learning-notebook.png",
+      "size": 102035,
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "06-chinese-workspace.png",
+      "size": 92449,
+      "width": 1440,
+      "height": 1000
+    }
+  ],
+  "pdfPages": 7,
+  "pdfRenderedAndInspected": true,
+  "architectureSvgXmlValid": true,
+  "frozenBenchmarkSourceDigestMatches": true
+}

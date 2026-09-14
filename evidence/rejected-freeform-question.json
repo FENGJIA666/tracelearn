@@ -1,0 +1,28 @@
+{
+  "reason": "All four options are incorrect; discovered by agent-assisted UI acceptance. Replaced by exact-source cloze generation in final implementation.",
+  "question": {
+    "concept": "SQL NULL handling",
+    "prompt": "Which of the following statements about NULL values in SQL is correct?",
+    "options": [
+      "COUNT(*) counts only non-NULL values",
+      "COUNT(score) counts all rows including NULLs",
+      "AVG(score) includes NULL values in the calculation",
+      "NULL is treated as zero in arithmetic operations"
+    ],
+    "correct": 0,
+    "explanation": "COUNT(*) counts every row, including NULLs, so the first option is correct. The source states: 'COUNT(*) counts every row, including a row whose score is NULL, so its result is 3.'",
+    "sourceIds": [
+      "p1-1"
+    ],
+    "quote": "COUNT(*) counts every row, including a row whose score is NULL, so its result is  3.",
+    "id": "f24005a9-0af4-4451-a0cc-ab0d12cbfd5c",
+    "courseId": "49a64ff1-0900-4d0a-b7fb-01eb5810b3a0",
+    "kind": "generated",
+    "misconceptions": [
+      "",
+      "",
+      "",
+      ""
+    ]
+  }
+}
