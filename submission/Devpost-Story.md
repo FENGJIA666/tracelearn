@@ -1,10 +1,14 @@
 ## Review the project
 
 - [Browse the source code and judge walkthrough](https://github.com/FENGJIA666/tracelearn)
-- [Read the technical and evaluation report (PDF)](https://github.com/FENGJIA666/tracelearn/blob/v1.0.0/submission/TraceLearn-Technical-Report.pdf)
-- [Download the complete source and evidence package](https://github.com/FENGJIA666/tracelearn/releases/download/v1.0.0/TraceLearn-Complete-v1.0.0.zip)
+- [Read the technical and evaluation report (PDF)](https://github.com/FENGJIA666/tracelearn/blob/v1.1.0/submission/TraceLearn-Technical-Report.pdf)
+- [Download the complete source and evidence package](https://github.com/FENGJIA666/tracelearn/releases/download/v1.1.0/TraceLearn-Complete-v1.1.0.zip)
 
-The repository includes the original course, all 160 final evaluation records, tests, setup scripts and model configuration. To run locally, install Node.js 22.13+ and Ollama, then run `npm run setup` followed by `npm start`. The first setup downloads approximately 3.2 GB of model weights; subsequent use can remain offline. The application was tested on Apple M4 Pro with 24 GB memory. See the repository's judge guide for a three-minute walkthrough; no hosted inference service is provided.
+**Start in under 0.5 MB:** [download the portable practice HTML](https://github.com/FENGJIA666/tracelearn/releases/download/v1.1.0/TraceLearn-Portable.html). It contains the real 20-question practice loop, source passages, review plan and export. No model, Node.js or API key is needed for these features. Download and open in a browser; the repository documents a localhost static preview fallback for restricted environments.
+
+The **Evidence** tab lets reviewers inspect all 160 recorded requests, both methods, original references, quotes and saved agent-assisted judgments. These are clearly labeled historical outputs, not live AI. Mistakes and failures remain visible.
+
+For fresh local AI answers and document import, install Node.js 22.13+ and Ollama, then run `npm run setup` and `npm start`. Model downloads total approximately 3.2 GB. The app was tested on Apple M4 Pro with 24 GB memory; there is no hosted inference service.
 
 ## Inspiration
 
@@ -19,7 +23,7 @@ TraceLearn is a working local AI study workspace with an original university dat
 1. **Diagnose:** choose an answer and record confidence.
 2. **Trace:** inspect targeted feedback and open the original supporting passage.
 3. **Transfer:** apply the concept to a different condition or inference.
-4. **Reflect:** review the learning trail and export a report with source fingerprints.
+4. **Reflect:** revisit the latest confident mistakes first, then other mistakes and untried transfer checks; export an attempt report with source fingerprints.
 
 For example, choosing “200 and NULL” for `salary <> 100` surfaces a possible confusion between UNKNOWN and an ordinary value. The source explains that WHERE keeps only TRUE. The follow-up asks how to retain 20 and NULL while excluding 10; the correct condition explicitly includes `IS NULL`.
 
@@ -39,7 +43,9 @@ The app accepts up to 10 MB and 50 PDF pages; scanned PDFs need external OCR. It
 
 ## What was tested
 
-On an **Apple M4 Pro with 24 GB memory**, the final software passed 17 unit tests, 11 isolated HTTP checks and a production build. The app and Ollama also answered real questions with outbound network restricted to localhost: 6.62 seconds after a model-server restart and 4.17 seconds for a warm repeat. External DNS and direct-IP requests were denied by the test policy.
+Version 1.1 passed **22 unit tests**, **11 isolated HTTP checks**, the normal production build and the portable build on an **Apple M4 Pro with 24 GB memory**. New checks compare every displayed result with the frozen raw records and every portable answer choice with the original keys. Portable preview checks covered real attempts, source navigation, review priorities, export, refresh recovery, keyboard input, English/Chinese controls and 320/768/1024/1440-pixel layouts. No resource/API requests followed the single HTML document load. Direct local-file launch remains unverified because browser automation blocks `file://`; the verified route is a localhost static preview. A fresh full-app AI request also completed with real source quotes.
+
+The following model measurements are the unchanged 14 September v1.0 experiment, not a newly tuned v1.1 benchmark. The app and Ollama also answered real questions with outbound network restricted to localhost: 6.62 seconds after a model-server restart and 4.17 seconds for a warm repeat. External DNS and direct-IP requests were denied by the test policy.
 
 Actual browser checks covered the diagnostic-to-transfer workflow, source navigation, export, refresh restoration, Markdown import, keyboard answer selection and cancellation. Gallery images are captures of the real application.
 
@@ -70,7 +76,7 @@ The narrow scope made it possible to inspect every built-in question, execute SQ
 
 ## Impact and next steps
 
-After dependency and model downloads, local processing avoids recurring API fees and keeps study material on the device. It still requires capable hardware and storage, so zero API cost does not mean zero access cost. No real-user adoption, measured grade improvement or long-term learning benefit is claimed.
+The portable practice removes model and dependency installation from the curated learning loop. The full AI route, after dependency and model downloads, avoids recurring API fees and keeps study material on the device. It still requires capable hardware and storage, so zero API cost does not mean zero access cost. No real-user adoption, measured grade improvement or long-term learning benefit is claimed.
 
 The next research step is an independently reviewed, consented study using delayed transfer questions. Technical priorities are better refusal consistency, broader document coverage for generated questions, and stronger semantic checks.
 

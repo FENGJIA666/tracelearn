@@ -2,7 +2,7 @@
 
 **Learning that can show its work.**
 
-[Read the technical report](submission/TraceLearn-Technical-Report.pdf) · [Download the complete package](https://github.com/FENGJIA666/tracelearn/releases/download/v1.0.0/TraceLearn-Complete-v1.0.0.zip) · [Judge walkthrough](JUDGE-GUIDE.md) · [Devpost project](https://devpost.com/software/tracelearn-learning-that-can-show-its-work)
+[Read the technical report](submission/TraceLearn-Technical-Report.pdf) · [Download the complete package](https://github.com/FENGJIA666/tracelearn/releases/download/v1.1.0/TraceLearn-Complete-v1.1.0.zip) · [Judge walkthrough](JUDGE-GUIDE.md) · [Devpost project](https://devpost.com/software/tracelearn-learning-that-can-show-its-work)
 
 ![The real TraceLearn learning workspace](submission/01-learning-workspace.png)
 
@@ -10,7 +10,15 @@ TraceLearn is a local-first learning workspace for university students. It links
 
 The worked course covers SQL NULL, aggregates, NOT IN, candidate keys, functional dependencies, closures, 2NF, 3NF/BCNF, decomposition, and LEFT JOIN. It contains 20 original passages and 10 diagnostic/transfer pairs. The course and tests are original contest work; no private student files are included.
 
-## Run
+## Try the portable practice first
+
+[Download TraceLearn-Portable.html](https://github.com/FENGJIA666/tracelearn/releases/download/v1.1.0/TraceLearn-Portable.html) (under 0.5 MB). This single file contains the same React practice interface, 20 original questions, source passages, deterministic grading, review suggestions and report export. It needs no Node.js, model download or API key for those features. Download it and open it in a browser. If local-file opening is restricted, serve the extracted `submission` folder with `python3 -m http.server 4329 --bind 127.0.0.1 --directory submission` and visit <http://127.0.0.1:4329/TraceLearn-Portable.html>.
+
+**Evidence is recorded, not live AI.** Browse all 160 frozen requests by split and case type; inspect both methods, references, quotes, source passages and saved agent-assisted judgments, including mistakes. Live inference and importing your own notes require the full local app below.
+
+The portable file has embedded resources and a `connect-src 'none'` policy. Interactions and actual report download were verified through a localhost static preview; direct `file://` launch could not be automated because the browser tool blocks that scheme. Practice history uses browser storage when allowed and is separate from the full app's SQLite history. Browser data clearing can remove it; export a report to keep a copy. Embedded answer keys are for practice, not secure examinations.
+
+## Run the full local AI app
 
 Requirements: Node.js 22.13 or newer, Ollama, approximately 3.2 GB of model downloads, plus dependency storage. Tested on macOS / Apple M4 Pro / 24 GB memory. Windows and Linux were not tested.
 
@@ -29,7 +37,7 @@ No API key, cloud account, paid inference, external font, CDN asset, or user log
 3. Open the transfer check and choose **price <> 10 OR price IS NULL**.
 4. Use **Explore this reasoning with local AI**, then **Ask the source**. The answer quotes real course passages.
 5. Ask what will be on your university exam. The course does not establish this; the model should decline.
-6. Open **Notebook** and export the Markdown learning report, including source hash and attempt history.
+6. Open **Notebook** to revisit your latest confident mistakes and untried transfer checks, then export the Markdown learning report, including source hash and attempt history.
 
 These demonstration actions are software tests, not evidence of improved student learning.
 
@@ -63,6 +71,8 @@ The rank is 0.75 cosine similarity + 0.25 query-token overlap. This is an inspec
 - `npm test`: content, SQL execution, closure derivation, imports, malformed outputs, aborts, timeout/unavailable behavior, and exact-quote rejection.
 - `npx tsx scripts/http-check.ts`: isolated SQLite database and local server; validates user routes, hidden answers, input checks, origin restrictions, history and export.
 - `npm run build`: TypeScript and production build.
+- `npm run build:portable`: regenerate the display projection of frozen records and create the self-contained HTML.
+- `evidence/v1.1-acceptance.md`: new UI checks and the direct-file testing boundary.
 - `npm run evaluate`: runs missing evaluations and regenerates summary. Existing results are not overwritten. To independently rerun, copy the code to a fresh directory and archive `evaluation/raw-results.jsonl` first.
 - `evaluation/raw-results.jsonl`: accepted final model output, retrieved sources, timings and available retry records; rejected calls retain error records.
 - `evaluation/semantic-review.json`: agent-assisted review, explicitly not an independent human study.
@@ -91,6 +101,6 @@ Codex assisted with concept design, implementation, original course and question
 
 ## Report regeneration
 
-The finished PDF and all six screenshots are already included. To regenerate the report on a machine with Python 3.11+, install `scripts/requirements-report.txt` in a virtual environment, then run `python scripts/make-report.py` after the complete 160-request summary exists. The script uses the included actual screenshots and saved review judgments; it does not create new evaluation evidence. `python scripts/write-review.py` only recounts the saved agent-assisted judgments. `submission/architecture.svg` is a standalone vector architecture diagram.
+The finished PDF and all nine screenshots are already included. To regenerate the report on a machine with Python 3.11+, install `scripts/requirements-report.txt` in a virtual environment, then run `python scripts/make-report.py` after the complete 160-request summary exists. The script uses the included actual screenshots and saved review judgments; it does not create new evaluation evidence. `python scripts/write-review.py` only recounts the saved agent-assisted judgments. `submission/architecture.svg` is a standalone vector architecture diagram.
 
 The final answering pipeline is byte-identical to the evaluated v3 pipeline. Imported-source practice was subsequently narrowed to source-derived cloze answers and model-proposed distractors; `evaluation/answer-pipeline-preservation.json` records that boundary and the frozen benchmark source is retained.

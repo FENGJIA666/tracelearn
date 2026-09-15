@@ -1,6 +1,6 @@
 {
   "name": "tracelearn",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -12,7 +12,9 @@
     "start": "tsx server/index.ts",
     "test": "tsx --test tests/*.test.ts",
     "evaluate": "tsx scripts/evaluate.ts",
-    "setup": "bash scripts/setup.sh"
+    "setup": "bash scripts/setup.sh",
+    "prepare:review": "tsx scripts/prepare-review.ts",
+    "build:portable": "tsx scripts/prepare-review.ts && tsx scripts/build-portable.ts"
   },
   "dependencies": {
     "@vitejs/plugin-react": "6.1.1",

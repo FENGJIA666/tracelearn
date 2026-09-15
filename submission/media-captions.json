@@ -1,9 +1,42 @@
 [
-{"file":"00-cover.png","caption":"TraceLearn — learning that can show its work."},
-{"file":"01-learning-workspace.png","caption":"Start with a concept check beside inspectable original teaching notes."},
-{"file":"02-misconception-evidence.png","caption":"A scripted incorrect answer reveals a possible misconception; the source explains SQL UNKNOWN."},
-{"file":"03-transfer-check.png","caption":"Apply the same idea in a different condition, with deterministic answer checking."},
-{"file":"04-local-ai-citations.png","caption":"A real Qwen3-4B response runs locally and links to exact original source excerpts."},
-{"file":"05-learning-notebook.png","caption":"Export the learning trail; these demonstration attempts are software tests, not a learning-outcome study."},
-{"file":"06-chinese-workspace.png","caption":"Chinese interface and source translation; built-in questions retain English technical wording."}
+  {
+    "file": "00-cover.png",
+    "caption": "TraceLearn — learning that can show its work."
+  },
+  {
+    "file": "01-learning-workspace.png",
+    "caption": "Start with a concept check beside inspectable original teaching notes."
+  },
+  {
+    "file": "02-misconception-evidence.png",
+    "caption": "A scripted incorrect answer reveals a possible misconception; the source explains SQL UNKNOWN."
+  },
+  {
+    "file": "03-transfer-check.png",
+    "caption": "Apply the same idea in a different condition, with deterministic answer checking."
+  },
+  {
+    "file": "04-local-ai-citations.png",
+    "caption": "A real Qwen3-4B response runs locally and links to exact original source excerpts."
+  },
+  {
+    "file": "05-learning-notebook.png",
+    "caption": "Export the learning trail; these demonstration attempts are software tests, not a learning-outcome study."
+  },
+  {
+    "file": "06-chinese-workspace.png",
+    "caption": "Chinese interface and source translation; built-in questions retain English technical wording."
+  },
+  {
+    "file": "07-portable-practice.png",
+    "caption": "Portable v1.1: real curated practice without a model or Node.js; captured in a localhost static preview."
+  },
+  {
+    "file": "08-evidence-lab.png",
+    "caption": "Recorded AI, not live: both frozen answers and the retained error are inspectable beside the original source."
+  },
+  {
+    "file": "09-review-plan.png",
+    "caption": "A transparent review rule prioritizes latest confident mistakes; these are scripted software-test attempts."
+  }
 ]

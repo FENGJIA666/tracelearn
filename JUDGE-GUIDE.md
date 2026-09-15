@@ -2,14 +2,20 @@
 
 TraceLearn connects a concept check, its source evidence, targeted feedback and a transfer question. The first complete course covers university database fundamentals. All screenshots are from the implemented application.
 
-## Inspect without installing
+## Start with the portable practice
 
-1. Read the [seven-page technical and evaluation report](submission/TraceLearn-Technical-Report.pdf).
-2. Inspect the [real learning workspace](submission/01-learning-workspace.png), [feedback](submission/02-misconception-evidence.png), [transfer check](submission/03-transfer-check.png) and [local AI response](submission/04-local-ai-citations.png).
-3. Review [the original course and answer keys](content/course.ts), [retrieval and output checks](server/ai.ts), and [test evidence](evidence/acceptance.md).
-4. Inspect the [frozen evaluation summary](evaluation/summary.json), [raw final outputs](evaluation/raw-results.jsonl) and [agent-assisted semantic review](evaluation/semantic-review.json). The review is not independent human scoring.
+Download [TraceLearn-Portable.html](https://github.com/FENGJIA666/tracelearn/releases/download/v1.1.0/TraceLearn-Portable.html), a single file under 0.5 MB. Open it in a browser. It contains actual curated practice, not a video or a sequence of simulated clicks. No model, Node.js or API key is needed for this route. Browser security settings may restrict local files; the [README](README.md#try-the-portable-practice-first) gives a localhost static preview fallback and explains our testing boundary.
 
-The [v1.0.0 release](https://github.com/FENGJIA666/tracelearn/releases/tag/v1.0.0) provides the complete source/evidence ZIP, the standalone PDF, and SHA-256 checksums. Model weights, dependencies and personal runtime databases are excluded from the download.
+1. In **SQL NULL**, select **200 and NULL** and **Very sure**. Check the deterministic feedback.
+2. Click **null-where** to read the original source; complete the transfer check with **price <> 10 OR price IS NULL**.
+3. Open **Notebook**. The latest confident mistake appears in the review plan; the button returns to its actual question. Export your real attempt record.
+4. Open **Evidence**. Both saved answers to `in-4` are visible, including the hybrid answer's `10:00` typo and its qualified review. Filter **Development / Outside source / out-13** to see a retained unsupported university-award claim.
+
+**The Evidence tab is a viewer of the 14 September run, not live inference.** It includes all 80 cases and 160 requests; failure records are retained. Use the full app below for fresh AI answers and your own documents.
+
+## Inspect the implementation and experiment
+
+Read the [eight-page technical report](submission/TraceLearn-Technical-Report.pdf), [original course](content/course.ts), [answer pipeline](server/ai.ts), [new acceptance evidence](evidence/v1.1-acceptance.md), and [frozen raw outputs](evaluation/raw-results.jsonl). The [v1.1.0 release](https://github.com/FENGJIA666/tracelearn/releases/tag/v1.1.0) includes portable HTML, complete source/evidence ZIP, PDF and checksums. Dependencies, models and personal runtime databases are excluded.
 
 ## Run on your computer
 

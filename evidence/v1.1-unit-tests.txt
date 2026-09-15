@@ -1,0 +1,147 @@
+
+> tracelearn@1.1.0 test
+> tsx --test tests/*.test.ts
+
+TAP version 13
+# Subtest: SQL NULL examples execute as taught
+ok 1 - SQL NULL examples execute as taught
+  ---
+  duration_ms: 1.037375
+  type: 'test'
+  ...
+# Subtest: all curated questions have distinct options, valid sources and transfer pairs
+ok 2 - all curated questions have distinct options, valid sources and transfer pairs
+  ---
+  duration_ms: 0.235875
+  type: 'test'
+  ...
+# Subtest: candidate keys and normal-form example checked with closure
+ok 3 - candidate keys and normal-form example checked with closure
+  ---
+  duration_ms: 0.125792
+  type: 'test'
+  ...
+# Subtest: accept exact source and reject fabricated citation or uncited assertion
+ok 4 - accept exact source and reject fabricated citation or uncited assertion
+  ---
+  duration_ms: 1.328792
+  type: 'test'
+  ...
+# Subtest: refusal does not carry accepted citations
+ok 5 - refusal does not carry accepted citations
+  ---
+  duration_ms: 0.092916
+  type: 'test'
+  ...
+# Subtest: UTF8 notes import retains hash and virtual page location
+ok 6 - UTF8 notes import retains hash and virtual page location
+  ---
+  duration_ms: 0.431958
+  type: 'test'
+  ...
+# Subtest: long notes do not lose characters between chunks
+ok 7 - long notes do not lose characters between chunks
+  ---
+  duration_ms: 0.169625
+  type: 'test'
+  ...
+# Warning: Indexing all PDF objects
+# Subtest: reject empty, invalid, oversized and unsupported files
+ok 8 - reject empty, invalid, oversized and unsupported files
+  ---
+  duration_ms: 257.156167
+  type: 'test'
+  ...
+# Subtest: text PDF accepted; blank scan and 51-page PDF rejected
+ok 9 - text PDF accepted; blank scan and 51-page PDF rejected
+  ---
+  duration_ms: 29.986833
+  type: 'test'
+  ...
+# Subtest: cosine similarity handles zero vectors
+ok 10 - cosine similarity handles zero vectors
+  ---
+  duration_ms: 0.344792
+  type: 'test'
+  ...
+# Subtest: offline Ollama gives an actionable 503
+ok 11 - offline Ollama gives an actionable 503
+  ---
+  duration_ms: 0.711541
+  type: 'test'
+  ...
+# Subtest: abort maps to cancellation instead of saving an answer
+ok 12 - abort maps to cancellation instead of saving an answer
+  ---
+  duration_ms: 0.179708
+  type: 'test'
+  ...
+# Subtest: deadline maps to unavailable/timeout without false success
+ok 13 - deadline maps to unavailable/timeout without false success
+  ---
+  duration_ms: 0.090917
+  type: 'test'
+  ...
+# Subtest: malformed answer is retried once then rejected
+ok 14 - malformed answer is retried once then rejected
+  ---
+  duration_ms: 12.13625
+  type: 'test'
+  ...
+# Subtest: duplicate generated options are rejected after one retry
+ok 15 - duplicate generated options are rejected after one retry
+  ---
+  duration_ms: 2.201
+  type: 'test'
+  ...
+# Subtest: cloze derives its answer and explanation from the source, not model prose
+ok 16 - cloze derives its answer and explanation from the source, not model prose
+  ---
+  duration_ms: 1.312625
+  type: 'test'
+  ...
+# Subtest: cloze rejects a distractor that duplicates the source-derived correct phrase
+ok 17 - cloze rejects a distractor that duplicates the source-derived correct phrase
+  ---
+  duration_ms: 1.432292
+  type: 'test'
+  ...
+# Subtest: portable exercises use every original key and preserve source provenance
+ok 18 - portable exercises use every original key and preserve source provenance
+  ---
+  duration_ms: 1.798292
+  type: 'test'
+  ...
+# Subtest: portable restoration repairs altered grading fields and tolerates corrupted storage
+ok 19 - portable restoration repairs altered grading fields and tolerates corrupted storage
+  ---
+  duration_ms: 0.349834
+  type: 'test'
+  ...
+# Subtest: review plan puts current confident mistakes first and untried transfer next
+ok 20 - review plan puts current confident mistakes first and untried transfer next
+  ---
+  duration_ms: 0.415084
+  type: 'test'
+  ...
+# Subtest: evidence viewer contains every frozen record, failure and unmodified answer
+ok 21 - evidence viewer contains every frozen record, failure and unmodified answer
+  ---
+  duration_ms: 8.6055
+  type: 'test'
+  ...
+# Subtest: portable artifact embeds script and style and denies network connections
+ok 22 - portable artifact embeds script and style and denies network connections
+  ---
+  duration_ms: 1.80125
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 831.174209

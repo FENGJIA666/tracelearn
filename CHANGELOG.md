@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0 - 2026-09-15
+
+- Added a self-contained portable practice HTML using the real course, grading, source viewer, review plan and export. Fresh AI and document import remain in the full app.
+- Added an Evidence tab covering all 160 frozen requests, both methods and failures, with source links and explicitly labeled agent-assisted review.
+- Added latest-attempt review suggestions: confident mistakes, other mistakes, then untried transfer checks. No mastery score is inferred.
+- Passed 22 unit tests, 11 HTTP checks and both builds; browser acceptance and its direct-file limitation are recorded in evidence/v1.1-acceptance.md.
+- Kept server/ai.ts and evaluation/* byte-identical to v1.0.0. No score tuning or new model benchmark is claimed.
+
 ## 1.0.0 - 2026-09-14
 
 ### Added
