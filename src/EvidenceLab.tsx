@@ -8,7 +8,7 @@ const reviews = data.reviews as {id:string;mode:string;answerVerdict?:string;ver
 export function EvidenceLab({onSource,zh}:{onSource:(id:string)=>void;zh:boolean}) {
   const [split,setSplit] = useState('holdout');
   const [category,setCategory] = useState('all');
-  const [id,setId] = useState('in-4');
+  const [id,setId] = useState('in-2');
   const cases = data.dataset.filter(c => c.split===split && (category==='all'||c.category===category));
   const selected = cases.find(c=>c.id===id)||cases[0];
   const paired = records.filter(r=>r.id===selected.id);
@@ -17,6 +17,9 @@ export function EvidenceLab({onSource,zh}:{onSource:(id:string)=>void;zh:boolean
     <h2>{zh?'每个数字，都能追溯。':'Every number has a trail.'}</h2>
     <p className="recorded-notice">{zh?'历史记录 · 2026年9月14日 · 非实时AI输出':'RECORDED RUN · 14 SEP 2026 · NOT LIVE AI'}</p>
     <p className="muted">{zh?'80条原创案例，两种方法，共160次请求。完整展示回答和失败，不把输出校验通过当成答案正确。':'80 original cases. Two methods. All 160 requests, including failures. An accepted output is not necessarily correct.'}</p>
+    <div className="evidence-shortcuts" aria-label={zh?'推荐查看的记录':'Recorded examples'}>{[
+      ['in-2','holdout',zh?'有原文依据的回答':'Supported answer'],['out-1','development',zh?'材料外拒答':'Outside-source refusal'],['out-13','development',zh?'仍然出错的案例':'A failure that remains']
+    ].map(([caseId,caseSplit,label])=><button key={caseId} aria-pressed={selected.id===caseId} onClick={()=>{setId(caseId);setSplit(caseSplit);setCategory('all')}}>{label}</button>)}</div>
     <div className="evidence-filters">
       <label>{zh?'数据划分':'Split'}<select value={split} onChange={e=>setSplit(e.target.value)}><option value="holdout">Holdout · 40</option><option value="development">Development · 40</option></select></label>
       <label>{zh?'案例类型':'Case type'}<select value={category} onChange={e=>setCategory(e.target.value)}><option value="all">All cases</option><option value="answerable">Source-answerable</option><option value="unanswerable">Outside source</option><option value="quiz">Multiple choice</option></select></label>
