@@ -1,0 +1,303 @@
+
+> tracelearn@1.2.0 test
+> tsx --test tests/*.test.ts
+
+TAP version 13
+# Subtest: SQL NULL examples execute as taught
+ok 1 - SQL NULL examples execute as taught
+  ---
+  duration_ms: 1.137583
+  type: 'test'
+  ...
+# Subtest: all curated questions have distinct options, valid sources and transfer pairs
+ok 2 - all curated questions have distinct options, valid sources and transfer pairs
+  ---
+  duration_ms: 0.286291
+  type: 'test'
+  ...
+# Subtest: candidate keys and normal-form example checked with closure
+ok 3 - candidate keys and normal-form example checked with closure
+  ---
+  duration_ms: 0.14075
+  type: 'test'
+  ...
+# Subtest: accept exact source and reject fabricated citation or uncited assertion
+ok 4 - accept exact source and reject fabricated citation or uncited assertion
+  ---
+  duration_ms: 1.203
+  type: 'test'
+  ...
+# Subtest: refusal does not carry accepted citations
+ok 5 - refusal does not carry accepted citations
+  ---
+  duration_ms: 0.073542
+  type: 'test'
+  ...
+# Subtest: UTF8 notes import retains hash and virtual page location
+ok 6 - UTF8 notes import retains hash and virtual page location
+  ---
+  duration_ms: 0.443834
+  type: 'test'
+  ...
+# Subtest: long notes do not lose characters between chunks
+ok 7 - long notes do not lose characters between chunks
+  ---
+  duration_ms: 0.142375
+  type: 'test'
+  ...
+# Warning: Indexing all PDF objects
+# Subtest: reject empty, invalid, oversized and unsupported files
+ok 8 - reject empty, invalid, oversized and unsupported files
+  ---
+  duration_ms: 276.190125
+  type: 'test'
+  ...
+# Subtest: text PDF accepted; blank scan and 51-page PDF rejected
+ok 9 - text PDF accepted; blank scan and 51-page PDF rejected
+  ---
+  duration_ms: 34.572292
+  type: 'test'
+  ...
+# Subtest: cosine similarity handles zero vectors
+ok 10 - cosine similarity handles zero vectors
+  ---
+  duration_ms: 0.346625
+  type: 'test'
+  ...
+# Subtest: offline Ollama gives an actionable 503
+ok 11 - offline Ollama gives an actionable 503
+  ---
+  duration_ms: 0.639958
+  type: 'test'
+  ...
+# Subtest: abort maps to cancellation instead of saving an answer
+ok 12 - abort maps to cancellation instead of saving an answer
+  ---
+  duration_ms: 0.187125
+  type: 'test'
+  ...
+# Subtest: deadline maps to unavailable/timeout without false success
+ok 13 - deadline maps to unavailable/timeout without false success
+  ---
+  duration_ms: 0.087125
+  type: 'test'
+  ...
+# Subtest: malformed answer is retried once then rejected
+ok 14 - malformed answer is retried once then rejected
+  ---
+  duration_ms: 11.970917
+  type: 'test'
+  ...
+# Subtest: duplicate generated options are rejected after one retry
+ok 15 - duplicate generated options are rejected after one retry
+  ---
+  duration_ms: 2.599167
+  type: 'test'
+  ...
+# Subtest: cloze derives its answer and explanation from the source, not model prose
+ok 16 - cloze derives its answer and explanation from the source, not model prose
+  ---
+  duration_ms: 1.553417
+  type: 'test'
+  ...
+# Subtest: cloze rejects a distractor that duplicates the source-derived correct phrase
+ok 17 - cloze rejects a distractor that duplicates the source-derived correct phrase
+  ---
+  duration_ms: 1.952583
+  type: 'test'
+  ...
+# Subtest: installation and build identities distinguish copies, versions and asset changes without paths
+ok 18 - installation and build identities distinguish copies, versions and asset changes without paths
+  ---
+  duration_ms: 3.954209
+  type: 'test'
+  ...
+# Subtest: launcher selection reuses only its exact installation and leaves conflicting local services alone
+ok 19 - launcher selection reuses only its exact installation and leaves conflicting local services alone
+  ---
+  duration_ms: 0.627292
+  type: 'test'
+  ...
+# Subtest: identity selection distinguishes two actual loopback servers and makes no mutation requests
+ok 20 - identity selection distinguishes two actual loopback servers and makes no mutation requests
+  ---
+  duration_ms: 21.998875
+  type: 'test'
+  ...
+# Subtest: portable exercises use every original key and preserve source provenance
+ok 21 - portable exercises use every original key and preserve source provenance
+  ---
+  duration_ms: 2.251834
+  type: 'test'
+  ...
+# Subtest: portable restoration repairs altered grading fields and tolerates corrupted storage
+ok 22 - portable restoration repairs altered grading fields and tolerates corrupted storage
+  ---
+  duration_ms: 0.373667
+  type: 'test'
+  ...
+# Subtest: review plan puts current confident mistakes first and untried transfer next
+ok 23 - review plan puts current confident mistakes first and untried transfer next
+  ---
+  duration_ms: 0.278166
+  type: 'test'
+  ...
+# Subtest: evidence viewer contains every frozen record, failure and unmodified answer
+ok 24 - evidence viewer contains every frozen record, failure and unmodified answer
+  ---
+  duration_ms: 10.475375
+  type: 'test'
+  ...
+# Subtest: portable artifact embeds script and style and denies network connections
+ok 25 - portable artifact embeds script and style and denies network connections
+  ---
+  duration_ms: 2.316
+  type: 'test'
+  ...
+# Subtest: saved SQL and key predictions round-trip in order and retain source provenance
+ok 26 - saved SQL and key predictions round-trip in order and retain source provenance
+  ---
+  duration_ms: 2.394042
+  type: 'test'
+  ...
+# Subtest: history is isolated by exact source hash and cannot accept foreign or missing provenance
+ok 27 - history is isolated by exact source hash and cannot accept foreign or missing provenance
+  ---
+  duration_ms: 0.205875
+  type: 'test'
+  ...
+# Subtest: malformed storage and metadata are rejected without losing adjacent valid records
+ok 28 - malformed storage and metadata are rejected without losing adjacent valid records
+  ---
+  duration_ms: 0.232333
+  type: 'test'
+  ...
+# Subtest: SQL history checks finite bounded inputs, supported modes and one prediction per row
+ok 29 - SQL history checks finite bounded inputs, supported modes and one prediction per row
+  ---
+  duration_ms: 0.214292
+  type: 'test'
+  ...
+# Subtest: key history permits the empty set but rejects unknown schemas, duplicate and foreign attributes
+ok 30 - key history permits the empty set but rejects unknown schemas, duplicate and foreign attributes
+  ---
+  duration_ms: 0.130333
+  type: 'test'
+  ...
+# Subtest: stored grades and computed traces are discarded; every exported result is recomputed
+ok 31 - stored grades and computed traces are discarded; every exported result is recomputed
+  ---
+  duration_ms: 0.311083
+  type: 'test'
+  ...
+# Subtest: history retains the latest 100 valid records in input order
+ok 32 - history retains the latest 100 valid records in input order
+  ---
+  duration_ms: 1.504
+  type: 'test'
+  ...
+# Subtest: exports distinguish candidate keys from reducible superkeys and show both schemas
+ok 33 - exports distinguish candidate keys from reducible superkeys and show both schemas
+  ---
+  duration_ms: 0.537625
+  type: 'test'
+  ...
+# Subtest: display helpers preserve SQL negation meaning and new-attempt union retains variant-specific inputs
+ok 34 - display helpers preserve SQL negation meaning and new-attempt union retains variant-specific inputs
+  ---
+  duration_ms: 0.588208
+  type: 'test'
+  ...
+# Subtest: SQL experiment matches real SQLite for NULL, signed numbers, duplicates and varied NOT IN lists
+ok 35 - SQL experiment matches real SQLite for NULL, signed numbers, duplicates and varied NOT IN lists
+  ---
+  duration_ms: 20.5655
+  type: 'test'
+  ...
+# Subtest: every three-valued Boolean truth-table entry matches SQLite
+ok 36 - every three-valued Boolean truth-table entry matches SQLite
+  ---
+  duration_ms: 0.505333
+  type: 'test'
+  ...
+# Subtest: SQL model rejects malformed numeric inputs and does not mutate callers
+ok 37 - SQL model rejects malformed numeric inputs and does not mutate callers
+  ---
+  duration_ms: 0.348125
+  type: 'test'
+  ...
+# Subtest: all subsets of both schemas agree with an independent two-tuple FD oracle
+ok 38 - all subsets of both schemas agree with an independent two-tuple FD oracle
+  ---
+  duration_ms: 11.201875
+  type: 'test'
+  ...
+# Subtest: closure handles reordered rules, cycles, repeated inputs and empty determinants
+ok 39 - closure handles reordered rules, cycles, repeated inputs and empty determinants
+  ---
+  duration_ms: 0.2295
+  type: 'test'
+  ...
+# Subtest: lab schemas are deeply immutable and link only to existing original source passages
+ok 40 - lab schemas are deeply immutable and link only to existing original source passages
+  ---
+  duration_ms: 0.141292
+  type: 'test'
+  ...
+# Subtest: practice HTTP route preserves late-passage provenance and rejects concurrent duplicate completion
+ok 41 - practice HTTP route preserves late-passage provenance and rejects concurrent duplicate completion
+  ---
+  duration_ms: 749.995292
+  type: 'test'
+  ...
+# Subtest: practice planner reaches eligible material beyond the first five passages without altering provenance
+ok 42 - practice planner reaches eligible material beyond the first five passages without altering provenance
+  ---
+  duration_ms: 2.055
+  type: 'test'
+  ...
+# Subtest: selected-passage generation progresses, detects legacy cloze records, and reports exhaustion
+ok 43 - selected-passage generation progresses, detects legacy cloze records, and reports exhaustion
+  ---
+  duration_ms: 1.044083
+  type: 'test'
+  ...
+# Subtest: planned practice rejects altered source references, quotes and incorrect keys
+ok 44 - planned practice rejects altered source references, quotes and incorrect keys
+  ---
+  duration_ms: 0.377834
+  type: 'test'
+  ...
+# Subtest: an older completion cannot replace a new course response even if transport ignores abort
+ok 45 - an older completion cannot replace a new course response even if transport ignores abort
+  ---
+  duration_ms: 0.47825
+  type: 'test'
+  ...
+# Subtest: cancelled request errors and cleanup cannot clear a newer request busy state
+ok 46 - cancelled request errors and cleanup cannot clear a newer request busy state
+  ---
+  duration_ms: 0.174875
+  type: 'test'
+  ...
+# Subtest: navigation invalidates an already-resolved grading or generation callback
+ok 47 - navigation invalidates an already-resolved grading or generation callback
+  ---
+  duration_ms: 0.070416
+  type: 'test'
+  ...
+# Subtest: remembered missing courses recover to the built-in course without losing a valid selection
+ok 48 - remembered missing courses recover to the built-in course without losing a valid selection
+  ---
+  duration_ms: 0.076208
+  type: 'test'
+  ...
+1..48
+# tests 48
+# suites 0
+# pass 48
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 962.556875

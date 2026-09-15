@@ -1,0 +1,109 @@
+{
+  "at": "2026-09-15T14:12:02.892Z",
+  "scope": "MOCKED API in an actual Chrome browser through CUA. No real model inference, production SQLite, learning-outcome or judge-score evidence.",
+  "fixturePort": 4340,
+  "delayMs": 6500,
+  "passed": 7,
+  "cases": [
+    {
+      "id": "missing-course-recovery",
+      "passed": true,
+      "observed": {
+        "course": "database-foundations",
+        "learningPathConcepts": 10,
+        "sourcePassages": 20,
+        "prompt": "Salaries are 100, 200, and NULL. Which rows survive WHERE salary <> 100?"
+      },
+      "mechanism": "Seeded nonexistent course and question IDs through fixture UI; normal app fetched courses and recovered."
+    },
+    {
+      "id": "ask-cross-course",
+      "passed": true,
+      "requestId": "ff494f0d-1457-4343-9a41-19d0da5beaf6",
+      "observed": {
+        "course": "fixture-course-b",
+        "answer": "MOCKED RESPONSE FOR COURSE B ONLY. This is a controlled UI delay fixture, not real model inference.",
+        "alerts": [],
+        "thinking": false
+      },
+      "trace": "trace-ask-and-same-course-grade.json"
+    },
+    {
+      "id": "grade-same-course-question-navigation",
+      "passed": true,
+      "requestId": "64b4ac17-3165-4796-885c-8a2a48cc7781",
+      "observed": {
+        "course": "database-foundations",
+        "prompt": "Scores are 10, 20, and NULL. What are COUNT(*) and COUNT(score)?",
+        "feedback": null,
+        "checkedOptions": 0,
+        "alerts": []
+      },
+      "trace": "trace-ask-and-same-course-grade.json"
+    },
+    {
+      "id": "grade-cross-course",
+      "passed": true,
+      "requestId": "bb7a7f90-76c1-48e9-841c-fa73cff0f62a",
+      "observed": {
+        "course": "fixture-course-b",
+        "prompt": "FIXTURE B: Which verification code appears in course B?",
+        "source": "Course B verification passage",
+        "feedback": null,
+        "alerts": []
+      },
+      "trace": "trace-cross-course-grade.json"
+    },
+    {
+      "id": "course-load-A-B-A-B",
+      "passed": true,
+      "observed": {
+        "course": "fixture-course-b",
+        "concepts": "01FIXTURE B concept",
+        "prompt": "FIXTURE B: Which verification code appears in course B?",
+        "source": "Course B verification passage",
+        "notebookCount": 0,
+        "loading": false,
+        "alerts": []
+      },
+      "delayedResponses": 4,
+      "trace": "trace-course-load.json"
+    },
+    {
+      "id": "generation-cross-course",
+      "passed": true,
+      "requestId": "48e98d8b-92e8-4032-856b-035a51808752",
+      "observed": {
+        "course": "database-foundations",
+        "lateGeneratedPromptPresent": false,
+        "learningPathConcepts": 10,
+        "alerts": []
+      },
+      "trace": "trace-generation-and-review.json"
+    },
+    {
+      "id": "fresh-review-preserves-history",
+      "passed": true,
+      "observed": {
+        "prompt": "Salaries are 100, 200, and NULL. Which rows survive WHERE salary <> 100?",
+        "feedback": null,
+        "checkedOptions": 0,
+        "notebookCount": 2
+      },
+      "mechanism": "Opened Notebook, selected SQL NULL review item after an earlier wrong attempt."
+    }
+  ],
+  "consoleErrorsAndWarnings": [],
+  "buildNote": "The root rebuilt guide CSS between initial missing-course/Ask checks and later checks. App request-isolation logic remained unchanged. First observed index SHA was 097755a2a99cbd39ffecb4400f3653447d223cc1d2f733deebb75042938087e2. Current build fingerprints follow.",
+  "dist": {
+    "dist/index.html": "057249cee182ebe34474d2865b0f7e7724b07524eb788b4c15ec8a2577d9d717",
+    "dist/assets/index-CQGBSDui.css": "1fef05b1d8378ae6b7736b88830a973edf93ec7793c7c57bee45af73b60de0ce",
+    "dist/assets/index-DZSd_Nsr.js": "a59e9109abf2199fc52af989d5643a6567e20d5cca8c8f16b61a111e8b9b8d3b"
+  },
+  "sources": {
+    "src/App.tsx": "10ec6220c279492bf3a990a5ab59233a48b4da0d8123273b0aef2bc08afe3620",
+    "src/Practice.tsx": "8f25a193364578903ee2b03dfd9b68145b2363b4e8c354797a139d74d6d09e5b",
+    "src/Ask.tsx": "a545d3cb26684d4bb5c4ccd35093c22b32faf09841d2f3c5160052f849e6284c",
+    "src/request-scope.ts": "7405b2077deaa0f063744b429d6c3f2cad71f2d76451e5ca9787b084839f3e4d"
+  }
+}

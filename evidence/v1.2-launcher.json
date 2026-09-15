@@ -1,0 +1,166 @@
+{
+  "at": "2026-09-15T14:05:58.242Z",
+  "scope": "Actual headless launcher on macOS. Fixed isolated source copies; shared dependencies by symlink. No browser opening and no external inference.",
+  "command": "TRACELEARN_NO_OPEN=1 bash Start-TraceLearn.command",
+  "existingService": {
+    "port": 4317,
+    "status": 200,
+    "responseSha256": "097755a2a99cbd39ffecb4400f3653447d223cc1d2f733deebb75042938087e2",
+    "recognizedIdentity": false
+  },
+  "runs": [
+    {
+      "label": "First copy",
+      "installation": "A",
+      "pid": 45926,
+      "output": "\n> tracelearn@1.2.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.0 building client environment for production...\ntransforming...\n✓ 1880 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.42 kB │ gzip:   0.30 kB\ndist/assets/index-B6zm0jIv.css   27.04 kB │ gzip:   6.55 kB\ndist/assets/index-x_Fd1PBZ.js   414.88 kB │ gzip: 103.37 kB\n\n✓ built in 104ms\nAnother local installation or application uses the default port. Starting this copy at http://127.0.0.1:4318.\nTraceLearn is ready. Keep this window open while using it.\n",
+      "startedAt": "2026-09-15T14:05:58.261Z",
+      "exitCode": 143,
+      "port": 4318,
+      "identity": {
+        "app": "tracelearn",
+        "version": "1.2.0",
+        "installation": "965b8f26ba15209aed1a0c83676ff270cd8446edaeca031e404b6fc6951a6e46",
+        "build": "5a3bb34aeaa8283eb0bc6e4d05aabfebbd68a0a137809ba05731112a8a08088b"
+      },
+      "readyAt": "2026-09-15T14:05:59.994Z",
+      "ownedChildren": [
+        {
+          "pid": 45956,
+          "parentPid": 45926,
+          "command": "node --import tsx server/index.ts"
+        }
+      ]
+    },
+    {
+      "label": "Second copy",
+      "installation": "B",
+      "pid": 45972,
+      "output": "\n> tracelearn@1.2.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.0 building client environment for production...\ntransforming...\n✓ 1880 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.42 kB │ gzip:   0.30 kB\ndist/assets/index-B6zm0jIv.css   27.04 kB │ gzip:   6.55 kB\ndist/assets/index-x_Fd1PBZ.js   414.88 kB │ gzip: 103.37 kB\n\n✓ built in 103ms\nAnother local installation or application uses the default port. Starting this copy at http://127.0.0.1:4319.\nTraceLearn is ready. Keep this window open while using it.\n",
+      "startedAt": "2026-09-15T14:06:00.037Z",
+      "exitCode": 143,
+      "port": 4319,
+      "identity": {
+        "app": "tracelearn",
+        "version": "1.2.0",
+        "installation": "c033626c297740df4011c69aca170df4a59a49d0568c9301c2eaedcb0be4611b",
+        "build": "5a3bb34aeaa8283eb0bc6e4d05aabfebbd68a0a137809ba05731112a8a08088b"
+      },
+      "readyAt": "2026-09-15T14:06:01.772Z",
+      "ownedChildren": [
+        {
+          "pid": 46000,
+          "parentPid": 45972,
+          "command": "node --import tsx server/index.ts"
+        }
+      ]
+    },
+    {
+      "label": "Unchanged copy repeated",
+      "installation": "A",
+      "pid": 46015,
+      "output": "\n> tracelearn@1.2.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.0 building client environment for production...\ntransforming...\n✓ 1880 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.42 kB │ gzip:   0.30 kB\ndist/assets/index-B6zm0jIv.css   27.04 kB │ gzip:   6.55 kB\ndist/assets/index-x_Fd1PBZ.js   414.88 kB │ gzip: 103.37 kB\n\n✓ built in 113ms\nThis exact TraceLearn installation is already running at http://127.0.0.1:4318.\n",
+      "startedAt": "2026-09-15T14:06:01.810Z",
+      "exitCode": 0,
+      "port": 4318,
+      "identity": {
+        "app": "tracelearn",
+        "version": "1.2.0",
+        "installation": "965b8f26ba15209aed1a0c83676ff270cd8446edaeca031e404b6fc6951a6e46",
+        "build": "5a3bb34aeaa8283eb0bc6e4d05aabfebbd68a0a137809ba05731112a8a08088b"
+      },
+      "readyAt": "2026-09-15T14:06:02.420Z",
+      "ownedChildren": []
+    },
+    {
+      "label": "Changed source and rebuilt copy",
+      "installation": "A",
+      "pid": 46050,
+      "output": "\n> tracelearn@1.2.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.0 building client environment for production...\ntransforming...\n✓ 1880 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.44 kB │ gzip:   0.31 kB\ndist/assets/index-B6zm0jIv.css   27.04 kB │ gzip:   6.55 kB\ndist/assets/index-x_Fd1PBZ.js   414.88 kB │ gzip: 103.37 kB\n\n✓ built in 111ms\nAnother local installation or application uses the default port. Starting this copy at http://127.0.0.1:4320.\nTraceLearn is ready. Keep this window open while using it.\n",
+      "startedAt": "2026-09-15T14:06:02.456Z",
+      "exitCode": 143,
+      "port": 4320,
+      "identity": {
+        "app": "tracelearn",
+        "version": "1.2.0",
+        "installation": "965b8f26ba15209aed1a0c83676ff270cd8446edaeca031e404b6fc6951a6e46",
+        "build": "345766ee8d60fd8789fad39176f588e2c4e33e189a5e5689aee3ec33257f4e24"
+      },
+      "readyAt": "2026-09-15T14:06:04.188Z",
+      "ownedChildren": [
+        {
+          "pid": 46080,
+          "parentPid": 46050,
+          "command": "node --import tsx server/index.ts"
+        }
+      ]
+    },
+    {
+      "label": "Updated copy repeated",
+      "installation": "A",
+      "pid": 46099,
+      "output": "\n> tracelearn@1.2.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.0 building client environment for production...\ntransforming...\n✓ 1880 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.44 kB │ gzip:   0.31 kB\ndist/assets/index-B6zm0jIv.css   27.04 kB │ gzip:   6.55 kB\ndist/assets/index-x_Fd1PBZ.js   414.88 kB │ gzip: 103.37 kB\n\n✓ built in 104ms\nThis exact TraceLearn installation is already running at http://127.0.0.1:4320.\n",
+      "startedAt": "2026-09-15T14:06:04.228Z",
+      "exitCode": 0,
+      "port": 4320,
+      "identity": {
+        "app": "tracelearn",
+        "version": "1.2.0",
+        "installation": "965b8f26ba15209aed1a0c83676ff270cd8446edaeca031e404b6fc6951a6e46",
+        "build": "345766ee8d60fd8789fad39176f588e2c4e33e189a5e5689aee3ec33257f4e24"
+      },
+      "readyAt": "2026-09-15T14:06:04.840Z",
+      "ownedChildren": []
+    }
+  ],
+  "checks": [
+    "Two fixed snapshots started simultaneously on distinct non-4317 ports; installation fingerprints differ while identical build fingerprints match.",
+    "Repeating the unchanged first installation exited successfully and reused its exact existing identity.",
+    "Changed source plus rebuilt assets produced a new build fingerprint and a separate server; original A and B processes remained available with their original identities.",
+    "Repeating the updated copy reused its new server despite the earlier process from the same installation still running.",
+    "Existing port 4317 continued to return the identical response."
+  ],
+  "cleanup": [
+    {
+      "launcherPid": 46050,
+      "exitCode": 143,
+      "ownedServerPids": [
+        46080
+      ],
+      "remainingOwnedServerPids": []
+    },
+    {
+      "launcherPid": 45972,
+      "exitCode": 143,
+      "ownedServerPids": [
+        46000
+      ],
+      "remainingOwnedServerPids": []
+    },
+    {
+      "launcherPid": 45926,
+      "exitCode": 143,
+      "ownedServerPids": [
+        45956
+      ],
+      "remainingOwnedServerPids": []
+    }
+  ],
+  "passed": true,
+  "finishedAt": "2026-09-15T14:06:05.222Z",
+  "cleanupPorts": [
+    {
+      "port": 4318,
+      "free": true
+    },
+    {
+      "port": 4319,
+      "free": true
+    },
+    {
+      "port": 4320,
+      "free": true
+    }
+  ],
+  "existingServiceAvailableAfterCleanup": true
+}

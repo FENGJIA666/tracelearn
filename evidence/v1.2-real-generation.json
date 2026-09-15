@@ -1,0 +1,448 @@
+{
+  "kind": "real-model-selected-passage-acceptance",
+  "startedAt": "2026-09-15T14:08:03.006Z",
+  "server": "http://127.0.0.1:4337",
+  "isolatedDataDirectory": ".local/v12-ui",
+  "requests": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:4337/api/status",
+        "body": null
+      },
+      "sentAt": "2026-09-15T14:08:03.007Z",
+      "latencyMs": 21.07,
+      "response": {
+        "status": 200,
+        "text": "{\"online\":true,\"ready\":true,\"model\":\"qwen3:4b\",\"embedding\":\"qwen3-embedding:0.6b\",\"models\":[{\"name\":\"qwen3-embedding:0.6b\",\"digest\":\"ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d\",\"size\":639150858},{\"name\":\"qwen3:4b\",\"digest\":\"359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7\",\"size\":2497293931}]}",
+        "json": {
+          "online": true,
+          "ready": true,
+          "model": "qwen3:4b",
+          "embedding": "qwen3-embedding:0.6b",
+          "models": [
+            {
+              "name": "qwen3-embedding:0.6b",
+              "digest": "ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d",
+              "size": 639150858
+            },
+            {
+              "name": "qwen3:4b",
+              "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+              "size": 2497293931
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:4337/api/identity",
+        "body": null
+      },
+      "sentAt": "2026-09-15T14:08:03.029Z",
+      "latencyMs": 2.01,
+      "response": {
+        "status": 200,
+        "text": "{\"app\":\"tracelearn\",\"version\":\"1.2.0\",\"installation\":\"aa26610c055661172a6f950818333fb4c5763cce6aa4ea24b1221a36b42459ea\",\"build\":\"e457c4012ef78557a46804efcab00e3f8f31fa3ca07669d52e43528c428bf3cd\"}",
+        "json": {
+          "app": "tracelearn",
+          "version": "1.2.0",
+          "installation": "aa26610c055661172a6f950818333fb4c5763cce6aa4ea24b1221a36b42459ea",
+          "build": "e457c4012ef78557a46804efcab00e3f8f31fa3ca07669d52e43528c428bf3cd"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:4337/api/import",
+        "body": {
+          "file": ".local/v12-generator-fixtures/TraceLearn-selected-passage-live-check.md",
+          "sha256": "cf42dd8748735c4ecdfa0d72723272fa656e4a2da7ce16e7af02927d0c786bf0",
+          "utf8": "# Earlier practice material\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses datab# Selected passage seven\n\nOrdinary comparisons involving a missing SQL value evaluate to UNKNOWN.\n\nCOUNT(column) counts only non-NULL observations in the selected column.\n"
+        }
+      },
+      "sentAt": "2026-09-15T14:08:03.032Z",
+      "latencyMs": 5.94,
+      "response": {
+        "status": 201,
+        "text": "{\"id\":\"07ef61e9-4f98-4b22-87dc-efed64f28b8f\",\"title\":\"TraceLearn-selected-passage-live-check\",\"subtitle\":\"Your local notes · page numbers are virtual text segments\",\"builtin\":false,\"hash\":\"cf42dd8748735c4ecdfa0d72723272fa656e4a2da7ce16e7af02927d0c786bf0\",\"createdAt\":\"2026-09-15T14:08:03.036Z\",\"sections\":[{\"id\":\"p1-1\",\"title\":\"Earlier practice material\",\"page\":1,\"text\":\"# Earlier practice material\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source\"},{\"id\":\"p1-2\",\"title\":\"verification.\",\"page\":1,\"text\":\"verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source\"},{\"id\":\"p1-3\",\"title\":\"verification.\",\"page\":1,\"text\":\"verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database\"},{\"id\":\"p2-4\",\"title\":\"review and source verification.\",\"page\":2,\"text\":\"review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and\"},{\"id\":\"p2-5\",\"title\":\"source verification.\",\"page\":2,\"text\":\"source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source\"},{\"id\":\"p2-6\",\"title\":\"verification.\",\"page\":2,\"text\":\"verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses database review and source verification.\\n\\nThis earlier passage discusses datab\"},{\"id\":\"p3-7\",\"title\":\"Selected passage seven\",\"page\":3,\"text\":\"# Selected passage seven\\n\\nOrdinary comparisons involving a missing SQL value evaluate to UNKNOWN.\\n\\nCOUNT(column) counts only non-NULL observations in the selected column.\"}]}",
+        "json": {
+          "id": "07ef61e9-4f98-4b22-87dc-efed64f28b8f",
+          "title": "TraceLearn-selected-passage-live-check",
+          "subtitle": "Your local notes · page numbers are virtual text segments",
+          "builtin": false,
+          "hash": "cf42dd8748735c4ecdfa0d72723272fa656e4a2da7ce16e7af02927d0c786bf0",
+          "createdAt": "2026-09-15T14:08:03.036Z",
+          "sections": [
+            {
+              "id": "p1-1",
+              "title": "Earlier practice material",
+              "page": 1,
+              "text": "# Earlier practice material\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source"
+            },
+            {
+              "id": "p1-2",
+              "title": "verification.",
+              "page": 1,
+              "text": "verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source"
+            },
+            {
+              "id": "p1-3",
+              "title": "verification.",
+              "page": 1,
+              "text": "verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database"
+            },
+            {
+              "id": "p2-4",
+              "title": "review and source verification.",
+              "page": 2,
+              "text": "review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and"
+            },
+            {
+              "id": "p2-5",
+              "title": "source verification.",
+              "page": 2,
+              "text": "source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source"
+            },
+            {
+              "id": "p2-6",
+              "title": "verification.",
+              "page": 2,
+              "text": "verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses database review and source verification.\n\nThis earlier passage discusses datab"
+            },
+            {
+              "id": "p3-7",
+              "title": "Selected passage seven",
+              "page": 3,
+              "text": "# Selected passage seven\n\nOrdinary comparisons involving a missing SQL value evaluate to UNKNOWN.\n\nCOUNT(column) counts only non-NULL observations in the selected column."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:4337/api/generate-question",
+        "body": {
+          "courseId": "07ef61e9-4f98-4b22-87dc-efed64f28b8f",
+          "language": "en",
+          "sectionId": "p3-7"
+        }
+      },
+      "sentAt": "2026-09-15T14:08:03.038Z",
+      "latencyMs": 2955.92,
+      "response": {
+        "status": 200,
+        "text": "{\"id\":\"4ecd73f0-ca9e-4128-a493-570339c140d6\",\"courseId\":\"07ef61e9-4f98-4b22-87dc-efed64f28b8f\",\"concept\":\"Source recall · Selected passage seven\",\"kind\":\"generated\",\"prompt\":\"Complete the exact statement from your notes (verbatim recall).\\n\\nOrdinary comparisons involving a missing SQL value evaluate to _____.\",\"options\":[\"NULL\",\"undefined\",\"not a number\",\"UNKNOWN\"]}",
+        "json": {
+          "id": "4ecd73f0-ca9e-4128-a493-570339c140d6",
+          "courseId": "07ef61e9-4f98-4b22-87dc-efed64f28b8f",
+          "concept": "Source recall · Selected passage seven",
+          "kind": "generated",
+          "prompt": "Complete the exact statement from your notes (verbatim recall).\n\nOrdinary comparisons involving a missing SQL value evaluate to _____.",
+          "options": [
+            "NULL",
+            "undefined",
+            "not a number",
+            "UNKNOWN"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:4337/api/attempt",
+        "body": {
+          "questionId": "4ecd73f0-ca9e-4128-a493-570339c140d6",
+          "chosen": 3,
+          "confidence": "somewhat"
+        }
+      },
+      "sentAt": "2026-09-15T14:08:05.995Z",
+      "latencyMs": 2.62,
+      "response": {
+        "status": 200,
+        "text": "{\"id\":\"23ce3594-b7ae-43db-a973-1a2e2179f62e\",\"questionId\":\"4ecd73f0-ca9e-4128-a493-570339c140d6\",\"concept\":\"Source recall · Selected passage seven\",\"kind\":\"generated\",\"prompt\":\"Complete the exact statement from your notes (verbatim recall).\\n\\nOrdinary comparisons involving a missing SQL value evaluate to _____.\",\"options\":[\"NULL\",\"undefined\",\"not a number\",\"UNKNOWN\"],\"chosen\":3,\"correct\":3,\"isCorrect\":true,\"confidence\":\"somewhat\",\"explanation\":\"The original source states: Ordinary comparisons involving a missing SQL value evaluate to UNKNOWN.\",\"misconception\":\"\",\"sourceIds\":[\"p3-7\"],\"sourceHash\":\"cf42dd8748735c4ecdfa0d72723272fa656e4a2da7ce16e7af02927d0c786bf0\",\"createdAt\":\"2026-09-15T14:08:05.997Z\"}",
+        "json": {
+          "id": "23ce3594-b7ae-43db-a973-1a2e2179f62e",
+          "questionId": "4ecd73f0-ca9e-4128-a493-570339c140d6",
+          "concept": "Source recall · Selected passage seven",
+          "kind": "generated",
+          "prompt": "Complete the exact statement from your notes (verbatim recall).\n\nOrdinary comparisons involving a missing SQL value evaluate to _____.",
+          "options": [
+            "NULL",
+            "undefined",
+            "not a number",
+            "UNKNOWN"
+          ],
+          "chosen": 3,
+          "correct": 3,
+          "isCorrect": true,
+          "confidence": "somewhat",
+          "explanation": "The original source states: Ordinary comparisons involving a missing SQL value evaluate to UNKNOWN.",
+          "misconception": "",
+          "sourceIds": [
+            "p3-7"
+          ],
+          "sourceHash": "cf42dd8748735c4ecdfa0d72723272fa656e4a2da7ce16e7af02927d0c786bf0",
+          "createdAt": "2026-09-15T14:08:05.997Z"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:4337/api/generate-question",
+        "body": {
+          "courseId": "07ef61e9-4f98-4b22-87dc-efed64f28b8f",
+          "language": "en",
+          "sectionId": "p3-7"
+        }
+      },
+      "sentAt": "2026-09-15T14:08:05.998Z",
+      "latencyMs": 547.67,
+      "response": {
+        "status": 200,
+        "text": "{\"id\":\"96197a51-276e-4393-af93-ff8d13e8e438\",\"courseId\":\"07ef61e9-4f98-4b22-87dc-efed64f28b8f\",\"concept\":\"Source recall · Selected passage seven\",\"kind\":\"generated\",\"prompt\":\"Complete the exact statement from your notes (verbatim recall).\\n\\nCOUNT(column) counts only _____ observations in the selected column.\",\"options\":[\"null\",\"not null\",\"null values\",\"non-NULL\"]}",
+        "json": {
+          "id": "96197a51-276e-4393-af93-ff8d13e8e438",
+          "courseId": "07ef61e9-4f98-4b22-87dc-efed64f28b8f",
+          "concept": "Source recall · Selected passage seven",
+          "kind": "generated",
+          "prompt": "Complete the exact statement from your notes (verbatim recall).\n\nCOUNT(column) counts only _____ observations in the selected column.",
+          "options": [
+            "null",
+            "not null",
+            "null values",
+            "non-NULL"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:4337/api/attempt",
+        "body": {
+          "questionId": "96197a51-276e-4393-af93-ff8d13e8e438",
+          "chosen": 3,
+          "confidence": "somewhat"
+        }
+      },
+      "sentAt": "2026-09-15T14:08:06.546Z",
+      "latencyMs": 2.01,
+      "response": {
+        "status": 200,
+        "text": "{\"id\":\"f70b896d-fcca-4bf7-b41e-5bfe76126805\",\"questionId\":\"96197a51-276e-4393-af93-ff8d13e8e438\",\"concept\":\"Source recall · Selected passage seven\",\"kind\":\"generated\",\"prompt\":\"Complete the exact statement from your notes (verbatim recall).\\n\\nCOUNT(column) counts only _____ observations in the selected column.\",\"options\":[\"null\",\"not null\",\"null values\",\"non-NULL\"],\"chosen\":3,\"correct\":3,\"isCorrect\":true,\"confidence\":\"somewhat\",\"explanation\":\"The original source states: COUNT(column) counts only non-NULL observations in the selected column.\",\"misconception\":\"\",\"sourceIds\":[\"p3-7\"],\"sourceHash\":\"cf42dd8748735c4ecdfa0d72723272fa656e4a2da7ce16e7af02927d0c786bf0\",\"createdAt\":\"2026-09-15T14:08:06.548Z\"}",
+        "json": {
+          "id": "f70b896d-fcca-4bf7-b41e-5bfe76126805",
+          "questionId": "96197a51-276e-4393-af93-ff8d13e8e438",
+          "concept": "Source recall · Selected passage seven",
+          "kind": "generated",
+          "prompt": "Complete the exact statement from your notes (verbatim recall).\n\nCOUNT(column) counts only _____ observations in the selected column.",
+          "options": [
+            "null",
+            "not null",
+            "null values",
+            "non-NULL"
+          ],
+          "chosen": 3,
+          "correct": 3,
+          "isCorrect": true,
+          "confidence": "somewhat",
+          "explanation": "The original source states: COUNT(column) counts only non-NULL observations in the selected column.",
+          "misconception": "",
+          "sourceIds": [
+            "p3-7"
+          ],
+          "sourceHash": "cf42dd8748735c4ecdfa0d72723272fa656e4a2da7ce16e7af02927d0c786bf0",
+          "createdAt": "2026-09-15T14:08:06.548Z"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:4337/api/generate-question",
+        "body": {
+          "courseId": "07ef61e9-4f98-4b22-87dc-efed64f28b8f",
+          "language": "en",
+          "sectionId": "p3-7"
+        }
+      },
+      "sentAt": "2026-09-15T14:08:06.549Z",
+      "latencyMs": 2.27,
+      "response": {
+        "status": 409,
+        "text": "{\"error\":\"Every eligible sentence in this passage already has a practice question. Choose another passage or revisit an existing question.\"}",
+        "json": {
+          "error": "Every eligible sentence in this passage already has a practice question. Choose another passage or revisit an existing question."
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:4337/api/courses/07ef61e9-4f98-4b22-87dc-efed64f28b8f/questions",
+        "body": null
+      },
+      "sentAt": "2026-09-15T14:08:06.552Z",
+      "latencyMs": 1.85,
+      "response": {
+        "status": 200,
+        "text": "[{\"id\":\"4ecd73f0-ca9e-4128-a493-570339c140d6\",\"courseId\":\"07ef61e9-4f98-4b22-87dc-efed64f28b8f\",\"concept\":\"Source recall · Selected passage seven\",\"kind\":\"generated\",\"prompt\":\"Complete the exact statement from your notes (verbatim recall).\\n\\nOrdinary comparisons involving a missing SQL value evaluate to _____.\",\"options\":[\"NULL\",\"undefined\",\"not a number\",\"UNKNOWN\"]},{\"id\":\"96197a51-276e-4393-af93-ff8d13e8e438\",\"courseId\":\"07ef61e9-4f98-4b22-87dc-efed64f28b8f\",\"concept\":\"Source recall · Selected passage seven\",\"kind\":\"generated\",\"prompt\":\"Complete the exact statement from your notes (verbatim recall).\\n\\nCOUNT(column) counts only _____ observations in the selected column.\",\"options\":[\"null\",\"not null\",\"null values\",\"non-NULL\"]}]",
+        "json": [
+          {
+            "id": "4ecd73f0-ca9e-4128-a493-570339c140d6",
+            "courseId": "07ef61e9-4f98-4b22-87dc-efed64f28b8f",
+            "concept": "Source recall · Selected passage seven",
+            "kind": "generated",
+            "prompt": "Complete the exact statement from your notes (verbatim recall).\n\nOrdinary comparisons involving a missing SQL value evaluate to _____.",
+            "options": [
+              "NULL",
+              "undefined",
+              "not a number",
+              "UNKNOWN"
+            ]
+          },
+          {
+            "id": "96197a51-276e-4393-af93-ff8d13e8e438",
+            "courseId": "07ef61e9-4f98-4b22-87dc-efed64f28b8f",
+            "concept": "Source recall · Selected passage seven",
+            "kind": "generated",
+            "prompt": "Complete the exact statement from your notes (verbatim recall).\n\nCOUNT(column) counts only _____ observations in the selected column.",
+            "options": [
+              "null",
+              "not null",
+              "null values",
+              "non-NULL"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:4337/api/courses/07ef61e9-4f98-4b22-87dc-efed64f28b8f/history",
+        "body": null
+      },
+      "sentAt": "2026-09-15T14:08:06.554Z",
+      "latencyMs": 0.97,
+      "response": {
+        "status": 200,
+        "text": "{\"attempts\":[{\"id\":\"23ce3594-b7ae-43db-a973-1a2e2179f62e\",\"questionId\":\"4ecd73f0-ca9e-4128-a493-570339c140d6\",\"concept\":\"Source recall · Selected passage seven\",\"kind\":\"generated\",\"prompt\":\"Complete the exact statement from your notes (verbatim recall).\\n\\nOrdinary comparisons involving a missing SQL value evaluate to _____.\",\"options\":[\"NULL\",\"undefined\",\"not a number\",\"UNKNOWN\"],\"chosen\":3,\"correct\":3,\"isCorrect\":true,\"confidence\":\"somewhat\",\"explanation\":\"The original source states: Ordinary comparisons involving a missing SQL value evaluate to UNKNOWN.\",\"misconception\":\"\",\"sourceIds\":[\"p3-7\"],\"sourceHash\":\"cf42dd8748735c4ecdfa0d72723272fa656e4a2da7ce16e7af02927d0c786bf0\",\"createdAt\":\"2026-09-15T14:08:05.997Z\"},{\"id\":\"f70b896d-fcca-4bf7-b41e-5bfe76126805\",\"questionId\":\"96197a51-276e-4393-af93-ff8d13e8e438\",\"concept\":\"Source recall · Selected passage seven\",\"kind\":\"generated\",\"prompt\":\"Complete the exact statement from your notes (verbatim recall).\\n\\nCOUNT(column) counts only _____ observations in the selected column.\",\"options\":[\"null\",\"not null\",\"null values\",\"non-NULL\"],\"chosen\":3,\"correct\":3,\"isCorrect\":true,\"confidence\":\"somewhat\",\"explanation\":\"The original source states: COUNT(column) counts only non-NULL observations in the selected column.\",\"misconception\":\"\",\"sourceIds\":[\"p3-7\"],\"sourceHash\":\"cf42dd8748735c4ecdfa0d72723272fa656e4a2da7ce16e7af02927d0c786bf0\",\"createdAt\":\"2026-09-15T14:08:06.548Z\"}],\"chats\":[]}",
+        "json": {
+          "attempts": [
+            {
+              "id": "23ce3594-b7ae-43db-a973-1a2e2179f62e",
+              "questionId": "4ecd73f0-ca9e-4128-a493-570339c140d6",
+              "concept": "Source recall · Selected passage seven",
+              "kind": "generated",
+              "prompt": "Complete the exact statement from your notes (verbatim recall).\n\nOrdinary comparisons involving a missing SQL value evaluate to _____.",
+              "options": [
+                "NULL",
+                "undefined",
+                "not a number",
+                "UNKNOWN"
+              ],
+              "chosen": 3,
+              "correct": 3,
+              "isCorrect": true,
+              "confidence": "somewhat",
+              "explanation": "The original source states: Ordinary comparisons involving a missing SQL value evaluate to UNKNOWN.",
+              "misconception": "",
+              "sourceIds": [
+                "p3-7"
+              ],
+              "sourceHash": "cf42dd8748735c4ecdfa0d72723272fa656e4a2da7ce16e7af02927d0c786bf0",
+              "createdAt": "2026-09-15T14:08:05.997Z"
+            },
+            {
+              "id": "f70b896d-fcca-4bf7-b41e-5bfe76126805",
+              "questionId": "96197a51-276e-4393-af93-ff8d13e8e438",
+              "concept": "Source recall · Selected passage seven",
+              "kind": "generated",
+              "prompt": "Complete the exact statement from your notes (verbatim recall).\n\nCOUNT(column) counts only _____ observations in the selected column.",
+              "options": [
+                "null",
+                "not null",
+                "null values",
+                "non-NULL"
+              ],
+              "chosen": 3,
+              "correct": 3,
+              "isCorrect": true,
+              "confidence": "somewhat",
+              "explanation": "The original source states: COUNT(column) counts only non-NULL observations in the selected column.",
+              "misconception": "",
+              "sourceIds": [
+                "p3-7"
+              ],
+              "sourceHash": "cf42dd8748735c4ecdfa0d72723272fa656e4a2da7ce16e7af02927d0c786bf0",
+              "createdAt": "2026-09-15T14:08:06.548Z"
+            }
+          ],
+          "chats": []
+        }
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "original file hash and seventh imported source passage",
+      "passed": true
+    },
+    {
+      "name": "real generation 1: distinct exact source sentence, hidden key, correct grounding and deterministic grade",
+      "passed": true,
+      "questionId": "4ecd73f0-ca9e-4128-a493-570339c140d6",
+      "quote": "Ordinary comparisons involving a missing SQL value evaluate to UNKNOWN.",
+      "sourceId": "p3-7",
+      "sourceHash": "cf42dd8748735c4ecdfa0d72723272fa656e4a2da7ce16e7af02927d0c786bf0"
+    },
+    {
+      "name": "real generation 2: distinct exact source sentence, hidden key, correct grounding and deterministic grade",
+      "passed": true,
+      "questionId": "96197a51-276e-4393-af93-ff8d13e8e438",
+      "quote": "COUNT(column) counts only non-NULL observations in the selected column.",
+      "sourceId": "p3-7",
+      "sourceHash": "cf42dd8748735c4ecdfa0d72723272fa656e4a2da7ce16e7af02927d0c786bf0"
+    },
+    {
+      "name": "third request returns 409 without saving a duplicate",
+      "passed": true
+    },
+    {
+      "name": "two genuine attempt records persist in isolated SQLite history",
+      "passed": true
+    }
+  ],
+  "completed": true,
+  "fixtureSha256": "cf42dd8748735c4ecdfa0d72723272fa656e4a2da7ce16e7af02927d0c786bf0",
+  "fixturePath": ".local/v12-generator-fixtures/TraceLearn-selected-passage-live-check.md",
+  "identity": {
+    "app": "tracelearn",
+    "version": "1.2.0",
+    "installation": "aa26610c055661172a6f950818333fb4c5763cce6aa4ea24b1221a36b42459ea",
+    "build": "e457c4012ef78557a46804efcab00e3f8f31fa3ca07669d52e43528c428bf3cd"
+  },
+  "course": {
+    "id": "07ef61e9-4f98-4b22-87dc-efed64f28b8f",
+    "title": "TraceLearn-selected-passage-live-check",
+    "hash": "cf42dd8748735c4ecdfa0d72723272fa656e4a2da7ce16e7af02927d0c786bf0",
+    "sectionCount": 7,
+    "selected": {
+      "id": "p3-7",
+      "title": "Selected passage seven",
+      "page": 3,
+      "text": "# Selected passage seven\n\nOrdinary comparisons involving a missing SQL value evaluate to UNKNOWN.\n\nCOUNT(column) counts only non-NULL observations in the selected column."
+    }
+  },
+  "finishedAt": "2026-09-15T14:08:06.555Z"
+}

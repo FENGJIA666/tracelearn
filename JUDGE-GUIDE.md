@@ -1,45 +1,52 @@
 # Review TraceLearn
 
-TraceLearn connects a concept check, its source evidence, targeted feedback and a transfer question. The first complete course covers university database fundamentals. All screenshots are from the implemented application.
+**Can a student test an explanation, rather than only read it?** TraceLearn connects a prediction, its original source, an editable counterexample and a fresh transfer question. The first complete course covers university database fundamentals.
 
-## Start with the portable practice
+## Start without installing a model
 
-Download [TraceLearn-Portable.html](https://github.com/FENGJIA666/tracelearn/releases/download/v1.1.0/TraceLearn-Portable.html), a single file under 0.5 MB. Open it in a browser. It contains actual curated practice, not a video or a sequence of simulated clicks. No model, Node.js or API key is needed for this route. Browser security settings may restrict local files; the [README](README.md#try-the-portable-practice-first) gives a localhost static preview fallback and explains our testing boundary.
+Download [TraceLearn-Portable.html](https://github.com/FENGJIA666/tracelearn/releases/download/v1.2.0/TraceLearn-Portable.html), under 0.5 MB. It contains the actual React workspace, 20 original questions, SQL/key experiments, source passages and exports. No Node.js, API key or model is needed for this route. The [README](README.md#try-the-portable-practice-first) explains the localhost static-preview fallback and the direct-file testing boundary.
 
-1. In **SQL NULL**, select **200 and NULL** and **Very sure**. Check the deterministic feedback.
-2. Click **null-where** to read the original source; complete the transfer check with **price <> 10 OR price IS NULL**.
-3. Open **Notebook**. The latest confident mistake appears in the review plan; the button returns to its actual question. Export your real attempt record.
-4. Open **Evidence**. Both saved answers to `in-4` are visible, including the hybrid answer's `10:00` typo and its qualified review. Filter **Development / Outside source / out-13** to see a retained unsupported university-award claim.
+Use the on-screen **Quick tour**, or follow these steps:
 
-**The Evidence tab is a viewer of the 14 September run, not live inference.** It includes all 80 cases and 160 requests; failure records are retained. Use the full app below for fresh AI answers and your own documents.
+1. **Predict:** answer the SQL NULL question. To explore an intentional error, choose **200 and NULL** and **Very sure**, then inspect the **null-where** source.
+2. **Experiment:** keep the initial rows 100, 200 and NULL. Predict that rows 2 and 3 survive `value <> 100`, then choose **Run & check prediction**. Row 3 is the counterexample: its predicate is UNKNOWN, so WHERE excludes it.
+3. Change the condition to **value <> target OR value IS NULL**. Predict again and rerun; the missing row is now retained. Inputs and predicates are editable, and the computation makes no AI call.
+4. **Transfer:** choose **Try a transfer question**. The app opens an unanswered attempt, even if an earlier result exists. Answer independently.
+5. **Reflect & export:** export the Lab record with inputs, predictions and recomputed traces. The Notebook has a separate quiz/AI report and latest-attempt review suggestions. Lab predictions do not change quiz totals.
 
-## Inspect the implementation and experiment
+For the second experiment, choose **Keys & closure**. In the first schema, compare A, AD and ABD: A cannot reach D; AD is minimal; ABD contains removable B. The step trace and removal table show the calculation. The second schema explains why Instructor is not a superkey under the stated dependencies.
 
-Read the [eight-page technical report](submission/TraceLearn-Technical-Report.pdf), [original course](content/course.ts), [answer pipeline](server/ai.ts), [new acceptance evidence](evidence/v1.1-acceptance.md), and [frozen raw outputs](evaluation/raw-results.jsonl). The [v1.1.0 release](https://github.com/FENGJIA666/tracelearn/releases/tag/v1.1.0) includes portable HTML, complete source/evidence ZIP, PDF and checksums. Dependencies, models and personal runtime databases are excluded.
+These are suggested software demonstration actions, not student-study results. No correct-answer count certifies mastery.
 
-## Run on your computer
+## Inspect live computation and recorded AI separately
 
-Tested environment: macOS, Apple M4 Pro, 24 GB memory. Windows and Linux were not tested. Install Node.js 22.13 or newer and Ollama from their official websites first. From the extracted project directory:
+The Lab computes from your current inputs. The **Evidence** tab displays the frozen 14 September model experiment. Its shortcuts show a supported answer, an outside-source refusal and a retained failure; all 80 cases and 160 requests remain available through the filters. Historical AI answers are explicitly labeled, and saved semantic judgments are agent-assisted, not independent human scoring.
+
+Useful source entry points:
+
+- [Deterministic SQL and key model](src/lab-model.ts) and [independent checking method](evidence/v1.2-lab-method.md).
+- [Original course and questions](content/course.ts), [local answer pipeline](server/ai.ts) and [selected-passage practice planner](server/practice-planner.ts).
+- [Technical report](submission/TraceLearn-Technical-Report.pdf), [current acceptance record](evidence/v1.2-acceptance.md) and [all frozen raw outputs](evaluation/raw-results.jsonl).
+
+`npm test` passed 48 automated checks, including unit and HTTP integration tests. The SQL model was compared with real SQLite for 1,600 row results; the key model was checked for every subset of both fixed schemas using a different algorithm. These establish bounded implementation evidence, not educational effectiveness.
+
+## Fresh local AI and your own notes
+
+Install Node.js 22.13+ and Ollama, then run from the extracted project directory:
 
 ```sh
 npm run setup
 npm start
 ```
 
-Open <http://127.0.0.1:4317>. Initial setup needs internet and approximately 3.2 GB of model downloads, plus dependencies. On the tested Mac, `Start-TraceLearn.command` is also provided after setup. The application runs locally; the download is not a hosted demo or a bundled standalone executable.
+Open <http://127.0.0.1:4317>. Initial setup needs internet and approximately 3.2 GB of model downloads, plus dependencies. Tested on macOS / Apple M4 Pro / 24 GB memory; Windows and Linux were not tested. `Start-TraceLearn.command` is the Mac launcher after setup. It recognizes this installation and build, and selects another local port when a different or older instance is running.
 
-## Three-minute learning walkthrough, after setup
+Import `examples/revision-notes.md`, or a text PDF/Markdown/TXT of your own. Choose a passage in the source pane and **Generate from this passage**. The planner selects an unused eligible sentence, verifies exact reconstruction by the answer key, and preserves its citation and document hash. This is source-recall cloze practice, not an independently reviewed conceptual transfer test. Use **Ask the source** for a fresh model explanation; a matched quote does not guarantee correct reasoning.
 
-1. Choose **SQL NULL**, select **200 and NULL**, and mark **Very sure**. This is an intentional wrong answer to reveal the feedback path.
-2. Inspect the feedback and open **null-where**. The source explains why WHERE retains only TRUE.
-3. Open the transfer check and select **price <> 10 OR price IS NULL**.
-4. Select **Explore this reasoning with local AI**, then **Ask the source**, and inspect its quoted passages.
-5. Open **Notebook**, export the Markdown learning report, and refresh to confirm the local learning trail persists.
+## Interpret the old benchmark honestly
 
-For your own source, import `examples/revision-notes.md`. Imported practice uses verified source-recall cloze exercises; it does not claim to generate independently reviewed conceptual transfer tests.
+The 160-request experiment is unchanged from v1.0. On its 40-case holdout split, the full-source baseline and hybrid retrieval had 37/40 and 38/40 accepted outputs, 7/10 and 9/10 correct extracted MCQ keys, and median request times of 6.25 and 3.21 seconds. Both conditions used the same model, prompt and quote validator; only context selection differed.
 
-## Interpret the evidence
+Agent-assisted review judged 17/20 versus 18/20 source-answerable holdout responses fully correct. Accepted output is not semantic correctness. Incorrect explanations, refusals and validation failures remain visible, including an unsupported university-award claim. This small, author-created benchmark is not a blinded human evaluation or proof of improved grades.
 
-The final evaluation contains 80 original cases, each run with a full-source baseline and hybrid retrieval, for 160 requests. Both conditions use the same model, prompt and quote validator. On the 40-case holdout split, accepted outputs were 37/40 and 38/40, extracted MCQ keys were correct on 7/10 and 9/10, and median request times were 6.25 and 3.21 seconds, respectively.
-
-Output validity and exact quotes do not prove semantic correctness. Incorrect answers and refusals remain in the results. Agent-assisted review found 17/20 versus 18/20 fully correct source-answerable holdout responses; no independently blinded human study, measured learning gain, or real-user adoption is claimed. Read the report's limitations and the [AI contribution disclosure](submission/AI-DISCLOSURE.md).
+The [v1.2.0 release](https://github.com/FENGJIA666/tracelearn/releases/tag/v1.2.0) supplies portable HTML, complete source/evidence ZIP, PDF and checksums. Dependencies, models and personal runtime databases are excluded. There is no hosted inference service or required live presentation. Read the [AI disclosure](submission/AI-DISCLOSURE.md) for the development contribution and its limits.

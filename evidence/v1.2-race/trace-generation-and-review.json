@@ -1,0 +1,983 @@
+{
+  "fixture": true,
+  "scope": "Mocked API and current local dist. No model inference and no production database.",
+  "mode": "generation",
+  "delayMs": 6500,
+  "dist": "<project>/dist",
+  "indexSha256": "057249cee182ebe34474d2865b0f7e7724b07524eb788b4c15ec8a2577d9d717",
+  "events": [
+    {
+      "sequence": 1,
+      "at": "2026-09-15T14:07:18.075Z",
+      "event": "request-start",
+      "requestId": "d829bd93-9587-4dfe-963a-787ce0d4b8ce",
+      "path": "/api/courses"
+    },
+    {
+      "sequence": 2,
+      "at": "2026-09-15T14:07:18.075Z",
+      "event": "backend-finished",
+      "requestId": "d829bd93-9587-4dfe-963a-787ce0d4b8ce",
+      "path": "/api/courses",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 3,
+      "at": "2026-09-15T14:07:18.078Z",
+      "event": "request-start",
+      "requestId": "69df41b0-0785-4cb9-b48a-f25a3f843451",
+      "path": "/api/status"
+    },
+    {
+      "sequence": 4,
+      "at": "2026-09-15T14:07:18.078Z",
+      "event": "backend-finished",
+      "requestId": "69df41b0-0785-4cb9-b48a-f25a3f843451",
+      "path": "/api/status",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 5,
+      "at": "2026-09-15T14:07:18.157Z",
+      "event": "request-start",
+      "requestId": "a0e23b2d-8e76-4308-8700-55f28821714a",
+      "path": "/api/courses/database-foundations/questions",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 6,
+      "at": "2026-09-15T14:07:18.158Z",
+      "event": "backend-finished",
+      "requestId": "a0e23b2d-8e76-4308-8700-55f28821714a",
+      "path": "/api/courses/database-foundations/questions",
+      "courseId": "database-foundations",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 7,
+      "at": "2026-09-15T14:07:18.159Z",
+      "event": "request-start",
+      "requestId": "6ba7657c-8d5f-4cbf-ae54-ae45d7f69af4",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 8,
+      "at": "2026-09-15T14:07:18.159Z",
+      "event": "backend-finished",
+      "requestId": "6ba7657c-8d5f-4cbf-ae54-ae45d7f69af4",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 9,
+      "at": "2026-09-15T14:07:41.691Z",
+      "event": "mode-armed",
+      "mode": "ask"
+    },
+    {
+      "sequence": 10,
+      "at": "2026-09-15T14:07:46.735Z",
+      "event": "request-start",
+      "requestId": "92e8e0c2-56a0-4bf5-a3fe-059190f5b7c3",
+      "path": "/api/courses"
+    },
+    {
+      "sequence": 11,
+      "at": "2026-09-15T14:07:46.735Z",
+      "event": "backend-finished",
+      "requestId": "92e8e0c2-56a0-4bf5-a3fe-059190f5b7c3",
+      "path": "/api/courses",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 12,
+      "at": "2026-09-15T14:07:46.735Z",
+      "event": "request-start",
+      "requestId": "8d7700ab-8e74-4e3b-8783-9d0dda9f2f6f",
+      "path": "/api/status"
+    },
+    {
+      "sequence": 13,
+      "at": "2026-09-15T14:07:46.735Z",
+      "event": "backend-finished",
+      "requestId": "8d7700ab-8e74-4e3b-8783-9d0dda9f2f6f",
+      "path": "/api/status",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 14,
+      "at": "2026-09-15T14:07:46.763Z",
+      "event": "request-start",
+      "requestId": "d88228d6-3c7e-4b7e-bca7-a23832d5c4d1",
+      "path": "/api/courses/database-foundations/questions",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 15,
+      "at": "2026-09-15T14:07:46.763Z",
+      "event": "backend-finished",
+      "requestId": "d88228d6-3c7e-4b7e-bca7-a23832d5c4d1",
+      "path": "/api/courses/database-foundations/questions",
+      "courseId": "database-foundations",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 16,
+      "at": "2026-09-15T14:07:46.764Z",
+      "event": "request-start",
+      "requestId": "dc5ca6ac-005d-47c4-af4d-5fb57b529bd8",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 17,
+      "at": "2026-09-15T14:07:46.764Z",
+      "event": "backend-finished",
+      "requestId": "dc5ca6ac-005d-47c4-af4d-5fb57b529bd8",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 18,
+      "at": "2026-09-15T14:07:53.355Z",
+      "event": "request-start",
+      "requestId": "ff494f0d-1457-4343-9a41-19d0da5beaf6",
+      "path": "/api/ask",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 19,
+      "at": "2026-09-15T14:07:53.377Z",
+      "event": "request-start",
+      "requestId": "79f735d7-93aa-446c-a2fc-b7dad08b005e",
+      "path": "/api/courses/fixture-course-b/questions",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 20,
+      "at": "2026-09-15T14:07:53.377Z",
+      "event": "backend-finished",
+      "requestId": "79f735d7-93aa-446c-a2fc-b7dad08b005e",
+      "path": "/api/courses/fixture-course-b/questions",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 21,
+      "at": "2026-09-15T14:07:53.377Z",
+      "event": "request-start",
+      "requestId": "1b50d175-ff0e-4198-a956-b24a42e5343b",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 22,
+      "at": "2026-09-15T14:07:53.378Z",
+      "event": "backend-finished",
+      "requestId": "1b50d175-ff0e-4198-a956-b24a42e5343b",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 23,
+      "at": "2026-09-15T14:07:53.394Z",
+      "event": "client-closed",
+      "requestId": "ff494f0d-1457-4343-9a41-19d0da5beaf6",
+      "path": "/api/ask",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 24,
+      "at": "2026-09-15T14:07:58.370Z",
+      "event": "request-start",
+      "requestId": "c1f7cb9d-6a78-4698-8203-fed9b455c8cb",
+      "path": "/api/ask",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 25,
+      "at": "2026-09-15T14:07:58.370Z",
+      "event": "backend-finished",
+      "requestId": "c1f7cb9d-6a78-4698-8203-fed9b455c8cb",
+      "path": "/api/ask",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 26,
+      "at": "2026-09-15T14:07:58.381Z",
+      "event": "request-start",
+      "requestId": "bab86597-ec03-4f54-8b35-1a87a387e122",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 27,
+      "at": "2026-09-15T14:07:58.381Z",
+      "event": "backend-finished",
+      "requestId": "bab86597-ec03-4f54-8b35-1a87a387e122",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 28,
+      "at": "2026-09-15T14:07:59.855Z",
+      "event": "backend-finished",
+      "requestId": "ff494f0d-1457-4343-9a41-19d0da5beaf6",
+      "path": "/api/ask",
+      "courseId": "database-foundations",
+      "status": 200,
+      "delayMs": 6500,
+      "clientAlreadyClosed": true
+    },
+    {
+      "sequence": 29,
+      "at": "2026-09-15T14:08:19.713Z",
+      "event": "mode-armed",
+      "mode": "grade"
+    },
+    {
+      "sequence": 30,
+      "at": "2026-09-15T14:08:35.430Z",
+      "event": "request-start",
+      "requestId": "0702cbb0-de6e-4c5e-9aa0-bc939f0f9374",
+      "path": "/api/courses"
+    },
+    {
+      "sequence": 31,
+      "at": "2026-09-15T14:08:35.430Z",
+      "event": "backend-finished",
+      "requestId": "0702cbb0-de6e-4c5e-9aa0-bc939f0f9374",
+      "path": "/api/courses",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 32,
+      "at": "2026-09-15T14:08:35.430Z",
+      "event": "request-start",
+      "requestId": "196d06af-ff8e-49e9-b960-c680a42e657b",
+      "path": "/api/status"
+    },
+    {
+      "sequence": 33,
+      "at": "2026-09-15T14:08:35.430Z",
+      "event": "backend-finished",
+      "requestId": "196d06af-ff8e-49e9-b960-c680a42e657b",
+      "path": "/api/status",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 34,
+      "at": "2026-09-15T14:08:35.457Z",
+      "event": "request-start",
+      "requestId": "d163f671-e5db-4983-a2ba-17458dcef850",
+      "path": "/api/courses/fixture-course-b/questions",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 35,
+      "at": "2026-09-15T14:08:35.457Z",
+      "event": "backend-finished",
+      "requestId": "d163f671-e5db-4983-a2ba-17458dcef850",
+      "path": "/api/courses/fixture-course-b/questions",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 36,
+      "at": "2026-09-15T14:08:35.457Z",
+      "event": "request-start",
+      "requestId": "d27fa67a-5718-4903-892a-61241e21c33a",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 37,
+      "at": "2026-09-15T14:08:35.457Z",
+      "event": "backend-finished",
+      "requestId": "d27fa67a-5718-4903-892a-61241e21c33a",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 38,
+      "at": "2026-09-15T14:08:35.502Z",
+      "event": "request-start",
+      "requestId": "bcfcef5f-cea3-4a94-b9e4-9811cac38f7c",
+      "path": "/api/courses/database-foundations/questions",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 39,
+      "at": "2026-09-15T14:08:35.502Z",
+      "event": "backend-finished",
+      "requestId": "bcfcef5f-cea3-4a94-b9e4-9811cac38f7c",
+      "path": "/api/courses/database-foundations/questions",
+      "courseId": "database-foundations",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 40,
+      "at": "2026-09-15T14:08:35.503Z",
+      "event": "request-start",
+      "requestId": "45220805-bf79-4114-b05e-1d2a2e0a5851",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 41,
+      "at": "2026-09-15T14:08:35.503Z",
+      "event": "backend-finished",
+      "requestId": "45220805-bf79-4114-b05e-1d2a2e0a5851",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 42,
+      "at": "2026-09-15T14:08:40.055Z",
+      "event": "request-start",
+      "requestId": "64b4ac17-3165-4796-885c-8a2a48cc7781",
+      "path": "/api/attempt",
+      "questionId": "null-d"
+    },
+    {
+      "sequence": 43,
+      "at": "2026-09-15T14:08:40.102Z",
+      "event": "client-closed",
+      "requestId": "64b4ac17-3165-4796-885c-8a2a48cc7781",
+      "path": "/api/attempt"
+    },
+    {
+      "sequence": 44,
+      "at": "2026-09-15T14:08:46.556Z",
+      "event": "backend-finished",
+      "requestId": "64b4ac17-3165-4796-885c-8a2a48cc7781",
+      "path": "/api/attempt",
+      "status": 200,
+      "delayMs": 6500,
+      "clientAlreadyClosed": true
+    },
+    {
+      "sequence": 45,
+      "at": "2026-09-15T14:09:04.446Z",
+      "event": "request-start",
+      "requestId": "bb7a7f90-76c1-48e9-841c-fa73cff0f62a",
+      "path": "/api/attempt",
+      "questionId": "count-d"
+    },
+    {
+      "sequence": 46,
+      "at": "2026-09-15T14:09:04.696Z",
+      "event": "request-start",
+      "requestId": "5d35f69b-c9ed-4fff-aee4-0c7d1150caf0",
+      "path": "/api/courses/fixture-course-b/questions",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 47,
+      "at": "2026-09-15T14:09:04.696Z",
+      "event": "backend-finished",
+      "requestId": "5d35f69b-c9ed-4fff-aee4-0c7d1150caf0",
+      "path": "/api/courses/fixture-course-b/questions",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 48,
+      "at": "2026-09-15T14:09:04.697Z",
+      "event": "request-start",
+      "requestId": "95299c6c-b97c-4e31-a7fc-5c9a5b7d6939",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 49,
+      "at": "2026-09-15T14:09:04.697Z",
+      "event": "backend-finished",
+      "requestId": "95299c6c-b97c-4e31-a7fc-5c9a5b7d6939",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 50,
+      "at": "2026-09-15T14:09:04.714Z",
+      "event": "client-closed",
+      "requestId": "bb7a7f90-76c1-48e9-841c-fa73cff0f62a",
+      "path": "/api/attempt"
+    },
+    {
+      "sequence": 51,
+      "at": "2026-09-15T14:09:10.947Z",
+      "event": "backend-finished",
+      "requestId": "bb7a7f90-76c1-48e9-841c-fa73cff0f62a",
+      "path": "/api/attempt",
+      "status": 200,
+      "delayMs": 6500,
+      "clientAlreadyClosed": true
+    },
+    {
+      "sequence": 52,
+      "at": "2026-09-15T14:09:30.412Z",
+      "event": "mode-armed",
+      "mode": "course-load"
+    },
+    {
+      "sequence": 53,
+      "at": "2026-09-15T14:09:30.519Z",
+      "event": "request-start",
+      "requestId": "a3143c41-9384-4880-97ba-dda8192ddb67",
+      "path": "/api/courses"
+    },
+    {
+      "sequence": 54,
+      "at": "2026-09-15T14:09:30.519Z",
+      "event": "backend-finished",
+      "requestId": "a3143c41-9384-4880-97ba-dda8192ddb67",
+      "path": "/api/courses",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 55,
+      "at": "2026-09-15T14:09:30.520Z",
+      "event": "request-start",
+      "requestId": "bc1e6440-3d0a-4794-a34c-553eead40215",
+      "path": "/api/status"
+    },
+    {
+      "sequence": 56,
+      "at": "2026-09-15T14:09:30.520Z",
+      "event": "backend-finished",
+      "requestId": "bc1e6440-3d0a-4794-a34c-553eead40215",
+      "path": "/api/status",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 57,
+      "at": "2026-09-15T14:09:30.550Z",
+      "event": "request-start",
+      "requestId": "7399e14e-34ce-4f75-9ee0-652dfa3ca0bf",
+      "path": "/api/courses/fixture-course-b/questions",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 58,
+      "at": "2026-09-15T14:09:30.550Z",
+      "event": "backend-finished",
+      "requestId": "7399e14e-34ce-4f75-9ee0-652dfa3ca0bf",
+      "path": "/api/courses/fixture-course-b/questions",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 59,
+      "at": "2026-09-15T14:09:30.550Z",
+      "event": "request-start",
+      "requestId": "42584302-c852-4c55-b6ab-ca59a700eba2",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 60,
+      "at": "2026-09-15T14:09:30.550Z",
+      "event": "backend-finished",
+      "requestId": "42584302-c852-4c55-b6ab-ca59a700eba2",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 61,
+      "at": "2026-09-15T14:09:40.494Z",
+      "event": "request-start",
+      "requestId": "69497ef7-0b47-4b5f-b9be-29ddc59b4fb3",
+      "path": "/api/courses/database-foundations/questions",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 62,
+      "at": "2026-09-15T14:09:40.494Z",
+      "event": "request-start",
+      "requestId": "45c3bfa9-2d7c-4e5b-9ae2-0503fec4c80b",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 63,
+      "at": "2026-09-15T14:09:40.552Z",
+      "event": "request-start",
+      "requestId": "5792cfe5-9e5b-4241-998f-5164dea84fa4",
+      "path": "/api/courses/fixture-course-b/questions",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 64,
+      "at": "2026-09-15T14:09:40.553Z",
+      "event": "backend-finished",
+      "requestId": "5792cfe5-9e5b-4241-998f-5164dea84fa4",
+      "path": "/api/courses/fixture-course-b/questions",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 65,
+      "at": "2026-09-15T14:09:40.566Z",
+      "event": "request-start",
+      "requestId": "55eab004-cc81-40af-ace6-ffc3043a2709",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 66,
+      "at": "2026-09-15T14:09:40.566Z",
+      "event": "backend-finished",
+      "requestId": "55eab004-cc81-40af-ace6-ffc3043a2709",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 67,
+      "at": "2026-09-15T14:09:40.579Z",
+      "event": "client-closed",
+      "requestId": "69497ef7-0b47-4b5f-b9be-29ddc59b4fb3",
+      "path": "/api/courses/database-foundations/questions",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 68,
+      "at": "2026-09-15T14:09:40.579Z",
+      "event": "client-closed",
+      "requestId": "45c3bfa9-2d7c-4e5b-9ae2-0503fec4c80b",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 69,
+      "at": "2026-09-15T14:09:40.590Z",
+      "event": "request-start",
+      "requestId": "0bd1f082-fea2-4d2b-81bb-1f70b4855203",
+      "path": "/api/courses/database-foundations/questions",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 70,
+      "at": "2026-09-15T14:09:40.591Z",
+      "event": "request-start",
+      "requestId": "d5d72dbb-20b4-4d7e-8417-d0085a72a6a9",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 71,
+      "at": "2026-09-15T14:09:40.605Z",
+      "event": "request-start",
+      "requestId": "a871d80c-9bb0-4f50-9978-3692f2687ada",
+      "path": "/api/courses/fixture-course-b/questions",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 72,
+      "at": "2026-09-15T14:09:40.605Z",
+      "event": "backend-finished",
+      "requestId": "a871d80c-9bb0-4f50-9978-3692f2687ada",
+      "path": "/api/courses/fixture-course-b/questions",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 73,
+      "at": "2026-09-15T14:09:40.607Z",
+      "event": "request-start",
+      "requestId": "b848d2ef-a58d-49f3-a408-7dd197b06410",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 74,
+      "at": "2026-09-15T14:09:40.607Z",
+      "event": "backend-finished",
+      "requestId": "b848d2ef-a58d-49f3-a408-7dd197b06410",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 75,
+      "at": "2026-09-15T14:09:40.607Z",
+      "event": "client-closed",
+      "requestId": "d5d72dbb-20b4-4d7e-8417-d0085a72a6a9",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 76,
+      "at": "2026-09-15T14:09:40.607Z",
+      "event": "client-closed",
+      "requestId": "0bd1f082-fea2-4d2b-81bb-1f70b4855203",
+      "path": "/api/courses/database-foundations/questions",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 77,
+      "at": "2026-09-15T14:09:46.996Z",
+      "event": "backend-finished",
+      "requestId": "69497ef7-0b47-4b5f-b9be-29ddc59b4fb3",
+      "path": "/api/courses/database-foundations/questions",
+      "courseId": "database-foundations",
+      "status": 200,
+      "delayMs": 6500,
+      "clientAlreadyClosed": true
+    },
+    {
+      "sequence": 78,
+      "at": "2026-09-15T14:09:46.996Z",
+      "event": "backend-finished",
+      "requestId": "45c3bfa9-2d7c-4e5b-9ae2-0503fec4c80b",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations",
+      "status": 200,
+      "delayMs": 6500,
+      "clientAlreadyClosed": true
+    },
+    {
+      "sequence": 79,
+      "at": "2026-09-15T14:09:47.091Z",
+      "event": "backend-finished",
+      "requestId": "0bd1f082-fea2-4d2b-81bb-1f70b4855203",
+      "path": "/api/courses/database-foundations/questions",
+      "courseId": "database-foundations",
+      "status": 200,
+      "delayMs": 6500,
+      "clientAlreadyClosed": true
+    },
+    {
+      "sequence": 80,
+      "at": "2026-09-15T14:09:47.091Z",
+      "event": "backend-finished",
+      "requestId": "d5d72dbb-20b4-4d7e-8417-d0085a72a6a9",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations",
+      "status": 200,
+      "delayMs": 6500,
+      "clientAlreadyClosed": true
+    },
+    {
+      "sequence": 81,
+      "at": "2026-09-15T14:10:12.370Z",
+      "event": "mode-armed",
+      "mode": "generation"
+    },
+    {
+      "sequence": 82,
+      "at": "2026-09-15T14:10:12.475Z",
+      "event": "request-start",
+      "requestId": "c969c5bc-1c95-4870-a226-d397c45a3206",
+      "path": "/api/courses"
+    },
+    {
+      "sequence": 83,
+      "at": "2026-09-15T14:10:12.475Z",
+      "event": "backend-finished",
+      "requestId": "c969c5bc-1c95-4870-a226-d397c45a3206",
+      "path": "/api/courses",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 84,
+      "at": "2026-09-15T14:10:12.475Z",
+      "event": "request-start",
+      "requestId": "ba398eb8-0827-4401-9400-bae3eae8890f",
+      "path": "/api/status"
+    },
+    {
+      "sequence": 85,
+      "at": "2026-09-15T14:10:12.475Z",
+      "event": "backend-finished",
+      "requestId": "ba398eb8-0827-4401-9400-bae3eae8890f",
+      "path": "/api/status",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 86,
+      "at": "2026-09-15T14:10:12.508Z",
+      "event": "request-start",
+      "requestId": "ddb3658e-9c02-4096-9f2f-f1ea1b88ad96",
+      "path": "/api/courses/fixture-course-b/questions",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 87,
+      "at": "2026-09-15T14:10:12.508Z",
+      "event": "backend-finished",
+      "requestId": "ddb3658e-9c02-4096-9f2f-f1ea1b88ad96",
+      "path": "/api/courses/fixture-course-b/questions",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 88,
+      "at": "2026-09-15T14:10:12.508Z",
+      "event": "request-start",
+      "requestId": "c27ef104-f461-4f1a-90a4-f4b0494a2851",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 89,
+      "at": "2026-09-15T14:10:12.508Z",
+      "event": "backend-finished",
+      "requestId": "c27ef104-f461-4f1a-90a4-f4b0494a2851",
+      "path": "/api/courses/fixture-course-b/history",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 90,
+      "at": "2026-09-15T14:10:19.960Z",
+      "event": "request-start",
+      "requestId": "48e98d8b-92e8-4032-856b-035a51808752",
+      "path": "/api/generate-question",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 91,
+      "at": "2026-09-15T14:10:19.990Z",
+      "event": "request-start",
+      "requestId": "b293e49f-3daf-472f-bc30-2fbf5efe000b",
+      "path": "/api/courses/database-foundations/questions",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 92,
+      "at": "2026-09-15T14:10:19.990Z",
+      "event": "backend-finished",
+      "requestId": "b293e49f-3daf-472f-bc30-2fbf5efe000b",
+      "path": "/api/courses/database-foundations/questions",
+      "courseId": "database-foundations",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 93,
+      "at": "2026-09-15T14:10:19.991Z",
+      "event": "request-start",
+      "requestId": "34d47d8b-937d-45b6-bdce-d2bbd5afe9dd",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 94,
+      "at": "2026-09-15T14:10:19.991Z",
+      "event": "backend-finished",
+      "requestId": "34d47d8b-937d-45b6-bdce-d2bbd5afe9dd",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    },
+    {
+      "sequence": 95,
+      "at": "2026-09-15T14:10:19.992Z",
+      "event": "client-closed",
+      "requestId": "48e98d8b-92e8-4032-856b-035a51808752",
+      "path": "/api/generate-question",
+      "courseId": "fixture-course-b"
+    },
+    {
+      "sequence": 96,
+      "at": "2026-09-15T14:10:26.462Z",
+      "event": "backend-finished",
+      "requestId": "48e98d8b-92e8-4032-856b-035a51808752",
+      "path": "/api/generate-question",
+      "courseId": "fixture-course-b",
+      "status": 200,
+      "delayMs": 6500,
+      "clientAlreadyClosed": true
+    },
+    {
+      "sequence": 97,
+      "at": "2026-09-15T14:10:28.630Z",
+      "event": "request-start",
+      "requestId": "a41059f0-9dcb-425c-bf66-53518877577d",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations"
+    },
+    {
+      "sequence": 98,
+      "at": "2026-09-15T14:10:28.630Z",
+      "event": "backend-finished",
+      "requestId": "a41059f0-9dcb-425c-bf66-53518877577d",
+      "path": "/api/courses/database-foundations/history",
+      "courseId": "database-foundations",
+      "status": 200,
+      "delayMs": 0,
+      "clientAlreadyClosed": false
+    }
+  ],
+  "history": {
+    "database-foundations": {
+      "attempts": [
+        {
+          "id": "794269b0-3a79-410f-a3c1-9cc3a3a2e706",
+          "questionId": "null-d",
+          "concept": "SQL NULL",
+          "kind": "diagnostic",
+          "prompt": "Salaries are 100, 200, and NULL. Which rows survive WHERE salary <> 100?",
+          "options": [
+            "200 only",
+            "200 and NULL",
+            "All three rows",
+            "No rows"
+          ],
+          "chosen": 1,
+          "correct": 0,
+          "isCorrect": false,
+          "confidence": "somewhat",
+          "explanation": "The comparison with NULL is UNKNOWN. WHERE keeps only TRUE, so only 200 survives.",
+          "misconception": "You may be treating unknown as an ordinary value different from 100.",
+          "sourceIds": [
+            "null-comparison",
+            "null-where"
+          ],
+          "sourceHash": "dadc6ec13c6948bfc7e4ca3cf541802f78e60270e05ae34c7264347c869d179a",
+          "createdAt": "2026-09-15T14:08:40.055Z"
+        },
+        {
+          "id": "37a5ab94-850e-4606-9411-eb0e3be08d5c",
+          "questionId": "count-d",
+          "concept": "Aggregates",
+          "kind": "diagnostic",
+          "prompt": "Scores are 10, 20, and NULL. What are COUNT(*) and COUNT(score)?",
+          "options": [
+            "2 and 2",
+            "3 and 2",
+            "3 and 3",
+            "2 and 3"
+          ],
+          "chosen": 0,
+          "correct": 1,
+          "isCorrect": false,
+          "confidence": "somewhat",
+          "explanation": "COUNT(*) counts rows; COUNT(score) ignores the NULL entry.",
+          "misconception": "COUNT(*) includes the row with NULL.",
+          "sourceIds": [
+            "null-count"
+          ],
+          "sourceHash": "dadc6ec13c6948bfc7e4ca3cf541802f78e60270e05ae34c7264347c869d179a",
+          "createdAt": "2026-09-15T14:09:04.446Z"
+        }
+      ],
+      "chats": [
+        {
+          "question": "Why does salary <> 100 exclude NULL?",
+          "answer": "MOCKED RESPONSE FOR COURSE A ONLY. This is a controlled UI delay fixture, not real model inference.",
+          "insufficient": false,
+          "citations": [
+            {
+              "sectionId": "null-comparison",
+              "quote": "NULL represents missing or unknown information. It is not zero, an empty string,"
+            }
+          ],
+          "elapsedMs": 6500,
+          "model": "MOCK DELAY FIXTURE — no model",
+          "sourceHash": "dadc6ec13c6948bfc7e4ca3cf541802f78e60270e05ae34c7264347c869d179a",
+          "createdAt": "2026-09-15T14:07:53.355Z"
+        }
+      ]
+    },
+    "fixture-course-b": {
+      "attempts": [],
+      "chats": [
+        {
+          "question": "What is the verification code in course B?",
+          "answer": "MOCKED RESPONSE FOR COURSE B ONLY. This is a controlled UI delay fixture, not real model inference.",
+          "insufficient": false,
+          "citations": [
+            {
+              "sectionId": "fixture-b-source",
+              "quote": "This passage belongs exclusively to mocked course B. The verification code in co"
+            }
+          ],
+          "elapsedMs": 1,
+          "model": "MOCK DELAY FIXTURE — no model",
+          "sourceHash": "3130bbc4efe48e90e1ef3deeb56cebe957d7d815ca6a8815688eb40369f4598f",
+          "createdAt": "2026-09-15T14:07:58.370Z"
+        }
+      ]
+    }
+  }
+}

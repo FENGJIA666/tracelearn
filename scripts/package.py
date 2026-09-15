@@ -1,7 +1,7 @@
 from pathlib import Path
 import zipfile,hashlib,json
 root=Path(__file__).resolve().parent.parent
-out=root.parent/'TraceLearn-Complete-v1.1.0.zip'
+out=root.parent/'TraceLearn-Complete-v1.2.0.zip'
 skip_dirs={'node_modules','.local','dist','.git','pdf-render','__pycache__'}
 skip_names={'desktop-ai-viewport.png','responsive-1024.png','cover-layout.pdf','probe-generation.ts','quality-probe.ts'}
 allowed_logs={'unit-tests.log','build.log'}

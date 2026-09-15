@@ -38,5 +38,13 @@
   {
     "file": "09-review-plan.png",
     "caption": "A transparent review rule prioritizes latest confident mistakes; these are scripted software-test attempts."
+  },
+  {
+    "file": "10-sql-counterexample.jpg",
+    "caption": "v1.2: predict SQL rows, change a condition, and inspect a computed counterexample. Actual software-test session."
+  },
+  {
+    "file": "11-key-minimality.jpg",
+    "caption": "v1.2: removing B proves this superkey is not minimal. Every closure step follows the stated dependencies."
   }
 ]
