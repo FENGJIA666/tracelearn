@@ -1,0 +1,145 @@
+{
+  "at": "2026-09-15T17:46:33.258635+00:00",
+  "media": [
+    {
+      "file": "00-original-cover-v1.0.png",
+      "caption": "Original v1.0 title card. Current v1.3 uses Qwen3.5-9B; see the new cover and actual screenshots.",
+      "width": 1500,
+      "height": 1000,
+      "bytes": 77061,
+      "sha256": "e7f545c0316669132fa19fb2f9dfb59cbf93b069281e779929129bab2de33e79"
+    },
+    {
+      "file": "01-learning-workspace.png",
+      "caption": "Start with a concept check beside inspectable original teaching notes.",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 101064,
+      "sha256": "a2f80c427c1765275c691c996bf6c2922e457c2804012f2ced3e10af29ac4fb8"
+    },
+    {
+      "file": "02-misconception-evidence.png",
+      "caption": "A scripted incorrect answer reveals a possible misconception; the source explains SQL UNKNOWN.",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 119529,
+      "sha256": "bf84e286dc43b80cae4bbe1d400dca1d739d8ce722c32e9a530c970f59c4837d"
+    },
+    {
+      "file": "03-transfer-check.png",
+      "caption": "Apply the same idea in a different condition, with deterministic answer checking.",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 116465,
+      "sha256": "440b6fdf1a85967b2e0e32599bc13a664aec387b1423ffcbbe00f8bb45614e79"
+    },
+    {
+      "file": "04-local-ai-citations.png",
+      "caption": "Historical v1.0: a real Qwen3-4B response and exact source excerpts. Current-model evidence is shown separately.",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 118475,
+      "sha256": "480958a8962b13a572dbe63b4425b339e137ccedf400a33a365f396ca2efe40b"
+    },
+    {
+      "file": "05-learning-notebook.png",
+      "caption": "Export the learning trail; these demonstration attempts are software tests, not a learning-outcome study.",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 102035,
+      "sha256": "1bbbea0b2eb7585c7ce3581fd155d0de3f4961b199bdb671decfae2c067d36fa"
+    },
+    {
+      "file": "06-chinese-workspace.png",
+      "caption": "Chinese interface and source translation; built-in questions retain English technical wording.",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 92449,
+      "sha256": "4e78376d876bfad511a83aa27c293325841b5162715852d18923c14a636d965c"
+    },
+    {
+      "file": "07-portable-practice.png",
+      "caption": "Portable v1.1: real curated practice without a model or Node.js; captured in a localhost static preview.",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 119547,
+      "sha256": "f3fb5edd584cd6704520eb262a440293ad73fafe344de6ff628c473febf72655"
+    },
+    {
+      "file": "08-evidence-lab.png",
+      "caption": "Recorded AI, not live: both frozen answers and the retained error are inspectable beside the original source.",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 118450,
+      "sha256": "ebab3e62c09f5685eebddede7ef355688bcc9a51f13d089d14831fb0d9fee645"
+    },
+    {
+      "file": "09-review-plan.png",
+      "caption": "A transparent review rule prioritizes latest confident mistakes; these are scripted software-test attempts.",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 117517,
+      "sha256": "f3f043363f971b715bb41247be66597c443f063cc77bf07b5987eac9c02808f9"
+    },
+    {
+      "file": "10-sql-counterexample.jpg",
+      "caption": "v1.2: predict SQL rows, change a condition, and inspect a computed counterexample. Actual software-test session.",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 97082,
+      "sha256": "ba2c0a35c6b180bb84e4752f975ac25580d63606a62ca55c67f4477d5593249b"
+    },
+    {
+      "file": "11-key-minimality.jpg",
+      "caption": "v1.2: removing B proves this superkey is not minimal. Every closure step follows the stated dependencies.",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 89992,
+      "sha256": "e42f76ea795168b57a070e5496c0832185576b45c662e2a493087e686f447869"
+    },
+    {
+      "file": "00-cover.png",
+      "caption": "v1.3 title card: predict, inspect the source, and try a fresh question. AI-assisted graphic, not a UI screenshot.",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1226540,
+      "sha256": "9a4dd0000e32812a5eb11c9f470c3e822fc92c0b9e2b5647888312e609069b31"
+    },
+    {
+      "file": "13-supported-answer.jpg",
+      "caption": "v1.3: actual local Qwen3.5-9B answer with checked source excerpts. Scripted software acceptance, not a user study.",
+      "width": 1280,
+      "height": 720,
+      "bytes": 109016,
+      "sha256": "f4fb52ff2e8700887e92713d320e73f61b4b2370725318c01ece60ea4be5f15a"
+    },
+    {
+      "file": "14-current-evidence.jpg",
+      "caption": "v1.3: inspect the complete held-out comparison, saved judgments, actual source inputs, and retained failures.",
+      "width": 1200,
+      "height": 884,
+      "bytes": 81878,
+      "sha256": "6ed9282bfc639dfcddde058df197fa33237cf544fcf22d2b8774a8ede4157b66"
+    }
+  ],
+  "acceptedRuntimeFilesUnchanged": 45,
+  "historicalFilesUnchanged": [
+    "server/ai.ts",
+    "content/course.ts",
+    "server/store.ts",
+    "evaluation/answer-pipeline-preservation.json",
+    "evaluation/answer-pipeline-v3.ts.txt",
+    "evaluation/dataset-lock.json",
+    "evaluation/dataset.json",
+    "evaluation/failure-cases.json",
+    "evaluation/model-manifest.json",
+    "evaluation/pilot-note.md",
+    "evaluation/pilot-v1-results.jsonl",
+    "evaluation/pilot-v2-results.jsonl",
+    "evaluation/question-review.md",
+    "evaluation/raw-results.jsonl",
+    "evaluation/semantic-review.json",
+    "evaluation/summary.json"
+  ],
+  "scope": "Static final media limits, runtime identity and immutable historical files; external publication is recorded separately."
+}

@@ -1,0 +1,147 @@
+- link "Skip to learning workspace":
+  - /url: "#main"
+- complementary:
+  - link "TraceLearn home":
+    - /url: /
+    - text: TraceLearn
+    - generic: .
+  - generic: Course
+  - combobox "Course":
+    - option "Database foundations" [selected]
+  - button "Import your own notes ↗":
+    - text: Import your own notes
+    - generic: ↗
+  - navigation "Course concepts":
+    - button "01 SQL NULL":
+      - generic: "01"
+      - generic: SQL NULL
+    - button "02 Aggregates":
+      - generic: "02"
+      - generic: Aggregates
+    - button "03 NOT IN":
+      - generic: "03"
+      - generic: NOT IN
+    - button "04 Candidate keys":
+      - generic: "04"
+      - generic: Candidate keys
+    - button "05 Functional dependencies":
+      - generic: "05"
+      - generic: Functional dependencies
+    - button "06 Attribute closure":
+      - generic: "06"
+      - generic: Attribute closure
+    - button "07 Second normal form":
+      - generic: "07"
+      - generic: Second normal form
+    - button "08 3NF vs BCNF":
+      - generic: "08"
+      - generic: 3NF vs BCNF
+    - button "09 Decomposition":
+      - generic: "09"
+      - generic: Decomposition
+    - button "10 LEFT JOIN":
+      - generic: "10"
+      - generic: LEFT JOIN
+- banner:
+  - generic: Database foundations
+  - button "Local AI ready": Local AI ready
+  - button "中文"
+- main:
+  - generic: ORIGINAL COURSE · 10 CONCEPT PAIRS
+  - heading "From “I think” to “I understand.”" [level=1]
+  - paragraph: Find the evidence. Spot the misconception. Test the idea again.
+  - button "Show the quick tour":
+    - text: Show the quick tour
+  - tablist "Learning mode":
+    - tab "Practice":
+      - text: Practice
+    - tab "Ask the source":
+      - text: Ask the source
+    - tab "Lab":
+      - text: Lab
+    - tab "Evidence":
+      - text: Evidence
+    - tab "Notebook" [selected]:
+      - text: Notebook
+    - button "Toggle source":
+  - generic: YOUR LEARNING TRAIL
+  - heading "Make your thinking visible." [level=2]
+  - paragraph: A record of practice, not a validated measure of mastery or learning gains.
+  - strong: "0"
+  - generic: Questions explored
+  - strong:
+    - text: "0"
+    - generic: /0
+  - generic: Latest answers correct
+  - strong:
+    - text: "0"
+    - generic: /0
+  - generic: Transfer checks correct
+  - link "Export learning report" [active]:
+    - /url: /api/courses/database-foundations/report
+    - text: Export learning report
+  - heading "What should you revisit?" [level=3]
+  - paragraph: "Based on the latest answer to each question: revisit confident mistakes first, then complete untried transfer checks."
+  - paragraph: Answer a question to build your own next steps.
+  - paragraph: Your first practice session will appear here.
+  - heading "Saved local answers" [level=3]:
+    - text: Saved local answers
+  - generic: "3"
+  - paragraph: Reopen the question and its evidence without running the model again. Older answers keep their original check status.
+  - generic "For salaries 100, 200, and NULL, which rows survive WHERE salary <> 100, and why? 16 Sept 2026, 01:32":
+    - text: For salaries 100, 200, and NULL, which rows survive WHERE salary <> 100, and why?
+    - generic: 16 Sept 2026, 01:32
+  - article:
+    - generic: Automated support checks passed
+    - generic: 16.1s · qwen3.5:9b
+    - list:
+      - generic: CONCLUSION
+      - paragraph: For salaries 100, 200, and NULL, the WHERE clause salary <> 100 returns only the row with 200 because the comparison for 100 yields FALSE and the comparison for NULL yields UNKNOWN, both of which are filtered out.
+      - button "null-where SQL uses TRUE, FALSE, and UNKNOWN in its three-valued logic. A WHERE clause keeps a row only when its predicate is TRUE; FALSE and UNKNOWN are both filtered out. For salaries 100, 200, and NULL, WHERE salary <> 100 returns only the row with 200. To include missing salaries, write salary <> 100 OR salary IS NULL.":
+        - text: null-where
+        - text: SQL uses TRUE, FALSE, and UNKNOWN in its three-valued logic. A WHERE clause keeps a row only when its predicate is TRUE; FALSE and UNKNOWN are both filtered out. For salaries 100, 200, and NULL, WHERE salary <> 100 returns only the row with 200. To include missing salaries, write salary <> 100 OR salary IS NULL.
+      - button "null-comparison NULL represents missing or unknown information. It is not zero, an empty string, or a value equal to another NULL. Ordinary SQL comparisons involving NULL, including NULL = NULL and NULL <> 5, evaluate to UNKNOWN rather than TRUE or FALSE. Use IS NULL or IS NOT NULL to test missingness.":
+        - text: null-comparison
+        - text: NULL represents missing or unknown information. It is not zero, an empty string, or a value equal to another NULL. Ordinary SQL comparisons involving NULL, including NULL = NULL and NULL <> 5, evaluate to UNKNOWN rather than TRUE or FALSE. Use IS NULL or IS NOT NULL to test missingness.
+    - generic "What did these checks do?"
+    - paragraph: Check the source and the reasoning. An explanation can still be wrong even when every check passes.
+  - generic "For salaries 100, 200, and NULL, which rows survive WHERE salary <> 100, and why? 16 Sept 2026, 01:27":
+    - text: For salaries 100, 200, and NULL, which rows survive WHERE salary <> 100, and why?
+    - generic: 16 Sept 2026, 01:27
+  - generic "For salaries 100, 200, and NULL, which rows survive WHERE salary <> 100, and why? 16 Sept 2026, 01:27":
+    - text: For salaries 100, 200, and NULL, which rows survive WHERE salary <> 100, and why?
+    - generic: 16 Sept 2026, 01:27
+  - complementary "Source evidence":
+    - generic: BACK TO THE SOURCE
+    - generic: LOCAL
+    - text: ORIGINAL TEACHING NOTES
+    - generic: p. 1
+    - heading "NULL is not a value" [level=2]
+    - paragraph: NULL represents missing or unknown information. It is not zero, an empty string, or a value equal to another NULL. Ordinary SQL comparisons involving NULL, including NULL = NULL and NULL <> 5, evaluate to UNKNOWN rather than TRUE or FALSE. Use IS NULL or IS NOT NULL to test missingness.
+    - text: null-comparison
+    - paragraph: Source text is inspectable. AI interpretations still need judgment.
+    - generic: Browse passages
+    - combobox "Browse passages":
+      - option "p.1 · NULL is not a value" [selected]
+      - option "p.1 · WHERE keeps only TRUE"
+      - option "p.2 · Combining unknown conditions"
+      - option "p.2 · Counting rows versus values"
+      - option "p.3 · The NOT IN trap"
+      - option "p.3 · Superkeys and candidate keys"
+      - option "p.4 · Minimality needs a check"
+      - option "p.4 · Dependencies describe all legal data"
+      - option "p.5 · Trivial dependencies"
+      - option "p.5 · Compute an attribute closure"
+      - option "p.6 · First normal form"
+      - option "p.6 · Second normal form"
+      - option "p.7 · The precise 3NF test"
+      - option "p.7 · BCNF removes the exception"
+      - option "p.8 · A relation in 3NF but not BCNF"
+      - option "p.8 · Redundancy creates anomalies"
+      - option "p.9 · Lossless decomposition"
+      - option "p.9 · Dependency preservation"
+      - option "p.10 · Filtering a left join"
+      - option "p.10 · What these notes do not establish"
+    - generic "Source fingerprint"
+  - text: LOCAL PROCESSING · NO ACCOUNT · NO API FEES
+  - generic: TraceLearn 1.3 · Follow the evidence.

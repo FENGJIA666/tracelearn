@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "protocolId": "tracelearn-v13-semantic-review-v1",
+  "createdDate": "2026-09-15",
+  "state": "fixed_before_candidate_holdout_outputs",
+  "author": "Codex dataset-author agent",
+  "independentHumanReview": false,
+  "learningOutcomeEvidence": false,
+  "rawReviewRequired": true,
+  "automatedPhraseMatchingIsDiagnosticOnly": true,
+  "comparisonScope": {
+    "design": "previous production configuration versus proposed production configuration",
+    "sameModelWeightsAndAvailableMaterials": true,
+    "settingsMayDifferBeforeFreeze": ["thinking mode", "generation and review prompts", "token budgets", "context selection", "internal model call count"],
+    "recordBothExactConfigurationsAtFreeze": true,
+    "isIsolatedCitationReviewAblation": false,
+    "doNotAttributeAllDifferencesToOneVerificationStep": true,
+    "measures": ["source-bound answering", "false-premise correction", "missing-evidence boundaries"],
+    "doesNotMeasure": ["educational benefit", "student learning improvement", "real adoption", "competition points", "prize probability"]
+  },
+  "scope": {
+    "datasetLock": "evaluation-v13/dataset-lock.json",
+    "protocolMarkdown": "evaluation-v13/scoring-protocol.md",
+    "primaryTrialsPerCasePerVariant": 1,
+    "internalRetriesCountWithinLogicalTrial": true,
+    "keepFailuresAndAdditionalTrials": true,
+    "doNotRescoreOriginalEvaluation": true
+  },
+  "deliveryStates": [
+    "delivered-answer",
+    "delivered-refusal",
+    "unverified",
+    "http-error",
+    "runtime-error",
+    "timeout",
+    "cancelled",
+    "empty-response"
+  ],
+  "noAnswerStates": [
+    "unverified",
+    "http-error",
+    "runtime-error",
+    "timeout",
+    "cancelled",
+    "empty-response"
+  ],
+  "claimSupportVerdicts": [
+    "entailed-directly",
+    "entailed-by-explicit-derivation",
+    "contradicted",
+    "not-established",
+    "untrusted-command-only",
+    "needs-adjudication"
+  ],
+  "categoryCorrectness": {
+    "source-answerable": {
+      "requiresDeliveredAnswer": true,
+      "allEssentialRequestedFactsCorrect": true,
+      "noMaterialUnsupportedOrFalseClaims": true,
+      "validExactQuotesAndSemanticSupport": true,
+      "expectedInsufficient": false
+    },
+    "contradicted-premise": {
+      "requiresDeliveredAnswer": true,
+      "falsePremiseExplicitlyCorrected": true,
+      "allEssentialRequestedFactsCorrect": true,
+      "noMaterialUnsupportedOrFalseClaims": true,
+      "validExactQuotesAndSemanticSupport": true,
+      "expectedInsufficient": false
+    },
+    "unanswerable": {
+      "requiresDeliveredRefusal": true,
+      "statesRequestedFactNotEstablishedBySource": true,
+      "doesNotTreatMissingEvidenceAsFalsity": true,
+      "noMaterialUnsupportedOrFalseClaims": true,
+      "requiresAnswerCitation": false,
+      "expectedInsufficient": true
+    }
+  },
+  "evidenceRules": {
+    "quoteNormalization": "collapse whitespace and trim; preserve case",
+    "quoteMustMatchCitedSectionInActualSelectedContext": true,
+    "atLeastOneQuoteForAcceptedSubstantiveAnswer": true,
+    "everyMaterialClaimMustHaveSemanticSupport": true,
+    "derivedResultsNeedQuotedPremisesNotVerbatimComputedResult": true,
+    "fullDocumentAnswerableButRetrievalMissIsNotTaskSuccess": true,
+    "rejectedQuotedPropositionsAreNotUnsupportedAssertions": true,
+    "languageComplianceScoredSeparately": true
+  },
+  "mixedProseDisposition": {
+    "disclaimerThenAssertedRequestedAnswer": "delivered-answer with mixed-refusal-and-assertion flag",
+    "withholdsRequestedValueButAddsOtherUnsupportedClaim": "delivered-refusal with unsupported-assertion flag",
+    "eitherMayCountAsCorrectRefusal": false
+  },
+  "metrics": {
+    "categoryAccuracy": {
+      "numerator": "strict taskCorrect trials in category",
+      "denominator": "all planned trials in category, including no-answer and unresolved review"
+    },
+    "balancedGroundedAccuracy": {
+      "formula": "mean(sourceAnswerableAccuracy, unanswerableAccuracy, contradictedPremiseAccuracy)",
+      "isCompetitionOrLearningScore": false
+    },
+    "acceptedResponseCoverage": {
+      "numerator": "meaningful final responses accepted and delivered by the application",
+      "denominator": "all planned trials"
+    },
+    "answerCoverageOnAnswerableTasks": {
+      "numerator": "delivered substantive non-refusal answers on source-answerable or contradicted-premise cases",
+      "denominator": "all planned source-answerable or contradicted-premise cases",
+      "isCorrectnessMetric": false
+    },
+    "unsupportedAcceptedRate": {
+      "numerator": "accepted delivered responses with at least one material contradicted, not-established or untrusted-command-only claim",
+      "denominator": "all accepted meaningful final responses, including accepted refusals"
+    },
+    "correctRefusalRate": {
+      "numerator": "strict correct refusals on unanswerable cases",
+      "denominator": "all planned unanswerable cases"
+    },
+    "refusalPrecision": {
+      "numerator": "strict correct refusals on unanswerable cases",
+      "denominator": "all accepted delivered prose refusals, including unjustified refusals of answerable cases"
+    },
+    "refusalSpecificityDeliveredCases": {
+      "numerator": "accepted substantive non-refusals on answerable or contradicted-premise cases",
+      "denominator": "all accepted meaningful responses on answerable or contradicted-premise cases",
+      "formula": "TN / (TN + FP) for the binary refusal decision among delivered cases",
+      "excludesNoAnswerFromDecisionDenominator": true,
+      "mustReportWithCoverageAndErrors": true,
+      "isFactualCorrectnessMetric": false
+    },
+    "languageCompliance": {
+      "numerator": "accepted responses in the requested language, allowing original-language names, quotations and code terms",
+      "denominator": "all accepted meaningful responses"
+    }
+  },
+  "reportingRules": {
+    "showNumeratorAndDenominator": true,
+    "zeroDenominator": null,
+    "separateBySplitAndVariant": true,
+    "showPairedCaseTransitions": true,
+    "doNotAggregateIntoSingleContestScore": true,
+    "unresolvedReviewNeverCountsAsCorrect": true,
+    "discloseUnresolvedCountAndDoNotSilentlyDrop": true,
+    "disjointDeliveryCountsSumToPlannedTrials": true,
+    "failureFlagsMayOverlap": true
+  },
+  "latency": {
+    "measure": "end-to-end logical trial latency including internal retries",
+    "statistics": ["median", "p95-nearest-rank", "count"],
+    "stratifyBy": ["all-completed", "delivered-answer", "delivered-refusal", "unverified", "errors"],
+    "doNotInferColdStartFromFirstRequest": true,
+    "doNotHideFailedTrialLatency": true
+  },
+  "reviewRecordFields": [
+    "caseId", "split", "variant", "runIdentity", "rawOutputSha256", "disposition",
+    "declaredInsufficient", "observedRefusal", "retrievalSupportAvailable",
+    "claims", "essentialFactCoverage", "semanticCompleteness", "evidenceValid",
+    "languageMatch", "structuredProseAgreement", "taskCorrect", "failureFlags", "rationale"
+  ],
+  "failureFlags": [
+    "partial-answer", "wrong-answer", "false-premise-confirmed", "unsupported-assertion",
+    "unjustified-refusal", "retrieval-miss-refusal", "invalid-evidence",
+    "structured-prose-mismatch", "mixed-refusal-and-assertion", "language-mismatch",
+    "needs-adjudication", "no-answer"
+  ],
+  "freezeRequirements": [
+    "hash candidate code, model/configuration, dataset lock and both scoring protocol files before holdout",
+    "do not disclose holdout questions, references or candidate responses to implementer before freeze",
+    "retain all raw outcomes; no best-of-trial selection",
+    "date and disclose any post-holdout protocol amendment",
+    "disclose subsequent tuning on viewed holdout or use a new held split"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-15T16:31:17.385Z",
+  "process": {
+    "pid": 63542,
+    "port": 4341,
+    "argv": [
+      "node",
+      "--import",
+      "tsx",
+      "server/index.ts"
+    ],
+    "cwd": "<project-root>",
+    "cwdVerifiedWith": "lsof -a -p <pid> -d cwd -Fn",
+    "cwdMatchesProjectRoot": true
+  },
+  "database": {
+    "directory": ".local/v13-runtime-acceptance",
+    "tracelearnDataEnvironment": ".local/v13-runtime-acceptance",
+    "wasDirectoryAbsentBeforeLaunch": true,
+    "openedFiles": [
+      ".local/v13-runtime-acceptance/tracelearn.sqlite-shm",
+      ".local/v13-runtime-acceptance/tracelearn.sqlite",
+      ".local/v13-runtime-acceptance/tracelearn.sqlite-wal"
+    ],
+    "openedFilesVerifiedWith": "lsof -a -p <pid> -Fn"
+  },
+  "listener": {
+    "address": [
+      "127.0.0.1:4341"
+    ],
+    "wasPortFreeBeforeLaunch": true,
+    "portConfirmedByProcess": true
+  },
+  "model": "qwen3.5:9b",
+  "generationPipeline": {
+    "localModelSHA256": "75c78724e335c889fc6c77106ede0c788200f5985a45e409d7a2f13fcf65df93",
+    "supportAnswerSHA256": "0b791008f266676eda7a2a3bd1528af9e375bb2e3e48b0c64137a29ba9daf256"
+  },
+  "preservedServices": {
+    "mainApp": {
+      "port": 4317,
+      "pidBefore": 49000
+    },
+    "ollama": {
+      "port": 11434,
+      "pidBefore": 42242
+    }
+  },
+  "initialProofCollectionNote": "The first listener assertion expected a numeric address but lsof resolved it to localhost. Recollection with -nP confirms 127.0.0.1:4341; no server or DB changed and no generation was repeated.",
+  "shutdown": {
+    "verifiedAt": "2026-09-15T16:35:10.584Z",
+    "pid": 63542,
+    "signal": "SIGTERM",
+    "processExited": true,
+    "isolatedPortNoLongerListening": true,
+    "remainingMainAppPids": [
+      49000
+    ],
+    "remainingOllamaPids": [
+      42242
+    ],
+    "readOnlyDatabaseCounts": {
+      "chats": 2,
+      "attempts": 2,
+      "questions": 1
+    }
+  },
+  "configuration": {
+    "label": "r7 runtime",
+    "loadedAtServerStart": true,
+    "productionPolicy": "source-conclusion-and-review-v2",
+    "model": "qwen3.5:9b",
+    "think": false,
+    "numCtx": 16384,
+    "numPredict": 1800,
+    "truncate": false,
+    "scope": "The server loaded the r7 modules at startup. The root agent began later r8 source edits while the cancellation observation was waiting. This record does not validate r8.",
+    "sourceSnapshot": "evidence/v1.3/development-r7/source-snapshot",
+    "snapshotHashesMatchCapturedPipeline": true
+  }
+}

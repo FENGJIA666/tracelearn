@@ -11,7 +11,8 @@ if ! curl -fsS http://127.0.0.1:11434/api/tags >/dev/null; then
     sleep 1
   done
 fi
-ollama pull qwen3:4b
+node scripts/check-ollama-version.mjs
+ollama pull qwen3.5:9b
 ollama pull qwen3-embedding:0.6b
 npm ci
 npm run build

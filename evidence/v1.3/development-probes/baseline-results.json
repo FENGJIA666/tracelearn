@@ -1,0 +1,241 @@
+{
+  "at": "2026-09-15T14:47:22.665Z",
+  "scope": "Actual local qwen3:4b through frozen answer() with grounded retrieval on six authored development probes; isolated store; not held-out evaluation.",
+  "results": [
+    {
+      "id": "audit-dev-off-topic",
+      "question": "In SQL, what is the result of NOT UNKNOWN?",
+      "expected": "UNKNOWN; NOT preserves UNKNOWN.",
+      "ok": true,
+      "result": {
+        "answer": "The result of NOT UNKNOWN in SQL is UNKNOWN.",
+        "insufficient": false,
+        "citations": [
+          {
+            "sectionId": "logic",
+            "quote": "In SQL three-valued logic, NOT UNKNOWN is UNKNOWN."
+          }
+        ],
+        "mode": "grounded",
+        "model": "qwen3:4b",
+        "elapsedMs": 5967,
+        "sources": [
+          {
+            "id": "logic",
+            "title": "logic",
+            "page": 1,
+            "text": "In SQL three-valued logic, NOT UNKNOWN is UNKNOWN.",
+            "score": 0.733637368116204,
+            "semantic": 0.8115164908216053,
+            "lexical": 0.5
+          },
+          {
+            "id": "keys",
+            "title": "keys",
+            "page": 2,
+            "text": "A candidate key is a minimal superkey: no proper subset is a superkey.",
+            "score": 0.24823277898786295,
+            "semantic": 0.33097703865048395,
+            "lexical": 0
+          }
+        ],
+        "attempts": [
+          {
+            "raw": "{\n  \"answer\": \"UNKNOWN\",\n  \"insufficient\": false,\n  \"citations\": [\n    {\n      \"sectionId\": \"logic\",\n      \"quote\": \"In SQL three-valued logic, NOT UNKNOWN is UNKNOWN.\"\n    }\n  ]\n  }",
+            "stats": {
+              "totalDurationMs": 3258.500416,
+              "promptTokens": 205,
+              "outputTokens": 58
+            }
+          },
+          {
+            "error": "Error: The response lacks a substantive explanation."
+          },
+          {
+            "raw": "{\n  \"answer\": \"The result of NOT UNKNOWN in SQL is UNKNOWN.\",\n  \"insufficient\": false,\n  \"citations\": [\n    {\n      \"sectionId\": \"logic\",\n      \"quote\": \"In SQL three-valued logic, NOT UNKNOWN is UNKNOWN.\"\n    }\n  ]\n}",
+            "stats": {
+              "totalDurationMs": 1299.012666,
+              "promptTokens": 238,
+              "outputTokens": 64
+            }
+          }
+        ]
+      },
+      "wallMs": 5967
+    },
+    {
+      "id": "audit-dev-missing-universe-negative",
+      "question": "Given A -> B and B -> C, is A a candidate key?",
+      "expected": "Cannot determine candidate-key status without the complete relation attribute set; do not invent an extra attribute.",
+      "ok": true,
+      "result": {
+        "answer": "No, A is not a candidate key because the attribute closure of A does not reach all attributes of the relation. The source states that a candidate key must be minimal and reach every attribute of the relation through its closure under the dependencies.",
+        "insufficient": false,
+        "citations": [
+          {
+            "sectionId": "key-test",
+            "quote": "A superkey reaches every attribute of the relation."
+          }
+        ],
+        "mode": "grounded",
+        "model": "qwen3:4b",
+        "elapsedMs": 4711,
+        "sources": [
+          {
+            "id": "key-test",
+            "title": "key-test",
+            "page": 1,
+            "text": "To test a candidate key, compute its attribute closure under the given dependencies. A superkey reaches every attribute of the relation. A candidate key must also be minimal.",
+            "score": 0.7019403346398855,
+            "semantic": 0.6859204461865139,
+            "lexical": 0.75
+          }
+        ],
+        "attempts": [
+          {
+            "raw": "{\n  \"answer\": \"No\",\n  \"insufficient\": false,\n  \"citations\": [\n    {\n      \"sectionId\": \"key-test\",\n      \"quote\": \"To test a candidate key, compute its attribute closure under the given dependencies. A superkey reaches every attribute of the relation. A candidate key must also be minimal.\"\n    }\n  ]\n  }",
+            "stats": {
+              "totalDurationMs": 1674.59125,
+              "promptTokens": 203,
+              "outputTokens": 80
+            }
+          },
+          {
+            "error": "Error: The response lacks a substantive explanation."
+          },
+          {
+            "raw": "{\n  \"answer\": \"No, A is not a candidate key because the attribute closure of A does not reach all attributes of the relation. The source states that a candidate key must be minimal and reach every attribute of the relation through its closure under the dependencies.\",\n  \"insufficient\": false,\n  \"citations\": [\n    {\n      \"sectionId\": \"key-test\",\n      \"quote\": \"A superkey reaches every attribute of the relation.\"\n    }\n  ]\n}",
+            "stats": {
+              "totalDurationMs": 1929.650041,
+              "promptTokens": 236,
+              "outputTokens": 100
+            }
+          }
+        ]
+      },
+      "wallMs": 4711
+    },
+    {
+      "id": "audit-dev-complete-universe-key",
+      "question": "In R(A,B,C), suppose the only nontrivial dependencies are A -> B and B -> C. Is A a candidate key?",
+      "expected": "Yes under the stated complete dependencies: A reaches ABC and is minimal.",
+      "ok": false,
+      "error": "The model could not produce verifiable citations after two attempts. Try a narrower question. No answer was accepted.",
+      "status": 502,
+      "wallMs": 4547
+    },
+    {
+      "id": "audit-dev-numeric-where",
+      "question": "For wages 120, 240, and NULL, which rows survive WHERE wage <> 120?",
+      "expected": "Only wage 240 remains; preserve the literal 120 and SQL NULL semantics.",
+      "ok": true,
+      "result": {
+        "answer": "For wages 120, 2:40, and NULL, the row with 240 survives the WHERE clause condition wage <> 120. The WHERE clause filters rows where the predicate is TRUE, and since NULL evaluates to UNKNOWN in comparisons, the NULL wage does not satisfy the condition wage <> 120. The source states: 'For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240.' This is because an ordinary comparison involving NULL evaluates to UNKNOWN, so the NULL value is excluded from the result.",
+        "insufficient": false,
+        "citations": [
+          {
+            "sectionId": "where",
+            "quote": "For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240."
+          }
+        ],
+        "mode": "grounded",
+        "model": "qwen3:4b",
+        "elapsedMs": 5580,
+        "sources": [
+          {
+            "id": "where",
+            "title": "where",
+            "page": 1,
+            "text": "A WHERE clause keeps a row only when its predicate is TRUE. For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240. An ordinary comparison involving NULL evaluates to UNKNOWN.",
+            "score": 0.731571172411027,
+            "semantic": 0.7330039874571268,
+            "lexical": 0.7272727272727273
+          }
+        ],
+        "attempts": [
+          {
+            "raw": "{\n  \"answer\": \"The rows with wage 240 survive the WHERE clause.\",\n  \"insufficient\": false,\n  \"citations\": [\n    {\n      \"sectionId\": \"where\",\n      \"quote\": \"For wages 120, 2: 240, and NULL, WHERE wage <> 120 returns only the row with 240.\"\n    }\n  ]\n}",
+            "stats": {
+              "totalDurationMs": 1842.986667,
+              "promptTokens": 233,
+              "outputTokens": 90
+            }
+          },
+          {
+            "error": "Error: Citation is not an exact source excerpt."
+          },
+          {
+            "raw": "{\n  \"answer\": \"For wages 120, 2:40, and NULL, the row with 240 survives the WHERE clause condition wage <> 120. The WHERE clause filters rows where the predicate is TRUE, and since NULL evaluates to UNKNOWN in comparisons, the NULL wage does not satisfy the condition wage <> 120. The source states: 'For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240.' This is because an ordinary comparison involving NULL evaluates to UNKNOWN, so the NULL value is excluded from the result.\",\n  \"insufficient\": false,\n  \"citations\": [\n    {\n      \"sectionId\": \"where\",\n      \"quote\": \"For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240.\"\n    }\n  ]\n}",
+            "stats": {
+              "totalDurationMs": 3663.480375,
+              "promptTokens": 266,
+              "outputTokens": 203
+            }
+          }
+        ]
+      },
+      "wallMs": 5580
+    },
+    {
+      "id": "audit-dev-valid-derived-number",
+      "question": "Scores are 8, 14, and NULL. What is AVG(score)?",
+      "expected": "AVG is 11, derived as (8 + 14) / 2.",
+      "ok": false,
+      "error": "The model could not produce verifiable citations after two attempts. Try a narrower question. No answer was accepted.",
+      "status": 502,
+      "wallMs": 3155
+    },
+    {
+      "id": "audit-dev-reverse-with-counterexample",
+      "question": "Does U -> V by itself guarantee V -> U? Give a small counterexample if it does not.",
+      "expected": "No; a counterexample can have distinct U values with the same V, satisfying U -> V but violating V -> U.",
+      "ok": true,
+      "result": {
+        "answer": "No, U -> V does not guarantee V -> U. The source explicitly states that a functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance, but it does not mean that V uniquely determines U.",
+        "insufficient": false,
+        "citations": [
+          {
+            "sectionId": "dependency",
+            "quote": "A functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance. It does not mean that V uniquely determines U."
+          }
+        ],
+        "mode": "grounded",
+        "model": "qwen3:4b",
+        "elapsedMs": 4144,
+        "sources": [
+          {
+            "id": "dependency",
+            "title": "dependency",
+            "page": 1,
+            "text": "A functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance. It does not mean that V uniquely determines U.",
+            "score": 0.5001803867263038,
+            "semantic": 0.5716690870636432,
+            "lexical": 0.2857142857142857
+          }
+        ],
+        "attempts": [
+          {
+            "raw": "{\n  \"answer\": \"No\",\n  \"insufficient\": false,\n  \"citations\": [\n    {\n      \"sectionId\": \"dependency\",\n      \"quote\": \"A functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance. It does not mean that V uniquely determines U.\"\n    }\n  ]\n  }",
+            "stats": {
+              "totalDurationMs": 1669.535791,
+              "promptTokens": 207,
+              "outputTokens": 80
+            }
+          },
+          {
+            "error": "Error: The response lacks a substantive explanation."
+          },
+          {
+            "raw": "{\n  \"answer\": \"No, U -> V does not guarantee V -> U. The source explicitly states that a functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance, but it does not mean that V uniquely determines U.\",\n  \"insufficient\": false,\n  \"citations\": [\n    {\n      \"sectionId\": \"dependency\",\n      \"quote\": \"A functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance. It does not mean that V uniquely determines U.\"\n    }\n  ]\n}",
+            "stats": {
+              "totalDurationMs": 2405.809792,
+              "promptTokens": 240,
+              "outputTokens": 128
+            }
+          }
+        ]
+      },
+      "wallMs": 4144
+    }
+  ]
+}

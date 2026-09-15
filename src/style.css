@@ -89,3 +89,8 @@
   .lab-classifications label { font-size: 11px; }
   .lab-footer { align-items: flex-start; flex-direction: column; }
 }
+
+/* Each accepted claim keeps its own evidence adjacent. */
+.answer-claims{list-style:none;margin:22px 0 0;padding:0}.answer-claims>li+li{margin-top:24px;padding-top:22px;border-top:1px solid var(--line,#e0e7e0)}.answer-claims .answer-text{margin-top:8px}.support-checks{margin-top:20px;padding:14px 16px;border:1px solid var(--line,#e0e7e0);border-radius:12px;font-size:13px;line-height:1.65}.support-checks summary{cursor:pointer;font-weight:650}.support-checks p{margin:10px 0}.retrieved-sources{margin-top:20px}.retrieved-sources h3{font-size:14px}.retrieved-sources .citation{margin:0 6px 8px 0;text-align:left;white-space:normal}.answer-meta{flex-wrap:wrap;gap:8px}.answer-meta .badge{white-space:normal}
+
+.answer-history{margin-top:32px;padding-top:24px;border-top:1px solid var(--line,#e0e7e0)}.answer-history h3{display:flex;align-items:center;gap:9px}.saved-answer{margin:12px 0;border:1px solid var(--line,#e0e7e0);border-radius:14px;padding:16px}.saved-answer>summary{cursor:pointer;line-height:1.5;overflow-wrap:anywhere}.saved-answer>summary span{font-weight:650}.saved-answer>summary small{display:block;margin:5px 0 0 18px;color:var(--muted,#68766c)}.saved-answer .ai-answer{margin-top:20px}.saved-answer .answer-meta{font-size:12px}

@@ -1,0 +1,45 @@
+{
+  "startedAt": "2026-09-15T17:26:41.989593+00:00",
+  "scope": "Actual local application on isolated 4343, with the task-owned Ollama deliberately stopped. No private user storage was used.",
+  "checks": [
+    {
+      "name": "model-unavailable-status",
+      "status": 200,
+      "body": {
+        "online": false,
+        "ready": false,
+        "model": "qwen3.5:9b",
+        "embedding": "qwen3-embedding:0.6b",
+        "models": []
+      }
+    },
+    {
+      "name": "model-unavailable-ask",
+      "status": 503,
+      "body": {
+        "error": "Local model is unavailable or timed out. Start Ollama and run npm run setup, then retry."
+      }
+    },
+    {
+      "name": "failed-request-not-saved",
+      "chats": 0
+    },
+    {
+      "name": "fresh-store-no-source-vectors",
+      "passages": 20
+    },
+    {
+      "name": "model-recovered-status",
+      "ready": true,
+      "model": "qwen3.5:9b"
+    },
+    {
+      "name": "same-app-recovered-inference",
+      "evidence": "offline-check.json",
+      "successfulRequests": 2,
+      "sourceBasedAnswersReadAndCorrect": true
+    }
+  ],
+  "recoveryPending": false,
+  "recoveredAt": "2026-09-15T17:28:38.884372+00:00"
+}

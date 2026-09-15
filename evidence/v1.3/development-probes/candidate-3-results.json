@@ -1,0 +1,564 @@
+[
+  {
+    "id": "audit-dev-off-topic",
+    "result": {
+      "answer": "NOT UNKNOWN evaluates to UNKNOWN in SQL.",
+      "insufficient": false,
+      "citations": [
+        {
+          "sectionId": "logic",
+          "quote": "In SQL three-valued logic, NOT UNKNOWN is UNKNOWN."
+        }
+      ],
+      "mode": "support-reviewed",
+      "model": "qwen3:4b",
+      "elapsedMs": 5346,
+      "sources": [
+        {
+          "id": "logic",
+          "title": "logic",
+          "text": "In SQL three-valued logic, NOT UNKNOWN is UNKNOWN.",
+          "page": 1,
+          "score": 0.733637368116204,
+          "semantic": 0.8115164908216053,
+          "lexical": 0.5
+        },
+        {
+          "id": "keys",
+          "title": "keys",
+          "text": "A candidate key is a minimal superkey: no proper subset is a superkey.",
+          "page": 1,
+          "score": 0.24823277898786295,
+          "semantic": 0.33097703865048395,
+          "lexical": 0
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "stage": "draft",
+          "raw": "{\"basis\": \"The question asks for the result of NOT UNKNOWN in SQL. The relevant source rule is from the 'logic' section: 'In SQL three-valued logic, NOT UNKNOWN is UNKNOWN.' This directly answers the question. The 'keys' section is irrelevant here. No missing premises are needed because the source explicitly states the result. The question does not request a numeric result, so no calculation is needed. The source rule provides the exact answer without ambiguity.\",\"insufficient\":false,\"missing\": \"None\", \"claims\": [{\"text\": \"NOT UNKNOWN evaluates to UNKNOWN in SQL.\", \"citations\": [{\"sectionId\": \"logic\", \"quote\": \"In SQL three-valued logic, NOT UNKNOWN is UNKNOWN.\"}]}] }",
+          "stats": {
+            "totalDurationMs": 2762.977208,
+            "promptTokens": 385,
+            "outputTokens": 152
+          }
+        },
+        {
+          "attempt": 1,
+          "stage": "review",
+          "raw": "{\n  \"claims\": [\n    {\n      \"index\": 0,\n      \"reason\": \"The claim states that 'NOT UNKNOWN evaluates to UNKNOWN in SQL.' This is directly supported by the source passage from section 'logic' which states: 'In SQL three-valued logic, NOT UNKNOWN is UNKNOWN.' The source explicitly confirms the result of NOT UNKNOWN in SQL is UNKNOWN, so the claim is accurate and fully supported by the provided passage.\",\n      \"verdict\": \"supported\"\n    }\n  ],\n  \"missing\": \"None\",\n  \"sourceCanAnswer\": true,\n  \"questionCovered\": true\n}",
+          "stats": {
+            "totalDurationMs": 2436.728875,
+            "promptTokens": 459,
+            "outputTokens": 127
+          }
+        }
+      ],
+      "support": {
+        "policy": "claims-and-review-v1",
+        "outcome": "supported",
+        "disclosure": "Exact-quote checks and a separate review call use the same local model. This is an automated support check, not independent verification or a guarantee of correctness.",
+        "claims": [
+          {
+            "text": "NOT UNKNOWN evaluates to UNKNOWN in SQL.",
+            "citations": [
+              {
+                "sectionId": "logic",
+                "quote": "In SQL three-valued logic, NOT UNKNOWN is UNKNOWN."
+              }
+            ]
+          }
+        ],
+        "review": {
+          "claims": [
+            {
+              "index": 0,
+              "reason": "The claim states that 'NOT UNKNOWN evaluates to UNKNOWN in SQL.' This is directly supported by the source passage from section 'logic' which states: 'In SQL three-valued logic, NOT UNKNOWN is UNKNOWN.' The source explicitly confirms the result of NOT UNKNOWN in SQL is UNKNOWN, so the claim is accurate and fully supported by the provided passage.",
+              "verdict": "supported"
+            }
+          ],
+          "missing": "None",
+          "sourceCanAnswer": true,
+          "questionCovered": true
+        },
+        "modelCalls": 2
+      }
+    }
+  },
+  {
+    "id": "audit-dev-missing-universe-negative",
+    "result": {
+      "answer": "The source may contain the answer, but the local checks could not substantiate a complete response. No explanation was accepted. Inspect the source or retry.",
+      "insufficient": true,
+      "citations": [],
+      "mode": "support-reviewed",
+      "model": "qwen3:4b",
+      "elapsedMs": 13699,
+      "sources": [
+        {
+          "id": "key-test",
+          "title": "key-test",
+          "text": "To test a candidate key, compute its attribute closure under the given dependencies. A superkey reaches every attribute of the relation. A candidate key must also be minimal.",
+          "page": 1,
+          "score": 0.7019403346398855,
+          "semantic": 0.6859204461865139,
+          "lexical": 0.75
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "stage": "draft",
+          "raw": "{\"basis\": \"The question asks whether A is a candidate key given the dependencies A -> B and B -> C. The source rule from section 'key-test' states that to test a candidate key, we compute its attribute closure under the given dependencies. A superkey reaches every attribute of the relation, and a candidate key must be minimal. The premises are A -> B and B -> C. The missing premise is the set of attributes in the relation (e.g., what attributes are present? The closure of A must be computed to see if it reaches all attributes). The source does not specify the full relation schema, so we don't know if there are more attributes beyond C. Without knowing the full set of attributes, we cannot determine if A's closure covers all attributes. The question assumes A is a candidate key, but we need to check if it's minimal and covers all attributes.\", \"insufficient\": true, \"missing\": \"The full set of attributes in the relation (e: what attributes are present? The closure of A must be computed to see if it reaches all attributes) - the source doesn't specify the relation schema, so we don't know if there are more attributes beyond C.\",\"claims\": []}",
+          "stats": {
+            "totalDurationMs": 3499.85675,
+            "promptTokens": 383,
+            "outputTokens": 250
+          }
+        },
+        {
+          "attempt": 1,
+          "stage": "review",
+          "raw": "{\n  \"claims\": [\n    {\n      \"index\": 0,\n      \"reason\": \"The question asks if A is a candidate key given A -> B and B -> C. The proposed answer is empty, so there's no claim to evaluate. The source passage states that to test a candidate key, compute its attribute closure under the given dependencies. A superkey reaches every attribute of the relation. A candidate key must also be minimal. However, the source does not specify the relation schema (what attributes are present), so we cannot determine if A's closure reaches all attributes. The claimed missing information correctly identifies that the full set of attributes in the relation is required to compute the closure and determine if A is a candidate key. Since the source doesn't specify the 'e\",\n      \"verdict\": \"not-stated\"\n    }\n  ],\n  \"missing\": \"The full set of attributes in the relation (e: what attributes are present? The closure of A must be computed to see if it reaches all attributes) - the source doesn't specify the relation schema, so we don't know if there are more attributes beyond C.\",\n  \"sourceCanAnswer\": false,\n  \"questionCovered\": false\n}",
+          "stats": {
+            "totalDurationMs": 3795.62225,
+            "promptTokens": 463,
+            "outputTokens": 251
+          }
+        },
+        {
+          "attempt": 1,
+          "stage": "review",
+          "error": "Error: Review must cover every claim exactly once."
+        },
+        {
+          "attempt": 2,
+          "stage": "draft",
+          "raw": "{\"basis\": \"The question asks whether A is a candidate key given the dependencies A -> B and B -> C. The source rule from section 'key-test' states that to test a candidate key, we compute its attribute closure under the given dependencies. A superkey reaches every attribute of the relation, and a candidate key must be minimal. The premises are A -> B and B -> C. The missing premise is the set of attributes in the relation (e.g., what attributes are present). Without knowing the full set of attributes, we cannot determine if A's closure covers all attributes or if it's minimal. The source does not specify the relation's attributes, so we cannot confirm if A is a candidate key.\", \"insufficient\": true, \"missing\": \"The full set of attributes in the: the relation's attributes are not specified in the sources or question.\",\"claims\": []}",
+          "stats": {
+            "totalDurationMs": 2509.737875,
+            "promptTokens": 395,
+            "outputTokens": 182
+          }
+        },
+        {
+          "attempt": 2,
+          "stage": "review",
+          "raw": "{\n  \"claims\": [\n    {\n      \"index\": 0,\n      \"reason\": \"The question asks whether A is a candidate key given A -> B and B -> C. The sources provide a method to test candidate keys: compute the attribute closure under the given dependencies. However, the sources do not specify the full set of attributes in the relation. Without knowing the full set of attributes, it is impossible to determine if A is a candidate key because a candidate key must be minimal and reach all attributes of the relation. The proposed answer is empty, which indicates that the answer is not provided, but the question requires a complete answer. The claim that the full set of attributes is not specified is correct, as the sources do not mention the relation's attributes. The\",\n      \"verdict\": \"not-stated\"\n    }\n  ],\n  \"missing\": \"The full set of attributes in the relation are not specified in the sources or question, so it is impossible to determine if A is a candidate key without this information. The candidate key must be minimal and reach all attributes of the relation, but without knowing the full set of: the relation's attributes are not specified in the sources or question.\",\n  \"sourceCanAnswer\": false,\n  \"questionCovered\": false\n}",
+          "stats": {
+            "totalDurationMs": 3826.384625,
+            "promptTokens": 430,
+            "outputTokens": 263
+          }
+        },
+        {
+          "attempt": 2,
+          "stage": "review",
+          "error": "Error: Review must cover every claim exactly once."
+        }
+      ],
+      "support": {
+        "policy": "claims-and-review-v1",
+        "outcome": "unverified",
+        "disclosure": "Exact-quote checks and a separate review call use the same local model. This is an automated support check, not independent verification or a guarantee of correctness.",
+        "claims": [],
+        "review": null,
+        "modelCalls": 4
+      }
+    }
+  },
+  {
+    "id": "audit-dev-complete-universe-key",
+    "result": {
+      "answer": "A is a candidate key",
+      "insufficient": false,
+      "citations": [
+        {
+          "sectionId": "key-test",
+          "quote": "A candidate key must also be minimal."
+        },
+        {
+          "sectionId": "transitivity",
+          "quote": "If X -> Y and Y -> Z, then X -> Z."
+        }
+      ],
+      "mode": "support-reviewed",
+      "model": "qwen3:4b",
+      "elapsedMs": 6231,
+      "sources": [
+        {
+          "id": "key-test",
+          "title": "key-test",
+          "text": "To test a candidate key, compute its attribute closure under the given dependencies. A superkey reaches every attribute of the relation. A candidate key must also be minimal.",
+          "page": 1,
+          "score": 0.6470286939637735,
+          "semantic": 0.7145567771368831,
+          "lexical": 0.4444444444444444
+        },
+        {
+          "id": "transitivity",
+          "title": "transitivity",
+          "text": "If X -> Y and Y -> Z, then X -> Z. To compute a closure, start with the selected attributes and repeatedly apply given dependencies to add their right-hand attributes.",
+          "page": 1,
+          "score": 0.4391426280955351,
+          "semantic": 0.4744123930162691,
+          "lexical": 0.3333333333333333
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "stage": "draft",
+          "raw": "{\"basis\": \"The question asks whether A is a candidate key in R(A,B,C) with nontrivial dependencies A -> B and B -> C. The relevant source rules are from 'key-test' (computing attribute closure for candidate keys) and 'transitivity' (X -> Y and Y -> Z implies X -> Z). The supplied premises are: relation R(A,B,C), nontrivial dependencies A -> B and B: B -> C. Missing premises: the closure of A must be computed to see if it covers all attributes (A,B,C) and if it's minimal. The source rules state that a candidate key must be a superkey (reaches every attribute) and minimal. The transitivity rule implies A -> C via A -> B and B -> C, so closure of A includes A, B, C. Since it covers all attributes and is minimal (as no subset of A is smaller), A is a candidate key.\",\"insufficient\":false,\"missing\": \"None. The closure of A is {A,B,C} which covers all attributes, and since A is the only attribute in the set, it's minimal.\",\"claims\": [{\"text\": \"A is a candidate key\", \"citations\": [{\"sectionId\": \"key-test\", \"quote\": \"A candidate key must also be minimal.\"}, {\"sectionId\": \"transitivity\", \"quote\": \"If X -> Y and Y -> Z, then X -> Z.\"}]}] }",
+          "stats": {
+            "totalDurationMs": 4419.853708,
+            "promptTokens": 446,
+            "outputTokens": 305
+          }
+        },
+        {
+          "attempt": 1,
+          "stage": "review",
+          "raw": "{\n  \"claims\": [\n    {\n      \"index\": 0,\n      \"reason\": \"The claim states that A is a candidate key. To verify this, we need to check if the closure of A under the given dependencies covers all attributes and is minimal.\",\n      \"verdict\": \"supported\"\n    }\n  ],\n  \"missing\": \"None\",\n  \"sourceCanAnswer\": true,\n  \"questionCovered\": true\n}",
+          "stats": {
+            "totalDurationMs": 1720.946458,
+            "promptTokens": 566,
+            "outputTokens": 92
+          }
+        }
+      ],
+      "support": {
+        "policy": "claims-and-review-v1",
+        "outcome": "supported",
+        "disclosure": "Exact-quote checks and a separate review call use the same local model. This is an automated support check, not independent verification or a guarantee of correctness.",
+        "claims": [
+          {
+            "text": "A is a candidate key",
+            "citations": [
+              {
+                "sectionId": "key-test",
+                "quote": "A candidate key must also be minimal."
+              },
+              {
+                "sectionId": "transitivity",
+                "quote": "If X -> Y and Y -> Z, then X -> Z."
+              }
+            ]
+          }
+        ],
+        "review": {
+          "claims": [
+            {
+              "index": 0,
+              "reason": "The claim states that A is a candidate key. To verify this, we need to check if the closure of A under the given dependencies covers all attributes and is minimal.",
+              "verdict": "supported"
+            }
+          ],
+          "missing": "None",
+          "sourceCanAnswer": true,
+          "questionCovered": true
+        },
+        "modelCalls": 2
+      }
+    }
+  },
+  {
+    "id": "audit-dev-numeric-where",
+    "result": {
+      "answer": "The row with wage 240 survives the WHERE clause.\n\nThe row with wage 120 does not survive because 120 = 120.\n\nThe row with wage NULL does not survive because NULL comparisons evaluate to UNKNOWN, which is not TRUE.",
+      "insufficient": false,
+      "citations": [
+        {
+          "sectionId": "where",
+          "quote": "For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240."
+        },
+        {
+          "sectionId": "where",
+          "quote": "An ordinary comparison involving NULL evaluates to UNKNOWN."
+        }
+      ],
+      "mode": "support-reviewed",
+      "model": "qwen3:4b",
+      "elapsedMs": 11075,
+      "sources": [
+        {
+          "id": "where",
+          "title": "where",
+          "text": "A WHERE clause keeps a row only when its predicate is TRUE. For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240. An ordinary comparison involving NULL evaluates to UNKNOWN.",
+          "page": 1,
+          "score": 0.731571172411027,
+          "semantic": 0.7330039874571268,
+          "lexical": 0.7272727272727273
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "stage": "draft",
+          "raw": "{\n  \"basis\": \"The question asks which rows survive WHERE wage <> 120 for wages 120, 240, and NULL. The source states: 'For wages 120,  240, and NULL, WHERE wage <> 120 returns only the row with 240.' The source also mentions: 'An ordinary comparison involving NULL evaluates to UNKNOWN.' The relevant premise is that the wages are 120, 240, and NULL. The missing premise is the exact behavior of NULL in the comparison, but the source explicitly states the result for this specific case.\",\n  \"insufficient\": false,\n  \"missing\": \"None; the source provides the specific result for this case.\",\n  \"claims\": [\n    {\n      \"text\": \"The row with wage 240 survives the WHERE clause.\",\n      \"citations\": [\n        {\n          \"sectionId\": \"where\",\n          \"quote\": \"For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240.\"\n        }\n      ]\n    },\n    {\n      \"text\": \"The row with wage 120 does not survive because 120 = 120.\",\n      \"citations\": [\n        {\n          \"sectionId\": \"where\",\n          \"quote\": \"For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240.\"\n        }\n      ]\n    },\n    {\n      \"text\": \"The row with wage NULL does not survive because NULL comparisons evaluate to UNKNOWN, which is not TRUE.\",\n      \"citations\": [\n        {\n          \"sectionId\": \"where\",\n          \"quote\": \"An ordinary comparison involving NULL evaluates to UNKNOWN.\"\n        }\n      ]\n    }\n  ]\n}",
+          "stats": {
+            "totalDurationMs": 5496.537584,
+            "promptTokens": 413,
+            "outputTokens": 396
+          }
+        },
+        {
+          "attempt": 1,
+          "stage": "review",
+          "raw": "{\n  \"claims\": [\n    {\n      \"index\": 0,\n      \"reason\": \"The source states: 'For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240.' This directly matches the claim that the row with wage 240 survives the WHERE clause.\",\n      \"verdict\": \"supported\"\n    },\n    {\n      \"index\": 1,\n      \"reason\": \"The source states: 'For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240.' This implies that the row with wage 120 does not survive because 120 is not equal to 120 (i.e., 120 = 120 is true, so 120 <> 120 is false). The claim states 'The row with wage 120 does not survive because 120 = 120.' This is consistent with the source's implication.\",\n      \"verdict\": \"supported\"\n    },\n    {\n      \"index\": 2,\n      \"reason\": \"The source states: 'An ordinary comparison involving NULL evaluates to UNKNOWN.' The claim states 'The row with wage NULL does not survive because NULL comparisons evaluate to UNKNOWN, which is not TRUE.' This is consistent with the source's information because in SQL, a WHERE clause condition must evaluate to TRUE for a row to be kept; UNKNOWN is not TRUE, so the row with NULL does not survive.\",\n      \"verdict\": \"supported\"\n    }\n  ],\n  \"missing\": \"None\",\n  \"sourceCanAnswer\": true,\n  \"questionCovered\": true\n}",
+          "stats": {
+            "totalDurationMs": 5505.36425,
+            "promptTokens": 692,
+            "outputTokens": 369
+          }
+        }
+      ],
+      "support": {
+        "policy": "claims-and-review-v1",
+        "outcome": "supported",
+        "disclosure": "Exact-quote checks and a separate review call use the same local model. This is an automated support check, not independent verification or a guarantee of correctness.",
+        "claims": [
+          {
+            "text": "The row with wage 240 survives the WHERE clause.",
+            "citations": [
+              {
+                "sectionId": "where",
+                "quote": "For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240."
+              }
+            ]
+          },
+          {
+            "text": "The row with wage 120 does not survive because 120 = 120.",
+            "citations": [
+              {
+                "sectionId": "where",
+                "quote": "For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240."
+              }
+            ]
+          },
+          {
+            "text": "The row with wage NULL does not survive because NULL comparisons evaluate to UNKNOWN, which is not TRUE.",
+            "citations": [
+              {
+                "sectionId": "where",
+                "quote": "An ordinary comparison involving NULL evaluates to UNKNOWN."
+              }
+            ]
+          }
+        ],
+        "review": {
+          "claims": [
+            {
+              "index": 0,
+              "reason": "The source states: 'For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240.' This directly matches the claim that the row with wage 240 survives the WHERE clause.",
+              "verdict": "supported"
+            },
+            {
+              "index": 1,
+              "reason": "The source states: 'For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240.' This implies that the row with wage 120 does not survive because 120 is not equal to 120 (i.e., 120 = 120 is true, so 120 <> 120 is false). The claim states 'The row with wage 120 does not survive because 120 = 120.' This is consistent with the source's implication.",
+              "verdict": "supported"
+            },
+            {
+              "index": 2,
+              "reason": "The source states: 'An ordinary comparison involving NULL evaluates to UNKNOWN.' The claim states 'The row with wage NULL does not survive because NULL comparisons evaluate to UNKNOWN, which is not TRUE.' This is consistent with the source's information because in SQL, a WHERE clause condition must evaluate to TRUE for a row to be kept; UNKNOWN is not TRUE, so the row with NULL does not survive.",
+              "verdict": "supported"
+            }
+          ],
+          "missing": "None",
+          "sourceCanAnswer": true,
+          "questionCovered": true
+        },
+        "modelCalls": 2
+      }
+    }
+  },
+  {
+    "id": "audit-dev-valid-derived-number",
+    "result": {
+      "answer": "The average of the scores is (8 + 14) /  2 = 11",
+      "insufficient": false,
+      "citations": [
+        {
+          "sectionId": "average",
+          "quote": "AVG(column) ignores NULL values. It divides the sum of the non-NULL values by the number of non-NULL values."
+        }
+      ],
+      "mode": "support-reviewed",
+      "model": "qwen3:4b",
+      "elapsedMs": 5406,
+      "sources": [
+        {
+          "id": "average",
+          "title": "average",
+          "text": "AVG(column) ignores NULL values. It divides the sum of the non-NULL values by the number of non-NULL values.",
+          "page": 1,
+          "score": 0.6537329902073121,
+          "semantic": 0.7764058917049876,
+          "lexical": 0.2857142857142857
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "stage": "draft",
+          "raw": "{\"basis\": \"The question asks for the average of scores 8, 14, and NULL. The source rule states that AVG(column) ignores NULL values and divides the sum of non-NULL values by the number of non-NULL values. The relevant premise is the list of scores: 8, 14, NULL. The missing premise is the definition of NULL in this context, but the source rule already specifies that NULL values are ignored. The source rule provides the necessary information to compute the average without NULL values.\", \"insufficient\": false, \"missing\": \"None\", \"claims\": [{\"text\": \"The average of the scores is (8 + 14) /  2 = 11\", \"citations\": [{\"sectionId\": \"average\", \"quote\": \"AVG(column) ignores NULL values. It divides the sum of the non-NULL values by the number of non-NULL values.\"}]}] }",
+          "stats": {
+            "totalDurationMs": 2809.529166,
+            "promptTokens": 377,
+            "outputTokens": 196
+          }
+        },
+        {
+          "attempt": 1,
+          "stage": "review",
+          "raw": "{\n  \"claims\": [\n    {\n      \"index\": 0,\n      \"reason\": \"The claim states that the average of the scores is (8 + 14) / 2 = 11. The source passage states that AVG(column) ignores NULL values and divides the sum of non-NULL values by the number of non-NULL values. The scores given are 8, 14, and NULL. Therefore, the non-NULL values are 8 and 14, and the average is (8 + 14) / 2 = 11. This matches the claim.\",\n      \"verdict\": \"supported\"\n    }\n  ],\n  \"missing\": \"None\",\n  \"sourceCanAnswer\": true,\n  \"questionCovered\": true\n}",
+          "stats": {
+            "totalDurationMs": 2542.379833,
+            "promptTokens": 494,
+            "outputTokens": 165
+          }
+        }
+      ],
+      "support": {
+        "policy": "claims-and-review-v1",
+        "outcome": "supported",
+        "disclosure": "Exact-quote checks and a separate review call use the same local model. This is an automated support check, not independent verification or a guarantee of correctness.",
+        "claims": [
+          {
+            "text": "The average of the scores is (8 + 14) /  2 = 11",
+            "citations": [
+              {
+                "sectionId": "average",
+                "quote": "AVG(column) ignores NULL values. It divides the sum of the non-NULL values by the number of non-NULL values."
+              }
+            ]
+          }
+        ],
+        "review": {
+          "claims": [
+            {
+              "index": 0,
+              "reason": "The claim states that the average of the scores is (8 + 14) / 2 = 11. The source passage states that AVG(column) ignores NULL values and divides the sum of non-NULL values by the number of non-NULL values. The scores given are 8, 14, and NULL. Therefore, the non-NULL values are 8 and 14, and the average is (8 + 14) / 2 = 11. This matches the claim.",
+              "verdict": "supported"
+            }
+          ],
+          "missing": "None",
+          "sourceCanAnswer": true,
+          "questionCovered": true
+        },
+        "modelCalls": 2
+      }
+    }
+  },
+  {
+    "id": "audit-dev-reverse-with-counterexample",
+    "result": {
+      "answer": "U -> V does not guarantee V -> U because V does not uniquely determine U.\n\nCounterexample: Tuples (U=1, V=2) and (U=3, V=2) satisfy U -> V but not V -> U.\n\nThis counterexample shows that V -> U does not hold because there exist tuples with the same V but different U.",
+      "insufficient": false,
+      "citations": [
+        {
+          "sectionId": "dependency",
+          "quote": "It does not mean that V uniquely determines U."
+        },
+        {
+          "sectionId": "dependency",
+          "quote": "A functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance."
+        }
+      ],
+      "mode": "support-reviewed",
+      "model": "qwen3:4b",
+      "elapsedMs": 11703,
+      "sources": [
+        {
+          "id": "dependency",
+          "title": "dependency",
+          "text": "A functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance. It does not mean that V uniquely determines U.",
+          "page": 1,
+          "score": 0.5001803867263038,
+          "semantic": 0.5716690870636432,
+          "lexical": 0.2857142857142857
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "stage": "draft",
+          "raw": "{\"basis\": \"The question asks whether U -> V by itself guarantees V -> U. The source rule states that a functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance, but it does not mean that V uniquely determines U. This implies that U -> V does not necessarily imply V -> U. To provide a counterexample, we need to find a scenario where U -> V holds but V -> U does not hold. The source rule explicitly states that V does not uniquely determine U, so we can construct a counterexample using this information. The counterexample should demonstrate that there exist two tuples that agree on V but differ on U, which would violate V -> U while satisfying U -> V.\", \"insufficient\": false, \"missing\": \"The source does not provide specific examples, so we need to construct a simple counterexample based on the rule's description.\",\"claims\": [{\"text\": \"U -> V does not guarantee V -> U because V does not uniquely determine U.\", \"citations\": [{\"sectionId\": \"dependency\", \"quote\": \"It does not mean that V uniquely determines U.\"}]}, {\"text\": \"Counterexample: Tuples (U=1, V=2) and (U=3, V=2) satisfy U -> V but not V -> U.\", \"citations\": [{\"sectionId\": \"dependency\", \"quote\": \"A functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance.\"}]}, {\"text\": \"This counterexample shows that V -> U does not hold because there exist tuples with the same V but different U.\", \"citations\": [{\"sectionId\": \"dependency\", \"quote\": \"A functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance.\"}]}] }",
+          "stats": {
+            "totalDurationMs": 5358.196917,
+            "promptTokens": 387,
+            "outputTokens": 388
+          }
+        },
+        {
+          "attempt": 1,
+          "stage": "review",
+          "raw": "{\n  \"claims\": [\n    {\n      \"index\": 0,\n      \"reason\": \"The claim states that U -> V does not guarantee V -> U because V does not uniquely determine U. The source states: 'It does not mean that V uniquely determines U.' This directly supports the claim that V does not uniquely determine U, which is the reason why U -> V does not guarantee V -> U. The claim is fully supported by the source.\",\n      \"verdict\": \"supported\"\n    },\n    {\n      \"index\": 1,\n      \"reason\": \"The claim provides a counterexample: tuples (U=1, V=2) and (U=3, V=2) satisfy U -> V but not V -> U. The source states: 'A functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance.' This means that for U -> V to hold, tuples with the same U must have the same V. The counterexample shows that with the same V (2), there are different U values (1 and 3), which is consistent with the source's definition. The counterexample is valid and supported by the source.\",\n      \"verdict\": \"supported\"\n    },\n    {\n      \"index\": 2,\n      \"reason\": \"The claim states that this counterexample shows V -> U does not hold because there exist tuples with the same V but different U. The source does not explicitly state that V -> U fails in this case, but the counterexample demonstrates that V does not uniquely determine U (as per the source's statement). The claim is consistent with the source and the counterexample provided. The claim is supported by the source and the counterexample.\",\n      \"verdict\": \"supported\"\n    }\n  ],\n  \"missing\": \"The source does not provide specific examples, so we need to construct a simple counterexample based on the rule's description. This is correctly addressed in the proposed answer.\",\n  \"sourceCanAnswer\": true,\n  \"questionCovered\": true\n}",
+          "stats": {
+            "totalDurationMs": 6280.221708,
+            "promptTokens": 701,
+            "outputTokens": 426
+          }
+        }
+      ],
+      "support": {
+        "policy": "claims-and-review-v1",
+        "outcome": "supported",
+        "disclosure": "Exact-quote checks and a separate review call use the same local model. This is an automated support check, not independent verification or a guarantee of correctness.",
+        "claims": [
+          {
+            "text": "U -> V does not guarantee V -> U because V does not uniquely determine U.",
+            "citations": [
+              {
+                "sectionId": "dependency",
+                "quote": "It does not mean that V uniquely determines U."
+              }
+            ]
+          },
+          {
+            "text": "Counterexample: Tuples (U=1, V=2) and (U=3, V=2) satisfy U -> V but not V -> U.",
+            "citations": [
+              {
+                "sectionId": "dependency",
+                "quote": "A functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance."
+              }
+            ]
+          },
+          {
+            "text": "This counterexample shows that V -> U does not hold because there exist tuples with the same V but different U.",
+            "citations": [
+              {
+                "sectionId": "dependency",
+                "quote": "A functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance."
+              }
+            ]
+          }
+        ],
+        "review": {
+          "claims": [
+            {
+              "index": 0,
+              "reason": "The claim states that U -> V does not guarantee V -> U because V does not uniquely determine U. The source states: 'It does not mean that V uniquely determines U.' This directly supports the claim that V does not uniquely determine U, which is the reason why U -> V does not guarantee V -> U. The claim is fully supported by the source.",
+              "verdict": "supported"
+            },
+            {
+              "index": 1,
+              "reason": "The claim provides a counterexample: tuples (U=1, V=2) and (U=3, V=2) satisfy U -> V but not V -> U. The source states: 'A functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance.' This means that for U -> V to hold, tuples with the same U must have the same V. The counterexample shows that with the same V (2), there are different U values (1 and 3), which is consistent with the source's definition. The counterexample is valid and supported by the source.",
+              "verdict": "supported"
+            },
+            {
+              "index": 2,
+              "reason": "The claim states that this counterexample shows V -> U does not hold because there exist tuples with the same V but different U. The source does not explicitly state that V -> U fails in this case, but the counterexample demonstrates that V does not uniquely determine U (as per the source's statement). The claim is consistent with the source and the counterexample provided. The claim is supported by the source and the counterexample.",
+              "verdict": "supported"
+            }
+          ],
+          "missing": "The source does not provide specific examples, so we need to construct a simple counterexample based on the rule's description. This is correctly addressed in the proposed answer.",
+          "sourceCanAnswer": true,
+          "questionCovered": true
+        },
+        "modelCalls": 2
+      }
+    }
+  }
+]

@@ -1,0 +1,306 @@
+{
+  "title": "TraceLearn v1.3 final CurrentEvidence and portable UI acceptance",
+  "verifiedAt": "2026-09-15T17:36:11.428Z",
+  "browser": "Google Chrome via CUA extension (isolated agent-created tabs)",
+  "surfaces": {
+    "full": "http://127.0.0.1:4345/",
+    "portable": "http://127.0.0.1:4329/TraceLearn-Portable.html"
+  },
+  "dataStatus": "Final frozen projection; saved judgments displayed without rescoring.",
+  "viewports": {
+    "desktopWidth": 1200,
+    "narrow": {
+      "width": 390,
+      "height": 844
+    },
+    "overrideReset": true
+  },
+  "scope": {
+    "aiCalls": 0,
+    "serverMutations": "No full-app practice or AI records written; portable practice uses this browser’s own local storage.",
+    "excluded": [
+      "Live inference correctness",
+      "Model availability",
+      "Devpost submission",
+      "Independent learner validation"
+    ]
+  },
+  "checks": [
+    {
+      "id": 1,
+      "name": "Final holdout totals and isolated evidence layout",
+      "pass": true,
+      "observed": {
+        "metrics": "Frozen configuration\n\n18 / 40\nStrictly correct / total records\n\nNot delivered: 15\n\nCurrent configuration\n\n34 / 40\nStrictly correct / total records\n\nNot delivered: 1",
+        "scrollWidth": 1200,
+        "sourcePanels": 0,
+        "sourceToggles": 0,
+        "width": 1200
+      }
+    },
+    {
+      "id": 2,
+      "name": "Split totals and result filter invariance",
+      "pass": true,
+      "observed": {
+        "developmentMetrics": "Frozen configuration\n\n20 / 40\nStrictly correct / total records\n\nNot delivered: 10\n\nCurrent configuration\n\n38 / 40\nStrictly correct / total records\n\nNot delivered: 1",
+        "filters": [
+          {
+            "split": "holdout",
+            "filter": "correct",
+            "status": "Showing 34 of 40 cases.",
+            "metricsUnchanged": true
+          },
+          {
+            "split": "holdout",
+            "filter": "failed",
+            "status": "Showing 6 of 40 cases.",
+            "metricsUnchanged": true
+          },
+          {
+            "split": "holdout",
+            "filter": "missing",
+            "status": "Showing 0 of 40 cases.",
+            "metricsUnchanged": true
+          },
+          {
+            "split": "holdout",
+            "filter": "all",
+            "status": "Showing 40 of 40 cases.",
+            "metricsUnchanged": true
+          },
+          {
+            "split": "development",
+            "filter": "correct",
+            "status": "Showing 38 of 40 cases.",
+            "metricsUnchanged": true
+          },
+          {
+            "split": "development",
+            "filter": "failed",
+            "status": "Showing 2 of 40 cases.",
+            "metricsUnchanged": true
+          },
+          {
+            "split": "development",
+            "filter": "missing",
+            "status": "Showing 0 of 40 cases.",
+            "metricsUnchanged": true
+          },
+          {
+            "split": "development",
+            "filter": "all",
+            "status": "Showing 40 of 40 cases.",
+            "metricsUnchanged": true
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "name": "Saved comparison answer and rationale",
+      "pass": true,
+      "observed": {
+        "caseId": "v13-dev-01",
+        "cards": [
+          "Frozen configuration7.77 sqwen3:4bNot strictly correct · saved reviewSaved final answerThe Item codes that remain after WHERE price <> 1: A and CWhy this scoreThe accepted answer changes the comparison target from 12 to 1 and returns A/C. The actual table plus WHERE rule returns only B; the exact NOT IN quote concerns a different predicate and cannot support A/C.Scoring fields and run statustaskCorrectfalseEvidence validityInvalidRun outcome (not a correctness score)supportedFailure flagswrong-answerunsupported-assertioninvalid-evidenceInspect claims, citations, and source inputsFinal record’s citation list · 2db-notinFor the three Item rows, WHERE price NOT IN (12, NULL) returns no rows.Expand the full passage from this requestA nullable exclusion listFor the three Item rows, WHERE price NOT IN (12, NULL) returns no rows. A match to 12 produces FALSE; an otherwise unmatched known price produces UNKNOWN because the list contains NULL. The missing price also produces UNKNOWN.db-nullOrdinary comparisons involving NULL evaluate to UNKNOWN, including NULL = NULL. NOT UNKNOWN remains UNKNOWN. WHERE retains only TRUE and rejects FALSE and UNKNOWN.Expand the full passage from this requestComparison and filtering rulesOrdinary comparisons involving NULL evaluate to UNKNOWN, including NULL = NULL. NOT UNKNOWN remains UNKNOWN. WHERE retains only TRUE and rejects FALSE and UNKNOWN. To include missing prices while excluding price 12, use price <> 12 OR price IS NULL.Complete input passage snapshot · 5These are only the passages saved for this request, not necessarily the complete course.db-notin · A nullable exclusion listFor the three Item rows, WHERE price NOT IN (12, NULL) returns no rows. A match to 12 produces FALSE; an otherwise unmatched known price produces UNKNOWN because the list contains NULL. The missing price also produces UNKNOWN.db-rows · A fixed three-row tableThe sandbox table Item(code, price, tag) contains exactly these rows: (A, 12, red), (B, 24, blue), and (C, NULL, red). NULL means a missing or unknown price. The notes do not explain why the price is missing.db-null · Comparison and filtering rulesOrdinary comparisons involving NULL evaluate to UNKNOWN, including NULL = NULL. NOT UNKNOWN remains UNKNOWN. WHERE retains only TRUE and rejects FALSE and UNKNOWN. To include missing prices while excluding price 12, use price <> 12 OR price IS NULL.db-aggregates · Aggregate rulesCOUNT(*) counts rows; COUNT(price) counts only non-NULL prices. SUM(price) adds the non-NULL prices and AVG(price) divides their sum by their count. For this Item table, COUNT(*) is 3, COUNT(price) is 2, SUM(price) is 36, and AVG(price) is 18.db-join · Order of join and filter operationsA LEFT JOIN keeps unmatched left rows by padding right-side columns with NULL. A later WHERE right.active = 1 removes these unmatched rows. Putting right.active = 1 in the LEFT JOIN ON condition instead restricts matches while retaining every left row.",
+          "Current configuration24.94 sqwen3.5:9bStrictly correct · saved reviewSaved final answerOnly Item code B remains after WHERE price <> 12 because the row with price 12 evaluates to FALSE and the rows with NULL prices evaluate to UNKNOWN, both of which are rejected by the WHERE clause.Why this scoreThe answer gives only B as the retained code and correctly explains rejection of the price-12 row as FALSE and NULL-price rows as UNKNOWN. The generic plural refers to the NULL category, not a claim of multiple missing rows. Its actual fixed-row and filtering quotations support the complete selection and every stated truth value.Scoring fields and run statustaskCorrecttrueEvidence validityValidRun outcome (not a correctness score)supportedInspect claims, citations, and source inputsSaved claims and their citationsOnly Item code B remains after WHERE price <> 12 because the row with price 12 evaluates to FALSE and the rows with NULL prices evaluate to UNKNOWN, both of which are rejected by the WHERE clause.db-rowsThe sandbox table Item(code, price, tag) contains exactly these rows: (A, 12, red), (B, 24, blue), and (C, NULL, red). NULL means a missing or unknown price. The notes do not explain why the price is missing.Expand the full passage from this requestA fixed three-row tableThe sandbox table Item(code, price, tag) contains exactly these rows: (A, 12, red), (B, 24, blue), and (C, NULL, red). NULL means a missing or unknown price. The notes do not explain why the price is missing.db-nullOrdinary comparisons involving NULL evaluate to UNKNOWN, including NULL = NULL. NOT UNKNOWN remains UNKNOWN. WHERE retains only TRUE and rejects FALSE and UNKNOWN. To include missing prices while excluding price 12, use price <> 12 OR price IS NULL.Expand the full passage from this requestComparison and filtering rulesOrdinary comparisons involving NULL evaluate to UNKNOWN, including NULL = NULL. NOT UNKNOWN remains UNKNOWN. WHERE retains only TRUE and rejects FALSE and UNKNOWN. To include missing prices while excluding price 12, use price <> 12 OR price IS NULL.Final record’s citation list · 2db-rowsThe sandbox table Item(code, price, tag) contains exactly these rows: (A, 12, red), (B, 24, blue), and (C, NULL, red). NULL means a missing or unknown price. The notes do not explain why the price is missing.Expand the full passage from this requestA fixed three-row tableThe sandbox table Item(code, price, tag) contains exactly these rows: (A, 12, red), (B, 24, blue), and (C, NULL, red). NULL means a missing or unknown price. The notes do not explain why the price is missing.db-nullOrdinary comparisons involving NULL evaluate to UNKNOWN, including NULL = NULL. NOT UNKNOWN remains UNKNOWN. WHERE retains only TRUE and rejects FALSE and UNKNOWN. To include missing prices while excluding price 12, use price <> 12 OR price IS NULL.Expand the full passage from this requestComparison and filtering rulesOrdinary comparisons involving NULL evaluate to UNKNOWN, including NULL = NULL. NOT UNKNOWN remains UNKNOWN. WHERE retains only TRUE and rejects FALSE and UNKNOWN. To include missing prices while excluding price 12, use price <> 12 OR price IS NULL.Complete input passage snapshot · 5These are only the passages saved for this request, not necessarily the complete course.db-notin · A nullable exclusion listFor the three Item rows, WHERE price NOT IN (12, NULL) returns no rows. A match to 12 produces FALSE; an otherwise unmatched known price produces UNKNOWN because the list contains NULL. The missing price also produces UNKNOWN.db-rows · A fixed three-row tableThe sandbox table Item(code, price, tag) contains exactly these rows: (A, 12, red), (B, 24, blue), and (C, NULL, red). NULL means a missing or unknown price. The notes do not explain why the price is missing.db-null · Comparison and filtering rulesOrdinary comparisons involving NULL evaluate to UNKNOWN, including NULL = NULL. NOT UNKNOWN remains UNKNOWN. WHERE retains only TRUE and rejects FALSE and UNKNOWN. To include missing prices while excluding price 12, use price <> 12 OR price IS NULL.db-aggregates · Aggregate rulesCOUNT(*) counts rows; COUNT(price) counts only non-NULL prices. SUM(price) adds the non-NULL prices and AVG(price) divides their sum by their count. For this Item table, COUNT(*) is 3, COUNT(price) is 2, SUM(price) is 36, and AVG(price) is 18.db-join · Order of join and filter operationsA LEFT JOIN keeps unmatched left rows by padding right-side columns with NULL. A later WHERE right.active = 1 removes these unmatched rows. Putting right.active = 1 in the LEFT JOIN ON condition instead restricts matches while retaining every left row."
+        ],
+        "visibleFailure": {
+          "caseId": "v13-hold-05",
+          "text": "Current configuration\n17.70 s\n\nqwen3.5:9b\n\nNot strictly correct · saved review\nSaved final answer\n\nThe owner omitted the price of Item C because the notes do not explain why the price is missing.\n\nWhy this score\n\nThe source explicitly says the reason for C's missing price is not explained. The accepted sentence instead asserts that the owner omitted the price because the notes do not explain its absence. A documentation gap is not an established cause of the omission. This is delivered causal prose with insufficient=false, not a clear refusal limited to missing source information; the actual quote supports the absence of an explanation but not the invented causal link.\n\nScoring fields and run status\ntaskCorrect\nfalse\nEvidence validity\nInvalid\nRun outcome (not a correctness score)\nsupported\nFailure flags\nunsupported-assertion\ninvalid-evidence\nwrong-answer\nInspect claims, citations, and source inputs"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "name": "Citations resolve only to each record’s own input snapshot",
+      "pass": true,
+      "observed": {
+        "caseId": "v13-dev-01source-answerableReference expects: an answer",
+        "fullInputCount": 5,
+        "openSnapshots": 1,
+        "quote": "The sandbox table Item(code, price, tag) contains exactly these rows: (A, 12, red), (B, 24, blue), and (C, NULL, red). NULL means a missing or unknown price. The notes do not explain why the price is missing.",
+        "quoteOccursInOwnSource": true,
+        "source": "The sandbox table Item(code, price, tag) contains exactly these rows: (A, 12, red), (B, 24, blue), and (C, NULL, red). NULL means a missing or unknown price. The notes do not explain why the price is missing.",
+        "sourcePanels": 0,
+        "sourceToggle": 0
+      }
+    },
+    {
+      "id": 5,
+      "name": "Keyboard select and native evidence disclosure",
+      "pass": true,
+      "observed": {
+        "disclosure": {
+          "activeTag": "SUMMARY",
+          "activeText": "Inspect claims, citations, and source inputs",
+          "open": true,
+          "outline": "solid",
+          "outlineWidth": "3px"
+        },
+        "select": {
+          "outline": "solid",
+          "outlineWidth": "3px",
+          "tag": "SELECT",
+          "value": "holdout"
+        },
+        "selectionKeys": "h, Enter; disclosure Enter and Space"
+      }
+    },
+    {
+      "id": 6,
+      "name": "390px Chinese and English evidence layout",
+      "pass": true,
+      "observed": {
+        "chinese": {
+          "columns": "308px",
+          "controls": [
+            {
+              "left": 41,
+              "right": 349,
+              "width": 308
+            },
+            {
+              "left": 41,
+              "right": 349,
+              "width": 308
+            },
+            {
+              "left": 41,
+              "right": 349,
+              "width": 308
+            }
+          ],
+          "notice": "已保存的实验记录 · 非实时模型输出由编写数据集的 Codex 代理评分；没有独立人工评审，也不是学习效果证据。",
+          "scrollWidth": 390,
+          "sourcePanels": 0,
+          "width": 390
+        },
+        "english": {
+          "columns": "308px",
+          "notice": "RECORDED EXPERIMENT · NOT LIVE MODEL OUTPUTScored by the Codex agent that authored the dataset. No independent human review or learning-effect study.",
+          "scrollWidth": 390,
+          "width": 390
+        }
+      }
+    },
+    {
+      "id": 7,
+      "name": "Original experiment source navigation and restored learning source panel",
+      "pass": true,
+      "observed": {
+        "originalState": {
+          "sourcePanels": 1,
+          "sourceToggle": 1
+        },
+        "originalClick": {
+          "focused": "source-heading",
+          "heading": "WHERE keeps only TRUE",
+          "sourceId": "null-where"
+        },
+        "currentSourcePanels": 0,
+        "practiceSourcePanels": 1,
+        "askSourcePanels": 1,
+        "aiRequestsSubmitted": 0
+      }
+    },
+    {
+      "id": 8,
+      "name": "Portable loaded and deterministic practice feedback",
+      "pass": true,
+      "observed": {
+        "url": "http://127.0.0.1:4329/TraceLearn-Portable.html",
+        "selectedAnswer": "B 200 and NULL",
+        "confidence": "Very sure",
+        "feedback": "A USEFUL GAP TO EXPLORE\nFollow the evidence, then try again.\n\nThe comparison with NULL is UNKNOWN. WHERE keeps only TRUE, so only 200 survives.\n\nYou may be treating unknown as an ordinary value different from 100.\n\nnull-comparison\nnull-where\nInspect recorded AI evaluations\nChange it in the lab\nTry the transfer check\nRetry",
+        "sourceHeading": "WHERE keeps only TRUE",
+        "liveAiControlsAbsent": true,
+        "portableEvidenceMetrics": "Frozen configuration\n\n18 / 40\nStrictly correct / total records\n\nNot delivered: 15\n\nCurrent configuration\n\n34 / 40\nStrictly correct / total records\n\nNot delivered: 1"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Portable editable SQL experiment and context-matched fresh transfer",
+      "pass": true,
+      "observed": {
+        "nullInclusiveTable": "Row / value\tYour prediction\tPredicate\tWHERE\n1 · 100\tExclude\tFALSE\tExcluded\n2 · 250\tKeep\tTRUE\tKept\n3 · NULL\tKeep\tTRUE\tKept",
+        "notInTable": "Row / value\tYour prediction\tPredicate\tWHERE\n1 · 100\tExclude\tFALSE\tExcluded\n2 · 250\tExclude\tUNKNOWN\tExcluded\n3 · NULL\tExclude\tUNKNOWN\tExcluded",
+        "notInSource": "The NOT IN trap",
+        "freshTransfer": {
+          "checkedAnswers": 0,
+          "feedback": 0,
+          "prompt": "For a known x = 2, what is the truth value of x <> 1 AND x <> NULL?",
+          "sourceId": "null-not-in"
+        },
+        "transferFeedback": "ANSWER CORRECT\nYou applied the concept in a new situation.\n\nTRUE AND UNKNOWN is UNKNOWN.\n\nnull-not-in\nnull-logic\nInspect recorded AI evaluations\nChange it in the lab\nNext concept\nRetry"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Real portable downloads and refresh recovery",
+      "pass": true,
+      "observed": {
+        "learningReport": "evidence/v1.3/ui/TraceLearn-portable-learning-report.md",
+        "labReport": "evidence/v1.3/ui/TraceLearn-lab-record.md",
+        "notebookBefore": "2\nQuestions explored\n1/2\nLatest answers correct\n1/1\nTransfer checks correct",
+        "notebookAfter": "2\nQuestions explored\n1/2\nLatest answers correct\n1/1\nTransfer checks correct",
+        "labExperimentsRestored": 2,
+        "downloadVerification": "Both actual browser-created files inspected and copied unchanged. The lab download-event observer timed out, but the new downloaded file was independently confirmed."
+      }
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "submission/14-current-evidence.jpg",
+      "bytes": 81878,
+      "sha256": "6ed9282bfc639dfcddde058df197fa33237cf544fcf22d2b8774a8ede4157b66"
+    },
+    {
+      "path": "evidence/v1.3/ui/current-evidence-own-source.jpg",
+      "bytes": 88965,
+      "sha256": "2abdfe6b1b38f6a85f36a36c7f0eb1b0682e89c94cbffb09180643c452b8b93d"
+    },
+    {
+      "path": "evidence/v1.3/ui/current-evidence-retained-failure.jpg",
+      "bytes": 107008,
+      "sha256": "86219e38bf5ad21fea37b5b99e38e721b5627b8e1174fa1cf9c254af401fbab4"
+    },
+    {
+      "path": "evidence/v1.3/ui/current-evidence-390-zh.jpg",
+      "bytes": 36455,
+      "sha256": "ed553cd698caa25d6b7619cc184db1667f68b799738636fe25a361756125772c"
+    },
+    {
+      "path": "evidence/v1.3/ui/portable-practice-feedback.jpg",
+      "bytes": 103159,
+      "sha256": "0c56b88adc5fb91168834284783ae64fe6175b511323a82065a18f512af61fbe"
+    },
+    {
+      "path": "evidence/v1.3/ui/portable-not-in-computation.jpg",
+      "bytes": 78133,
+      "sha256": "1116e255d189113ea5acfcfcb62e2495de7ed622ecdc879aec46202a43e5a653"
+    },
+    {
+      "path": "evidence/v1.3/ui/portable-notebook.jpg",
+      "bytes": 89286,
+      "sha256": "76239a92c5f7d2644cf7f9d8dae1cb26dcd7429922322336b704b5c3aaa67eb3"
+    },
+    {
+      "path": "evidence/v1.3/ui/TraceLearn-lab-record.md",
+      "bytes": 1498,
+      "sha256": "dd88fa6cbebffd22e02f8038128ebd663671ad10b4ce53e6d35f63ac698ef3eb"
+    },
+    {
+      "path": "evidence/v1.3/ui/TraceLearn-portable-learning-report.md",
+      "bytes": 1031,
+      "sha256": "758280805cc62dd3383e082be644c562f123f0406bc4266c4f8b015619cc7ac2"
+    },
+    {
+      "path": "submission/TraceLearn-Portable.html",
+      "bytes": 922680,
+      "sha256": "fe186aab3a879c28b5d5325f52acffd061779471ddb801ecf8a01a11f8c87a46"
+    }
+  ],
+  "pass": true
+}

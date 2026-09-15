@@ -1,63 +1,155 @@
+"""Render the current report from complete saved evidence, never rerun or rescore it."""
 from pathlib import Path
-import json, html, textwrap
-from reportlab.pdfgen import canvas
+import hashlib, html, json, math, statistics
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, Table, TableStyle, PageBreak, KeepTogether
-from reportlab.lib.enums import TA_LEFT
-ROOT=Path(__file__).resolve().parent.parent
-OUT=ROOT/'submission'; OUT.mkdir(exist_ok=True)
-INK=colors.HexColor('#234237'); GREEN=colors.HexColor('#315d46'); MUTED=colors.HexColor('#6e7e69'); CREAM=colors.HexColor('#f5f4eb'); LINE=colors.HexColor('#dce3d2')
-# A designed title card, not a screenshot or an assertion of measured learning gains.
-c=canvas.Canvas(str(OUT/'cover-layout.pdf'),pagesize=(900,600))
-c.setFillColor(CREAM); c.rect(0,0,900,600,fill=1,stroke=0)
-c.setFillColor(GREEN);c.roundRect(52,490,47,47,11,fill=1,stroke=0)
-c.setStrokeColor(colors.HexColor('#e9efdf'));c.setLineWidth(1.5)
-c.roundRect(63,502,12,21,2,fill=0,stroke=1);c.roundRect(76,502,12,21,2,fill=0,stroke=1)
-c.setFillColor(INK);c.setFont('Helvetica-Bold',24);c.drawString(112,504,'TraceLearn.')
-c.setFillColor(MUTED);c.setFont('Helvetica',10);c.drawRightString(848,514,'LOCAL AI / EVIDENCE-FIRST LEARNING')
-c.setFillColor(INK);c.setFont('Times-Roman',56);c.drawString(52,390,'Learning that can');c.drawString(52,326,'show its work.')
-c.setFillColor(MUTED);c.setFont('Helvetica',15);c.drawString(55,274,'Trace the source. Find the misconception. Try a new question.')
-for i,(title,sub) in enumerate([('01  DIAGNOSE','Surface a confident mistake'),('02  TRACE','Check the original passage'),('03  TRANSFER','Apply the concept again')]):
- x=52+i*266;c.setFillColor(colors.HexColor('#e7eddd'));c.roundRect(x,119,246,89,6,fill=1,stroke=0);c.setFillColor(INK);c.setFont('Helvetica-Bold',12);c.drawString(x+18,175,title);c.setFillColor(MUTED);c.setFont('Helvetica',10);c.drawString(x+18,147,sub)
-c.setStrokeColor(LINE);c.line(52,87,848,87);c.setFillColor(MUTED);c.setFont('Helvetica',9);c.drawString(52,56,'Qwen3 + local retrieval  /  Original database course  /  No API key');c.drawRightString(848,56,'ML EMPOWERMENT BUILD CHALLENGE 3.0');c.save()
-if not (ROOT/'evaluation/summary.json').exists():
- print('Cover created; final report waits for evaluation summary.');raise SystemExit(0)
-summary=json.loads((ROOT/'evaluation/summary.json').read_text());
-if sum(summary['all'][m]['runs'] for m in ['baseline','grounded'])!=160:
- print('Report waits for all 160 final requests.');raise SystemExit(0)
-manifest=json.loads((ROOT/'evaluation/model-manifest.json').read_text());audit=json.loads((ROOT/'evaluation/semantic-review.json').read_text()) if (ROOT/'evaluation/semantic-review.json').exists() else {}
-styles=getSampleStyleSheet();styles.add(ParagraphStyle(name='TLTitle',fontName='Times-Roman',fontSize=31,leading=35,textColor=INK,spaceAfter=15));styles.add(ParagraphStyle(name='TLHeading',fontName='Helvetica-Bold',fontSize=15,leading=20,textColor=INK,spaceBefore=16,spaceAfter=9,keepWithNext=True));styles.add(ParagraphStyle(name='TLBody',fontName='Helvetica',fontSize=10,leading=15,textColor=INK,spaceAfter=10));styles.add(ParagraphStyle(name='TLSmall',fontName='Helvetica',fontSize=8,leading=11,textColor=MUTED,spaceAfter=7));styles.add(ParagraphStyle(name='TLCode',fontName='Courier',fontSize=8,leading=11,textColor=INK,spaceAfter=8))
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, Table, TableStyle, PageBreak
+from PIL import Image as PILImage
+
+ROOT = Path(__file__).resolve().parent.parent
+OUT = ROOT / 'submission'
+manifest = json.loads((ROOT / 'evidence/v1.3/final-manifest.json').read_text())
+assert manifest['version'] == '1.3.0'
+
+def load_run(name):
+    spec = manifest[name]
+    directory = ROOT / spec['directory']
+    raw = (directory / 'raw-results.jsonl').read_bytes()
+    review_bytes = (directory / 'semantic-review.json').read_bytes()
+    assert hashlib.sha256(raw).hexdigest() == spec['rawSha256']
+    assert hashlib.sha256(review_bytes).hexdigest() == spec['semanticReviewSha256']
+    records = [json.loads(line) for line in raw.splitlines() if line.strip()]
+    review = json.loads(review_bytes)
+    assert len(records) == 80 and len(review['entries']) == 80
+    assert len({(r['caseId'], r['mode']) for r in records}) == 80
+    assert {r['split'] for r in records} == {name}
+    assert {(e['caseId'], e['variant']) for e in review['entries']} == {(r['caseId'], r['mode']) for r in records}
+    assert review['independentHumanReview'] is False
+    return records, review['entries']
+
+runs = {name: load_run(name) for name in ('development', 'holdout')}
+INK = colors.HexColor('#234237'); MUTED = colors.HexColor('#687b6d'); LINE = colors.HexColor('#dce3d2')
+styles = getSampleStyleSheet()
+styles.add(ParagraphStyle(name='TitleTL',fontName='Times-Roman',fontSize=31,leading=35,textColor=INK,spaceAfter=15))
+styles.add(ParagraphStyle(name='HeadingTL',fontName='Helvetica-Bold',fontSize=15,leading=20,textColor=INK,spaceBefore=12,spaceAfter=9,keepWithNext=True))
+styles.add(ParagraphStyle(name='BodyTL',fontName='Helvetica',fontSize=10,leading=14.5,textColor=INK,spaceAfter=9))
+styles.add(ParagraphStyle(name='SmallTL',fontName='Helvetica',fontSize=8,leading=11,textColor=MUTED,spaceAfter=7))
+styles.add(ParagraphStyle(name='CodeTL',fontName='Courier',fontSize=8,leading=11,textColor=INK,spaceAfter=8))
 story=[]
-def p(s,style='TLBody'): story.append(Paragraph(s,styles[style]))
-def h(s):p(s,'TLHeading')
-def page():story.append(PageBreak())
-def photo(name,width=480):
- from PIL import Image as PILImage
- file=OUT/name
- if file.exists():
-  im=PILImage.open(file);height=width*im.height/im.width
-  if height>420:width*=420/height;height=420
-  story.append(Image(str(file),width=width,height=height,hAlign='LEFT'));story.append(Spacer(1,10))
+def p(text, style='BodyTL'): story.append(Paragraph(text,styles[style]))
+def h(text): p(text,'HeadingTL')
+def page(): story.append(PageBreak())
+def photo(name,width=499):
+    path=OUT/name
+    if not path.exists(): raise FileNotFoundError(path)
+    with PILImage.open(path) as im: height=width*im.height/im.width
+    if height>320: width*=320/height; height=320
+    story.append(Image(str(path),width=width,height=height,hAlign='LEFT'));story.append(Spacer(1,9))
 def table(rows,widths):
- t=Table([[Paragraph(html.escape(str(v)),styles['TLSmall']) for v in row] for row in rows],colWidths=widths,repeatRows=1)
- t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),colors.HexColor('#e4ecda')),('VALIGN',(0,0),(-1,-1),'TOP'),('BOTTOMPADDING',(0,0),(-1,-1),9),('TOPPADDING',(0,0),(-1,-1),9),('LINEBELOW',(0,0),(-1,0),1,LINE),('LINEBELOW',(0,1),(-1,-1),.4,LINE)]));story.append(t);story.append(Spacer(1,12))
-def footer(c,doc):
- c.setStrokeColor(LINE);c.line(48,42,547,42);c.setFillColor(MUTED);c.setFont('Helvetica',8);c.drawString(48,29,'TraceLearn / Technical & Evaluation Report / 15 September 2026');c.drawRightString(547,29,str(doc.page))
-p('TRACELEARN / PROJECT REPORT','TLSmall');p('Learning that can<br/>show its work.','TLTitle');p('A local AI workspace connecting source evidence, misconception-aware practice and transfer checks.','TLBody');photo('01-learning-workspace.png');p('ML Empowerment Build Challenge 3.0 - Submission version 1.2','TLSmall');p('This report describes an implemented prototype and an internal technical benchmark. It does not claim improved grades, validated mastery, real-user adoption, or an independent classroom study.','TLSmall')
-page();h('1. Problem and product');p('Fluent explanations can make an idea feel familiar without demonstrating that a student can use it. TraceLearn connects an answer to its evidence, surfaces a possible misconception from a selected distractor, and asks a new question that applies the same concept. The initial scope is deliberately narrow: university database foundations.');p('The first worked scenario is SQL NULL. A learner predicts that salary &lt;&gt; 100 keeps both 200 and NULL. The app checks the answer deterministically, explains that UNKNOWN is filtered by WHERE, opens the original passage, and then tests the same idea using a different condition.');photo('02-misconception-evidence.png');p('The screenshot shows a scripted software acceptance session, not a study participant.','TLSmall');h('Intended social value');p('Students can use their own material without uploading it to a cloud model or paying per API call. Downloads and adequate local hardware are still required. English/Chinese interface and source translations broaden accessibility; built-in questions retain English technical wording. Benefits for learning outcomes remain a hypothesis for a future study.')
-page();h('2. Implementation and boundaries');table([['Layer','Implementation'],['Reading workspace','React + TypeScript; responsive source and practice panes; cancellation and recovery states.'],['Local service','Node.js + Express on 127.0.0.1; expected Host/Origin checks; no public deployment.'],['Documents and provenance','PDF.js or UTF-8 parsing; 10 MB / 50 PDF-page limits; source IDs, page/segment numbers, SHA-256.'],['Storage','SQLite stores source text, local vectors, questions and practice history. No local database is in the distributable.'],['Retrieval','0.75 cosine similarity + 0.25 query-token overlap; five highest-ranked passages.'],['Generation','Qwen3-4B via Ollama; Qwen3-Embedding-0.6B; temperature 0, seed 42, 8192 context, 1200 output-token cap, thinking disabled.'],['Checks','JSON schema; exact source-quote matching; answer echo/planning rejection; at most one retry.'],['Practice','20 original passages, 10 diagnostic/transfer pairs; deterministic grading. Imported-source questions are AI-assisted verbatim cloze exercises with a deterministic source-text answer check.']],[125,374]);p('Imported practice was narrowed after a free-form generated item had four incorrect options. In the shipped path, the server selects a phrase from a real source sentence as the keyed answer; the local model supplies three distinct distractors. Completing the gap with the key reconstructs the source sentence exactly. This is source recall, not conceptual transfer. The app distinguishes citation location from entailment. A real quote can still be used to support a wrong claim; exact matching prevents invented quotations, not all hallucination. Prompt-injection resistance is bounded by the model and representative tests.');h('Key design tradeoff');p('A narrow, inspectable hybrid retriever reduces the context sent to a small local model. This can improve efficiency but can also omit necessary information. The full-source baseline receives all 20 original passages. Both conditions use the same final prompt and output checks, so this experiment compares context selection, not a different model or an unguarded baseline.');page();h('3. Local operation and reproducibility');p('All inference and data paths remain on the same computer. The browser talks to one local service; the service parses and stores sources, retrieves passages and asks the local model for structured output.');table([['Path','Responsibility'],['Browser -> Node.js','Learning interface, local import, deterministic grading and report download.'],['Node.js -> SQLite','Source text, source hash, vectors, questions, attempt and chat records.'],['Node.js -> Qwen embedding','Create passage vectors once, then embed the current question.'],['Top five passages -> Qwen3','Produce a structured explanation with exact source excerpts.'],['Validation -> browser','Accept checked output or return an explicit failure after one retry.']],[155,344]);h('Local runtime measurements');p('With both app and Ollama running under a macOS policy allowing only localhost outbound connections, real source-grounded answers succeeded. External DNS and direct-IP attempts were denied. A request after restarting Ollama took 6.62 seconds; the warm repeat took 4.17 seconds. Cached SQLite vectors were retained. Ollama reported approximately 6.23 GB allocated across the two loaded models; this is a model allocation snapshot, not peak whole-system memory.');h('Reproduce locally');p('npm run setup<br/>npm start<br/>http://127.0.0.1:4317','TLCode');p('Model weights are not bundled. Exact model hashes, package lock, inference settings and all final outputs accompany the source. Tested on Apple M4 Pro with 24 GB memory; other operating systems were not tested.','TLSmall')
-page();h('4. Evaluation design');p('The following experiment was frozen on 14 September for version 1.0. Versions 1.1 and 1.2 add an evidence viewer, portable access and deterministic concept experiments. The answering pipeline and original course, raw results and benchmark scores remain unchanged.','TLSmall');p('The author-created dataset contains 80 fixed cases: 40 source-answerable questions, 20 source-unanswerable questions, and 20 multiple-choice questions with predetermined answers. Forty cases form the development split and 40 the holdout split. Related concepts occur in both splits; this is not a test of generalization to unseen courses.');p('The first pilot was stopped after a separate UI acceptance query returned a question echo with valid quotes. Two pilots exposed question echoes and option-letter leakage. The final v3 prompt requires completed explanations and only uses option-letter instructions for explicit multiple-choice questions. The dataset was not changed. Some pilot holdout requests had run, but their answer content was not used for tuning. Both pilot records and the final run are retained. This is an internal development benchmark, not an independently blinded evaluation.');h('Final holdout results');rows=[['Metric','Full source baseline','Hybrid retrieval']]
-b=summary['holdout']['baseline'];g=summary['holdout']['grounded']
-for label,num,den in [('Accepted answer on answerable cases','answerableAnswered','answerableTotal'),('Structured insufficient flag','unanswerableRefused','unanswerableTotal'),('Correct extracted MCQ letter','quizCorrect','quizTotal')]:rows.append([label,f'{b[num]}/{b[den]}',f'{g[num]}/{g[den]}'])
-rows.append(['Median wall time per request',f'{b["medianMs"]/1000:.2f} s',f'{g["medianMs"]/1000:.2f} s']);rows.append(['Requests passing output checks',f'{b["success"]}/{b["runs"]}',f'{g["success"]}/{g["runs"]}']);table(rows,[220,139,140]);p('Accepted answer rate is not semantic correctness. MCQ correctness is based on extracted option letters; a formatting miss may count as incorrect even if prose implies the right answer. Expected-source overlap and keyword checks are diagnostic only and are not promoted as accuracy. Quote acceptance is conditioned on passing the validator. Wall time includes retrieval and retries, and can include local workload contention.','TLSmall');p('Agent-assisted reading of the complete holdout unanswerable outputs found prose refusals on 8/10 for each method, plus 2/10 validation failures. The structured flag undercounts textual refusals; both measures are retained.','TLSmall');h('Full run');p(f'The final run contains {summary["all"]["baseline"]["runs"] + summary["all"]["grounded"]["runs"]} requests across both methods. Raw JSONL includes accepted final responses, citations, retrieval passages, available retry records and timings; rejected calls retain error records. Dataset SHA-256:','TLBody');p(manifest['datasetSha256'],'TLCode');p('See evaluation/summary.json and evaluation/raw-results.jsonl for split-level results and individual failures.','TLSmall')
-page();h('5. Interpretation, review and limitations');p('The product does not treat a correct practice answer as proof of durable understanding. Transfer checks are a concrete opportunity to apply a concept; they are not a validated psychometric instrument.');
-if audit:
- p(html.escape(audit.get('summary','Agent-assisted review is included with the source.')))
- for note in audit.get('findings',[]):p(html.escape(note))
-h('What failed, and why it matters');p('The pilot exposed a substantive failure: quote validation alone accepted a response that repeated the question. Output validation was strengthened, but it cannot verify all meaning. The final result set preserves remaining rejected responses, unexpected refusals, answer mistakes, and formatting misses rather than dropping them from denominators.');p('This benchmark is small, written by the same development process as the course, and lacks independent human scoring. Source support review is agent-assisted and labeled accordingly. The baseline receives a small complete course; results may change for larger documents, other models, other languages or a different retrieval method.');h('Next research question');p('A prospective study could compare source-linked diagnostic practice with explanations alone using randomized conditions, independent question review, delayed transfer questions and consented participants. That study was not performed for this submission.')
-page();h('6. Verification and contribution');p('The final package includes executable unit tests, an isolated HTTP check, actual browser captures, an exported report, and local runtime evidence. SQL NULL examples execute against SQLite; selected candidate-key claims are checked by attribute closure. PDF import tests cover readable PDFs, damaged PDFs, blank/scanned pages and page limits.');table([['Boundary','Evidence'],['Core implementation','Original v1.0: 17 unit tests passed. v1.1: 22 passed. v1.2: 48 automated tests passed, including HTTP integration; see the acceptance page.'],['HTTP routes','11 checks: hidden answers, grading, history, export, validation, imports, Origin and Host restrictions.'],['Browser','Actual diagnostic -> citation -> transfer -> notebook workflow; refresh restoration; desktop and narrow layouts; local AI and import paths.'],['Network independence','See evidence/offline-check.json for process-level localhost-only network validation and its scope.'],['Reproducibility','Locked package versions, frozen dataset and recorded model digests; exported source archive excludes personal runtime state.']],[135,364]);h('AI contribution disclosure');p('Codex substantially assisted with design, code, original teaching and evaluation materials, testing, debugging, visual composition and documentation. Qwen provides local runtime responses. Agent-assisted checks are not represented as an independent human review. The public event encourages AI projects; separate organizer approval of AI-assisted code authorship has not been obtained.');h('Sources and licenses');p('Original app code and original course materials: MIT. Qwen models: Apache-2.0. Third-party dependencies retain their own licenses; exact package notices accompany the code. Model weights are downloaded separately.');p('Technical references: ollama.com/library/qwen3:4b; ollama.com/library/qwen3-embedding:0.6b; docs.ollama.com/api/embed; postgresql.org/docs/current/functions-comparison.html; postgresql.org/docs/current/functions-aggregate.html; postgresql.org/docs/current/queries-table-expressions.html.','TLSmall');p('Submission requirements and scoring: ml-build-challenge-3.devpost.com and /rules. All screenshots show the actual application. Public source and downloadable materials: github.com/FENGJIA666/tracelearn (release v1.2.0). The application runs locally; no hosted inference service or live video is provided.','TLSmall')
-page();h('7. Try a claim, then change the conditions');p('Version 1.2 connects feedback to a Counterexample Lab. Predict which SQL rows survive, change the numbers or predicate, then compare the prediction with TRUE / FALSE / UNKNOWN. A second experiment traces attribute closure and removes each selected attribute to check minimality. These computations are deterministic; no language-model reasoning is used to decide the result.');photo('10-sql-counterexample.jpg',480);p('Actual v1.2 browser acceptance. The learner prediction is deliberately wrong: NULL is not an ordinary value different from 100. The result table exposes the mismatch. Switching to OR value IS NULL changes that row to TRUE. This is a scripted software check, not a student study.','TLSmall');h('One small file, a complete practice loop');p('The self-contained HTML is under 0.5 MB and includes 20 original questions, source notes, both editable experiments, practice and experiment exports, and all 160 recorded AI outputs. The quick tour opens real steps: predict, experiment, transfer, reflect. Full-app AI and imported documents still require Node.js, Ollama and downloaded models.');p('Experiment records retain inputs, predictions, source hash and time in browser storage. Export recomputes truth values and closures rather than trusting a saved score. Records are separate from quiz accuracy; clearing browser storage can erase them. Direct file:// opening remains unverified because browser automation blocks that scheme; the verified alternative is localhost static preview.','TLSmall')
-page();h('8. Version 1.2: verification and limits');photo('11-key-minimality.jpg',450);p('Actual browser run: adding B to AD still determines the relation, but B is removable. The selected set is a superkey, not a candidate key. The trace explains the distinction without treating a single correct answer as proof of mastery.','TLSmall');table([['Check','Observed result'],['SQL computation','1,600 row outcomes matched real SQLite; all Boolean three-valued truth-table entries checked separately.'],['Candidate keys','All 24 attribute subsets of the two built-in schemas matched an independent exhaustive two-tuple FD oracle; every proper subset checked for minimality.'],['Automated coverage','48 automated tests passed, including integration tests; 11 additional isolated HTTP checks passed. Both builds succeeded.'],['New local-model generation','Selected passage seven yielded two different quoted exercises in 2.956 s and 0.548 s; the next request returned 409 with no duplicate. Source hash and grading verified.'],['Installation identity','Two fixed copies used different ports; same-build relaunch reused its own server; changed source/build opened a new server without disturbing old processes.']],[135,364]);p('Generation remains verbatim source recall: a distractor such as not null can mean almost the same thing as non-NULL, while only one option reconstructs the original quote. These items are not semantic-discrimination or transfer assessments. SQL experiments cover the shown numeric / NULL operators, not arbitrary SQL; key experiments use the stated dependencies, not constraints inferred from sample rows.','TLSmall');p('The implementation also cancels stale requests on navigation and opens notebook review as a fresh attempt. Controlled-delay browser tests use a clearly labeled mock API; local Qwen checks are recorded separately. Complete v1.2 procedures, raw acceptance records and remaining boundaries are in evidence/v1.2-acceptance.md. No newly tuned model benchmark, independent classroom outcome or contest ranking is claimed.','TLSmall')
-SimpleDocTemplate(str(OUT/'TraceLearn-Technical-Report.pdf'),pagesize=(595.28,841.89),leftMargin=48,rightMargin=48,topMargin=48,bottomMargin=58,title='TraceLearn - Technical and Evaluation Report',author='TraceLearn contributor').build(story,onFirstPage=footer,onLaterPages=footer)
-print('Report generated.')
+    t=Table([[Paragraph(html.escape(str(v)),styles['SmallTL']) for v in row] for row in rows],colWidths=widths,repeatRows=1)
+    t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),colors.HexColor('#e4ecda')),('VALIGN',(0,0),(-1,-1),'TOP'),('BOTTOMPADDING',(0,0),(-1,-1),8),('TOPPADDING',(0,0),(-1,-1),8),('LINEBELOW',(0,0),(-1,0),1,LINE),('LINEBELOW',(0,1),(-1,-1),.4,LINE)]))
+    story.append(t);story.append(Spacer(1,10))
+def footer(canvas,doc):
+    canvas.setStrokeColor(LINE);canvas.line(48,42,547,42)
+    canvas.setFillColor(MUTED);canvas.setFont('Helvetica',8)
+    canvas.drawString(48,29,'TraceLearn / Technical & Evaluation Report / v1.3.0')
+    canvas.drawRightString(547,29,str(doc.page))
+def metrics(split):
+    records, reviews = runs[split]
+    rows=[['Saved technical result','Previous configuration','Current configuration']]
+    groups={mode:[r for r in reviews if r['variant']==mode] for mode in ('frozen-grounded','supported')}
+    for label,fn in [
+        ('Strict task correctness',lambda r: f"{sum(e['taskCorrect'] for e in r)}/{len(r)}"),
+        ('Unsupported accepted outputs',lambda r: f"{sum(e['unsupportedAccepted'] is True for e in r)}/{sum(e['disposition'].startswith('delivered-') for e in r)} confirmed" + (f"; {sum(e['unsupportedAccepted'] is None for e in r)} unresolved" if any(e['unsupportedAccepted'] is None for e in r) else '')),
+        ('Unresolved semantic judgments',lambda r: str(sum('needs-adjudication' in e['failureFlags'] for e in r))),
+        ('No delivered answer or refusal',lambda r: f"{sum(not e['disposition'].startswith('delivered-') for e in r)}/{len(r)}"),
+        ('Citation validity among delivered answers',lambda r: f"{sum(e['evidenceValid'] is True for e in r if e['disposition']=='delivered-answer')}/{sum(e['disposition']=='delivered-answer' for e in r)}")]:
+        rows.append([label,*[fn(groups[m]) for m in groups]])
+    times={mode:sorted(r['wallMs'] for r in records if r['mode']==mode) for mode in groups}
+    rows.append(['Median wall time',*[f'{statistics.median(v)/1000:.2f} s' for v in times.values()]])
+    rows.append(['95th percentile wall time',*[f'{v[math.ceil(.95*len(v))-1]/1000:.2f} s' for v in times.values()]])
+    return rows
+
+m=manifest['model']; checks=manifest['verification']
+p('TRACELEARN / ML EMPOWERMENT BUILD CHALLENGE 3.0','SmallTL')
+p('Learning that can<br/>show its work.','TitleTL')
+p('A private local learning workspace connecting source evidence, editable concept experiments and fresh transfer practice.')
+photo('13-supported-answer.jpg')
+p('Version 1.3.0. The actual application displays one accepted conclusion with up to two exact source excerpts. This screenshot is scripted software acceptance, not a study participant.','SmallTL')
+p('This report describes a working application and author-created technical evaluations. It makes no claim of improved grades, validated mastery, independent human assessment, user adoption or competition ranking.','SmallTL')
+p('Source and downloads: <link href="https://github.com/FENGJIA666/tracelearn/releases/tag/v1.3.0">github.com/FENGJIA666/tracelearn / v1.3.0</link>','SmallTL')
+
+page();h('1. A learning loop, not just an explanation')
+p('Fluent text can feel familiar without demonstrating that a learner can use a concept. TraceLearn asks a prediction, grades against an original fixed answer key, links the relevant source passage, and offers a fresh transfer question. A wrong option suggests a possible misconception; it does not diagnose a person or establish durable learning.')
+p('The first scenario is SQL NULL: predict which rows survive value &lt;&gt; 100, inspect TRUE/FALSE/UNKNOWN, change the condition to include missing values, then answer a related question independently. The Counterexample Lab also computes attribute closure and checks candidate-key minimality under explicitly shown dependencies.')
+photo('11-key-minimality.jpg')
+p('Counterexample Lab from the previous verified release; the underlying SQL and closure computations are preserved in v1.3. Navigation now matches the selected concept and restores its source on refresh.','SmallTL')
+table([['Three-minute judge route','Action'],['Predict','Choose an answer and confidence; open the referenced passage.'],['Change the conditions','Edit SQL values or key attributes; compare the computed trace with your prediction.'],['Transfer','Open the concept-matched fresh question, without revealing an earlier answer.'],['Reflect','Reopen saved local answers and their evidence; export quiz and AI history.']],[140,359])
+
+page();h('2. Current implementation')
+table([['Layer','Implementation'],['Interface','React + TypeScript; English/Chinese controls; desktop and narrow layouts; cancellation and recovery.'],['Local service and storage','Node.js / Express on 127.0.0.1; SQLite source hashes, vectors, questions, attempts and chats.'],['Documents','Text PDF, UTF-8 Markdown and TXT; 10 MB per file. PDF: 50 pages; Markdown/TXT: 175,000 UTF-16 code units. Exact source IDs, locations and file SHA-256.'],['Retrieval','Top five passages ranked by 0.75 cosine similarity + 0.25 token overlap, with local embeddings.'],['Runtime models',f"{m['name']} for answers and cloze distractors; {m['embeddingName']} for embeddings. Ollama {m['ollamaVersion']}."],['Answer configuration',f"Temperature 0, seed 42, context {m['options']['num_ctx']}, output cap {m['options']['num_predict']}; think:false and truncate:false. Exact parameters and model digests accompany the source."],['Practice','20 original passages, 10 diagnostic/transfer pairs; fixed grading. Imported-note practice uses source-derived cloze answers.']],[126,373])
+h('One-conclusion evidence pipeline')
+p('The server enumerates literal excerpts with original UTF-16 offsets. The model selects at most two excerpt IDs for one concise conclusion; it cannot write the quotation text. The server resolves IDs, checks schema and exact location, then makes a separate call to the same local model to assess answerability, every clause and source attribution, its own citations and coverage of applicable conditions. Only the accepted conclusion forms the final answer.')
+p('The app distinguishes an accepted answer, source insufficiency and an unverified response. A second draft/review attempt is allowed: at most four model calls and 180 seconds across retrieval and generation. Long input must fail explicitly instead of silently losing context. These controls improve inspectability; the same model can still make correlated drafting and review mistakes.')
+
+page();h('3. Source recall and local operation')
+p('For imported notes, a deterministic planner selects an unused source sentence and an exact phrase as the answer. The local model supplies three distractors; the keyed option must reconstruct the original sentence. Duplicate wording and the explicit SQL non-NULL alias family are rejected, with at most one dedicated quality repair after the two-call base generator. This remains verbatim source recall, not a validated semantic discrimination or transfer assessment.')
+p('The learning notebook reopens saved question/claim/citation records without rerunning inference. Older records retain their original quote-only check status. Exports preserve each claim-to-quote relationship and distinguish an unsuccessful check from a finding of source insufficiency.')
+h('Run it locally')
+p('npm run setup<br/>npm start<br/>http://127.0.0.1:4317','CodeTL')
+p(f"Node.js 22.13+ and Ollama 0.34.0+ are required; setup checks the Ollama minimum for tested chat truncate:false behavior. Initial downloads of the two application models total approximately {m['downloadBytes']/1e9:.2f} GB, plus packages. No API key, paid inference service, user account, CDN, external font or hosted model is required. Once installed, inference and study material remain on the computer. Exact tested model digests are checked by setup; weights are downloaded separately. Reproducing the frozen comparison additionally needs ollama pull qwen3:4b (about 2.5 GB), not required for normal application use.")
+p('The Mac launcher rebuilds this copy and compares installation/build identity before reusing a server. It selects another local port for a different copy or stale build. Portable practice separately provides the original course, deterministic experiments, recorded evidence and exports without installing Node.js or models; live AI and importing require the full application.')
+h('Measured runtime boundary')
+offline=checks['offline']
+p(f"On Apple M4 Pro with 24 GB memory, a process policy denying outbound network except localhost allowed real inference. After restarting Ollama, the measured request took {offline['coldMs']/1000:.2f} s; the warm repeat took {offline['warmMs']/1000:.2f} s. The cold request used fresh isolated storage with no cached passage vectors; the warm request repeated it after the first completed request. Ollama reported {offline['allocatedBytes']/1e9:.2f} GB allocated across the loaded production models; this is a snapshot, not peak whole-system memory.")
+p('This verifies the app and model process boundary after installation; it does not claim that the whole computer or browser network was disconnected. macOS is the tested platform; Windows/Linux and direct file:// automation remain unverified. Portable static HTTP operation was checked.','SmallTL')
+
+page();h('4. New evaluation: freeze before opening the holdout')
+p('Version 1.3 adds 80 original cases based on four small fictional source documents: database rules, library policy, laboratory procedure and a shuttle timetable. Each 40-case split contains 16 source-answerable questions, 12 unanswerable questions and 12 contradicted-premise questions, with 20 English and 20 Chinese prompts. Developer and holdout questions share documents and themes; this is not generalization to unseen domains.')
+p('The dataset author prepared and locked both splits. The root implementation process did not open the sealed holdout before freezing the selected pipeline, model identities, explicit options, runner and scoring protocol. The runner rejects mismatched configurations before opening a holdout path. Agents share a filesystem, so this is procedural isolation rather than cryptographic blinding. The scoring agent also authored the dataset: review is not independent or blinded.')
+p('The comparator is the previous production grounded-answer configuration, using Qwen3-4B and its original quote validator. The current configuration changes the model and answer pipeline. Both use the same source material, questions and hybrid retriever. Results compare complete configurations; they do not isolate the effect of model weights or the review call. The older full-source-versus-retrieval experiment remains separate.')
+p('Strict task correctness requires a complete source-consistent answer and valid evidence, or a justified refusal under the saved protocol. No-answer errors and unverified outputs stay in the denominator. Correct numbers paired with unsupported claims or wrong citations do not count as fully correct. Runtime self-review labels are not the scoring authority.')
+h('Held-out results: 40 questions, 80 requests')
+table(metrics('holdout'),[225,137,137])
+p('Percentile uses the nearest-rank method. Times include retrieval and retries; model loading and other local work can affect latency. Unresolved judgments remain incorrect in strict totals; an unresolved unsupported-claim judgment is shown separately instead of counted as a confirmed error or as zero. Small samples do not establish educational effectiveness.','SmallTL')
+
+page();h('5. Inspect every accepted answer and failure')
+photo('14-current-evidence.jpg')
+p('The recorded-evidence view displays the question, reference, both final outputs, actual selected quotations, full retrieved inputs and saved Codex-assisted scoring reasons. It is explicitly labeled as a recorded run, not live AI.','SmallTL')
+h('Development results: 40 questions, 80 requests')
+table(metrics('development'),[225,137,137])
+p('Development prefixes and targeted probes were used to change the implementation and select the local model. They remain in evidence/v1.3, including unsuccessful attempts. They are not new test sets or independent repeated trials. Only the recorded final development configuration and the one-shot held-out comparison appear in the tables above.')
+
+page();h('6. Verification and remaining limitations')
+table([['Boundary','Current evidence'],['Automated checks',f"{checks['automatedTestCount']} tests passed; {checks['httpChecks']} additional isolated HTTP checks. Final production and portable builds completed."],['Actual browser',checks['browserSummary']],['Controlled UI',checks['controlledUiSummary']],['Local AI',checks['localAiSummary']],['Network boundary',checks['offlineSummary']],['Packaging',checks['packageSummary']]],[132,367])
+p('The original SQL simulator has 1,600 row-result comparisons against SQLite. Candidate-key results were checked for every subset of both example schemas against a separately implemented finite-relation oracle. These are independent computational checks of bounded code, not independent human evaluation of learning.')
+h('What this evidence does not establish')
+p('Exact source selection prevents invented quote text but cannot prove an interpretation. Same-model review may accept an incorrect claim or reject a correct one. Retrieval can omit needed passages. Source recall can still contain semantically weak distractors beyond the explicit alias checks. Prompt-injection resistance is bounded by representative tests, not a universal guarantee.')
+p('OCR, arbitrary SQL execution, multi-user accounts and public inference hosting are outside scope. PDF reading order can be imperfect. Fixed practice correctness is not psychometric mastery. There were no consented student participants, delayed retention measurements or measured grade gains. No contest score or rank has been observed.')
+h('A preserved historical baseline')
+p('The original v1.0 experiment contains 80 cases and 160 requests comparing full-source input with hybrid retrieval under the same Qwen3-4B pipeline. Its data, original course and server/ai.ts remain unchanged. Versions 1.1/1.2 added portable access and deterministic experiments without rewriting those scores. Historical measurements are never presented as current-model evidence.')
+
+page();h('7. Contribution, licenses and sources')
+p('Codex substantially assisted with product design, implementation, original teaching and evaluation content, debugging, visual work, testing, release preparation and documentation. Local Qwen models produce runtime responses. Dataset author and semantic reviewer are the same Codex-assisted process; this is explicitly not independent human validation. The organizer has not provided separate approval of AI-assisted code authorship; no such permission is claimed.')
+p('Original application code and course materials are MIT-licensed. Qwen model weights use Apache-2.0 and are obtained separately. Exact locked dependency notices and model links appear in THIRD-PARTY-NOTICES.md. Study material is stored locally; no personal runtime database or user credentials are included in the package.')
+h('Reproduce and audit')
+p('evaluation-v13/ contains locked sources, cases and the scoring protocol. Each final run retains raw JSONL, HTTP model requests/responses, source snapshots, timings, model options and per-output judgments. The final manifest binds the files by SHA-256. Model-produced review rationales and Codex-assisted evaluation judgments are stored separately.','SmallTL')
+
+h('Primary technical references')
+for label,url in [
+ ('Ollama model and model-weight license',f"https://ollama.com/library/{m['name']}"),
+ ('Local embedding model','https://ollama.com/library/qwen3-embedding:0.6b'),
+ ('Ollama 0.34 request and truncation handling','https://github.com/ollama/ollama/blob/v0.34.0/server/routes.go'),
+ ('SQL comparison predicates','https://www.postgresql.org/docs/current/functions-comparison.html'),
+ ('SQL aggregate functions','https://www.postgresql.org/docs/current/functions-aggregate.html'),
+ ('SQL table expressions and outer joins','https://www.postgresql.org/docs/current/queries-table-expressions.html'),
+ ('Competition rules','https://ml-build-challenge-3.devpost.com/rules'),
+ ('Public submission','https://devpost.com/software/tracelearn-learning-that-can-show-its-work')]:
+ p(f'{html.escape(label)}: <link href="{html.escape(url)}">{html.escape(url)}</link>','SmallTL')
+h('Current provenance')
+p('The complete release links source code, a portable practice file, this report, model settings, raw evaluations and reproducible acceptance records. The submitted project is updated in place; final submission state is verified separately from local preparation.')
+p('Report generated from saved evidence on '+datetime.now(ZoneInfo('Asia/Singapore')).strftime('%d %B %Y, %H:%M SGT')+'.','SmallTL')
+SimpleDocTemplate(str(OUT/'TraceLearn-Technical-Report.pdf'),pagesize=(595.28,841.89),leftMargin=48,rightMargin=48,topMargin=48,bottomMargin=58,title='TraceLearn - Technical and Evaluation Report v1.3.0',author='TraceLearn contributor').build(story,onFirstPage=footer,onLaterPages=footer)
+print('Report generated from complete hashed evidence.')

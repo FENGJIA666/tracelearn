@@ -1,0 +1,31 @@
+{
+  "at": "2026-09-15T16:04:39.424Z",
+  "scope": "Structural and delivery diagnostics only; semantic scoring must follow the frozen scoring protocol.",
+  "semanticScoresProduced": false,
+  "modes": {
+    "frozen-grounded": {
+      "attempted": 10,
+      "returned": 9,
+      "errors": 1,
+      "supportedResponses": 8,
+      "insufficientResponses": 1,
+      "unverifiedResponses": 0,
+      "medianWallMs": 5732.5
+    },
+    "supported": {
+      "attempted": 10,
+      "returned": 10,
+      "errors": 0,
+      "supportedResponses": 6,
+      "insufficientResponses": 4,
+      "unverifiedResponses": 0,
+      "medianWallMs": 21492
+    }
+  },
+  "notes": [
+    "Required facts and forbidden claims are not substring-graded.",
+    "A refusal marker or a matching quotation is not a semantic correctness score.",
+    "Unverified responses and errors are no-answer outcomes, not correct refusals.",
+    "Initial request timing is not a cold-start measurement; no model unload/restart is performed."
+  ]
+}

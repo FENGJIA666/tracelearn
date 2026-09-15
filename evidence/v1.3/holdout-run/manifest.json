@@ -1,0 +1,113 @@
+{
+  "createdAt": "2026-09-15T17:04:15.665Z",
+  "configurationHash": "08f763f7eba610a111d2442aa803f24ec567c940a95cb2c3a51d01245c3d82bb",
+  "configuration": {
+    "schemaVersion": 1,
+    "datasetLockSha256": "0c0325fa363dcdff1fe252795a41264f263a5033e9cd39284152b4149c9dbc1e",
+    "runnerSha256": "fc7539652e9be7949ca7ef98a26c07c0fdb98a8500a146e5a252cbcaaced9c67",
+    "pipelines": {
+      "frozen-grounded": {
+        "hash": "6588b3d2f6259973f8177c96af5da90b1805f62f4347be10114b55d427439330",
+        "files": {
+          "content/course.ts": "43660ccbd50baf7489367bd8edda4f0be031040df54e35e1cf5dfbd8a0dc4fd5",
+          "package-lock.json": "3838d326793a3df638d27b777f32e73bfa599db66a35bae786581a796c47badf",
+          "server/ai.ts": "ab611814588ab59f1507e7ffff346571a3d20441d96ef2a47540861e663a4a34",
+          "server/store.ts": "dadebe09b3bd1bd3c87c30954fc04b631b80e18a6b1399c428789e66c0096a9d"
+        }
+      },
+      "supported": {
+        "hash": "6d9a241d7ac106d68a37993e336a6d37f48753cff79a0fdecbcb82d758560646",
+        "files": {
+          "content/course.ts": "43660ccbd50baf7489367bd8edda4f0be031040df54e35e1cf5dfbd8a0dc4fd5",
+          "package-lock.json": "3838d326793a3df638d27b777f32e73bfa599db66a35bae786581a796c47badf",
+          "server/ai.ts": "ab611814588ab59f1507e7ffff346571a3d20441d96ef2a47540861e663a4a34",
+          "server/evidence-quotes.ts": "07992540de7eb2af95288ff086d51c9ac6d43e0c90cbd173a0d5c7b08b34868a",
+          "server/local-model.ts": "75c78724e335c889fc6c77106ede0c788200f5985a45e409d7a2f13fcf65df93",
+          "server/store.ts": "dadebe09b3bd1bd3c87c30954fc04b631b80e18a6b1399c428789e66c0096a9d",
+          "server/support-answer.ts": "10de480fc225de106aac3d0d5334db77179040df93f236861231d284bb2d8a9a"
+        }
+      }
+    },
+    "model": {
+      "generation": {
+        "name": "qwen3:4b",
+        "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+        "tagParameters": "temperature                    0.6\ntop_k                          20\ntop_p                          0.95\nrepeat_penalty                 1\nstop                           \"<|im_start|>\"\nstop                           \"<|im_end|>\"",
+        "capabilities": [
+          "completion",
+          "thinking",
+          "tools"
+        ]
+      },
+      "supportedGeneration": {
+        "name": "qwen3.5:9b",
+        "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+        "tagParameters": "presence_penalty               1.5\ntemperature                    1\ntop_k                          20\ntop_p                          0.95",
+        "capabilities": [
+          "completion",
+          "thinking",
+          "tools",
+          "vision"
+        ]
+      },
+      "embedding": {
+        "name": "qwen3-embedding:0.6b",
+        "digest": "ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d",
+        "tagParameters": null,
+        "capabilities": [
+          "embedding",
+          "thinking",
+          "tools"
+        ]
+      },
+      "ollamaVersion": "0.34.0"
+    },
+    "options": {
+      "frozen-grounded": {
+        "model": "qwen3:4b",
+        "think": false,
+        "options": {
+          "temperature": 0,
+          "seed": 42,
+          "num_ctx": 8192,
+          "num_predict": 1200
+        }
+      },
+      "supported": {
+        "think": false,
+        "truncate": false,
+        "options": {
+          "temperature": 0,
+          "seed": 42,
+          "num_ctx": 16384,
+          "num_predict": 1800,
+          "top_k": 20,
+          "top_p": 0.95,
+          "min_p": 0,
+          "presence_penalty": 0,
+          "repeat_penalty": 1
+        },
+        "model": "qwen3.5:9b"
+      }
+    },
+    "deadlineMs": 180000,
+    "scoringProtocols": {
+      "evaluation-v13/scoring-protocol-v2.json": "f391b7620750e34519bed4f72c6b9c0904351340495a80894d8ae13a68ff1ef6",
+      "evaluation-v13/scoring-protocol-v2.md": "9833a1e2d36f46e68b9379e5db25adf51ba88209b6b79abb3a5a6819733a91f3"
+    },
+    "split": "holdout",
+    "documentsFileSha256": "8609e5a793fedc82159c63b6126a3ac1c884f65bacf8e3ba3f2d2d1fa9e605d3",
+    "casesFileSha256": "cd0fe3060aa4b17fd77e1899e7a6c3171c89fa6a6856a58a38818025fd45777b",
+    "modes": [
+      "frozen-grounded",
+      "supported"
+    ],
+    "frozenBaselineSnapshotSha256": "057d4c8f44980321d65b7f31b629d475fdf434cb07360a1056145f373eda02ed",
+    "freezeSha256": "514f395193a9c6cfb811f96a26da0dc33696a4254b4f362633f19af110a57c64",
+    "execution": "Sequential input case order; pipeline order alternates by original case index. Source vectors cache separately for each mode/document. Errors are not silently rerun.",
+    "node": "v22.16.0",
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "scope": "Versioned development/one-shot holdout runtime comparison; no semantic correctness is inferred automatically."
+}

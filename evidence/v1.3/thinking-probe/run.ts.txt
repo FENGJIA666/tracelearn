@@ -1,0 +1,25 @@
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+process.env.TRACELEARN_DATA='.local/v13-thinking-probe-db';
+const runtime=await import('../server/support-answer.ts');
+const ai=await import('../server/ai.ts');
+const cases=JSON.parse(readFileSync('evaluation-v13/development.json','utf8'));
+const documents=JSON.parse(readFileSync('evaluation-v13/documents.json','utf8'));
+const folder='evidence/v1.3/thinking-probe';mkdirSync(folder,{recursive:true});
+const config={label:'Targeted development-only exploration; no holdout or comparative score',model:'qwen3.5:4b',think:true,truncate:false,options:{...runtime.SUPPORT_OPTIONS,num_predict:4096},cases:['v13-dev-01','v13-dev-10'],createdAt:new Date().toISOString(),sourceHashes:Object.fromEntries(['server/support-answer.ts','server/evidence-quotes.ts','server/ai.ts'].map(p=>[p,createHash('sha256').update(readFileSync(p)).digest('hex')]))};
+writeFileSync(folder+'/configuration.json',JSON.stringify(config,null,2));
+for(const p of Object.keys(config.sourceHashes))writeFileSync(folder+'/'+p.split('/').at(-1)+'.txt',readFileSync(p));
+const rows:any[]=[];
+for(const id of config.cases){
+ const item=cases.find((c:any)=>c.id===id),doc=documents.find((d:any)=>d.id===item.documentId),calls:any[]=[];
+ const course={...doc,builtin:false,subtitle:'Development exploration',createdAt:'',sections:doc.sections.map((s:any)=>({...s}))};
+ const answer=runtime.createSupportedAnswer({model:config.model,retrieve:ai.retrieve,chat:async(system,user,format,signal)=>{
+  const request={model:config.model,think:config.think,truncate:false,options:config.options,format,stream:false,keep_alive:'30m',messages:[{role:'system',content:system},{role:'user',content:user}]};
+  const response=await fetch(ai.OLLAMA+'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(request),signal});
+  const result=await response.json();calls.push({request,status:response.status,response:result});
+  if(!response.ok)throw new ai.AppError('Probe request failed: '+response.status,503);
+  return{raw:result.message.content,stats:{totalDurationMs:result.total_duration/1e6,promptTokens:result.prompt_eval_count,outputTokens:result.eval_count}};
+ }});
+ const started=performance.now();try{const output=await answer(course,item.question,item.language);rows.push({case:item,wallMs:Math.round(performance.now()-started),output,calls});console.log(id,output.support.outcome,rows.at(-1).wallMs)}catch(e:any){rows.push({case:item,wallMs:Math.round(performance.now()-started),error:{message:e.message,status:e.status,audit:e.audit},calls});console.log(id,'error',rows.at(-1).wallMs)}
+ writeFileSync(folder+'/results.json',JSON.stringify(rows,null,2));
+}

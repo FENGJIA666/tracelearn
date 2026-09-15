@@ -1,7 +1,7 @@
 [
   {
-    "file": "00-cover.png",
-    "caption": "TraceLearn — learning that can show its work."
+    "file": "00-original-cover-v1.0.png",
+    "caption": "Original v1.0 title card. Current v1.3 uses Qwen3.5-9B; see the new cover and actual screenshots."
   },
   {
     "file": "01-learning-workspace.png",
@@ -17,7 +17,7 @@
   },
   {
     "file": "04-local-ai-citations.png",
-    "caption": "A real Qwen3-4B response runs locally and links to exact original source excerpts."
+    "caption": "Historical v1.0: a real Qwen3-4B response and exact source excerpts. Current-model evidence is shown separately."
   },
   {
     "file": "05-learning-notebook.png",
@@ -46,5 +46,17 @@
   {
     "file": "11-key-minimality.jpg",
     "caption": "v1.2: removing B proves this superkey is not minimal. Every closure step follows the stated dependencies."
+  },
+  {
+    "file": "00-cover.png",
+    "caption": "v1.3 title card: predict, inspect the source, and try a fresh question. AI-assisted graphic, not a UI screenshot."
+  },
+  {
+    "file": "13-supported-answer.jpg",
+    "caption": "v1.3: actual local Qwen3.5-9B answer with checked source excerpts. Scripted software acceptance, not a user study."
+  },
+  {
+    "file": "14-current-evidence.jpg",
+    "caption": "v1.3: inspect the complete held-out comparison, saved judgments, actual source inputs, and retained failures."
   }
 ]

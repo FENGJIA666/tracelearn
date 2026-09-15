@@ -1,0 +1,208 @@
+{
+  "at": "2026-09-15T17:35:40.750879+00:00",
+  "browser": "Codex in-app browser",
+  "url": "http://127.0.0.1:4343",
+  "scope": "Actual final compiled interface with isolated SQLite and real Qwen3.5-9B. App and model server retained their localhost-only process policy. Root Codex authored this scripted software acceptance, not a participant study.",
+  "checks": [
+    {
+      "name": "UI Ask completed",
+      "passed": true,
+      "model": "qwen3.5:9b",
+      "elapsedMs": 16065,
+      "modelCalls": 2
+    },
+    {
+      "name": "quote click selected matching original passage",
+      "passed": true,
+      "selectedId": "null-where",
+      "heading": "WHERE keeps only TRUE"
+    },
+    {
+      "name": "refresh then Notebook restored saved answer and quotations",
+      "passed": true,
+      "savedChats": 3
+    },
+    {
+      "name": "browser download event on export and served Markdown content checked",
+      "passed": true,
+      "reportSha256": "6a9b96538bcb086dc0f848e62ac81252d915819550f94d961537974acf9ca89d",
+      "contentDisposition": "attachment; filename=\"TraceLearn-learning-report.md\""
+    },
+    {
+      "name": "390px actual saved-answer layout",
+      "passed": true,
+      "viewportWidth": 390,
+      "documentWidth": 390,
+      "answerWidth": 274,
+      "viewportReset": true
+    }
+  ],
+  "lastSavedResponse": {
+    "question": "For salaries 100, 200, and NULL, which rows survive WHERE salary <> 100, and why?",
+    "answer": "For salaries 100, 200, and NULL, the WHERE clause salary <> 100 returns only the row with 200 because the comparison for 100 yields FALSE and the comparison for NULL yields UNKNOWN, both of which are filtered out.",
+    "insufficient": false,
+    "citations": [
+      {
+        "sectionId": "null-where",
+        "quote": "SQL uses TRUE, FALSE, and UNKNOWN in its three-valued logic. A WHERE clause keeps a row only when its predicate is TRUE; FALSE and UNKNOWN are both filtered out. For salaries 100, 200, and NULL, WHERE salary <> 100 returns only the row with 200. To include missing salaries, write salary <> 100 OR salary IS NULL."
+      },
+      {
+        "sectionId": "null-comparison",
+        "quote": "NULL represents missing or unknown information. It is not zero, an empty string, or a value equal to another NULL. Ordinary SQL comparisons involving NULL, including NULL = NULL and NULL <> 5, evaluate to UNKNOWN rather than TRUE or FALSE. Use IS NULL or IS NOT NULL to test missingness."
+      }
+    ],
+    "mode": "support-reviewed",
+    "model": "qwen3.5:9b",
+    "elapsedMs": 16065,
+    "sources": [
+      {
+        "id": "null-where",
+        "page": 1,
+        "title": "WHERE keeps only TRUE",
+        "text": "SQL uses TRUE, FALSE, and UNKNOWN in its three-valued logic. A WHERE clause keeps a row only when its predicate is TRUE; FALSE and UNKNOWN are both filtered out. For salaries 100, 200, and NULL, WHERE salary <> 100 returns only the row with 200. To include missing salaries, write salary <> 100 OR salary IS NULL.",
+        "textZh": "SQL 使用 TRUE、FALSE、UNKNOWN 三值逻辑。WHERE 仅保留条件为 TRUE 的行。工资为 100、200、NULL 时，salary <> 100 只返回 200。要包含缺失工资，使用 salary <> 100 OR salary IS NULL。",
+        "score": 0.7078858469924659,
+        "semantic": 0.7216255737677324,
+        "lexical": 0.6666666666666666
+      },
+      {
+        "id": "null-logic",
+        "page": 2,
+        "title": "Combining unknown conditions",
+        "text": "In SQL three-valued logic, NOT UNKNOWN is UNKNOWN. TRUE OR UNKNOWN is TRUE, FALSE OR UNKNOWN is UNKNOWN, FALSE AND UNKNOWN is FALSE, and TRUE AND UNKNOWN is UNKNOWN. Thus NOT (salary = 100) still excludes rows with NULL salary in a WHERE clause.",
+        "textZh": "NOT UNKNOWN 仍为 UNKNOWN。TRUE OR UNKNOWN 为 TRUE，FALSE OR UNKNOWN 为 UNKNOWN，FALSE AND UNKNOWN 为 FALSE，TRUE AND UNKNOWN 为 UNKNOWN。因此 NOT (salary = 100) 仍会过滤 NULL。",
+        "score": 0.6290874125316709,
+        "semantic": 0.6721165500422278,
+        "lexical": 0.5
+      },
+      {
+        "id": "null-not-in",
+        "page": 3,
+        "title": "The NOT IN trap",
+        "text": "x NOT IN (1, NULL) behaves like x <> 1 AND x <> NULL. For x = 2 the result is TRUE AND UNKNOWN, which is UNKNOWN. For x = 1 the result is FALSE. No row passes WHERE x NOT IN (1, NULL). To avoid unexpected exclusion, remove NULL from the list or use an appropriate correlated NOT EXISTS condition.",
+        "textZh": "x NOT IN (1, NULL) 等价于 x <> 1 AND x <> NULL。x 为 2 时结果是 UNKNOWN，为 1 时结果为 FALSE，因此没有行能通过 WHERE。可移除列表中的 NULL，或使用适当的关联 NOT EXISTS。",
+        "score": 0.6184274400139159,
+        "semantic": 0.6856810311296657,
+        "lexical": 0.4166666666666667
+      },
+      {
+        "id": "null-count",
+        "page": 2,
+        "title": "Counting rows versus values",
+        "text": "COUNT(*) counts all rows. COUNT(column) counts only rows where that column is not NULL. AVG(column) ignores NULL values rather than treating them as zero. For scores 10, 20, NULL: COUNT(*) = 3, COUNT(score) = 2, SUM(score) = 30 and AVG(score) = 15.",
+        "textZh": "COUNT(*) 计算全部行数。COUNT(列) 仅计算该列不为 NULL 的行。AVG 忽略 NULL，不把它当成零。10、20、NULL 的行数为 3，非空数为 2，总和为 30，平均值为 15。",
+        "score": 0.551763133962705,
+        "semantic": 0.5967952897280512,
+        "lexical": 0.4166666666666667
+      },
+      {
+        "id": "null-comparison",
+        "page": 1,
+        "title": "NULL is not a value",
+        "text": "NULL represents missing or unknown information. It is not zero, an empty string, or a value equal to another NULL. Ordinary SQL comparisons involving NULL, including NULL = NULL and NULL <> 5, evaluate to UNKNOWN rather than TRUE or FALSE. Use IS NULL or IS NOT NULL to test missingness.",
+        "textZh": "NULL 表示缺失或未知信息。它不是零、空字符串，也不等于另一个 NULL。普通比较只要涉及 NULL（包括 NULL = NULL），结果就是 UNKNOWN。请用 IS NULL 或 IS NOT NULL 判断缺失。",
+        "score": 0.5062302291238346,
+        "semantic": 0.619418083276224,
+        "lexical": 0.16666666666666666
+      }
+    ],
+    "attempts": [
+      {
+        "attempt": 1,
+        "stage": "draft",
+        "raw": "{\"basis\":\"SQL three-valued logic filters out rows where the predicate evaluates to UNKNOWN, which occurs when comparing NULL with any value using standard operators.\",\"insufficient\":false,\"missing\":\"\",\"claims\":[{\"text\":\"For salaries 100, 200, and NULL, the WHERE clause salary <> 100 returns only the row with 200 because the comparison for 100 yields FALSE and the comparison for NULL yields UNKNOWN, both of which are filtered out.\",\"evidenceIds\":[\"E1\",\"E5\"]}]\n}",
+        "stats": {
+          "totalDurationMs": 5121.779667,
+          "promptTokens": 752,
+          "outputTokens": 113
+        }
+      },
+      {
+        "attempt": 1,
+        "stage": "review",
+        "raw": "{\n  \"answerabilityReason\": \"The question asks which rows survive a specific WHERE clause and why. The source excerpt 'null-where' explicitly states that for salaries 100, 200, and NULL, 'WHERE salary <> 100 returns only the row with 200' because FALSE and UNKNOWN are filtered out. The excerpt 'null-comparison' confirms that comparisons involving NULL evaluate to UNKNOWN. The proposed answer correctly identifies the surviving row (200) and provides the correct reasoning (100 yields FALSE, NULL yields UNKNOWN, both filtered)\",\n  \"claims\": [\n    {\n      \"index\": 0,\n      \"reason\": \"The claim that the row with 200 survives is supported by 'null-where'. The claim that 100 yields FALSE is supported by standard SQL logic implied in 'null-where' and 'null-comparison'. The claim that NULL yields UNKNOWN is explicitly supported by 'null-comparison'. The claim that both are filtered out is explicitly supported by 'null-where'.\",\n      \"verdict\": \"supported\"\n    }\n  ],\n  \"missing\": \"\",\n  \"sourceCanAnswer\": true,\n  \"questionCovered\": true\n}",
+        "stats": {
+          "totalDurationMs": 10128.450083,
+          "promptTokens": 1196,
+          "outputTokens": 267
+        }
+      }
+    ],
+    "support": {
+      "policy": "source-conclusion-and-review-v3",
+      "outcome": "supported",
+      "disclosure": "Quotes are selected from the original source and matched exactly. Drafting and a separate review call use the same local model. This is an automated support check, not independent verification or a guarantee of correctness.",
+      "claims": [
+        {
+          "text": "For salaries 100, 200, and NULL, the WHERE clause salary <> 100 returns only the row with 200 because the comparison for 100 yields FALSE and the comparison for NULL yields UNKNOWN, both of which are filtered out.",
+          "citations": [
+            {
+              "sectionId": "null-where",
+              "quote": "SQL uses TRUE, FALSE, and UNKNOWN in its three-valued logic. A WHERE clause keeps a row only when its predicate is TRUE; FALSE and UNKNOWN are both filtered out. For salaries 100, 200, and NULL, WHERE salary <> 100 returns only the row with 200. To include missing salaries, write salary <> 100 OR salary IS NULL."
+            },
+            {
+              "sectionId": "null-comparison",
+              "quote": "NULL represents missing or unknown information. It is not zero, an empty string, or a value equal to another NULL. Ordinary SQL comparisons involving NULL, including NULL = NULL and NULL <> 5, evaluate to UNKNOWN rather than TRUE or FALSE. Use IS NULL or IS NOT NULL to test missingness."
+            }
+          ]
+        }
+      ],
+      "quoteChoices": [
+        {
+          "id": "E1",
+          "sectionId": "null-where",
+          "start": 0,
+          "end": 313
+        },
+        {
+          "id": "E2",
+          "sectionId": "null-logic",
+          "start": 0,
+          "end": 245
+        },
+        {
+          "id": "E3",
+          "sectionId": "null-not-in",
+          "start": 0,
+          "end": 296
+        },
+        {
+          "id": "E4",
+          "sectionId": "null-count",
+          "start": 0,
+          "end": 248
+        },
+        {
+          "id": "E5",
+          "sectionId": "null-comparison",
+          "start": 0,
+          "end": 287
+        }
+      ],
+      "review": {
+        "answerabilityReason": "The question asks which rows survive a specific WHERE clause and why. The source excerpt 'null-where' explicitly states that for salaries 100, 200, and NULL, 'WHERE salary <> 100 returns only the row with 200' because FALSE and UNKNOWN are filtered out. The excerpt 'null-comparison' confirms that comparisons involving NULL evaluate to UNKNOWN. The proposed answer correctly identifies the surviving row (200) and provides the correct reasoning (100 yields FALSE, NULL yields UNKNOWN, both filtered)",
+        "claims": [
+          {
+            "index": 0,
+            "reason": "The claim that the row with 200 survives is supported by 'null-where'. The claim that 100 yields FALSE is supported by standard SQL logic implied in 'null-where' and 'null-comparison'. The claim that NULL yields UNKNOWN is explicitly supported by 'null-comparison'. The claim that both are filtered out is explicitly supported by 'null-where'.",
+            "verdict": "supported"
+          }
+        ],
+        "missing": "",
+        "sourceCanAnswer": true,
+        "questionCovered": true
+      },
+      "modelCalls": 2
+    },
+    "sourceHash": "dadc6ec13c6948bfc7e4ca3cf541802f78e60270e05ae34c7264347c869d179a",
+    "createdAt": "2026-09-15T17:32:18.372Z"
+  },
+  "screenshots": [
+    "submission/13-supported-answer.jpg",
+    "evidence/v1.3/ui/real-ai-narrow.jpg"
+  ],
+  "limitations": [
+    "The native download destination file was not inspected; the browser download event and identical report endpoint content were checked.",
+    "The three chats comprise two controlled cold/warm HTTP requests and one UI request; none is a student learning measurement."
+  ]
+}

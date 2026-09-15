@@ -1,0 +1,175 @@
+{
+  "recordedAt": "2026-09-15T15:05:38.716Z",
+  "scope": "Actual compiled React UI in Chrome, isolated preview on 4351; real TraceLearn backend on 4352 with a fresh isolated SQLite database. No model inference needed for this verification.",
+  "courseHash": "dadc6ec13c6948bfc7e4ca3cf541802f78e60270e05ae34c7264347c869d179a",
+  "commands": [
+    "npx tsc --noEmit",
+    "npx tsx --test tests/lab-transfer.test.ts",
+    "npx vite build --outDir .local/v13-learning-dist",
+    "PORT=4352 TRACELEARN_DATA=.local/v13-learning-data node --import tsx server/index.ts",
+    "node .local/v13-learning-preview.mjs",
+    "npx tsx --test tests/practice-options.test.ts tests/lab-transfer.test.ts",
+    "npx tsc --noEmit && npx tsx --test tests/practice-generation.test.ts tests/practice-options.test.ts tests/lab-transfer.test.ts"
+  ],
+  "checks": [
+    {
+      "check": "default SQL Lab transfer",
+      "observed": "null-t; Prices 10,20,NULL; source null-where; all answers unselected",
+      "passed": true
+    },
+    {
+      "check": "NOT IN Lab transfer",
+      "observed": "notin-t; x<>1 AND x<>NULL; source null-not-in; all answers unselected",
+      "passed": true
+    },
+    {
+      "check": "default ABCD Lab transfer",
+      "observed": "closure-t; A→B,B→C candidate-key question; source closure",
+      "passed": true
+    },
+    {
+      "check": "SCI Lab transfer",
+      "observed": "bcnf-t; prime-attribute exception; source third-normal",
+      "passed": true
+    },
+    {
+      "check": "NOT IN question to Lab after real grading",
+      "observed": "condition value NOT IN (list); source null-not-in; fresh prediction",
+      "passed": true
+    },
+    {
+      "check": "BCNF question to Lab after real grading",
+      "observed": "prime-exception SCI relation; only I selected; source normal-example; fresh prediction",
+      "passed": true
+    },
+    {
+      "check": "repeat NOT IN transfer after prior grading",
+      "observed": "answer controls enabled and unselected",
+      "passed": true
+    },
+    {
+      "check": "Quick tour Experiment after NOT IN and SCI",
+      "observed": "SQL mode value<>target; values100,200,NULL; no prediction; source null-where",
+      "passed": true
+    },
+    {
+      "check": "FD feedback after real grading",
+      "observed": "source and transfer controls present; unrelated Lab shortcut absent",
+      "passed": true
+    },
+    {
+      "check": "refresh stored FD question",
+      "observed": "fd-d restored with fd-definition source",
+      "passed": true
+    },
+    {
+      "check": "sidebar source synchronization",
+      "observed": "Aggregates switches to null-count; LEFT JOIN switches to join-filter",
+      "passed": true
+    },
+    {
+      "check": "NOT IN with NULL computation guidance",
+      "observed": "remove NULL from list",
+      "passed": true
+    },
+    {
+      "check": "NOT IN without NULL computation guidance",
+      "observed": "add NULL to list",
+      "passed": true
+    },
+    {
+      "check": "OR IS NULL computation guidance",
+      "observed": "switch back to value<>target",
+      "passed": true
+    }
+  ],
+  "isolatedGradedAttempts": [
+    {
+      "questionId": "notin-t",
+      "chosen": 2,
+      "correct": 2,
+      "isCorrect": true
+    },
+    {
+      "questionId": "bcnf-t",
+      "chosen": 1,
+      "correct": 1,
+      "isCorrect": true
+    },
+    {
+      "questionId": "fd-d",
+      "chosen": 1,
+      "correct": 1,
+      "isCorrect": true
+    }
+  ],
+  "targetedTests": {
+    "passed": 13,
+    "total": 13,
+    "files": [
+      "tests/lab-transfer.test.ts",
+      "tests/practice-options.test.ts",
+      "tests/practice-generation.test.ts"
+    ]
+  },
+  "buildAssets": [
+    {
+      "name": "index-BJJIv1BP.css",
+      "sha256": "e5a2e67e1c3f2707d002d7cc8e4570d416a4bd4f39ffc760ca957768dfb62132"
+    },
+    {
+      "name": "index-DUp-2GBS.js",
+      "sha256": "56c5781f80690b4f5d9c6e2569e8d3d2db26c1ce43e69ff0fdadba97c7ee8427"
+    }
+  ],
+  "mainServerAlive": true,
+  "limitations": [
+    "Browser checks are scripted developer acceptance, not independent learner research or evidence of learning gains.",
+    "Source-recall gate and bounded repair are independently tested; final HTTP integration and real-model acceptance remain root-agent work."
+  ],
+  "ownedProcessPids": [
+    51307,
+    51315
+  ],
+  "ownedProcessesStopped": true,
+  "practiceQuality": {
+    "scope": "One explicit non-NULL SQL phrase alias family plus Unicode/case/whitespace duplicates. Passing is not semantic validation.",
+    "repair": "One fresh repair prompt only after the narrow quality error. Frozen generator can make at most two model calls; repair adds one.",
+    "verification": "Mocked generation/repair calls and deterministic validators, including response-body cancellation/timeout; no real model performance claim."
+  },
+  "finalTypecheck": "npx tsc --noEmit passed",
+  "changedFiles": [
+    {
+      "file": "src/App.tsx",
+      "sha256": "4ad5b4f3a93ee9235cf948928aaa741c08f1a26529fb3b57650927c40b58928d"
+    },
+    {
+      "file": "src/CounterexampleLab.tsx",
+      "sha256": "dd12c1a7d98dbf63e652ae9a9e87ed4eb71dd0e1ce6ce51ea66e71df3951f825"
+    },
+    {
+      "file": "src/lab-transfer.ts",
+      "sha256": "25cbe2751e4392407be954e46f24708a9c23404f3fa38dbdc1477c27e6a3e078"
+    },
+    {
+      "file": "server/practice-options.ts",
+      "sha256": "9345587a5c06b54e784164e180925cac25ac186e24d67fe84016f9d0522f3c4b"
+    },
+    {
+      "file": "server/practice-generation.ts",
+      "sha256": "6a42796f97cbd00d127d1dfee409c0e3616bb04c83bf68a7a6183be3f003dc3b"
+    },
+    {
+      "file": "tests/lab-transfer.test.ts",
+      "sha256": "8b2dc905ff32b578805d7caaaf0c46a32f3879bc10d09ed78596e83462432c59"
+    },
+    {
+      "file": "tests/practice-options.test.ts",
+      "sha256": "99e558c3cc5312a775fa6a598c331aa81c432d8a2bdd071c23a2dca9a2d78674"
+    },
+    {
+      "file": "tests/practice-generation.test.ts",
+      "sha256": "165fa635d9ab4d70ade01e159f9d7bc20a1ec6a72871c05e7a58d5569bbb8695"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-15T17:21:18.902211+00:00",
+  "command": "python3 scripts/package-guard-check.py",
+  "scope": "Synthetic temporary fixtures exercising the release gate; not final archive acceptance.",
+  "runtime": "Python 3.14 on macOS",
+  "exitCode": 0,
+  "passed": 16,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "test_check_only_has_no_writes_and_retains_history",
+      "passed": true
+    },
+    {
+      "name": "test_credential_and_database_names_rejected",
+      "passed": true
+    },
+    {
+      "name": "test_duplicate_case_mode_cannot_replace_coverage",
+      "passed": true
+    },
+    {
+      "name": "test_freeze_hash_mismatch",
+      "passed": true
+    },
+    {
+      "name": "test_frozen_runtime_file_changed",
+      "passed": true
+    },
+    {
+      "name": "test_included_file_and_directory_symlinks_rejected",
+      "passed": true
+    },
+    {
+      "name": "test_incomplete_raw_even_with_matching_manifest_hash",
+      "passed": true
+    },
+    {
+      "name": "test_incomplete_reviews_even_with_matching_manifest_hash",
+      "passed": true
+    },
+    {
+      "name": "test_incomplete_verification_stops_before_case_reads",
+      "passed": true
+    },
+    {
+      "name": "test_manifest_directory_symlink_rejected_before_read",
+      "passed": true
+    },
+    {
+      "name": "test_missing_manifest_stops_before_raw_reads",
+      "passed": true
+    },
+    {
+      "name": "test_raw_hash_mismatch",
+      "passed": true
+    },
+    {
+      "name": "test_source_mutation_aborts_staged_zip_and_preserves_previous_files",
+      "passed": true
+    },
+    {
+      "name": "test_stale_review_line_hash",
+      "passed": true
+    },
+    {
+      "name": "test_stale_review_run_identity",
+      "passed": true
+    },
+    {
+      "name": "test_temporary_package_manifest_matches_every_archive_entry",
+      "passed": true
+    }
+  ],
+  "artifacts": {
+    "scripts/package.py": "e0b5e4071d8c7f325dd491ee703b28aba567b74444a2cc07e0f08fa6f5508825",
+    "scripts/package-guard-check.py": "8bf58d32be556f67f83a1a98c7160de0b45a47a04ca96d601fc9bfec720fb938"
+  },
+  "realProjectReadOnlyPreflight": {
+    "publicInventoryFiles": 367,
+    "includedSymlinks": 0,
+    "obviousPrivateOrDatabaseNames": 0,
+    "historicalEvaluationFiles": 13,
+    "hasNoLocalPaths": true,
+    "actualMissingManifestGate": {
+      "exitCode": 1,
+      "stderr": "Release not packaged: Required release file is missing: evidence/v1.3/final-manifest.json"
+    },
+    "officialManifestAndArchiveUnchanged": true
+  },
+  "preflightNote": "The inventory and missing-manifest check were captured before this public test script/record were added. No real case or output contents were opened; these are not final package contents or final counts.",
+  "boundaries": {
+    "realModelCalls": 0,
+    "realHoldoutContentRead": false,
+    "officialArchiveCreatedOrOverwritten": false,
+    "officialManifestChanged": false,
+    "temporarySyntheticArchiveCreatedAndRemoved": true
+  },
+  "limits": [
+    "The tests establish structural packaging gates, not semantic answer correctness.",
+    "Filename exclusions are not a general secret scanner.",
+    "Final real archive extraction, install, launch and downloaded-byte verification remain separate release checks."
+  ]
+}

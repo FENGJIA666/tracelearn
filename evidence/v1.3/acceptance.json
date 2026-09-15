@@ -1,0 +1,60 @@
+{
+  "version": "1.3.0",
+  "at": "2026-09-15T17:38:42.969702+00:00",
+  "completed": true,
+  "scope": "Product acceptance before the immutable archive and external publication; those later steps are recorded separately in the workspace delivery receipt.",
+  "verification": {
+    "completed": true,
+    "automatedTestCount": 123,
+    "httpChecks": 11,
+    "packageGuardSyntheticTests": 16,
+    "browserSummary": "Actual isolated Chrome: both full configuration comparisons, own-source citations, filtering, keyboard focus, 390px English/Chinese, original-source navigation, portable practice/experiments/transfer, real downloads and refresh. In-app browser: real local AI, source jump, saved-answer refresh and export event; actual narrow answer layout.",
+    "controlledUiSummary": "Earlier mocked API acceptance checked support/refusal/unverified/legacy rendering and cancellation. These checks are distinct from the real local model runs.",
+    "localAiSummary": "Final r8: three real original-course answers, exact citations and preserved SQLite history; controlled cold/warm requests plus one actual UI request. r8 long-input/overflow checks are retained. The earlier r7 import/cloze/cancel fixture is separately labelled.",
+    "offlineSummary": "Both app and Ollama were run under a localhost-only process policy; external hostname and literal-IP curl probes failed. Real answers succeeded. Model-unavailable errors and recovery were observed. Whole-computer networking was unchanged.",
+    "packageSummary": "Fresh locked npm ci, final source/build equality, actual Mac launcher and served assets passed in an isolated installation. The package guard passed 16 synthetic checks. Final archive and anonymous downloads are checked separately after packaging.",
+    "offline": {
+      "coldMs": 25791,
+      "warmMs": 16001,
+      "allocatedBytes": 8310782686
+    }
+  },
+  "evidenceSha256": {
+    "freeze.json": "514f395193a9c6cfb811f96a26da0dc33696a4254b4f362633f19af110a57c64",
+    "final-manifest.json": "4e0dc6670c90ce27d0e0a474600d3c479aeda32b7843d32176cf5380c9b40c44",
+    "unit-tests.log": "2298def2ea83b316b532682c9b7c2dc3282b3abdc8c00c61436b2073c9e82d85",
+    "build.log": "7c6d0c76b032acf18b21c7c80b8f0a1c462b18db62aca54ee4d6720cba56f719",
+    "http-check.json": "14fe9f0a5fc3d0193667922b6b31ee459aa0e87150a19615a6e084d556381ff9",
+    "context-check.json": "9f42aad918fd265858c54852718b1ed980ab13b995ec1bbff96b47afd8513a8a",
+    "context-review.json": "e23ef69b0d25898b78759d5da2b15c1ce8cbb93a1e43bc9dca49a6fbcaab75e5",
+    "runtime-check.json": "a05b772d964e077eef5aa3b29c146af4cb65fa6ded014b320fa0dc3f6d14817f",
+    "runtime-review.json": "657248c5f024affc214f049fed52d60f923a79af877caff188a7c90dd97e4b45",
+    "offline-check.json": "1639e5ef7a2a447227163ea8abf52203c1a9e9ec38814455f2d2891ea824f044",
+    "offline-processes.json": "5d75ca8f17776a5b058624dc7e965bfd89f27cb45b9dd4f52b31e7573767b600",
+    "model-recovery.json": "794fa7045257a05e6aab697a872ac2e375e309210ef7f13202c81e95be80e0f1",
+    "fresh-install-check.json": "6a5b12dc754de44dfe38ffd416a2f75e0c501448527294ef16d3c440c2a23e30",
+    "package-guard-check.json": "50ace689d4b893300254ac3112e6de6392b402616f5a81e8f7cfe54e67e7329c",
+    "original-store-preservation.json": "3533064c165949f2cb1542428821674e8ce2d99f88324454e4ef2915a4d0911a",
+    "ui/final-ui-checks.json": "9fad088bbac46edcf05d448b9637854693d63356cb84d85a8a23e98a6606c9b2",
+    "ui/real-ai-acceptance.json": "a78c63d13bc61f41b80c94cbfe244202b9211f9a099545ba33266040e9169983"
+  },
+  "screenshots": {
+    "00-cover.png": "9a4dd0000e32812a5eb11c9f470c3e822fc92c0b9e2b5647888312e609069b31",
+    "13-supported-answer.jpg": "f4fb52ff2e8700887e92713d320e73f61b4b2370725318c01ece60ea4be5f15a",
+    "14-current-evidence.jpg": "6ed9282bfc639dfcddde058df197fa33237cf544fcf22d2b8774a8ede4157b66"
+  },
+  "temporaryAppCleanup": [
+    {
+      "port": 4343,
+      "pid": 72550,
+      "command": "node --import tsx server/index.ts",
+      "action": "SIGTERM to the verified task-owned isolated app after acceptance"
+    },
+    {
+      "port": 4345,
+      "pid": 72339,
+      "command": "node --import tsx server/index.ts",
+      "action": "SIGTERM to the verified task-owned isolated app after acceptance"
+    }
+  ]
+}

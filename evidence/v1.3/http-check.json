@@ -1,0 +1,17 @@
+{
+  "at": "2026-09-15T16:16:32.391Z",
+  "checks": [
+    "Answers hidden from pre-attempt question API",
+    "Invalid answer index rejected",
+    "Wrong answer yields deterministic feedback",
+    "Transfer answer graded correctly",
+    "History persists in SQLite",
+    "Report contains attempts and provenance",
+    "Oversized prompt rejected",
+    "Cross-origin mutation blocked",
+    "DNS rebinding Host rejected",
+    "Multipart note import succeeds",
+    "Unsupported upload rejected"
+  ],
+  "passed": 11
+}

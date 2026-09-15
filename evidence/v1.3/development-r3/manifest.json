@@ -1,0 +1,110 @@
+{
+  "createdAt": "2026-09-15T15:23:06.646Z",
+  "configurationHash": "8ef423f0a491f077097eaef7a95d1039683c571e15f09993d5761eaf9d76238a",
+  "configuration": {
+    "schemaVersion": 1,
+    "datasetLockSha256": "0c0325fa363dcdff1fe252795a41264f263a5033e9cd39284152b4149c9dbc1e",
+    "runnerSha256": "fc7539652e9be7949ca7ef98a26c07c0fdb98a8500a146e5a252cbcaaced9c67",
+    "pipelines": {
+      "frozen-grounded": {
+        "hash": "6588b3d2f6259973f8177c96af5da90b1805f62f4347be10114b55d427439330",
+        "files": {
+          "content/course.ts": "43660ccbd50baf7489367bd8edda4f0be031040df54e35e1cf5dfbd8a0dc4fd5",
+          "package-lock.json": "3838d326793a3df638d27b777f32e73bfa599db66a35bae786581a796c47badf",
+          "server/ai.ts": "ab611814588ab59f1507e7ffff346571a3d20441d96ef2a47540861e663a4a34",
+          "server/store.ts": "dadebe09b3bd1bd3c87c30954fc04b631b80e18a6b1399c428789e66c0096a9d"
+        }
+      },
+      "supported": {
+        "hash": "991ae64a06fe93b2dc75b5d8e686f7b7e74e0e837f84dd6ef6d47fb8c7542be7",
+        "files": {
+          "content/course.ts": "43660ccbd50baf7489367bd8edda4f0be031040df54e35e1cf5dfbd8a0dc4fd5",
+          "package-lock.json": "3838d326793a3df638d27b777f32e73bfa599db66a35bae786581a796c47badf",
+          "server/ai.ts": "ab611814588ab59f1507e7ffff346571a3d20441d96ef2a47540861e663a4a34",
+          "server/store.ts": "dadebe09b3bd1bd3c87c30954fc04b631b80e18a6b1399c428789e66c0096a9d",
+          "server/support-answer.ts": "467caaaf88949c239b86d5c373222735426ee50223b77a241e50ba58fbc52dc7"
+        }
+      }
+    },
+    "model": {
+      "generation": {
+        "name": "qwen3:4b",
+        "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+        "tagParameters": "temperature                    0.6\ntop_k                          20\ntop_p                          0.95\nrepeat_penalty                 1\nstop                           \"<|im_start|>\"\nstop                           \"<|im_end|>\"",
+        "capabilities": [
+          "completion",
+          "thinking",
+          "tools"
+        ]
+      },
+      "supportedGeneration": {
+        "name": "qwen3.5:4b",
+        "digest": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd",
+        "tagParameters": "temperature                    1\ntop_k                          20\ntop_p                          0.95\npresence_penalty               1.5",
+        "capabilities": [
+          "completion",
+          "thinking",
+          "tools",
+          "vision"
+        ]
+      },
+      "embedding": {
+        "name": "qwen3-embedding:0.6b",
+        "digest": "ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d",
+        "tagParameters": null,
+        "capabilities": [
+          "embedding",
+          "thinking",
+          "tools"
+        ]
+      },
+      "ollamaVersion": "0.34.0"
+    },
+    "options": {
+      "frozen-grounded": {
+        "model": "qwen3:4b",
+        "think": false,
+        "options": {
+          "temperature": 0,
+          "seed": 42,
+          "num_ctx": 8192,
+          "num_predict": 1200
+        }
+      },
+      "supported": {
+        "think": false,
+        "options": {
+          "temperature": 0,
+          "seed": 42,
+          "num_ctx": 8192,
+          "num_predict": 1800,
+          "top_k": 20,
+          "top_p": 0.95,
+          "min_p": 0,
+          "presence_penalty": 0,
+          "repeat_penalty": 1
+        },
+        "model": "qwen3.5:4b"
+      }
+    },
+    "deadlineMs": 180000,
+    "scoringProtocols": {
+      "evaluation-v13/scoring-protocol-v2.json": "f391b7620750e34519bed4f72c6b9c0904351340495a80894d8ae13a68ff1ef6",
+      "evaluation-v13/scoring-protocol-v2.md": "9833a1e2d36f46e68b9379e5db25adf51ba88209b6b79abb3a5a6819733a91f3"
+    },
+    "split": "development",
+    "documentsFileSha256": "8609e5a793fedc82159c63b6126a3ac1c884f65bacf8e3ba3f2d2d1fa9e605d3",
+    "casesFileSha256": "2c04c87e08034537e78ecbc43ed4c377c5742883c2839f527aed4f4880279906",
+    "modes": [
+      "frozen-grounded",
+      "supported"
+    ],
+    "frozenBaselineSnapshotSha256": "057d4c8f44980321d65b7f31b629d475fdf434cb07360a1056145f373eda02ed",
+    "freezeSha256": null,
+    "execution": "Sequential input case order; pipeline order alternates by original case index. Source vectors cache separately for each mode/document. Errors are not silently rerun.",
+    "node": "v22.16.0",
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "scope": "Versioned development/one-shot holdout runtime comparison; no semantic correctness is inferred automatically."
+}

@@ -1,0 +1,151 @@
+[
+  {
+    "id": "audit-dev-off-topic",
+    "result": {
+      "answer": "In SQL, NOT UNKNOWN evaluates to UNKNOWN",
+      "insufficient": false,
+      "citations": [
+        {
+          "sectionId": "logic",
+          "quote": "In SQL three-valued logic, NOT UNKNOWN is UNKNOWN."
+        }
+      ],
+      "mode": "support-reviewed",
+      "model": "qwen3:4b",
+      "elapsedMs": 106563,
+      "sources": [
+        {
+          "id": "logic",
+          "title": "logic",
+          "text": "In SQL three-valued logic, NOT UNKNOWN is UNKNOWN.",
+          "page": 1,
+          "score": 0.733637368116204,
+          "semantic": 0.8115164908216053,
+          "lexical": 0.5
+        },
+        {
+          "id": "keys",
+          "title": "keys",
+          "text": "A candidate key is a minimal superkey: no proper subset is a superkey.",
+          "page": 1,
+          "score": 0.24823277898786295,
+          "semantic": 0.33097703865048395,
+          "lexical": 0
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "stage": "draft",
+          "raw": "{\n  \"insufficient\": false,\n  \"missing\": \"\",\n  \"claims\": [\n    {\n      \"text\": \"In SQL, NOT UNKNOWN evaluates to UNKNOWN\",\n      \"citations\": [\n        {\n          \"sectionId\": \"logic\",\n          \"quote\": \"In SQL three-valued logic, NOT UNKNOWN is UNKNOWN.\"\n        }\n      ]\n    }\n  ]\n}",
+          "stats": {
+            "totalDurationMs": 60326.177166,
+            "promptTokens": 316,
+            "outputTokens": 2925
+          }
+        },
+        {
+          "attempt": 1,
+          "stage": "review",
+          "raw": "{\"claims\": [{\"index\": 0, \"reason\": \"The source in section 'logic' (index 0) explicitly states: 'In SQL three-valued logic, NOT UNKNOWN is UNKNOWN.' This directly answers the question 'In SQL, what is the result of NOT UNKNOWN?' with the result being UNKNOWN. The proposed answer 'In SQL, NOT UNKNOWN evaluates to UNKNOWN' matches this exact statement. There are no false premises or missing information; the source provides a complete and correct answer without requiring additional context. The other source (section 'keys', index 1) is irrelevant to the SQL three-valued logic question.\",\"verdict\": \"supported\"}],\"missing\": \"none\",\"sourceCanAnswer\": true,\"questionCovered\": true}",
+          "stats": {
+            "totalDurationMs": 46107.475583,
+            "promptTokens": 459,
+            "outputTokens": 2194
+          }
+        }
+      ],
+      "support": {
+        "policy": "claims-and-review-v1",
+        "outcome": "supported",
+        "disclosure": "Exact-quote checks and a separate review call use the same local model. This is an automated support check, not independent verification or a guarantee of correctness.",
+        "claims": [
+          {
+            "text": "In SQL, NOT UNKNOWN evaluates to UNKNOWN",
+            "citations": [
+              {
+                "sectionId": "logic",
+                "quote": "In SQL three-valued logic, NOT UNKNOWN is UNKNOWN."
+              }
+            ]
+          }
+        ],
+        "review": {
+          "claims": [
+            {
+              "index": 0,
+              "reason": "The source in section 'logic' (index 0) explicitly states: 'In SQL three-valued logic, NOT UNKNOWN is UNKNOWN.' This directly answers the question 'In SQL, what is the result of NOT UNKNOWN?' with the result being UNKNOWN. The proposed answer 'In SQL, NOT UNKNOWN evaluates to UNKNOWN' matches this exact statement. There are no false premises or missing information; the source provides a complete and correct answer without requiring additional context. The other source (section 'keys', index 1) is irrelevant to the SQL three-valued logic question.",
+              "verdict": "supported"
+            }
+          ],
+          "missing": "none",
+          "sourceCanAnswer": true,
+          "questionCovered": true
+        },
+        "modelCalls": 2
+      }
+    }
+  },
+  {
+    "id": "audit-dev-missing-universe-negative",
+    "result": {
+      "answer": "The source may contain the answer, but the local checks could not substantiate a complete response. No explanation was accepted. Inspect the source or retry.",
+      "insufficient": true,
+      "citations": [],
+      "mode": "support-reviewed",
+      "model": "qwen3:4b",
+      "elapsedMs": 161494,
+      "sources": [
+        {
+          "id": "key-test",
+          "title": "key-test",
+          "text": "To test a candidate key, compute its attribute closure under the given dependencies. A superkey reaches every attribute of the relation. A candidate key must also be minimal.",
+          "page": 1,
+          "score": 0.7019403346398855,
+          "semantic": 0.6859204461865139,
+          "lexical": 0.75
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "stage": "draft",
+          "raw": "",
+          "stats": {
+            "totalDurationMs": 80741.602458,
+            "promptTokens": 314,
+            "outputTokens": 4096
+          }
+        },
+        {
+          "attempt": 1,
+          "stage": "draft",
+          "error": "SyntaxError: Unexpected end of JSON input"
+        },
+        {
+          "attempt": 2,
+          "stage": "draft",
+          "raw": "",
+          "stats": {
+            "totalDurationMs": 80666.235666,
+            "promptTokens": 324,
+            "outputTokens": 4096
+          }
+        },
+        {
+          "attempt": 2,
+          "stage": "draft",
+          "error": "SyntaxError: Unexpected end of JSON input"
+        }
+      ],
+      "support": {
+        "policy": "claims-and-review-v1",
+        "outcome": "unverified",
+        "disclosure": "Exact-quote checks and a separate review call use the same local model. This is an automated support check, not independent verification or a guarantee of correctness.",
+        "claims": [],
+        "review": null,
+        "modelCalls": 2
+      }
+    }
+  }
+]

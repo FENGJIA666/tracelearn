@@ -1,0 +1,8 @@
+{
+  "recordedAt": "2026-09-15T17:15:05.697952+00:00",
+  "activity": "An isolated npm ci installation from the unchanged package-lock was started while the sequential holdout continued. No other local model inference was started. Documentation and browser form inspection also took place. The final automated test suite (mocked model boundaries, no production inference) also ran during the latter part of this session.",
+  "startedAtFromInstallDirectoryCreation": "2026-09-15T17:14:45.591778+00:00",
+  "latencyInterpretation": "Reported wall times describe this shared Mac session, not an otherwise-idle, controlled performance benchmark. Request ordering alternates the variants; first requests are not labelled cold.",
+  "installationFinishedBy": "2026-09-15T17:15:15.103936+00:00",
+  "installationExitCode": 0
+}

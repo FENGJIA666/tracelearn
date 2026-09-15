@@ -1,0 +1,940 @@
+{
+  "schemaVersion": 1,
+  "protocolId": "tracelearn-v13-semantic-review-v1",
+  "reviewer": "Codex dataset-author agent",
+  "independentHumanReview": false,
+  "reviewerAlsoAuthoredDataset": true,
+  "blindedReview": false,
+  "disclosure": "Codex-assisted reading of every final output and source, not independent human review or evidence of student learning or competition scores.",
+  "comparison": "Previous production configuration versus proposed production configuration; same weights/materials, not an isolated verification-step ablation.",
+  "expectedRecords": 80,
+  "entries": [
+    {
+      "caseId": "v13-dev-01",
+      "split": "development",
+      "variant": "frozen-grounded",
+      "runIdentity": {
+        "key": "768378421067c72dc915dc38bbe4432cbb5df6ff65de04bc47a8a2a244651af0",
+        "pipelineHash": "6588b3d2f6259973f8177c96af5da90b1805f62f4347be10114b55d427439330",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "463be7ace33d1f64c784b6aecc023f6b205240afa23dc987e3c7467c2ec021a0",
+      "category": "source-answerable",
+      "question": "Which Item codes remain after WHERE price <> 12?",
+      "finalAnswer": "The Item codes that remain after WHERE price <> 1: A and C",
+      "error": null,
+      "disposition": "delivered-answer",
+      "declaredInsufficient": false,
+      "observedRefusal": false,
+      "retrievalSupportAvailable": true,
+      "claims": [
+        {
+          "claim": "A and C remain after the requested filter",
+          "supportVerdict": "contradicted",
+          "sourceIds": [
+            "db-rows",
+            "db-null"
+          ],
+          "reason": "A has price 12 and is FALSE; C is UNKNOWN, so both are excluded."
+        },
+        {
+          "claim": "The target is 1",
+          "supportVerdict": "contradicted",
+          "sourceIds": [
+            "db-rows"
+          ],
+          "reason": "The question explicitly fixes the target at 12."
+        }
+      ],
+      "essentialFactCoverage": "incorrect",
+      "semanticCompleteness": "incorrect",
+      "evidenceValid": false,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": false,
+      "unsupportedAccepted": true,
+      "failureFlags": [
+        "wrong-answer",
+        "unsupported-assertion",
+        "invalid-evidence"
+      ],
+      "rationale": "The accepted answer changes the comparison target from 12 to 1 and returns A/C. The actual table plus WHERE rule returns only B; the exact NOT IN quote concerns a different predicate and cannot support A/C.",
+      "wallMs": 3604,
+      "retainedModelHttpCalls": 2
+    },
+    {
+      "caseId": "v13-dev-01",
+      "split": "development",
+      "variant": "supported",
+      "runIdentity": {
+        "key": "f8f2ed73864f1e3a8fe6184779ccedb90b07ace01939ea482d04616f6ebda0fe",
+        "pipelineHash": "013410b8b1f0db85fe5c4e22a3e3c2de31d6409f642850e39d53969da6fbe746",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "2795f45fd3f9b861833b83a4cd7a87a566d1cce284c6cab31b86c7e8b28cce57",
+      "category": "source-answerable",
+      "question": "Which Item codes remain after WHERE price <> 12?",
+      "finalAnswer": "Item codes B and C remain after WHERE price <> 12\n\nPrice 12 is excluded because price = 12 evaluates to FALSE in WHERE\n\nPrice NULL evaluates to UNKNOWN but is included via price <> 12 OR price IS NULL",
+      "error": null,
+      "disposition": "delivered-answer",
+      "declaredInsufficient": false,
+      "observedRefusal": false,
+      "retrievalSupportAvailable": true,
+      "claims": [
+        {
+          "claim": "B and C remain after WHERE price<>12",
+          "supportVerdict": "contradicted",
+          "sourceIds": [
+            "db-rows",
+            "db-null"
+          ],
+          "reason": "Only B survives; C's UNKNOWN comparison is filtered."
+        },
+        {
+          "claim": "For the row at 12, price=12 evaluates FALSE",
+          "supportVerdict": "contradicted",
+          "sourceIds": [
+            "db-rows",
+            "db-null"
+          ],
+          "reason": "12=12 is TRUE; it is price<>12 that is FALSE."
+        },
+        {
+          "claim": "C is included via OR price IS NULL in this query",
+          "supportVerdict": "not-established",
+          "sourceIds": [
+            "db-null"
+          ],
+          "reason": "The question's query has no OR IS NULL; the source describes it as a different condition."
+        }
+      ],
+      "essentialFactCoverage": "incorrect",
+      "semanticCompleteness": "incorrect",
+      "evidenceValid": false,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": false,
+      "unsupportedAccepted": true,
+      "failureFlags": [
+        "wrong-answer",
+        "unsupported-assertion",
+        "false-premise-confirmed"
+      ],
+      "rationale": "The accepted result incorrectly includes C by inserting OR price IS NULL, which the question did not contain. It also says price=12 evaluates FALSE; that equality is TRUE for A. These are material predicate and truth-value errors despite exact quotes and the model's support label.",
+      "wallMs": 15296,
+      "retainedModelHttpCalls": 2
+    },
+    {
+      "caseId": "v13-dev-02",
+      "split": "development",
+      "variant": "frozen-grounded",
+      "runIdentity": {
+        "key": "66e4173c404209b292f5f60b7b6f1a2f0f4d782dfd924810d445fce380aa0824",
+        "pipelineHash": "6588b3d2f6259973f8177c96af5da90b1805f62f4347be10114b55d427439330",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "25a5a3b7c7ba047380aadf9c8a102632d0d3e3d37d7c5888695b44bba5c07541",
+      "category": "source-answerable",
+      "question": "Item表的COUNT(*)与COUNT(price)分别是多少？",
+      "finalAnswer": "Item表的COUNT(*)是3，COUNT(price)是2",
+      "error": null,
+      "disposition": "delivered-answer",
+      "declaredInsufficient": false,
+      "observedRefusal": false,
+      "retrievalSupportAvailable": true,
+      "claims": [
+        {
+          "claim": "COUNT(*)=3 and COUNT(price)=2",
+          "supportVerdict": "entailed-directly",
+          "sourceIds": [
+            "db-aggregates"
+          ],
+          "reason": "The cited source gives both values explicitly."
+        }
+      ],
+      "essentialFactCoverage": "complete",
+      "semanticCompleteness": "correct",
+      "evidenceValid": true,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": true,
+      "unsupportedAccepted": false,
+      "failureFlags": [],
+      "rationale": "Both requested counts are present, 3 and 2, with an exact db-aggregates quote that states them. The Chinese response contains no extra claim.",
+      "wallMs": 1256,
+      "retainedModelHttpCalls": 1
+    },
+    {
+      "caseId": "v13-dev-02",
+      "split": "development",
+      "variant": "supported",
+      "runIdentity": {
+        "key": "727a1312c639acfa2496e165d211f8a35ca5391bfe680416ec4b79aa822c3e18",
+        "pipelineHash": "013410b8b1f0db85fe5c4e22a3e3c2de31d6409f642850e39d53969da6fbe746",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "19241321cd6e38c3097eb717bfff6a15793fd313b787e78452f8ea0d35e9ab08",
+      "category": "source-answerable",
+      "question": "Item表的COUNT(*)与COUNT(price)分别是多少？",
+      "finalAnswer": "Item表的COUNT(*)是3\n\nItem表的COUNT(price)是2\n\nItem表有3行，其中2行有非空价格",
+      "error": null,
+      "disposition": "delivered-answer",
+      "declaredInsufficient": false,
+      "observedRefusal": false,
+      "retrievalSupportAvailable": true,
+      "claims": [
+        {
+          "claim": "COUNT(*)=3; COUNT(price)=2; three rows with two known prices",
+          "supportVerdict": "entailed-directly",
+          "sourceIds": [
+            "db-aggregates",
+            "db-rows"
+          ],
+          "reason": "Both counts are explicit and the listed third price is NULL."
+        }
+      ],
+      "essentialFactCoverage": "complete",
+      "semanticCompleteness": "correct",
+      "evidenceValid": true,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": true,
+      "unsupportedAccepted": false,
+      "failureFlags": [],
+      "rationale": "All three delivered claims agree: COUNT(*)=3, COUNT(price)=2, and exactly two of the three rows have non-NULL price. The cited aggregates and rows support every part.",
+      "wallMs": 10330,
+      "retainedModelHttpCalls": 2
+    },
+    {
+      "caseId": "v13-dev-03",
+      "split": "development",
+      "variant": "frozen-grounded",
+      "runIdentity": {
+        "key": "047929980ee1e209ac13469478346e30606b9eb9a170007a476686808e19ea45",
+        "pipelineHash": "6588b3d2f6259973f8177c96af5da90b1805f62f4347be10114b55d427439330",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "851dc0cc9cae084b24a3f9281c220d46ca210acee044662b31a87d66797e62a4",
+      "category": "source-answerable",
+      "question": "Under the stated dependencies, what is the closure of A?",
+      "finalAnswer": "The closure of A is {A, B, C}.",
+      "error": null,
+      "disposition": "delivered-answer",
+      "declaredInsufficient": false,
+      "observedRefusal": false,
+      "retrievalSupportAvailable": true,
+      "claims": [
+        {
+          "claim": "A+ is {A,B,C}",
+          "supportVerdict": "entailed-directly",
+          "sourceIds": [
+            "db-fd"
+          ],
+          "reason": "The cited passage states this closure explicitly."
+        }
+      ],
+      "essentialFactCoverage": "complete",
+      "semanticCompleteness": "correct",
+      "evidenceValid": true,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": true,
+      "unsupportedAccepted": false,
+      "failureFlags": [],
+      "rationale": "The response gives exactly A+={A,B,C}; its quote includes the relation/dependencies and stated closure. No claim adds D.",
+      "wallMs": 3179,
+      "retainedModelHttpCalls": 2
+    },
+    {
+      "caseId": "v13-dev-03",
+      "split": "development",
+      "variant": "supported",
+      "runIdentity": {
+        "key": "400b1b3f1ba987b260c79b7bd861e69c9a2a58d887976fa937ce64a480b96acd",
+        "pipelineHash": "013410b8b1f0db85fe5c4e22a3e3c2de31d6409f642850e39d53969da6fbe746",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "249322bc692c9ae47744e0f1ebcb45d4626e0298a305a604ddfc2e89c2174ebe",
+      "category": "source-answerable",
+      "question": "Under the stated dependencies, what is the closure of A?",
+      "finalAnswer": "The closure of A is {A, B, C}.\n\nD is not included in the closure of A because the dependencies do not generate D from A.\n\nAD is a candidate key but not relevant to the closure calculation.",
+      "error": null,
+      "disposition": "delivered-answer",
+      "declaredInsufficient": false,
+      "observedRefusal": false,
+      "retrievalSupportAvailable": true,
+      "claims": [
+        {
+          "claim": "A+={A,B,C} and D is not generated from A",
+          "supportVerdict": "entailed-directly",
+          "sourceIds": [
+            "db-fd"
+          ],
+          "reason": "Both the given closure and dependency generators are explicit."
+        },
+        {
+          "claim": "AD is a candidate key",
+          "supportVerdict": "entailed-directly",
+          "sourceIds": [
+            "db-fd"
+          ],
+          "reason": "The selected passage explicitly states AD is a candidate key; the first quote also supplies premises for deriving it."
+        }
+      ],
+      "essentialFactCoverage": "complete",
+      "semanticCompleteness": "correct",
+      "evidenceValid": true,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": true,
+      "unsupportedAccepted": false,
+      "failureFlags": [],
+      "rationale": "The closure and exclusion of D are correct under the given dependencies. The extra AD candidate-key fact is also stated in selected db-fd; its irrelevance to the requested A closure is explanatory, not an unsupported factual addition.",
+      "wallMs": 8572,
+      "retainedModelHttpCalls": 2
+    },
+    {
+      "caseId": "v13-dev-04",
+      "split": "development",
+      "variant": "frozen-grounded",
+      "runIdentity": {
+        "key": "27eb95f11d72d4410f298f676f77b926f1116a4738290deac386a10ad55c2ffb",
+        "pipelineHash": "6588b3d2f6259973f8177c96af5da90b1805f62f4347be10114b55d427439330",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "5e232072d771a8c8db8367d4bbccb432de86c54aeab6ede41bb25c77b6dca481",
+      "category": "source-answerable",
+      "question": "怎样在保留所有左侧行的同时，只匹配right.active=1的右侧行？",
+      "finalAnswer": "使用LEFT JOIN并指定right.active = 1在ON条件中，而不是在WHERE子句中",
+      "error": null,
+      "disposition": "delivered-answer",
+      "declaredInsufficient": false,
+      "observedRefusal": false,
+      "retrievalSupportAvailable": true,
+      "claims": [
+        {
+          "claim": "Put right.active=1 in LEFT JOIN ON, not WHERE",
+          "supportVerdict": "entailed-directly",
+          "sourceIds": [
+            "db-join"
+          ],
+          "reason": "This placement is explicitly specified for preserving left rows."
+        }
+      ],
+      "essentialFactCoverage": "complete",
+      "semanticCompleteness": "correct",
+      "evidenceValid": true,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": true,
+      "unsupportedAccepted": false,
+      "failureFlags": [],
+      "rationale": "The Chinese answer places right.active=1 in LEFT JOIN ON and excludes the later WHERE alternative. Its exact quote states both match restriction and retention of every left row.",
+      "wallMs": 1409,
+      "retainedModelHttpCalls": 1
+    },
+    {
+      "caseId": "v13-dev-04",
+      "split": "development",
+      "variant": "supported",
+      "runIdentity": {
+        "key": "ea45a34cea7074ec289d85e6a9d7d182cde6b77b66d07661159ae2f2a4adca31",
+        "pipelineHash": "013410b8b1f0db85fe5c4e22a3e3c2de31d6409f642850e39d53969da6fbe746",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "2ce4807b7afb6744570014254214d1f6b7683c4e3014d2f6cec070f18d6f3005",
+      "category": "source-answerable",
+      "question": "怎样在保留所有左侧行的同时，只匹配right.active=1的右侧行？",
+      "finalAnswer": "原文可能包含答案，但本地检查未能确认一份完整、受原文支持的回答。本次没有接受任何解释。请查阅原文或重新尝试。",
+      "error": null,
+      "disposition": "unverified",
+      "declaredInsufficient": true,
+      "observedRefusal": null,
+      "retrievalSupportAvailable": true,
+      "claims": [],
+      "essentialFactCoverage": "not-delivered",
+      "semanticCompleteness": "not-assessed-withheld",
+      "evidenceValid": null,
+      "languageMatch": null,
+      "structuredProseAgreement": null,
+      "taskCorrect": false,
+      "unsupportedAccepted": false,
+      "failureFlags": [
+        "no-answer"
+      ],
+      "rationale": "The final output is unverified although selected db-join states the complete ON-clause answer. Rejected drafts are withheld, so this is no-answer, not a correct refusal.",
+      "wallMs": 23849,
+      "retainedModelHttpCalls": 4
+    },
+    {
+      "caseId": "v13-dev-05",
+      "split": "development",
+      "variant": "frozen-grounded",
+      "runIdentity": {
+        "key": "85730bf7f6fcf6f2a10562d3d86e1b43c5aa228ce4a3e7f401221e31d4c93a55",
+        "pipelineHash": "6588b3d2f6259973f8177c96af5da90b1805f62f4347be10114b55d427439330",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "03c93a4e9b2b5e403e13b7186a67d03ed3623a0f0cfb6767b0caddd007dc534f",
+      "category": "unanswerable",
+      "question": "Which database engine version runs the Item table?",
+      "finalAnswer": "The database engine version that runs the Item table is not specified in the provided sources.",
+      "error": null,
+      "disposition": "delivered-refusal",
+      "declaredInsufficient": false,
+      "observedRefusal": true,
+      "retrievalSupportAvailable": false,
+      "claims": [
+        {
+          "claim": "The engine version is not specified",
+          "supportVerdict": "entailed-directly",
+          "sourceIds": [
+            "db-scope"
+          ],
+          "reason": "The scope explicitly provides no engine version."
+        }
+      ],
+      "essentialFactCoverage": "complete",
+      "semanticCompleteness": "correct-refusal-prose",
+      "evidenceValid": true,
+      "languageMatch": true,
+      "structuredProseAgreement": false,
+      "taskCorrect": false,
+      "unsupportedAccepted": false,
+      "failureFlags": [
+        "structured-prose-mismatch"
+      ],
+      "rationale": "The prose correctly says the engine version is unspecified and cites the scope. However, declared insufficient=false contradicts this refusal, so it fails the frozen strict rule despite semantically appropriate prose.",
+      "wallMs": 3365,
+      "retainedModelHttpCalls": 2
+    },
+    {
+      "caseId": "v13-dev-05",
+      "split": "development",
+      "variant": "supported",
+      "runIdentity": {
+        "key": "5609829b4946b6f1e4abed4b7bfbbca7146b1f6577cd204f3a0f8e102b18eaf0",
+        "pipelineHash": "013410b8b1f0db85fe5c4e22a3e3c2de31d6409f642850e39d53969da6fbe746",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "b044c00d54d26ac459e40a3ca3097369f58d5047080d1fb3de62943817f2787a",
+      "category": "unanswerable",
+      "question": "Which database engine version runs the Item table?",
+      "finalAnswer": "These source passages do not establish a complete answer. Missing information is not evidence that a claim is false. Add the relevant source or ask a narrower question.",
+      "error": null,
+      "disposition": "delivered-refusal",
+      "declaredInsufficient": true,
+      "observedRefusal": true,
+      "retrievalSupportAvailable": false,
+      "claims": [
+        {
+          "claim": "The supplied source does not establish the engine-version answer",
+          "supportVerdict": "entailed-directly",
+          "sourceIds": [
+            "db-scope"
+          ],
+          "reason": "No engine version or deployment is given."
+        }
+      ],
+      "essentialFactCoverage": "complete",
+      "semanticCompleteness": "correct",
+      "evidenceValid": null,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": true,
+      "unsupportedAccepted": false,
+      "failureFlags": [],
+      "rationale": "The accepted refusal does not invent an engine version and correctly treats missing evidence as insufficient rather than false. Its structured flag matches the refusal.",
+      "wallMs": 4936,
+      "retainedModelHttpCalls": 2
+    },
+    {
+      "caseId": "v13-dev-06",
+      "split": "development",
+      "variant": "frozen-grounded",
+      "runIdentity": {
+        "key": "6131ce217fe2a6dc78127b6236c9e0b9b5967176bb3c164f6dcae20ca1a7f45f",
+        "pipelineHash": "6588b3d2f6259973f8177c96af5da90b1805f62f4347be10114b55d427439330",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "f36c1a2f8d10af65c75046b25cd07c1ab8ec89076cee128a4a22ba5936d557ae",
+      "category": "unanswerable",
+      "question": "为了让Item查询最快，当前已经安装的是哪个索引？",
+      "finalAnswer": "当前已经安装的是一个索引，但根据提供的源文本，无法确定具体是哪个索引",
+      "error": null,
+      "disposition": "delivered-refusal",
+      "declaredInsufficient": true,
+      "observedRefusal": true,
+      "retrievalSupportAvailable": false,
+      "claims": [
+        {
+          "claim": "An index is currently installed",
+          "supportVerdict": "not-established",
+          "sourceIds": [
+            "db-scope"
+          ],
+          "reason": "The notes state no installed index and are not a deployment description."
+        },
+        {
+          "claim": "Its identity cannot be determined from the source",
+          "supportVerdict": "entailed-directly",
+          "sourceIds": [
+            "db-scope"
+          ],
+          "reason": "The identity is indeed absent, but that does not establish existence."
+        }
+      ],
+      "essentialFactCoverage": "partial",
+      "semanticCompleteness": "partial-with-unsupported-assertion",
+      "evidenceValid": null,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": false,
+      "unsupportedAccepted": true,
+      "failureFlags": [
+        "unsupported-assertion"
+      ],
+      "rationale": "Although it withholds the index identity, the response first asserts that an index is currently installed. The source describes no deployment or installed index, so the premise is invented; the refusal cannot earn correctness credit.",
+      "wallMs": 1649,
+      "retainedModelHttpCalls": 1
+    },
+    {
+      "caseId": "v13-dev-06",
+      "split": "development",
+      "variant": "supported",
+      "runIdentity": {
+        "key": "0fbac7e232e067a3961c0ad47f354aef98a0a3c58aee7b185a11bbfc3f6703f9",
+        "pipelineHash": "013410b8b1f0db85fe5c4e22a3e3c2de31d6409f642850e39d53969da6fbe746",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "d48c08c6c8b2535b4ed38a4a96bb72f64768e66e91c6e8a57f4550da9a79f770",
+      "category": "unanswerable",
+      "question": "为了让Item查询最快，当前已经安装的是哪个索引？",
+      "finalAnswer": "当前安装的索引是空（无索引）",
+      "error": null,
+      "disposition": "delivered-answer",
+      "declaredInsufficient": false,
+      "observedRefusal": false,
+      "retrievalSupportAvailable": false,
+      "claims": [
+        {
+          "claim": "There is no currently installed index",
+          "supportVerdict": "not-established",
+          "sourceIds": [
+            "db-scope"
+          ],
+          "reason": "No deployment/index inventory is provided; absence of a statement is not evidence of zero indexes."
+        }
+      ],
+      "essentialFactCoverage": "incorrect",
+      "semanticCompleteness": "incorrect",
+      "evidenceValid": false,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": false,
+      "unsupportedAccepted": true,
+      "failureFlags": [
+        "unsupported-assertion",
+        "wrong-answer"
+      ],
+      "rationale": "The answer states that no index is currently installed. db-scope says installed-index information is unstated, not that the index set is empty. This is the exact missing-evidence-to-negative-assertion failure the protocol prohibits.",
+      "wallMs": 8439,
+      "retainedModelHttpCalls": 2
+    },
+    {
+      "caseId": "v13-dev-07",
+      "split": "development",
+      "variant": "frozen-grounded",
+      "runIdentity": {
+        "key": "2dbbd4dcb03d05cab6eebc00002e7cbe04d1fb466049a59fbbd69c3cbede0fa3",
+        "pipelineHash": "6588b3d2f6259973f8177c96af5da90b1805f62f4347be10114b55d427439330",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "f342ed79eadaee76960720d9064ffff3f5a6143d55818862ecedc7d15c5192c0",
+      "category": "unanswerable",
+      "question": "What university exam grade does a student earn for explaining this table correctly?",
+      "finalAnswer": "The student earns a grade of 100% for explaining this table correctly.",
+      "error": null,
+      "disposition": "delivered-answer",
+      "declaredInsufficient": false,
+      "observedRefusal": false,
+      "retrievalSupportAvailable": false,
+      "claims": [
+        {
+          "claim": "A correct explanation earns 100%",
+          "supportVerdict": "not-established",
+          "sourceIds": [
+            "db-scope"
+          ],
+          "reason": "The source provides no grade mapping or university policy."
+        }
+      ],
+      "essentialFactCoverage": "incorrect",
+      "semanticCompleteness": "incorrect",
+      "evidenceValid": false,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": false,
+      "unsupportedAccepted": true,
+      "failureFlags": [
+        "unsupported-assertion",
+        "wrong-answer"
+      ],
+      "rationale": "The answer invents a 100% university exam grade. Its exact quote explicitly says no university examination policy is given, so the citation does not entail the claimed grade.",
+      "wallMs": 4051,
+      "retainedModelHttpCalls": 2
+    },
+    {
+      "caseId": "v13-dev-07",
+      "split": "development",
+      "variant": "supported",
+      "runIdentity": {
+        "key": "28a0c40c69f20a8dbe05668f07ae57692253890b3564cd536fef4dfb418066df",
+        "pipelineHash": "013410b8b1f0db85fe5c4e22a3e3c2de31d6409f642850e39d53969da6fbe746",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "397a548e001b968bbc64420ac96cf4fa26a127e51a248f67affbed16c5924d84",
+      "category": "unanswerable",
+      "question": "What university exam grade does a student earn for explaining this table correctly?",
+      "finalAnswer": "These source passages do not establish a complete answer. Missing information is not evidence that a claim is false. Add the relevant source or ask a narrower question.",
+      "error": null,
+      "disposition": "delivered-refusal",
+      "declaredInsufficient": true,
+      "observedRefusal": true,
+      "retrievalSupportAvailable": false,
+      "claims": [
+        {
+          "claim": "The supplied source does not establish a university exam grade",
+          "supportVerdict": "entailed-directly",
+          "sourceIds": [
+            "db-scope"
+          ],
+          "reason": "Examination policy is explicitly not supplied."
+        }
+      ],
+      "essentialFactCoverage": "complete",
+      "semanticCompleteness": "correct",
+      "evidenceValid": null,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": true,
+      "unsupportedAccepted": false,
+      "failureFlags": [],
+      "rationale": "The response declines to infer a university grade from subject notes, adds no grade or policy, and sets insufficient=true consistently.",
+      "wallMs": 3407,
+      "retainedModelHttpCalls": 2
+    },
+    {
+      "caseId": "v13-dev-08",
+      "split": "development",
+      "variant": "frozen-grounded",
+      "runIdentity": {
+        "key": "54b9966b10fc8e08ce144989c9c5338ee92bf32f382977bea7e466ab7ae10bbe",
+        "pipelineHash": "6588b3d2f6259973f8177c96af5da90b1805f62f4347be10114b55d427439330",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "ee11a8f052cc8cf78304e8781bec6300e3149c9595f578e31c66cf82c55f8898",
+      "category": "contradicted-premise",
+      "question": "NULL=NULL既然为TRUE，为什么这两处缺失值算相等？",
+      "finalAnswer": "NULL=NULL在逻辑上被定义为UNKNOWN，因此在比较时被视为不相等，但数据库系统在处理缺失值时会通过特定规则（如WHERE子句中的IS NULL）来显式处理缺失值，从而在实际查询中将缺失值视为相等。",
+      "error": null,
+      "disposition": "delivered-answer",
+      "declaredInsufficient": false,
+      "observedRefusal": false,
+      "retrievalSupportAvailable": true,
+      "claims": [
+        {
+          "claim": "NULL=NULL is UNKNOWN",
+          "supportVerdict": "entailed-directly",
+          "sourceIds": [
+            "db-null"
+          ],
+          "reason": "This is explicitly stated."
+        },
+        {
+          "claim": "UNKNOWN means the missing values are treated as unequal",
+          "supportVerdict": "contradicted",
+          "sourceIds": [
+            "db-null"
+          ],
+          "reason": "UNKNOWN is a third truth value, not FALSE/inequality."
+        },
+        {
+          "claim": "IS NULL makes missing values equal in actual queries",
+          "supportVerdict": "not-established",
+          "sourceIds": [
+            "db-null",
+            "db-notin"
+          ],
+          "reason": "Testing missingness does not establish equality between NULL values."
+        }
+      ],
+      "essentialFactCoverage": "partial",
+      "semanticCompleteness": "partial-with-false-claims",
+      "evidenceValid": false,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": false,
+      "unsupportedAccepted": true,
+      "failureFlags": [
+        "wrong-answer",
+        "unsupported-assertion"
+      ],
+      "rationale": "The first clause correctly says NULL=NULL is UNKNOWN, but then conflates UNKNOWN with inequality and claims IS NULL makes missing values equal in actual queries. Those added claims are not established and undermine the premise correction.",
+      "wallMs": 2383,
+      "retainedModelHttpCalls": 1
+    },
+    {
+      "caseId": "v13-dev-08",
+      "split": "development",
+      "variant": "supported",
+      "runIdentity": {
+        "key": "9806bf899f33f76475d38242d0b35bd10d55a9e804ce806253227c9aa9b2ecaf",
+        "pipelineHash": "013410b8b1f0db85fe5c4e22a3e3c2de31d6409f642850e39d53969da6fbe746",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "89e74cce375a2b62034a3e8e142d3365c8a2319e8f596ae4d8627cc07cb0e939",
+      "category": "contradicted-premise",
+      "question": "NULL=NULL既然为TRUE，为什么这两处缺失值算相等？",
+      "finalAnswer": "NULL = NULL 在比较规则中被定义为 UNKNOWN，而非 TRUE\n\n在 Item 表中，价格为 NULL 的行（C）与价格为 12 的行（A）在 WHERE 条件中不被视为相等\n\nNULL 值在比较中不被视为相等，而是被定义为 UNKNOWN，因此 'NULL = NULL' 不是 TRUE",
+      "error": null,
+      "disposition": "delivered-answer",
+      "declaredInsufficient": false,
+      "observedRefusal": false,
+      "retrievalSupportAvailable": true,
+      "claims": [
+        {
+          "claim": "NULL=NULL is UNKNOWN, not TRUE",
+          "supportVerdict": "entailed-directly",
+          "sourceIds": [
+            "db-null"
+          ],
+          "reason": "The quoted rule explicitly states this."
+        },
+        {
+          "claim": "C's NULL price and A's 12 are not established equal by an ordinary comparison in WHERE",
+          "supportVerdict": "entailed-by-explicit-derivation",
+          "sourceIds": [
+            "db-rows",
+            "db-null"
+          ],
+          "reason": "NULL comparison is UNKNOWN; WHERE only retains TRUE. The response does not claim UNKNOWN is FALSE."
+        }
+      ],
+      "essentialFactCoverage": "complete",
+      "semanticCompleteness": "correct",
+      "evidenceValid": true,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": true,
+      "unsupportedAccepted": false,
+      "failureFlags": [],
+      "rationale": "The answer repeatedly and explicitly corrects NULL=NULL to UNKNOWN rather than TRUE. Its 'not treated as equal' wording is qualified by UNKNOWN, not an assertion that comparison yields FALSE; the C-versus-A illustration is consistent with NULL equality failing the WHERE TRUE test.",
+      "wallMs": 11874,
+      "retainedModelHttpCalls": 2
+    },
+    {
+      "caseId": "v13-dev-09",
+      "split": "development",
+      "variant": "frozen-grounded",
+      "runIdentity": {
+        "key": "964fedb3c6352e3bb7d9569577183dc59f64889c4ef725145eda96d07fd80675",
+        "pipelineHash": "6588b3d2f6259973f8177c96af5da90b1805f62f4347be10114b55d427439330",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "feccd7e41d54be02a9d7b2e390c19e40915793645368d5266a740911ceab185c",
+      "category": "contradicted-premise",
+      "question": "Because NULL counts as zero, the Item average is 12. Please confirm.",
+      "finalAnswer": "The statement is incorrect because the average price is 18, not 12. The source text explicitly states that for the Item table, AVG(price) is 18, which is calculated by dividing the sum of non-NULL prices (36) by the count of non-NULL prices (2). This contradicts the claim that the average is 1:2.",
+      "error": null,
+      "disposition": "delivered-answer",
+      "declaredInsufficient": false,
+      "observedRefusal": false,
+      "retrievalSupportAvailable": true,
+      "claims": [
+        {
+          "claim": "AVG is 18, from non-NULL sum 36 divided by count 2",
+          "supportVerdict": "entailed-directly",
+          "sourceIds": [
+            "db-aggregates"
+          ],
+          "reason": "All values and the exclusion rule are stated in the selected aggregate passage."
+        },
+        {
+          "claim": "The questioned average claim is 1:2",
+          "supportVerdict": "contradicted",
+          "sourceIds": [],
+          "reason": "The actual question claims an average of 12, not a ratio or time-like value 1:2."
+        }
+      ],
+      "essentialFactCoverage": "complete",
+      "semanticCompleteness": "main-result-correct-with-numeric-misstatement",
+      "evidenceValid": false,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": false,
+      "unsupportedAccepted": true,
+      "failureFlags": [
+        "wrong-answer",
+        "unsupported-assertion"
+      ],
+      "rationale": "The main correction and arithmetic are right: 18 rather than 12, from 36/2 non-NULL values. The final sentence nevertheless changes the questioned value to '1:2'. Under the frozen rule against factual-number typos this is not a fully correct response; it is retained as a qualified main-result success, not silently repaired.",
+      "wallMs": 3394,
+      "retainedModelHttpCalls": 2
+    },
+    {
+      "caseId": "v13-dev-09",
+      "split": "development",
+      "variant": "supported",
+      "runIdentity": {
+        "key": "d36a8a12887f4e489c165a2e079aee757528133ccda066427ca3bf96da27dd3f",
+        "pipelineHash": "013410b8b1f0db85fe5c4e22a3e3c2de31d6409f642850e39d53969da6fbe746",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "08c738dffdb97c973c59164babd0db530ffc97c478a80c538a101157a927e54e",
+      "category": "contradicted-premise",
+      "question": "Because NULL counts as zero, the Item average is 12. Please confirm.",
+      "finalAnswer": "The Item average is 18, not 12, because AVG(price) = SUM(price) / COUNT(price) = 36 / 2 = 18.\n\nNULL does not count as zero in the context of the Item table's average calculation; the source specifies that COUNT(price) is 2 (non-NULL prices) and AVG(price) is 18.\n\nThe claim that NULL counts as zero is incorrect; the source shows that the average is calculated using non-NULL prices only, resulting in 18, not 12.",
+      "error": null,
+      "disposition": "delivered-answer",
+      "declaredInsufficient": false,
+      "observedRefusal": false,
+      "retrievalSupportAvailable": true,
+      "claims": [
+        {
+          "claim": "AVG=36/2=18 rather than12, using only non-NULL prices",
+          "supportVerdict": "entailed-directly",
+          "sourceIds": [
+            "db-aggregates"
+          ],
+          "reason": "The source states the sum, count, average and non-NULL rule."
+        }
+      ],
+      "essentialFactCoverage": "complete",
+      "semanticCompleteness": "correct",
+      "evidenceValid": true,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": true,
+      "unsupportedAccepted": false,
+      "failureFlags": [],
+      "rationale": "All clauses correctly reject zero-filling NULL and give the complete 36/2=18 calculation. The numeric facts and non-NULL denominator are directly cited; no number or premise is altered.",
+      "wallMs": 16682,
+      "retainedModelHttpCalls": 2
+    },
+    {
+      "caseId": "v13-dev-10",
+      "split": "development",
+      "variant": "frozen-grounded",
+      "runIdentity": {
+        "key": "1b674787e9512451a48ecad16d5d7fec725da3341bb3f2d428d62d01332ea2c0",
+        "pipelineHash": "6588b3d2f6259973f8177c96af5da90b1805f62f4347be10114b55d427439330",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "90c753f5cd9ed74ed83d5e39b16617cb006dc8f95a8ecbf840abdba9bbb73618",
+      "category": "contradicted-premise",
+      "question": "B→C应该也表示C→B，请给出这个反向依赖的依据。",
+      "finalAnswer": null,
+      "error": {
+        "name": "Error",
+        "message": "The model could not produce verifiable citations after two attempts. Try a narrower question. No answer was accepted.",
+        "status": 502,
+        "audit": null
+      },
+      "disposition": "runtime-error",
+      "declaredInsufficient": null,
+      "observedRefusal": null,
+      "retrievalSupportAvailable": false,
+      "claims": [],
+      "essentialFactCoverage": "not-delivered",
+      "semanticCompleteness": "not-assessed-withheld",
+      "evidenceValid": null,
+      "languageMatch": null,
+      "structuredProseAgreement": null,
+      "taskCorrect": false,
+      "unsupportedAccepted": false,
+      "failureFlags": [
+        "no-answer"
+      ],
+      "rationale": "The pipeline ends with a 502 after two failed citation-validation attempts. No answer or refusal is delivered, so this is an error/no-answer and not a correct refusal.",
+      "wallMs": 3150,
+      "retainedModelHttpCalls": 2
+    },
+    {
+      "caseId": "v13-dev-10",
+      "split": "development",
+      "variant": "supported",
+      "runIdentity": {
+        "key": "0a539dc64adb2565246cdeda0b2228c9b87de614f448ba203e3e00e42f94c092",
+        "pipelineHash": "013410b8b1f0db85fe5c4e22a3e3c2de31d6409f642850e39d53969da6fbe746",
+        "materialHash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+        "configurationHash": "bfd3d92341f0a4f9adeafa0c8fdf264f2cc5aa6f56d68155b7fc814a7e359b61"
+      },
+      "rawOutputSha256": "bafe2e8929ac3e5e33c8ea12ea06ca53f76aae2cd62a811462821e97b4c3aa52",
+      "category": "contradicted-premise",
+      "question": "B→C应该也表示C→B，请给出这个反向依赖的依据。",
+      "finalAnswer": "这些原文片段不足以确定完整答案。缺少信息不等于某个说法是错误的。请补充相关材料，或把问题缩小到原文覆盖的范围。",
+      "error": null,
+      "disposition": "delivered-refusal",
+      "declaredInsufficient": true,
+      "observedRefusal": true,
+      "retrievalSupportAvailable": true,
+      "claims": [
+        {
+          "claim": "The selected sources cannot establish a complete correction",
+          "supportVerdict": "contradicted",
+          "sourceIds": [
+            "db-fd"
+          ],
+          "reason": "C cannot derive B from the specified generators; the requested reverse implication is unsupported and can be corrected."
+        }
+      ],
+      "essentialFactCoverage": "not-answered",
+      "semanticCompleteness": "unjustified-refusal",
+      "evidenceValid": null,
+      "languageMatch": true,
+      "structuredProseAgreement": true,
+      "taskCorrect": false,
+      "unsupportedAccepted": false,
+      "failureFlags": [
+        "unjustified-refusal"
+      ],
+      "rationale": "The source gives the complete generating dependency set and closure method, so it supports correcting the claim that B->C implies C->B. Refusing because evidence is incomplete misses this answerable false premise.",
+      "wallMs": 4487,
+      "retainedModelHttpCalls": 2
+    }
+  ],
+  "rawSnapshotSha256": "c6109471897589e24afdd20451c3a66d70dfc4e630f98b495d58aa0d444b7fff",
+  "rawRowsAvailable": 20,
+  "reviewedRecords": 20,
+  "complete": false,
+  "updatedAt": "2026-09-15T15:11:52.207330+00:00",
+  "protocolSha256": {
+    "scoring-protocol.md": "99da33baa61e79ea76ae3fc5147e2b508606b442ab053938e1777bda8a92990e",
+    "scoring-protocol.json": "5623e23ad58a83a35beb1b44b047500f5f50e320365bbfb73cc9bbf900071d9d"
+  },
+  "runStatus": "completed-first-10-cases-development-probe",
+  "probeExpectedRecords": 20,
+  "probeComplete": true,
+  "fullDevelopmentSplitComplete": false,
+  "scopeNote": "All 20 outputs for the first 10 development cases reviewed; this is not the full 40-case development split and no full-split metric is reported."
+}

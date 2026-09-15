@@ -1,0 +1,51 @@
+{
+  "version": "1.3.0",
+  "createdAt": "2026-09-15T17:24:42.009718+00:00",
+  "freezeSha256": "514f395193a9c6cfb811f96a26da0dc33696a4254b4f362633f19af110a57c64",
+  "verification": {
+    "completed": true,
+    "automatedTestCount": 123,
+    "httpChecks": 11,
+    "packageGuardSyntheticTests": 16,
+    "browserSummary": "Actual isolated Chrome: both full configuration comparisons, own-source citations, filtering, keyboard focus, 390px English/Chinese, original-source navigation, portable practice/experiments/transfer, real downloads and refresh. In-app browser: real local AI, source jump, saved-answer refresh and export event; actual narrow answer layout.",
+    "controlledUiSummary": "Earlier mocked API acceptance checked support/refusal/unverified/legacy rendering and cancellation. These checks are distinct from the real local model runs.",
+    "localAiSummary": "Final r8: three real original-course answers, exact citations and preserved SQLite history; controlled cold/warm requests plus one actual UI request. r8 long-input/overflow checks are retained. The earlier r7 import/cloze/cancel fixture is separately labelled.",
+    "offlineSummary": "Both app and Ollama were run under a localhost-only process policy; external hostname and literal-IP curl probes failed. Real answers succeeded. Model-unavailable errors and recovery were observed. Whole-computer networking was unchanged.",
+    "packageSummary": "Fresh locked npm ci, final source/build equality, actual Mac launcher and served assets passed in an isolated installation. The package guard passed 16 synthetic checks. Final archive and anonymous downloads are checked separately after packaging.",
+    "offline": {
+      "coldMs": 25791,
+      "warmMs": 16001,
+      "allocatedBytes": 8310782686
+    }
+  },
+  "model": {
+    "name": "qwen3.5:9b",
+    "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+    "embeddingName": "qwen3-embedding:0.6b",
+    "embeddingDigest": "ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d",
+    "ollamaVersion": "0.34.0",
+    "options": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 16384,
+      "num_predict": 1800,
+      "top_k": 20,
+      "top_p": 0.95,
+      "min_p": 0,
+      "presence_penalty": 0,
+      "repeat_penalty": 1
+    },
+    "downloadBytes": 7233625569
+  },
+  "development": {
+    "directory": "evidence/v1.3/development-r8",
+    "rawSha256": "fa38f15d7a97048dcbfeacf945c80fee68347970c3ea9732c1af2f95f9cb9118",
+    "semanticReviewSha256": "1f49975dc3a4c2b33c7427fe82082f238cf2ce0d01610e22e7ff805ad58e9a2b"
+  },
+  "holdout": {
+    "directory": "evidence/v1.3/holdout-run",
+    "rawSha256": "0b22a4012a298d747510da600e6cb0a1b83037bc17b362cdfd0a5b143de8762c",
+    "semanticReviewSha256": "1618f08cc8590127c7a3be672797454ea7d2bbdd11c145e052f63ab0268180f3"
+  },
+  "verifiedAt": "2026-09-15T17:38:42.969096+00:00"
+}

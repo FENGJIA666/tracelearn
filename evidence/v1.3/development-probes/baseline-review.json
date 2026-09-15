@@ -1,0 +1,90 @@
+{
+  "at": "2026-09-15T14:48:51.834Z",
+  "reviewer": "Codex-assisted logical review, not independent human validation",
+  "scope": "Six intentionally targeted development cases; not an unbiased benchmark or proof of learning/score benefit.",
+  "summary": {
+    "cases": 6,
+    "pipelineAccepted": 4,
+    "correctComplete": 1,
+    "unsupportedNegative": 1,
+    "numericCorruption": 1,
+    "incompleteRequestCoverage": 1,
+    "pipelineErrors": 2
+  },
+  "review": [
+    {
+      "id": "audit-dev-off-topic",
+      "verdict": "correct-complete",
+      "rationale": "Directly answers NOT UNKNOWN as UNKNOWN, consistent with the supplied source.",
+      "acceptedByFrozenPipeline": true,
+      "quoteMembership": [
+        {
+          "sectionId": "logic",
+          "exact": true
+        }
+      ],
+      "rawOutputAvailable": true,
+      "wallMs": 5967
+    },
+    {
+      "id": "audit-dev-missing-universe-negative",
+      "verdict": "unsupported-negative-missing-premise",
+      "rationale": "The full relation attribute set is absent. A may be a key of ABC and may fail to be a key of ABCD; the response incorrectly concludes no instead of preserving uncertainty.",
+      "acceptedByFrozenPipeline": true,
+      "quoteMembership": [
+        {
+          "sectionId": "key-test",
+          "exact": true
+        }
+      ],
+      "rawOutputAvailable": true,
+      "wallMs": 4711
+    },
+    {
+      "id": "audit-dev-complete-universe-key",
+      "verdict": "pipeline-error-no-answer",
+      "rationale": "The problem supplies a complete relation and dependency set with a derivable positive answer. The frozen pipeline returned 502 after two validation attempts. Failed candidate bodies are not exposed by answer() and were not captured, so the precise validation failure is unknown.",
+      "acceptedByFrozenPipeline": false,
+      "quoteMembership": [],
+      "rawOutputAvailable": false,
+      "wallMs": 4547
+    },
+    {
+      "id": "audit-dev-numeric-where",
+      "verdict": "numeric-literal-corruption",
+      "rationale": "The answer reports 2:40 as one input wage although the question and exact quote both say 240. The final selected row is right, but the changed numeric premise is an observable answer defect.",
+      "acceptedByFrozenPipeline": true,
+      "quoteMembership": [
+        {
+          "sectionId": "where",
+          "exact": true
+        }
+      ],
+      "rawOutputAvailable": true,
+      "wallMs": 5580
+    },
+    {
+      "id": "audit-dev-valid-derived-number",
+      "verdict": "pipeline-error-no-answer",
+      "rationale": "The mean 11 follows from the question values 8 and 14 and the source rule. The frozen pipeline returned 502. Failed candidate bodies were not captured; do not label this specifically a semantic or quotation failure.",
+      "acceptedByFrozenPipeline": false,
+      "quoteMembership": [],
+      "rawOutputAvailable": false,
+      "wallMs": 3155
+    },
+    {
+      "id": "audit-dev-reverse-with-counterexample",
+      "verdict": "correct-core-but-incomplete-request",
+      "rationale": "The answer correctly denies reverse implication but omits the explicitly requested small counterexample. A coverage checker must read the entire question, not only its yes/no clause.",
+      "acceptedByFrozenPipeline": true,
+      "quoteMembership": [
+        {
+          "sectionId": "dependency",
+          "exact": true
+        }
+      ],
+      "rawOutputAvailable": true,
+      "wallMs": 4144
+    }
+  ]
+}

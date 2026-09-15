@@ -9,14 +9,12 @@
     "ollama",
     "qwen3"
   ],
-  "images": 12,
-  "coverUploaded": true,
-  "storyTemplateRemoved": true,
+  "images": 15,
   "links": [
     "https://github.com/FENGJIA666/tracelearn",
-    "https://github.com/FENGJIA666/tracelearn/blob/v1.2.0/submission/TraceLearn-Technical-Report.pdf",
-    "https://github.com/FENGJIA666/tracelearn/releases/download/v1.2.0/TraceLearn-Complete-v1.2.0.zip",
-    "https://github.com/FENGJIA666/tracelearn/releases/download/v1.2.0/TraceLearn-Portable.html"
+    "https://github.com/FENGJIA666/tracelearn/blob/v1.3.0/submission/TraceLearn-Technical-Report.pdf",
+    "https://github.com/FENGJIA666/tracelearn/releases/download/v1.3.0/TraceLearn-Complete-v1.3.0.zip",
+    "https://github.com/FENGJIA666/tracelearn/releases/download/v1.3.0/TraceLearn-Portable.html"
   ],
-  "scope": "Reference copy of the project content and material links. Read the actual submission status on Devpost."
+  "scope": "Submission-ready content reference for v1.3.0, not evidence of an external upload. Read the actual submission status on Devpost; the publication verification is saved outside the immutable source archive."
 }

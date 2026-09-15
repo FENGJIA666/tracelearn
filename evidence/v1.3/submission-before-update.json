@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-09-15T16:18:43.705452+00:00",
+  "method": "Reloaded existing Devpost finalization tab and read the actual accessibility state",
+  "url": "https://devpost.com/submit-to/31196-ml-empowerment-build-challenge-3-0/manage/submissions/1182754-tracelearn-learning-that-can-show-its-work/finalization",
+  "state": "SUBMITTED",
+  "stepsDone": "4/4",
+  "finalButton": "Project submitted!",
+  "buttonDisabled": true,
+  "platformStatement": "After submitting, you can still edit your project until the submission deadline.",
+  "changesSavedThisRun": false
+}

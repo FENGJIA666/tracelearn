@@ -4,16 +4,18 @@ import {analyzeKey, evaluateSqlRows, LAB_SCHEMAS, type SqlMode, type SqlValue} f
 import {labReport, readLabAttempts, showSet, showValue, sqlExpression, type LabAttempt, type NewLabAttempt} from './lab-history';
 import {preferences} from './environment';
 import {downloadText} from './download';
+import {defaultLabContext,type LabTransferContext} from './lab-transfer';
 
 export type LabKind = 'sql' | 'keys';
-export const labForQuestion = (id?: string): LabKind | undefined => id && /^(null|notin)-/.test(id) ? 'sql' : id && /^(key|fd|closure|bcnf)-/.test(id) ? 'keys' : undefined;
-type Props = {sourceHash: string; zh: boolean; onSource: (id: string) => void; onContext: (id: string) => void; initialLab?: LabKind; onTransfer: (kind: LabKind) => void};
+type Props = {sourceHash: string; zh: boolean; onSource: (id: string) => void; onContext: (id: string) => void; initialContext?: LabTransferContext; onTransfer: (context: LabTransferContext) => void};
 const storageKey = (hash: string) => `lab-attempts-v1:${hash}`;
 
-export function CounterexampleLab({sourceHash, zh, onSource, onContext, initialLab = 'sql', onTransfer}: Props) {
-  const [kind, setKind] = useState<LabKind>(initialLab);
+export function CounterexampleLab({sourceHash, zh, onSource, onContext, initialContext = defaultLabContext, onTransfer}: Props) {
+  const [kind, setKind] = useState<LabKind>(initialContext.kind);
+  const [sqlMode, setSqlMode] = useState<SqlMode>(initialContext.kind==='sql'?initialContext.mode:'not-equal');
+  const [keySchemaId, setKeySchemaId] = useState(initialContext.kind==='keys'?initialContext.schemaId:LAB_SCHEMAS[0].id);
   const [attempts, setAttempts] = useState(() => readLabAttempts(preferences.get(storageKey(sourceHash)), sourceHash));
-  useEffect(() => setKind(initialLab), [initialLab]);
+  useEffect(() => {setKind(initialContext.kind);setSqlMode(initialContext.kind==='sql'?initialContext.mode:'not-equal');setKeySchemaId(initialContext.kind==='keys'?initialContext.schemaId:LAB_SCHEMAS[0].id);}, [initialContext]);
   useEffect(() => setAttempts(readLabAttempts(preferences.get(storageKey(sourceHash)), sourceHash)), [sourceHash]);
   function save(attempt: NewLabAttempt) {
     const record = {...attempt, id: crypto.randomUUID(), createdAt: new Date().toISOString(), sourceHash, schemaVersion: 1} as LabAttempt;
@@ -27,9 +29,9 @@ export function CounterexampleLab({sourceHash, zh, onSource, onContext, initialL
       <button aria-pressed={kind === 'sql'} onClick={() => setKind('sql')}>SQL NULL</button>
       <button aria-pressed={kind === 'keys'} onClick={() => setKind('keys')}>{zh ? '候选键与闭包' : 'Keys & closure'}</button>
     </div>
-    {kind === 'sql' ? <SqlExperiment key="sql" zh={zh} onSource={onSource} onContext={onContext} onSave={save}/> : <KeyExperiment key="keys" zh={zh} onSource={onSource} onContext={onContext} onSave={save}/>}
+    {kind === 'sql' ? <SqlExperiment key="sql" mode={sqlMode} onMode={setSqlMode} zh={zh} onSource={onSource} onContext={onContext} onSave={save}/> : <KeyExperiment key="keys" schemaId={keySchemaId} onSchema={setKeySchemaId} zh={zh} onSource={onSource} onContext={onContext} onSave={save}/>}
     <div className="lab-footer">
-      <button className="secondary" onClick={() => onTransfer(kind)}>{zh ? '回到迁移题独立作答' : 'Try a transfer question'}<ArrowRight size={15}/></button>
+      <button className="secondary" onClick={() => onTransfer(kind === 'sql' ? {kind, mode:sqlMode} : {kind, schemaId:keySchemaId})}>{zh ? '回到迁移题独立作答' : 'Try a transfer question'}<ArrowRight size={15}/></button>
       <button className="text-button" disabled={!attempts.length} onClick={() => downloadText('TraceLearn-lab-record.md', labReport(attempts))}><Download size={14}/>{zh ? `导出实验记录 (${attempts.length})` : `Export lab record (${attempts.length})`}</button>
     </div>
     <p className="fineprint">{zh ? '计算过程不调用AI。保留最近100次实验，存于此浏览器；可导出留存。实验预测不计入题目正确率，也不代表掌握程度。' : 'No AI is used in these computations. The latest 100 experiments stay in this browser; export to keep a copy. Predictions are separate from quiz scores and do not certify mastery.'}</p>
@@ -47,10 +49,9 @@ function parseValue(text: string): SqlValue {
   return Number(value);
 }
 
-function SqlExperiment({zh, onSource, onContext, onSave}: ExperimentProps) {
+function SqlExperiment({zh, onSource, onContext, onSave, mode, onMode}: ExperimentProps & {mode:SqlMode; onMode:(mode:SqlMode)=>void}) {
   const [values, setValues] = useState(['100', '200', 'NULL']);
   const [targetText, setTargetText] = useState('100');
-  const [mode, setMode] = useState<SqlMode>('not-equal');
   const [listText, setListText] = useState('100, NULL');
   const [prediction, setPrediction] = useState<boolean[]>([false, false, false]);
   const [predicted, setPredicted] = useState(false);
@@ -74,7 +75,7 @@ function SqlExperiment({zh, onSource, onContext, onSave}: ExperimentProps) {
     <p className="fineprint">{zh ? '输入数字或 NULL（缺失值）。每一行单独判断，重复值仍是不同的行。' : 'Enter numbers or NULL for missing values. Duplicate values are still separate rows.'}</p>
     <div className="lab-input-rows">{values.map((v, i) => <label key={i}>{zh ? '行' : 'Row'} {i + 1}<input aria-label={`${zh ? '行' : 'Row'} ${i + 1} ${zh ? '值' : 'value'}`} maxLength={24} spellCheck={false} value={v} onChange={e => { reset(); setValues(old => old.map((x, n) => n === i ? e.target.value : x)); }}/></label>)}</div>
     <div className="lab-row-actions"><button className="text-button" disabled={values.length >= 6} onClick={() => { reset(); setValues([...values, 'NULL']); setPrediction([...values, 'NULL'].map(() => false)); }}>{zh ? '增加一行' : 'Add row'}</button><button className="text-button" disabled={values.length <= 1} onClick={() => { reset(); setValues(values.slice(0, -1)); setPrediction(values.slice(0, -1).map(() => false)); }}>{zh ? '移除末行' : 'Remove last row'}</button></div>
-    <div className="lab-controls"><label>{zh ? '条件' : 'Condition'}<select value={mode} onChange={e => { reset(); setMode(e.target.value as SqlMode); }}><option value="not-equal">value &lt;&gt; target</option><option value="not-equal-negated">NOT (value = target)</option><option value="not-equal-or-null">value &lt;&gt; target OR value IS NULL</option><option value="not-in">value NOT IN (list)</option></select></label>
+    <div className="lab-controls"><label>{zh ? '条件' : 'Condition'}<select value={mode} onChange={e => { reset(); onMode(e.target.value as SqlMode); }}><option value="not-equal">value &lt;&gt; target</option><option value="not-equal-negated">NOT (value = target)</option><option value="not-equal-or-null">value &lt;&gt; target OR value IS NULL</option><option value="not-in">value NOT IN (list)</option></select></label>
       {mode === 'not-in' ? <label>{zh ? '比较列表（逗号分隔）' : 'List (comma separated)'}<input value={listText} maxLength={180} onChange={e => { reset(); setListText(e.target.value); }}/></label> : <label>{zh ? '目标数字' : 'Target number'}<input value={targetText} maxLength={24} onChange={e => { reset(); setTargetText(e.target.value); }}/></label>}
     </div>
     {!parsed && <p role="alert" className="error">{zh ? '请使用 -10亿 到 10亿 的有限数字或 NULL。列表需要1至8项，目标必须是数字。' : 'Use finite numbers between −1 billion and 1 billion, or NULL. Lists need 1–8 items; the target must be a number.'}</p>}
@@ -84,7 +85,13 @@ function SqlExperiment({zh, onSource, onContext, onSave}: ExperimentProps) {
     {!result && <div className="lab-row-actions"><button className="secondary" aria-pressed={predicted && prediction.every(v => !v)} onClick={() => { setPrediction(values.map(() => false)); setPredicted(true); }}>{zh ? '我预测没有行通过' : 'I predict no rows pass'}</button><button className="primary" disabled={!parsed || !predicted} onClick={run}>{zh ? '运行并核对预测' : 'Run & check prediction'}<ArrowRight size={16}/></button></div>}
     {result && <div className="lab-result" role="status"><div className="lab-result-title"><FlaskConical size={17}/><strong>{result.every((r, i) => r.kept === prediction[i]) ? (zh ? '预测与计算一致。' : 'Your prediction matches this computation.') : (zh ? '发现反例：核对不同的行。' : 'A counterexample: inspect the rows that differ.')}</strong></div>
       <div className="table-scroll"><table className="lab-table"><thead><tr><th>{zh ? '行 / 值' : 'Row / value'}</th><th>{zh ? '你的预测' : 'Your prediction'}</th><th>{zh ? '条件结果' : 'Predicate'}</th><th>WHERE</th></tr></thead><tbody>{result.map((r, i) => <tr key={i} className={r.kept !== prediction[i] ? 'lab-mismatch' : ''}><th>{i + 1} · {showValue(r.value)}</th><td>{prediction[i] ? (zh ? '保留' : 'Keep') : (zh ? '排除' : 'Exclude')}</td><td><code>{r.truth}</code></td><td>{r.kept ? (zh ? '保留' : 'Kept') : (zh ? '排除' : 'Excluded')}{r.kept !== prediction[i] && <span className="difference">{zh ? '与预测不同' : 'Different'}</span>}</td></tr>)}</tbody></table></div>
-      <p>{zh ? 'WHERE 只保留 TRUE，FALSE 和 UNKNOWN 都被排除。把条件改为 OR value IS NULL，再预测一次，观察缺失值的变化。' : 'WHERE keeps only TRUE. FALSE and UNKNOWN are excluded. Change the condition to OR value IS NULL, predict again, and watch what happens to the missing value.'}</p>
+      <p>{zh ? 'WHERE 只保留 TRUE，FALSE 和 UNKNOWN 都被排除。' : 'WHERE keeps only TRUE. FALSE and UNKNOWN are excluded.'} {mode === 'not-in'
+        ? parsed?.list.includes(null)
+          ? (zh ? '从比较列表中移除 NULL，再预测一次；核对哪些行的条件结果发生变化。' : 'Remove NULL from the comparison list, predict again, and inspect which predicate results change.')
+          : (zh ? '在比较列表中加入 NULL，再预测一次；核对哪些行的条件结果发生变化。' : 'Add NULL to the comparison list, predict again, and inspect which predicate results change.')
+        : mode === 'not-equal-or-null'
+          ? (zh ? '切换回 value <> target，再预测一次，对比缺失值所在行。' : 'Switch back to value <> target, predict again, and compare the row with the missing value.')
+          : (zh ? '把条件改为 OR value IS NULL，再预测一次，观察缺失值的变化。' : 'Change the condition to OR value IS NULL, predict again, and watch what happens to the missing value.')}</p>
       <button className="text-button" onClick={reset}><RotateCcw size={14}/>{zh ? '用这些输入重新预测' : 'Predict again with these inputs'}</button>
     </div>}
     <SourceButtons ids={sourceIds} onSource={onSource}/>
@@ -92,8 +99,7 @@ function SqlExperiment({zh, onSource, onContext, onSave}: ExperimentProps) {
   </div>;
 }
 
-function KeyExperiment({zh, onSource, onContext, onSave}: ExperimentProps) {
-  const [schemaId, setSchemaId] = useState(LAB_SCHEMAS[0].id);
+function KeyExperiment({zh, onSource, onContext, onSave, schemaId, onSchema}: ExperimentProps & {schemaId:string; onSchema:(schemaId:string)=>void}) {
   const schema = LAB_SCHEMAS.find(s => s.id === schemaId)!;
   const [selected, setSelected] = useState<string[]>([...schema.initialSelection]);
   const [prediction, setPrediction] = useState<'candidate' | 'superkey-only' | 'not-superkey' | ''>('');
@@ -108,7 +114,7 @@ function KeyExperiment({zh, onSource, onContext, onSave}: ExperimentProps) {
   const classification = result?.isMinimal ? 'candidate' : result?.isSuperkey ? 'superkey-only' : 'not-superkey';
   return <div className="experiment">
     <div className="lab-step"><span>1</span><h3>{zh ? '选择关系与属性' : 'Choose a relation and attributes'}</h3></div>
-    <label className="lab-schema">{zh ? '关系' : 'Relation'}<select value={schemaId} onChange={e => { const next = LAB_SCHEMAS.find(s => s.id === e.target.value)!; setSchemaId(next.id); setSelected([...next.initialSelection]); reset(); }}>{LAB_SCHEMAS.map(s => <option key={s.id} value={s.id}>{zh ? s.titleZh : s.title}</option>)}</select></label>
+    <label className="lab-schema">{zh ? '关系' : 'Relation'}<select value={schemaId} onChange={e => { const next = LAB_SCHEMAS.find(s => s.id === e.target.value)!; onSchema(next.id); setSelected([...next.initialSelection]); reset(); }}>{LAB_SCHEMAS.map(s => <option key={s.id} value={s.id}>{zh ? s.titleZh : s.title}</option>)}</select></label>
     <p className="muted">{zh ? schema.descriptionZh : schema.description}</p>
     <div className="lab-fds">{schema.fds.map((fd, i) => <code key={i}>{fd.left.join('')} → {fd.right.join('')}</code>)}</div>
     <fieldset className="lab-attributes"><legend>{zh ? '待检查属性集合 X' : 'Attribute set X to test'}</legend>{schema.universe.map(attr => <label key={attr}><input type="checkbox" checked={selected.includes(attr)} onChange={e => { setSelected(old => e.target.checked ? [...old, attr] : old.filter(a => a !== attr)); reset(); }}/><span>{attr}</span></label>)}</fieldset>

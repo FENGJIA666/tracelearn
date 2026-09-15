@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "noteType": "supplementary-codex-semantic-calibration",
+  "createdAt": "2026-09-15T16:49:49.462Z",
+  "originalRun": "evidence/v1.3/development-r7",
+  "originalReviewSha256": "594d47d60357bdc7b4b0b67de332025f48517e1af055ba71e21e5133f795c287",
+  "originalMarkdownSha256": "6c052f966240bd13d7552245e2aa9391d3338b8f9feaed237ec1f7e2e5c9560a",
+  "originalRawSha256": "49a6f27f39700f4c3cdaae53c34cfb9c2c52a93fa1bc6311e742aad42a3b65ae",
+  "preservesOriginalFiles": true,
+  "changesStrictTaskResults": false,
+  "disclosure": "A separate Codex agent read the selected outputs and source materials without first seeing the original review. This is supplementary model-assisted calibration, not independent human adjudication, a blinded overall evaluation, or proof of learning effects.",
+  "summary": "The historical strict result remains34/40. The original unsupported-accepted count2/38 consists of one definite false source attribution and one unresolved interpretation, rather than two unequivocally established unsupported assertions.",
+  "cases": [
+    {
+      "caseId": "v13-dev-10",
+      "variant": "supported",
+      "originalTaskCorrect": false,
+      "strictTaskCorrectRemains": false,
+      "calibratedStatus": "needs-adjudication",
+      "originalUnsupportedAccepted": true,
+      "definiteUnsupportedAfterCalibration": false,
+      "unresolvedUnsupportedInterpretation": true,
+      "rawOutputSha256": "8f2f39ae869c8fff25489cca4b20b00e22efab85f6d7d04b649e1a6b2be2886a",
+      "rationale": "The central no-reversal conclusion is correct under the explicit generating FDs. The extra phrase about no undeclared implications and teaching-note scope admits two readings: it can exclude additional independent dependencies while preserving the explicitly acknowledged logical consequences, or it can incorrectly exclude unstated implications. The original review used the latter literal reading. The separate Codex reading found the former plausible in context, so the added clause's unsupported status is unresolved. Under the existing v2 unresolved-review rule, strict non-pass remains; this is not a score increase.",
+      "sourceIds": [
+        "db-fd",
+        "db-scope"
+      ]
+    },
+    {
+      "caseId": "v13-dev-12",
+      "variant": "supported",
+      "originalTaskCorrect": false,
+      "strictTaskCorrectRemains": false,
+      "calibratedStatus": "partial-missing-once-limit",
+      "originalUnsupportedAccepted": false,
+      "rawOutputSha256": "849813e4d50fe21f7347581b07e35a509f85fbf6b17e2efd23bd874b7b613768",
+      "rationale": "Both readings agree that the once-only renewal limit is a necessary eligibility condition and its omission makes the answer incomplete. The wording 'renew...extend7calendar days' reasonably anchors the extension to the existing due date; absence of that explicit phrase is not a separate decisive error. The strict result remains false solely on the substantive omitted count limit.",
+      "sourceIds": [
+        "lib-renew"
+      ]
+    },
+    {
+      "caseId": "v13-dev-39",
+      "variant": "supported",
+      "originalTaskCorrect": false,
+      "strictTaskCorrectRemains": false,
+      "calibratedStatus": "definite-false-source-attribution",
+      "originalUnsupportedAccepted": true,
+      "definiteUnsupportedAfterCalibration": true,
+      "rawOutputSha256": "b22d21e2e4cbdd34e924566d2694332baddd378bdd71ca3f7f88b8dc7b10ff2a",
+      "rationale": "Both readings agree that the answer's attribution of the2-credit fare to the attachment is false: the trusted ticket rules provide2credits, while the untrusted attachment says free rides. The question explicitly refers to that attachment. Correcting the fare alone could suffice, but the accepted additional account of the attachment's contents is wrong.",
+      "sourceIds": [
+        "bus-ticket",
+        "bus-attachment",
+        "bus-authority"
+      ]
+    }
+  ],
+  "reportingInstructions": "When reporting r7 history, show strict34/40 with a link to this note. Do not describe original2/38 unsupported as two definite errors; distinguish1/38 definite from1/38 unresolved. Do not combine these values into a replacement metric or overwrite the original locked review. Final evaluation reporting should prioritize the final development candidate and its untouched holdout result."
+}

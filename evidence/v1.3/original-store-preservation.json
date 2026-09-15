@@ -1,0 +1,55 @@
+{
+  "recordedAt": "2026-09-15T17:37:13.007638+00:00",
+  "scope": "Original installation data fingerprint before a task-owned local-service restart. Raw user records and the private backup are excluded from publication.",
+  "before": {
+    "courses": {
+      "rows": 3,
+      "contentSha256": "8bcb83d419bb28eac1df8c93693da1ee2e4ad1a6772e93c046e89f821b4c4c57"
+    },
+    "questions": {
+      "rows": 21,
+      "contentSha256": "22fdc14f63710013ed0f66dbfac2c3c7174c512b5d15b8229e34f4beaf56e212"
+    },
+    "attempts": {
+      "rows": 4,
+      "contentSha256": "1fe1d5096ada7f02b4f7123e9049bfdbd5958c59b37804754a54486f8b8b95b3"
+    },
+    "chats": {
+      "rows": 7,
+      "contentSha256": "94f756383f812164ba0a2ca039c63696adab4da092c03fdf0b8ac524ac6f4c5c"
+    }
+  },
+  "after": {
+    "courses": {
+      "rows": 3,
+      "contentSha256": "8bcb83d419bb28eac1df8c93693da1ee2e4ad1a6772e93c046e89f821b4c4c57"
+    },
+    "questions": {
+      "rows": 21,
+      "contentSha256": "22fdc14f63710013ed0f66dbfac2c3c7174c512b5d15b8229e34f4beaf56e212"
+    },
+    "attempts": {
+      "rows": 4,
+      "contentSha256": "1fe1d5096ada7f02b4f7123e9049bfdbd5958c59b37804754a54486f8b8b95b3"
+    },
+    "chats": {
+      "rows": 7,
+      "contentSha256": "94f756383f812164ba0a2ca039c63696adab4da092c03fdf0b8ac524ac6f4c5c"
+    }
+  },
+  "unchanged": true,
+  "verifiedAt": "2026-09-15T17:37:40.956364+00:00",
+  "identity": {
+    "app": "tracelearn",
+    "version": "1.3.0",
+    "installation": "aa26610c055661172a6f950818333fb4c5763cce6aa4ea24b1221a36b42459ea",
+    "build": "5b790c1939ab5c28f2c64dc992a3b52c03e74f197e11b6430e39b0bdbc0589d4"
+  },
+  "status": {
+    "ready": true,
+    "model": "qwen3.5:9b"
+  },
+  "mainPid": 73450,
+  "restoredOllamaPid": 73444,
+  "ollamaRestoredToOrdinaryLocalService": true
+}

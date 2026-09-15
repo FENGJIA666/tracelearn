@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.3.0 — inspectable conclusions and a fresh configuration comparison
+
+- The local answer pipeline selects exact source excerpts by ID, forms one concise conclusion, and asks the same local model to review answerability, every clause, source attribution and question coverage. A failed check is distinct from source insufficiency; retries and the total request time are bounded. Automated acceptance remains fallible.
+- Production inference uses pinned Qwen3.5-9B with a 16,384-token context and explicit overflow rejection. The prior Qwen3-4B configuration and original evaluation remain unchanged as historical evidence. The new comparison changes both model and pipeline; it is not a same-model ablation.
+- New recorded-evidence views expose paired results, exact request-specific sources, references and saved Codex judgments. Full denominators, errors and unsupported accepted outputs remain visible. The dataset author also grades the outputs; no independent human or learning-effect claim is made.
+- Saved answers reopen with their original evidence. Source-recall generation checks known SQL aliases, document import preserves Unicode characters at chunk boundaries, and cancellation no longer turns its button into an accidental new submission.
+- Concept experiments, fresh practice and source navigation stay connected. Current configuration records and original experiments have separate views; each retains its own evidence.
+- Reproduction files preserve rejected development variants, the pre-holdout freeze, raw model exchanges and final artifact hashes. The report and judge route identify tested behavior and remaining limits.
+
 ## 1.2.0 - 2026-09-15
 
 - Added Counterexample Lab: predict before computing, edit SQL NULL values/conditions or key attributes, inspect deterministic traces, then open a fresh transfer attempt.

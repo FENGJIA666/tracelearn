@@ -1,0 +1,57 @@
+{
+  "recordedAt": "2026-09-15T16:31:51.030Z",
+  "source": "Read-only Ollama /api/show on the pinned local model artifacts",
+  "models": [
+    {
+      "model": "qwen3:4b",
+      "metadata": {
+        "tokenizer.ggml.add_bos_token": false,
+        "tokenizer.ggml.bos_token_id": 151643,
+        "tokenizer.ggml.eos_token_id": 151645,
+        "tokenizer.ggml.merges": null,
+        "tokenizer.ggml.model": "gpt2",
+        "tokenizer.ggml.padding_token_id": 151643,
+        "tokenizer.ggml.pre": "qwen2",
+        "tokenizer.ggml.token_type": null,
+        "tokenizer.ggml.tokens": null
+      },
+      "tokenizerArtifact": "No separate tokenizer download; tokenizer metadata and vocabulary are embedded in the model artifact pinned by the Ollama digest.",
+      "separateTokenizerVersion": "unavailable"
+    },
+    {
+      "model": "qwen3.5:9b",
+      "metadata": {
+        "tokenizer.ggml.add_eos_token": false,
+        "tokenizer.ggml.add_padding_token": false,
+        "tokenizer.ggml.eos_token_id": 248046,
+        "tokenizer.ggml.merges": null,
+        "tokenizer.ggml.model": "gpt2",
+        "tokenizer.ggml.padding_token_id": 248044,
+        "tokenizer.ggml.pre": "qwen35",
+        "tokenizer.ggml.scores": null,
+        "tokenizer.ggml.token_type": null,
+        "tokenizer.ggml.tokens": null
+      },
+      "tokenizerArtifact": "No separate tokenizer download; tokenizer metadata and vocabulary are embedded in the model artifact pinned by the Ollama digest.",
+      "separateTokenizerVersion": "unavailable"
+    },
+    {
+      "model": "qwen3-embedding:0.6b",
+      "metadata": {
+        "tokenizer.ggml.add_bos_token": false,
+        "tokenizer.ggml.add_eos_token": true,
+        "tokenizer.ggml.bos_token_id": 151643,
+        "tokenizer.ggml.eos_token_id": 151643,
+        "tokenizer.ggml.eot_token_id": 151645,
+        "tokenizer.ggml.merges": null,
+        "tokenizer.ggml.model": "gpt2",
+        "tokenizer.ggml.padding_token_id": 151643,
+        "tokenizer.ggml.pre": "qwen2",
+        "tokenizer.ggml.token_type": null,
+        "tokenizer.ggml.tokens": null
+      },
+      "tokenizerArtifact": "No separate tokenizer download; tokenizer metadata and vocabulary are embedded in the model artifact pinned by the Ollama digest.",
+      "separateTokenizerVersion": "unavailable"
+    }
+  ]
+}

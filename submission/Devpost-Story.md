@@ -1,57 +1,61 @@
 ## Inspiration
 
-A convincing explanation can feel like understanding. But can you predict what changes when a SQL condition changes, or explain why one attribute makes a key minimal?
+A convincing explanation can feel like understanding. Can you predict what changes when a SQL condition changes, or explain why removing one attribute stops a set from being a key?
 
-**TraceLearn turns an explanation into something a student can test:** predict, inspect the source, change the example, and try a fresh transfer question. Our first complete course is university database foundations.
+**TraceLearn makes an explanation testable:** predict, inspect the source, change the example, and try a fresh transfer question. Our first complete course covers university database foundations.
 
 ## Try it
 
-[Download the portable practice HTML](https://github.com/FENGJIA666/tracelearn/releases/download/v1.2.0/TraceLearn-Portable.html), under 0.5 MB. It includes the real React workspace, original questions, editable concept experiments, source passages and exports. No model, Node.js or API key is needed for this route. The repository explains a localhost preview fallback if your browser restricts local files.
+[Download the portable practice HTML](https://github.com/FENGJIA666/tracelearn/releases/download/v1.3.0/TraceLearn-Portable.html). It includes the real React workspace, original questions, editable concept experiments, recorded evaluation evidence and exports. No model, Node.js or API key is needed for this route. The repository gives a localhost preview fallback for browsers that restrict local files.
 
 - [Source code and judge walkthrough](https://github.com/FENGJIA666/tracelearn)
-- [Technical and evaluation report](https://github.com/FENGJIA666/tracelearn/blob/v1.2.0/submission/TraceLearn-Technical-Report.pdf)
-- [Complete source and evidence package](https://github.com/FENGJIA666/tracelearn/releases/download/v1.2.0/TraceLearn-Complete-v1.2.0.zip)
+- [Technical and evaluation report](https://github.com/FENGJIA666/tracelearn/blob/v1.3.0/submission/TraceLearn-Technical-Report.pdf)
+- [Complete source and evidence package](https://github.com/FENGJIA666/tracelearn/releases/download/v1.3.0/TraceLearn-Complete-v1.3.0.zip)
 
 ## What it does
 
-The on-screen tour connects **Predict → Experiment → Transfer → Reflect & export**, without filling in answers for the learner.
+The on-screen tour connects **Predict → Experiment → Transfer → Reflect & export**, without answering for the learner.
 
-For salaries 100, 200 and NULL, does `salary <> 100` keep the missing row? Check your answer, read the source, then test it in **Counterexample Lab**: predict which rows survive, inspect each truth value, add `OR salary IS NULL`, and predict again. Change the numbers or explore `NOT IN` using your own list.
+For salaries 100, 200 and NULL, does `salary <> 100` keep the missing row? Check your prediction, inspect the source, then test it in **Counterexample Lab**. Inspect TRUE, FALSE and UNKNOWN for each row. Add `OR salary IS NULL`, change the numbers, or explore `NOT IN`, then predict again.
 
-The second Lab explores **keys and attribute closure**. Select attributes, predict their key classification, and inspect every applied dependency and removal check. The calculations are deterministic; no model invents these traces. Scope is explicit: four SQL predicates and two given dependency schemas.
+The second Lab explores **keys and attribute closure**. Select attributes and inspect each applied dependency and removal check. These traces come from deterministic computation. Scope is explicit: four SQL predicates and two given dependency schemas.
 
-Open a **fresh transfer attempt** to apply the idea independently. Export Lab inputs, predictions and recomputed traces, or the Notebook's separate quiz/AI learning report. Both carry source fingerprints; Lab predictions do not enter quiz totals or certify mastery.
+Open a fresh question matched to the concept you explored. Notebook reopens saved local answers and their source evidence without another model call. Export the quiz/AI learning record or Lab inputs and recomputed traces. Lab predictions remain separate from quiz totals; neither certifies mastery.
 
-The original course has 20 source passages and 10 diagnostic/transfer pairs covering database fundamentals. Interface and source translations support English/Chinese; built-in questions retain English technical wording.
+The course contains 20 original passages and 10 diagnostic/transfer pairs. Interface and source translations support English/Chinese; built-in questions preserve English technical wording.
 
-## Where AI helps
+## AI that shows its evidence and limits
 
-The full app accepts text PDFs, Markdown and TXT. Qwen3-4B explains material using hybrid retrieval and exact quotations; Qwen3-Embedding-0.6B supplies local vectors. The interface distinguishes a located quote from a correct explanation: the model can still make unsupported claims.
+The full app accepts text PDFs, Markdown and TXT. Qwen3.5-9B drafts a concise source-based conclusion, while Qwen3-Embedding-0.6B supports hybrid retrieval. **The model selects numbered excerpts; the program supplies the original quotation text.** It cannot invent or splice the displayed quote.
 
-Select any imported passage to generate cloze practice. The source supplies the key; Qwen proposes distractors. A planner skips used sentences, verifies exact reconstruction and provenance, and prevents concurrent duplicates. These are source-recall exercises, not independently validated transfer tests.
+A separate call to the same local model reviews whether the requested information is established, the conclusion and its own citations, and coverage of applicable conditions. The app distinguishes an accepted explanation, insufficient source evidence and a response that failed local checks. A correct quotation still does not prove correct reasoning, and same-model review can be wrong. The interface says so.
 
-Live AI and document import require Node.js 22.13+, Ollama and approximately 3.2 GB of model downloads. After setup, inference and material stay on the device. There is no API key, paid inference, account or hosted inference service.
+Imported-note practice uses a deterministic source phrase as its keyed answer; Qwen proposes distractors. The planner avoids used sentences, checks exact reconstruction, rejects duplicate wording and a known SQL non-NULL alias family, and prevents concurrent duplicate saves. This is source recall, not an independently validated transfer assessment.
+
+Live AI and importing require Node.js 22.13+, Ollama 0.34.0+ and approximately 7.234 GB for the two application models. Subsequent inference and study material stay on the device. There is no API key, paid inference, account or hosted model service.
 
 ## How it was built and checked
 
-React/TypeScript provide the workspace; Node/Express, SQLite and Ollama provide the local service. Portable mode embeds its resources and denies API connections. Lab exports recompute results instead of trusting saved scores.
+React/TypeScript provide the workspace; Node/Express, SQLite and Ollama provide the local service. Portable mode embeds resources and denies API connections. Silent model-input truncation is disabled. Cancellation stops in-flight work and prevents stale responses from replacing the active question; an answer saved just before cancellation may remain in history.
 
-Version 1.2 passed **48 automated checks**, including unit and HTTP integration tests. The SQL model matched real SQLite in **1,600 row-result comparisons**. Every subset of both fixed dependency schemas—24 subsets—was checked against a separately implemented finite-relation oracle, which does not reuse the production closure algorithm. This is independent computation for checking code, not independent human research.
+The SQL model matched real SQLite in 1,600 row-result comparisons. All 24 attribute subsets across the two fixed schemas were checked against a separately implemented finite-relation oracle. This is independent computation for checking code, not independent human research.
 
-Tests also cover corrupt records, source hashes, stale requests, late-document generation and concurrent duplicates. Real launcher checks verified separate installations, safe reuse and changed builds without stopping existing services. The SQL counterexample path ran in the actual browser; Interface screenshots are real application captures; the cover is a designed title card.
+The final 123 automated tests passed, alongside 11 isolated HTTP checks. Tests cover source hashes, imports, cloze options, late responses, cancellation, report state, stored records, selected-passage generation and installation identity. The current acceptance record links the actual automated, browser and local-runtime checks; screenshots show the real app, and the cover is a designed title card.
 
-Tested hardware: Apple M4 Pro, 24 GB memory, macOS. Direct `file://` launch could not be automated because the browser tool blocks that scheme; the verified portable interaction route uses localhost static HTTP. Windows and Linux were not tested.
+Tested hardware is Apple M4 Pro with 24 GB memory on macOS. With both application and model server restricted to localhost networking, the real cold request took 25.8 seconds and its warm repeat 16.0 seconds. Cold means a restarted, unloaded model runtime and fresh source-vector storage; this is a process-network test, not a whole-computer disconnection. Portable interaction was verified through static localhost HTTP; direct `file://` automation is blocked by the browser tool. Windows and Linux were not tested.
 
-## Evidence, including what still fails
+## Evidence, including failures
 
-The **Evidence** tab retains all **160 historical model requests** from 80 original cases, with paired methods, references, quotes, errors and saved agent-assisted judgments. Shortcuts show a supported answer, a refusal and a retained failure. They are clearly labeled recorded outputs, not live AI.
+The current comparison contains 80 new author-created cases across four fictional source documents, split into 40 development and 40 held-out questions. Each split balances English/Chinese and includes answerable questions, missing information and false premises. The holdout was opened only after recording the implementation, model, runner and scoring-protocol freeze.
 
-The old 40-case holdout comparison recorded 37/40 versus 38/40 accepted outputs for full-source baseline and hybrid retrieval, with 7/10 versus 9/10 correct extracted MCQ keys. Agent-assisted review judged 17/20 versus 18/20 source-answerable responses fully correct. Acceptance is not semantic correctness; these internal results were not rerun or promoted as a v1.2 improvement.
+**On the first 40-case holdout, the current configuration achieved 34/40 strictly correct results versus 18/40 for the previous configuration.** The current version delivered 39/40 responses, including four with definite unsupported assertions; six tasks did not meet the strict rule. One comparator judgment has a source-wording ambiguity and remains unresolved, with no credit in the strict total. Development scores were 38/40 versus 20/40 and were used for tuning.
 
-Failures include an invented university-award policy, a wrong normalization explanation and a numerical typo. An earlier all-incorrect generated question led us to narrow imported practice to source-verified recall. The report retains pilot changes, benchmark limitations and all denominators.
+The **Evidence** view lets a judge inspect both configurations, final answers, actual cited inputs and saved scoring reasons. Strict correctness comes from a separate Codex reading of the saved output, not the runtime model's support label. The same Codex agent authored the dataset and performed the semantic review; it is neither blinded nor independent human scoring. Errors and unverified responses remain in the denominators.
+
+Earlier developer trials exposed wrong numerical reasoning, correct facts paired with the wrong quote, avoidable refusals, and unwanted factual additions. All trials remain available. The previous production configuration is the comparator; model weights and answer behavior both change, so this is not a single-variable ablation. The original 160-request experiment is also preserved separately, with its original failures and scores.
 
 ## Impact and contribution
 
-Portable practice removes model installation from the curated learning loop. Local AI avoids recurring API fees and uploading notes, but still needs storage and capable hardware. No adoption, improved grades or lasting learning gains are claimed. A future study needs independent question review, consented participants and delayed transfer checks.
+Portable practice removes model installation from the curated learning loop. Local AI avoids recurring API fees and uploading notes, while still requiring storage and capable hardware. We have not measured adoption, improved grades or lasting learning gains. A future study needs independent question review, consented participants and delayed transfer checks.
 
-Codex substantially assisted with design, code, original teaching/evaluation materials, tests, debugging, visual composition and documentation. Qwen provides runtime generation; it does not compute the Lab traces. Separate organizer approval of AI-assisted code authorship has not been obtained. Original code and course content are MIT-licensed; Qwen weights are Apache-2.0 and downloaded separately. The repository includes locked dependencies, raw evidence, AI disclosure and third-party notices.
+Codex substantially assisted with design, code, original teaching/evaluation materials, testing, debugging, visual composition and documentation. Qwen provides runtime generation; it does not compute the Lab traces. Separate organizer approval of AI-assisted code authorship has not been obtained. Original code and course content are MIT-licensed; Qwen weights use Apache-2.0 and are downloaded separately. Locked dependencies, raw evidence and contribution/license notices accompany the source.

@@ -1,0 +1,18 @@
+{
+  "asset": "submission/00-cover.png",
+  "kind": "Designed title card, not an application screenshot",
+  "tool": "Built-in imagegen",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "sha256": "9a4dd0000e32812a5eb11c9f470c3e822fc92c0b9e2b5647888312e609069b31",
+  "sourceCoverSha256": "e7f545c0316669132fa19fb2f9dfb59cbf93b069281e779929129bab2de33e79",
+  "changes": [
+    "Updated model family to Qwen3.5",
+    "Replaced diagnostic wording with Predict",
+    "Replaced misconception claim with Test your understanding"
+  ],
+  "prompt": "Use case: text-localization. Edit the provided image, an original promotional title card for TraceLearn, not a software screenshot.\nPreserve its 3:2 landscape composition, restrained warm ivory background, dark forest-green typography, generous margins, book icon, pale sage three-card row, divider line, font styles and sizes, all alignment and spacing. Preserve the main title exactly on its existing two lines: \"Learning that can\" and \"show its work.\" Preserve \"TraceLearn.\", the top-right label, the second and third cards, and the bottom-right contest label unchanged.\nMake only these three text replacements, with crisp, accurately spelled readable lettering:\n1. Replace the sentence under the main title with exactly: \"Trace the source. Test your understanding. Try a new question.\"\n2. Replace the first card heading \"01 DIAGNOSE\" with exactly \"01 PREDICT\". Keep its subtitle exactly \"Surface a confident mistake\".\n3. Replace the bottom-left footer with exactly: \"Qwen3.5 + local retrieval / Original database course / No API key\".\nDo not introduce new elements, gradients, illustrations, logos, badges, performance numbers, user claims, or additional wording. This must remain a clean designed title card. Keep all unaffected text and visual details as close to the input as possible. Preserve 3:2 aspect ratio, preferably the existing 1500 by 1000 dimensions.",
+  "review": "Root visually inspected the tool output; specified text is correct. Native output is retained without raster retouching."
+}

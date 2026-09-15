@@ -1,0 +1,9 @@
+{
+  "at": "2026-09-15T17:47:07.191648+00:00",
+  "pages": 8,
+  "sha256": "c4fc5c94be31a3ce80a49f9202af41463db607a2fa22bc0f0fc508ffb6ada77f",
+  "bytes": 367333,
+  "review": "Root visually inspected pages 1\u20135; separate Codex agent visually inspected final pages 6\u20138. Orphan audit section was moved into the final reference page. No clipping or overlaps observed.",
+  "independentHumanReview": false,
+  "priorFirstFivePageByteComparisonPerformed": false
+}

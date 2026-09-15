@@ -1,0 +1,39 @@
+test('first draft uses three passages, while review and the bounded repair can use all five',async()=>{
+ const sources=Array.from({length:5},(_,i)=>({id:`source-${i+1}`,title:`Rule ${i+1}`,page:i+1,text:`Rule number ${i+1} establishes the documented value ${i+10}.`}));
+ const five={...course,sections:sources};const inputs:any[]=[];let calls=0;
+ const run=createSupportedAnswer({retrieve:async()=>sources,chat:async(_system,user)=>{
+  const input=JSON.parse(user);inputs.push(input);
+  const outputs=[
+   {basis:'The needed rule is outside the first selected window.',insufficient:true,missing:'Rule four value',claims:[]},
+   {basis:'Rule four states the value.',insufficient:false,missing:'',claims:[{text:'The documented value is 13.',evidenceIds:['E4']}]},
+   {...good,answerabilityReason:'The requested value is established by rule four.'}
+  ];return {raw:JSON.stringify(outputs[calls++]),stats};
+ }});
+ const result=await run(five,'What is the value in rule four?');
+ assert.deepEqual(inputs[0].evidence.map((x:any)=>x.sectionId),['source-1','source-2','source-3']);
+ assert.equal(inputs[1].evidence.length,5);assert.equal(inputs[2].sources.length,5);
+ assert.equal(result.support.modelCalls,3);assert.equal(result.support.outcome,'supported');
+ assert.deepEqual(result.citations,[{sectionId:'source-4',quote:sources[3].text}]);
+ assert.deepEqual(result.support.draftEvidence.map(x=>x.sectionIds.length),[3,5]);
+});
+test('a first-round ID outside its supplied window cannot bypass excerpt selection',async()=>{
+ const sources=Array.from({length:5},(_,i)=>({id:`source-${i+1}`,title:`Rule ${i+1}`,page:i+1,text:`The documented value for rule ${i+1} is ${i+10}.`}));
+ let calls=0;const inputs:any[]=[];
+ const selected={basis:'Rule four states its value.',insufficient:false,missing:'',claims:[{text:'The value for rule four is 13.',evidenceIds:['E4']}]};
+ const run=createSupportedAnswer({retrieve:async()=>sources,chat:async(_system,user)=>{inputs.push(JSON.parse(user));return {raw:JSON.stringify([selected,selected,good][calls++]),stats};}});
+ const result=await run({...course,sections:sources},'What is the value for rule four?');
+ assert.equal(calls,3);assert.ok(inputs[1].previousReview.validationError);
+ assert.equal(result.support.outcome,'supported');assert.equal(result.citations[0].sectionId,'source-4');
+ assert.ok(result.attempts.some(attempt=>attempt.stage==='draft'&&attempt.error));
+});
+
+test('a terminal refusal requires seeing the full available evidence after a narrow first draft',async()=>{
+ const sources=Array.from({length:5},(_,i)=>({id:`source-${i+1}`,title:`Rule ${i+1}`,page:i+1,text:`These are source notes for the documented rule ${i+1}.`}));
+ let calls=0;const inputs:any[]=[];
+ const decline={basis:'The requested fact is absent.',insufficient:true,missing:'Requested policy',claims:[]};
+ const review={answerabilityReason:'None of the five sources establishes the requested policy.',sourceCanAnswer:false,questionCovered:false,missing:'Requested policy',claims:[]};
+ const run=createSupportedAnswer({retrieve:async()=>sources,chat:async(_system,user)=>{inputs.push(JSON.parse(user));return {raw:JSON.stringify([decline,decline,review][calls++]),stats};}});
+ const result=await run({...course,sections:sources},'What is the unmentioned policy?');
+ assert.equal(calls,3);assert.equal(inputs[0].evidence.length,3);assert.equal(inputs[1].evidence.length,5);
+ assert.equal(inputs[1].previousReview.evidenceWindowExpanded,true);assert.equal(result.support.outcome,'insufficient');
+});

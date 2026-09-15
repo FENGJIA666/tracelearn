@@ -1,6 +1,6 @@
 {
   "name": "tracelearn",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -14,7 +14,8 @@
     "evaluate": "tsx scripts/evaluate.ts",
     "setup": "bash scripts/setup.sh",
     "prepare:review": "tsx scripts/prepare-review.ts",
-    "build:portable": "tsx scripts/prepare-review.ts && tsx scripts/build-portable.ts"
+    "build:portable": "tsx scripts/prepare-review.ts && tsx scripts/prepare-v13-review.ts && tsx scripts/build-portable.ts",
+    "prepare:current-review": "tsx scripts/prepare-v13-review.ts"
   },
   "dependencies": {
     "@vitejs/plugin-react": "6.1.1",

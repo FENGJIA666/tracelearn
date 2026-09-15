@@ -1,0 +1,184 @@
+{
+  "stage": "r8 adopted; first frozen holdout complete; product acceptance and release prepared separately",
+  "date": "2026-09-15",
+  "selectedForTest": "qwen3.5:9b",
+  "reason": "Select the exact r8 complete development configuration after its saved review found 38/40 strict candidate successes versus 20/40 for the previous production configuration. Reject the later r9 targeted probe because it did not resolve its two target failures. These are tuning observations; final held-out results must be read separately.",
+  "candidates": [
+    {
+      "name": "qwen3.5:4b",
+      "totalManifestBytes": 3389983735,
+      "ggufBytes": 3389971840,
+      "quantization": "Q4_K_M",
+      "advertisedMaxContext": 262144,
+      "license": "Apache-2.0",
+      "modelPage": "https://ollama.com/library/qwen3.5:4b",
+      "manifest": "https://registry.ollama.ai/v2/library/qwen3.5/manifests/4b"
+    },
+    {
+      "name": "qwen3.5:9b",
+      "totalManifestBytes": 6594474711,
+      "ggufBytes": 6594462816,
+      "quantization": "Q4_K_M",
+      "advertisedMaxContext": 262144,
+      "license": "Apache-2.0",
+      "modelPage": "https://ollama.com/library/qwen3.5:9b"
+    }
+  ],
+  "sources": [
+    "https://huggingface.co/Qwen/Qwen3.5-4B",
+    "https://github.com/ollama/ollama/releases/tag/v0.17.5",
+    "https://github.com/ollama/ollama/blob/v0.34.0/model/renderers/qwen35.go",
+    "https://ollama.com/library/qwen3.5:4b/blobs/9371364b27a5",
+    "https://ollama.com/library/qwen3.5:9b",
+    "https://huggingface.co/Qwen/Qwen3.5-9B"
+  ],
+  "localRuntimeVersion": "0.34.0",
+  "scope": "Official model metadata and saved development observations. Advertised context is not the application setting or peak memory. The adopted r8 configuration uses 16384 context tokens and truncate:false. Model weights, tag defaults and answer/review logic differ from the old configuration, so this compares complete configurations rather than isolating a model-weight effect. Development was used for tuning; no held-out, learning or competition-score outcome is inferred here.",
+  "localInstalledTags": [
+    {
+      "name": "qwen3.5:9b",
+      "model": "qwen3.5:9b",
+      "modified_at": "2026-09-15T23:59:06.273795314+08:00",
+      "size": 6594474711,
+      "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "9.7B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 4096
+      },
+      "capabilities": [
+        "vision",
+        "completion",
+        "tools",
+        "thinking"
+      ]
+    },
+    {
+      "name": "qwen3.5:4b",
+      "model": "qwen3.5:4b",
+      "modified_at": "2026-09-15T23:21:23.974799086+08:00",
+      "size": 3389983735,
+      "digest": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "4.7B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 2560
+      },
+      "capabilities": [
+        "vision",
+        "completion",
+        "tools",
+        "thinking"
+      ]
+    },
+    {
+      "name": "qwen3-embedding:0.6b",
+      "model": "qwen3-embedding:0.6b",
+      "modified_at": "2026-09-14T18:52:29.910041014+08:00",
+      "size": 639150858,
+      "digest": "ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d",
+      "details": {
+        "parent_model": "<upstream build path redacted>",
+        "format": "gguf",
+        "family": "qwen3",
+        "families": [
+          "qwen3"
+        ],
+        "parameter_size": "595.78M",
+        "quantization_level": "Q8_0",
+        "context_length": 32768,
+        "embedding_length": 1024
+      },
+      "capabilities": [
+        "embedding"
+      ]
+    },
+    {
+      "name": "qwen3:4b",
+      "model": "qwen3:4b",
+      "modified_at": "2026-09-14T18:52:28.918250554+08:00",
+      "size": 2497293931,
+      "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen3",
+        "families": [
+          "qwen3"
+        ],
+        "parameter_size": "4.0B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 2560
+      },
+      "capabilities": [
+        "completion",
+        "tools",
+        "thinking"
+      ]
+    }
+  ],
+  "selectedForApplication": "qwen3.5:9b",
+  "selectionDecisionDate": "2026-09-16",
+  "applicationConfiguration": {
+    "model": "qwen3.5:9b",
+    "embedding": "qwen3-embedding:0.6b",
+    "num_ctx": 16384,
+    "num_predict": 1800,
+    "think": false,
+    "truncate": false,
+    "freeze": "evidence/v1.3/freeze.json",
+    "selectedDevelopment": "evidence/v1.3/development-r8"
+  },
+  "selectionHistory": [
+    {
+      "run": "development-r8",
+      "decision": "adopted; exact pipeline restored after the rejected r9 probe",
+      "completeCasesPerConfiguration": 40,
+      "oldStrictTaskCorrect": 20,
+      "candidateStrictTaskCorrect": 38,
+      "review": "evidence/v1.3/development-r8/SEMANTIC-REVIEW.md",
+      "scope": "Development used for tuning; same dataset-author Codex scoring process, not independent human assessment."
+    },
+    {
+      "run": "development-r9-probe",
+      "decision": "rejected; not used in the application or final freeze",
+      "selectedCasesPerConfiguration": 3,
+      "candidateStrictTaskCorrect": 1,
+      "change": "Draft first uses top-three passage excerpts; review sees all five and retry expands to five.",
+      "reason": "Did not resolve the targeted unsupported addition and unverified refusal. A third case recovered through expanded retry.",
+      "review": "evidence/v1.3/development-r9-probe/SEMANTIC-REVIEW.md",
+      "scope": "Targeted three-case probe, not full-development or holdout accuracy."
+    }
+  ],
+  "localInstalledTagsNote": "Historical metadata snapshot from development model selection, not current residency or final runtime identity. The final freeze is authoritative. An upstream build-machine parent_model path was redacted; model digests are unchanged.",
+  "initialTrialReason": "Two 4B configurations remained at 6/10 strict correctness on the same examined development prefix; 4B thinking-mode probes each exceeded 180 seconds. Test the larger local model after unloading the exploratory 4B model. Quality, latency and allocation must be measured.",
+  "finalHoldout": {
+    "recordedAt": "2026-09-15T17:29:46.456624+00:00",
+    "directory": "evidence/v1.3/holdout-run",
+    "strictCorrect": {
+      "current": 34,
+      "previous": 18,
+      "casesPerConfiguration": 40
+    },
+    "currentDelivered": 39,
+    "currentDefiniteUnsupported": 4,
+    "previousUnresolvedJudgments": 1,
+    "independentHumanReview": false,
+    "interpretation": "Complete configuration comparison after a pre-recorded freeze. No holdout-guided code, prompt, model or scoring-protocol changes. Six current failures remain; scores are not contest ranks or learning outcomes."
+  }
+}

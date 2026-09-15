@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-15T16:41:24.054Z",
+  "rawArtifact": "evidence/v1.3/context-check.json",
+  "rawSHA256": "9f42aad918fd265858c54852718b1ed980ab13b995ec1bbff96b47afd8513a8a",
+  "reviewer": {
+    "type": "Codex-assisted source review",
+    "independentHuman": false,
+    "fixtureAndScriptWrittenBySameAgent": true,
+    "method": "Reviewed the original material generator and the exact source sentences bearing the two codes, the complete delivered answer and both raw model outputs, literal citation comparisons, full oversized error, HTTP statuses and configured limits."
+  },
+  "configuration": {
+    "model": "qwen3.5:9b",
+    "embedding": "qwen3-embedding:0.6b",
+    "think": false,
+    "truncate": false,
+    "options": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 16384,
+      "num_predict": 1800,
+      "top_k": 20,
+      "top_p": 0.95,
+      "min_p": 0,
+      "presence_penalty": 0,
+      "repeat_penalty": 1
+    },
+    "policy": "source-conclusion-and-review-v3",
+    "requestTimeoutMs": 180000
+  },
+  "modelDigest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+  "configurationSHA256": "0ab8e38bc0ef701a07a82319face0f6c6a95b773eaa97069c3df634103b242c7",
+  "decisions": {
+    "longInput": {
+      "semanticCorrect": true,
+      "answer": "第一页开头的审查码是 NOVA-Q7，第五页末尾的审查码是 MAPLE-T9。",
+      "reason": "The answer correctly associates NOVA-Q7 with the beginning of page one and MAPLE-T9 with the end of page five, in the requested order. Each value is explicitly present in its cited original passage. No extra factual conclusion is asserted.",
+      "sectionUTF16Lengths": [
+        1400,
+        1400,
+        1400,
+        1400,
+        1400
+      ],
+      "totalUTF16Characters": 7000,
+      "promptTokens": [
+        4935,
+        5001
+      ],
+      "chatCalls": 2,
+      "elapsedMs": 43224
+    },
+    "oversizedInput": {
+      "behaviorCorrect": true,
+      "UTF16Characters": 40000,
+      "actualPromptTokens": 24031,
+      "contextLimit": 16384,
+      "rawStatus": 400,
+      "applicationStatus": 400,
+      "message": "This request exceeds the local model context limit (16384 tokens). Shorten the question or import a smaller source, then retry. No source text was silently discarded.",
+      "chatCalls": 1,
+      "elapsedMs": 111
+    }
+  },
+  "limitations": [
+    "The five passages are fixed inputs; neither embedding nor keyword/vector retrieval is exercised.",
+    "These 7000 common-Chinese UTF-16 characters produced about 5000 prompt tokens per call. This is not a near-16384-token performance benchmark or a worst-case tokenizer bound for every document.",
+    "Finding first and last codes does not demonstrate comprehension or correctness across every middle passage.",
+    "The synthetic filler is repetitive and contains deliberately fixed-size cut points; this is an input-boundary fixture, not a teaching-quality evaluation.",
+    "The automated reviewer inaccurately describes the citations as the full text of the respective pages; they are literal excerpts of 486 and 52 characters. The actual answer and code support are correct despite that metadata wording.",
+    "One success and one controlled overflow do not certify general long-context accuracy or all error families.",
+    "This is r8 policy source-conclusion-and-review-v3 as fingerprinted in the raw artifact; pipeline files remained unchanged during the run. No model or server process was started or stopped by this probe."
+  ]
+}

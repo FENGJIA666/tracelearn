@@ -1,0 +1,172 @@
+{
+  "recordedAt": "2026-09-15T15:18:22.024Z",
+  "scope": "Developer UI acceptance with controlled mocked API responses. No real model inference or learner outcome evidence.",
+  "checks": [
+    {
+      "id": 1,
+      "name": "Supported answer links claims to quotes",
+      "passed": true,
+      "observed": "Two individually numbered claims each display their own exact quote. The second quote opened null-logic and focused the source heading."
+    },
+    {
+      "id": 2,
+      "name": "Insufficient result and source recovery",
+      "passed": true,
+      "observed": "Displays Selected sources are insufficient without accepted claims; retrieved passage button opened scope."
+    },
+    {
+      "id": 3,
+      "name": "Unverified outcome stays distinct",
+      "passed": true,
+      "observed": "Displays No answer passed local checks with no accepted claims and accessible retrieved passages."
+    },
+    {
+      "id": 4,
+      "name": "Chinese UI and requests",
+      "passed": true,
+      "observed": "Request log language=zh; localized outcome, claim, cancellation and disclosure labels; quotes retained original source wording."
+    },
+    {
+      "id": 5,
+      "name": "Keyboard disclosure and quote action",
+      "passed": true,
+      "observed": "Enter expanded the checks disclosure in English and Chinese; Enter on a quote button selected its source and moved focus to the source heading."
+    },
+    {
+      "id": 6,
+      "name": "Narrow screen",
+      "passed": true,
+      "observed": "Actual app rendered in a 390px by 844px same-origin iframe; claim, quote card and saved-answer summary visibly wrap within the frame. One actual screenshot retained."
+    },
+    {
+      "id": 7,
+      "name": "Cancel and recover",
+      "passed": true,
+      "observed": "Initial bug reproduced twice: cancellation resubmitted the form. Root repaired keyed buttons/preventDefault. Rebuilt preview then logged exactly one request followed by cancelled, with no response after the 15-second delay; idle confirmation remained. Next ordinary request succeeded."
+    },
+    {
+      "id": 8,
+      "name": "Edit or leave cancels obsolete request",
+      "passed": true,
+      "observed": "Editing the query clears busy/result state. Leaving Ask for Notebook cancels its request. Both fixture logs contain one request then cancelled and no response."
+    },
+    {
+      "id": 9,
+      "name": "Saved supported/legacy answers and pagination",
+      "passed": true,
+      "observed": "Notebook initially showed 10 newest of 18 saved records. Earlier answers revealed the legacy fixture. Supported record retained claim checks; legacy retained Source quotes located and no new support-check claims. Source clicks worked."
+    },
+    {
+      "id": 10,
+      "name": "History available after refresh",
+      "passed": true,
+      "observed": "Browser refresh followed by reopening Notebook restored all 18 then-saved fixture records without an ask request; fixtures came from the isolated HTTP API, not main storage."
+    }
+  ],
+  "requestEvidence": {
+    "slow fixed cancel proof": [
+      {
+        "at": "2026-09-15T15:13:56.104Z",
+        "event": "request",
+        "question": "slow fixed cancel proof",
+        "language": "zh",
+        "outcome": "supported"
+      },
+      {
+        "at": "2026-09-15T15:14:02.933Z",
+        "event": "cancelled",
+        "question": "slow fixed cancel proof"
+      }
+    ],
+    "Recovery after fixed cancel": [
+      {
+        "at": "2026-09-15T15:14:24.345Z",
+        "event": "request",
+        "question": "Recovery after fixed cancel",
+        "language": "zh",
+        "outcome": "supported"
+      },
+      {
+        "at": "2026-09-15T15:14:24.345Z",
+        "event": "response",
+        "question": "Recovery after fixed cancel",
+        "outcome": "supported"
+      }
+    ],
+    "slow edit cancels request": [
+      {
+        "at": "2026-09-15T15:16:31.019Z",
+        "event": "request",
+        "question": "slow edit cancels request",
+        "language": "zh",
+        "outcome": "supported"
+      },
+      {
+        "at": "2026-09-15T15:16:35.908Z",
+        "event": "cancelled",
+        "question": "slow edit cancels request"
+      }
+    ],
+    "slow leave cancels request": [
+      {
+        "at": "2026-09-15T15:16:42.914Z",
+        "event": "request",
+        "question": "slow leave cancels request",
+        "language": "zh",
+        "outcome": "supported"
+      },
+      {
+        "at": "2026-09-15T15:16:42.988Z",
+        "event": "cancelled",
+        "question": "slow leave cancels request"
+      }
+    ]
+  },
+  "files": [
+    {
+      "file": "src/SupportAnswer.tsx",
+      "sha256": "c5303e6e5075d35977968a444976bcc0b9e23f0a70006ed4c68260ad445151f9"
+    },
+    {
+      "file": "src/Ask.tsx",
+      "sha256": "d601e84b27884c2f243ef0625dfe90d371819fde101e7176d234c58509483ccc"
+    },
+    {
+      "file": "src/AnswerHistory.tsx",
+      "sha256": "343b3e34d84ac68193713782a066b48d317c27bdae439ed5f3aafc63835adeb1"
+    },
+    {
+      "file": "src/Notebook.tsx",
+      "sha256": "8f041ec2304384c4c31e92a0d25e72ab756fec844ebece3ce70c25a88c61aa08"
+    }
+  ],
+  "assets": [
+    {
+      "name": "index-7lVHPFsd.js",
+      "sha256": "10e77b43ee63c506995a1a5f8eef19b8629ff33966b6408ce8e3a102f66f1b93"
+    },
+    {
+      "name": "index-mP8fqui1.css",
+      "sha256": "9b04dcf9a0e5022f079ab45475a7c413c8238b1f6a234bc73da513c588169eec"
+    }
+  ],
+  "screenshot": "narrow-supported.jpg",
+  "screenshotSha256": "15e7e7e36b7f268c3521d0dc28d1411d1956cc33d697efe5a04f7c4723d7898b",
+  "regression": {
+    "file": "src/Ask.tsx",
+    "status": "Fixed by root and retested",
+    "beforeQueries": [
+      "slow controlled cancellation",
+      "slow cancel confirmation"
+    ],
+    "afterQuery": "slow fixed cancel proof"
+  },
+  "limitations": [
+    "API/model results are controlled fixtures. Rendering/interaction checks do not establish model answer quality.",
+    "The narrow viewport was a same-origin iframe; this is not physical mobile-device verification.",
+    "No records were written to the main 4317 server. The fixture server stores synthetic history in memory."
+  ],
+  "generateCancelReview": "Generate controls are outside the Ask form in src/App.tsx; this particular form-submit cancellation defect does not apply.",
+  "fixtureServerStopped": true,
+  "fixtureServerPid": 54049
+}

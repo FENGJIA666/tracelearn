@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-09-15T16:37:31.292005+00:00",
+  "sources": [
+    "https://ml-build-challenge-3.devpost.com/rules",
+    "https://ml-build-challenge-3.devpost.com/"
+  ],
+  "weights": {
+    "technicalImplementation": 30,
+    "creativityInnovation": 20,
+    "realWorldImpact": 20,
+    "designUserExperience": 15,
+    "presentationDocumentation": 15
+  },
+  "requirementsSummary": "Student entries, including solo work; title, problem/solution/features/technology/target-user description, at least one functional/design file, team roles. Repository recommended. No mandatory live presentation appears in the published requirements.",
+  "aiAssistedProgrammingClause": "No dedicated permission or prohibition found on these two pages; disclose contribution and do not claim specific organizer approval.",
+  "deadlineConflict": "Platform header: October 5 2026 17:00 PDT; rules prose: October 5 2026 21:00 PDT. Delivery remains well before either time.",
+  "submissionBeforeUpdate": "Authenticated Devpost finalization independently rechecked: SUBMITTED, 4/4 steps done, Project submitted! disabled. No save or final submission performed by this recheck."
+}

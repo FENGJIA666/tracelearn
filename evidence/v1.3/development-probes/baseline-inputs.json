@@ -1,0 +1,87 @@
+{
+  "scope": "Six authored development questions, original runtime grounded mode. Not holdout. All course data are synthetic and isolated.",
+  "model": "qwen3:4b",
+  "embedding": "qwen3-embedding:0.6b",
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 8192,
+    "num_predict": 1200
+  },
+  "cases": [
+    {
+      "id": "audit-dev-off-topic",
+      "question": "In SQL, what is the result of NOT UNKNOWN?",
+      "sources": [
+        {
+          "sectionId": "logic",
+          "text": "In SQL three-valued logic, NOT UNKNOWN is UNKNOWN."
+        },
+        {
+          "sectionId": "keys",
+          "text": "A candidate key is a minimal superkey: no proper subset is a superkey."
+        }
+      ],
+      "expected": "UNKNOWN; NOT preserves UNKNOWN."
+    },
+    {
+      "id": "audit-dev-missing-universe-negative",
+      "question": "Given A -> B and B -> C, is A a candidate key?",
+      "sources": [
+        {
+          "sectionId": "key-test",
+          "text": "To test a candidate key, compute its attribute closure under the given dependencies. A superkey reaches every attribute of the relation. A candidate key must also be minimal."
+        }
+      ],
+      "expected": "Cannot determine candidate-key status without the complete relation attribute set; do not invent an extra attribute."
+    },
+    {
+      "id": "audit-dev-complete-universe-key",
+      "question": "In R(A,B,C), suppose the only nontrivial dependencies are A -> B and B -> C. Is A a candidate key?",
+      "sources": [
+        {
+          "sectionId": "key-test",
+          "text": "To test a candidate key, compute its attribute closure under the given dependencies. A superkey reaches every attribute of the relation. A candidate key must also be minimal."
+        },
+        {
+          "sectionId": "transitivity",
+          "text": "If X -> Y and Y -> Z, then X -> Z. To compute a closure, start with the selected attributes and repeatedly apply given dependencies to add their right-hand attributes."
+        }
+      ],
+      "expected": "Yes under the stated complete dependencies: A reaches ABC and is minimal."
+    },
+    {
+      "id": "audit-dev-numeric-where",
+      "question": "For wages 120, 240, and NULL, which rows survive WHERE wage <> 120?",
+      "sources": [
+        {
+          "sectionId": "where",
+          "text": "A WHERE clause keeps a row only when its predicate is TRUE. For wages 120, 240, and NULL, WHERE wage <> 120 returns only the row with 240. An ordinary comparison involving NULL evaluates to UNKNOWN."
+        }
+      ],
+      "expected": "Only wage 240 remains; preserve the literal 120 and SQL NULL semantics."
+    },
+    {
+      "id": "audit-dev-valid-derived-number",
+      "question": "Scores are 8, 14, and NULL. What is AVG(score)?",
+      "sources": [
+        {
+          "sectionId": "average",
+          "text": "AVG(column) ignores NULL values. It divides the sum of the non-NULL values by the number of non-NULL values."
+        }
+      ],
+      "expected": "AVG is 11, derived as (8 + 14) / 2."
+    },
+    {
+      "id": "audit-dev-reverse-with-counterexample",
+      "question": "Does U -> V by itself guarantee V -> U? Give a small counterexample if it does not.",
+      "sources": [
+        {
+          "sectionId": "dependency",
+          "text": "A functional dependency U -> V means that any two tuples agreeing on U must also agree on V in every legal instance. It does not mean that V uniquely determines U."
+        }
+      ],
+      "expected": "No; a counterexample can have distinct U values with the same V, satisfying U -> V but violating V -> U."
+    }
+  ]
+}

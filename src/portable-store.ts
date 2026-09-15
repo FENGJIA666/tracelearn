@@ -39,7 +39,7 @@ export function readPortableAttempts(raw: string | null): PortableAttempt[] {
 export function portableReport(attempts: PortableAttempt[]): string {
   return ['# TraceLearn - Portable practice record', '', `Source SHA-256: ${portableCourse.hash}`,
     'This record contains your real local practice attempts. It is not a validated measure of mastery or learning gains.',
-    'Portable mode performs deterministic grading. AI examples in Evidence are recorded v1.0 outputs, not live inference.',
+    'Portable mode performs deterministic grading. Evidence separates the current configuration comparison from the original experiment; all AI outputs there are saved records, not live inference.',
     '', ...attempts.flatMap((a, i) => [`## ${i + 1}. ${a.concept} / ${a.kind}`, a.prompt,
       `Chosen: ${a.options[a.chosen]}`, `Correct answer: ${a.options[a.correct]}`,
       `Result: ${a.isCorrect ? 'Correct' : 'Needs review'}; confidence: ${a.confidence}`,

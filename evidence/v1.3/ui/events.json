@@ -1,0 +1,178 @@
+[
+  {
+    "at": "2026-09-15T15:10:56.151Z",
+    "event": "request",
+    "question": "Why does salary <> 100 exclude NULL?",
+    "language": "en",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:10:56.152Z",
+    "event": "response",
+    "question": "Why does salary <> 100 exclude NULL?",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:11:15.624Z",
+    "event": "request",
+    "question": "What will be on my university exam?",
+    "language": "en",
+    "outcome": "insufficient"
+  },
+  {
+    "at": "2026-09-15T15:11:15.624Z",
+    "event": "response",
+    "question": "What will be on my university exam?",
+    "outcome": "insufficient"
+  },
+  {
+    "at": "2026-09-15T15:11:22.051Z",
+    "event": "request",
+    "question": "Show an unverified result",
+    "language": "en",
+    "outcome": "unverified"
+  },
+  {
+    "at": "2026-09-15T15:11:22.051Z",
+    "event": "response",
+    "question": "Show an unverified result",
+    "outcome": "unverified"
+  },
+  {
+    "at": "2026-09-15T15:11:53.865Z",
+    "event": "request",
+    "question": "Why does NOT IN exclude NULL?",
+    "language": "zh",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:11:53.868Z",
+    "event": "response",
+    "question": "Why does NOT IN exclude NULL?",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:11:59.370Z",
+    "event": "request",
+    "question": "slow controlled cancellation",
+    "language": "zh",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:12:04.379Z",
+    "event": "request",
+    "question": "slow controlled cancellation",
+    "language": "zh",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:12:04.398Z",
+    "event": "cancelled",
+    "question": "slow controlled cancellation"
+  },
+  {
+    "at": "2026-09-15T15:12:04.585Z",
+    "event": "cancelled",
+    "question": "slow controlled cancellation"
+  },
+  {
+    "at": "2026-09-15T15:12:12.715Z",
+    "event": "request",
+    "question": "Recovered supported answer",
+    "language": "zh",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:12:12.715Z",
+    "event": "response",
+    "question": "Recovered supported answer",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:12:17.100Z",
+    "event": "request",
+    "question": "slow cancel confirmation",
+    "language": "zh",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:12:22.317Z",
+    "event": "request",
+    "question": "slow cancel confirmation",
+    "language": "zh",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:12:22.319Z",
+    "event": "cancelled",
+    "question": "slow cancel confirmation"
+  },
+  {
+    "at": "2026-09-15T15:12:37.320Z",
+    "event": "response",
+    "question": "slow cancel confirmation",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:13:56.104Z",
+    "event": "request",
+    "question": "slow fixed cancel proof",
+    "language": "zh",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:14:02.933Z",
+    "event": "cancelled",
+    "question": "slow fixed cancel proof"
+  },
+  {
+    "at": "2026-09-15T15:14:24.345Z",
+    "event": "request",
+    "question": "Recovery after fixed cancel",
+    "language": "zh",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:14:24.345Z",
+    "event": "response",
+    "question": "Recovery after fixed cancel",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:15:07.045Z",
+    "event": "request",
+    "question": "Why does salary <> 100 exclude NULL?",
+    "language": "zh",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:15:07.046Z",
+    "event": "response",
+    "question": "Why does salary <> 100 exclude NULL?",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:16:31.019Z",
+    "event": "request",
+    "question": "slow edit cancels request",
+    "language": "zh",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:16:35.908Z",
+    "event": "cancelled",
+    "question": "slow edit cancels request"
+  },
+  {
+    "at": "2026-09-15T15:16:42.914Z",
+    "event": "request",
+    "question": "slow leave cancels request",
+    "language": "zh",
+    "outcome": "supported"
+  },
+  {
+    "at": "2026-09-15T15:16:42.988Z",
+    "event": "cancelled",
+    "question": "slow leave cancels request"
+  }
+]

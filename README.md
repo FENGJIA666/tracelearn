@@ -2,123 +2,126 @@
 
 **Learning that can show its work.**
 
-[Try the portable practice](https://github.com/FENGJIA666/tracelearn/releases/download/v1.2.0/TraceLearn-Portable.html) · [Read the technical report](submission/TraceLearn-Technical-Report.pdf) · [Download the complete package](https://github.com/FENGJIA666/tracelearn/releases/download/v1.2.0/TraceLearn-Complete-v1.2.0.zip) · [Judge walkthrough](JUDGE-GUIDE.md) · [Devpost project](https://devpost.com/software/tracelearn-learning-that-can-show-its-work)
+[Try the portable practice](https://github.com/FENGJIA666/tracelearn/releases/download/v1.3.0/TraceLearn-Portable.html) · [Technical report](submission/TraceLearn-Technical-Report.pdf) · [Complete package](https://github.com/FENGJIA666/tracelearn/releases/download/v1.3.0/TraceLearn-Complete-v1.3.0.zip) · [Judge walkthrough](JUDGE-GUIDE.md) · [Devpost project](https://devpost.com/software/tracelearn-learning-that-can-show-its-work)
 
 ![The real TraceLearn learning workspace](submission/01-learning-workspace.png)
 
-TraceLearn is a local-first learning workspace for university students. **Predict an answer, inspect its source, change the example, and try a fresh transfer question.** The Counterexample Lab makes the explanation testable: edit SQL values and conditions to see which rows survive, or select attributes to follow a key-closure calculation. These computations use deterministic code, not generated reasoning. A local language model separately supports source questions and imported-note practice, with checked quotes and visible limitations.
+TraceLearn is a local learning workspace for university students. **Predict an answer, inspect its source, change the example, and try a fresh transfer question.** The Counterexample Lab makes explanations testable: edit SQL values and conditions to see which rows survive, or select attributes to follow a key-closure calculation. These computations use deterministic code. A local language model separately answers source questions and proposes distractors for imported-note practice.
 
-The worked course covers SQL NULL, aggregates, NOT IN, candidate keys, functional dependencies, closures, 2NF, 3NF/BCNF, decomposition, and LEFT JOIN. It contains 20 original passages and 10 diagnostic/transfer pairs. The course and tests are original contest work; no private student files are included.
+The original course covers SQL NULL, aggregates, NOT IN, candidate keys, functional dependencies, closures, 2NF, 3NF/BCNF, decomposition and LEFT JOIN. It contains 20 passages and 10 diagnostic/transfer pairs. No private student files are included.
 
 ## Try the portable practice first
 
-[Download TraceLearn-Portable.html](https://github.com/FENGJIA666/tracelearn/releases/download/v1.2.0/TraceLearn-Portable.html) (under 0.5 MB). This single file contains the same React workspace, 20 original questions, editable SQL/key experiments, source passages, review suggestions and exports. It needs no Node.js, model download or API key for those features. Download it and open it in a browser. If local-file opening is restricted, serve the extracted `submission` folder with `python3 -m http.server 4329 --bind 127.0.0.1 --directory submission` and visit <http://127.0.0.1:4329/TraceLearn-Portable.html>.
+[Download TraceLearn-Portable.html](https://github.com/FENGJIA666/tracelearn/releases/download/v1.3.0/TraceLearn-Portable.html) and open it in a browser. The single file contains the React workspace, original questions, editable experiments, source passages, review suggestions and exports. These features need no Node.js, model download or API key. If local-file opening is restricted, run `python3 -m http.server 4329 --bind 127.0.0.1 --directory submission` from the extracted project and visit <http://127.0.0.1:4329/TraceLearn-Portable.html>.
 
-The **Quick tour** connects Predict → Experiment → Transfer → Reflect & export. Steps open the real application state; the app does not fill in predictions or answers for you. Lab predictions are kept separately from quiz results, and a fresh transfer question opens without revealing a previous answer.
+The **Quick tour** connects Predict → Experiment → Transfer → Reflect & export. It opens real application states without answering for the learner. A transfer question matches the selected Lab condition or dependency schema and opens as a fresh attempt. **Ask the source** and importing your own notes require the full local app.
 
-**Evidence is recorded, not live AI.** Start with the supported-answer, refusal and retained-failure examples, then browse all 160 frozen requests by split and case type. Both methods, references, quotes, source passages and saved agent-assisted judgments remain inspectable. Live inference and importing your own notes require the full local app below.
+**Evidence is recorded, not live AI.** The viewer separates the v1.3 configuration comparison from the original 160-request experiment. The new view is designed for the complete 80-case, two-configuration run: 160 requests, including failures. It defaults to holdout and supports current-configuration success/failure filters. Each pair retains its final answer or error, saved scoring rationale, citations and input snapshots. Strict-correct totals come from saved judgments, not the model's `supported` label. The [final manifest](evidence/v1.3/final-manifest.json) is the authority for completed coverage and provenance; development prefixes are not final results.
 
-The portable file has embedded resources and a `connect-src 'none'` policy. Interactions and actual report download were verified through a localhost static preview; direct `file://` launch could not be automated because the browser tool blocks that scheme. Practice history uses browser storage when allowed and is separate from the full app's SQLite history. Browser data clearing can remove it; export a report to keep a copy. Embedded answer keys are for practice, not secure examinations.
+The portable file embeds its resources and uses `connect-src 'none'`. Its browser-storage history is separate from the full app's SQLite history. Clearing browser data can remove it; export a report to retain a copy. Embedded answer keys support practice, not secure examinations. Direct `file://` opening cannot be automated by the browser tool; see the [current acceptance record](evidence/v1.3/acceptance.md) for the exact paths exercised.
 
 ## Run the full local AI app
 
-Requirements: Node.js 22.13 or newer, Ollama, approximately 3.2 GB of model downloads, plus dependency storage. Tested on macOS / Apple M4 Pro / 24 GB memory. Windows and Linux were not tested.
+Requirements: **Node.js 22.13+ and Ollama 0.34.0+**. The validation host is macOS / Apple M4 Pro / 24 GB memory, with Ollama 0.34.0. Windows and Linux have not been tested. The two application models total approximately **7.234 GB of downloads**, plus dependency storage; download size is not a peak-memory measurement.
 
-1. Install Node.js from https://nodejs.org and Ollama from https://ollama.com/download if absent.
-2. In this directory, run `npm run setup` once. It starts a local Ollama process if needed, downloads the two named models, installs locked packages, builds the app, and records/verifies model digests.
-3. Run `npm start` and visit http://127.0.0.1:4317.
+1. Install [Node.js](https://nodejs.org) and [Ollama](https://ollama.com/download) if absent.
+2. Run `npm run setup`. It checks Ollama 0.34.0+ before downloading, installs locked dependencies, downloads `qwen3.5:9b` and `qwen3-embedding:0.6b`, builds the app, and records/verifies model digests. It starts local Ollama if needed.
+3. Run `npm start` and visit <http://127.0.0.1:4317>.
 
-On the tested Mac, `Start-TraceLearn.command` provides a double-click launcher after setup. It rebuilds this copy, then compares version, hashed installation identity and build fingerprint before reusing a server. A different copy or an older build is left running; the launcher chooses a free port from 4317–4336 and prints the actual address. It waits for the matching app before opening the browser. Model files are kept in Ollama's normal model directory and are not bundled in the source ZIP.
+After setup, Mac users can open `Start-TraceLearn.command`. It rebuilds this copy and compares version, hashed installation identity and build fingerprint before reusing a server. A different copy or older build is left running; the launcher selects a free port from 4317–4336 and prints the address. Model weights remain in Ollama's normal directory and are not bundled in the ZIP.
 
-No API key, cloud account, paid inference, external font, CDN asset, or user login is required. Initial installation needs internet. Afterwards the app and model processes can operate with outbound network access restricted to localhost. The source and evaluation evidence are public in this repository. The release includes a complete source package and a separately downloadable technical report. The application itself runs locally; there is no hosted inference demo.
+Ollama 0.34.0+ is required for the tested chat `truncate:false` behavior. No API key, cloud account, paid inference, CDN resource or login is required. Initial installation needs internet. After installation, the app and models can operate locally with outbound access restricted to localhost. Source and evaluation evidence are public; imported learning material stays in the local app. There is no hosted inference service.
+
+The application needs only those two models. **Reproducing the new comparison additionally requires `ollama pull qwen3:4b`**, approximately 2.5 GB, for the frozen old configuration. It is not an application dependency. Follow the final manifest's recorded digests and settings when reproducing results.
 
 ## Three-minute walkthrough
 
 1. Use **1 · Predict** and answer the SQL NULL question. For the illustrative wrong-answer path, choose **200 and NULL** with high confidence, then inspect **null-where**.
-2. Open **2 · Experiment**. Predict which rows survive `value <> 100`, then **Run & check prediction**. The table shows TRUE, FALSE or UNKNOWN for each row and highlights differences from your prediction.
-3. Change the condition to `value <> target OR value IS NULL`, make a new prediction, and rerun. You can also change the values or explore `NOT IN`.
-4. Choose **Try a transfer question** and answer independently. This opens a fresh attempt, even if the question was answered earlier.
-5. In **Lab**, export the experiment inputs, predictions and recomputed traces. In **Notebook**, inspect review suggestions and export the separate quiz/AI learning report.
-6. For a second example, switch Lab to **Keys & closure**. Compare A with AD in the first schema, then test whether an extra B is removable.
+2. Open **2 · Experiment**. Predict which rows survive `value <> 100`, then **Run & check prediction**. The table shows TRUE, FALSE or UNKNOWN for every row and differences from your prediction.
+3. Change to `value <> target OR value IS NULL`, predict again and rerun. You can also edit values or explore `NOT IN`.
+4. Choose **Try a transfer question**. The question and displayed source match the current experiment, including NOT IN and the second key schema, and open without revealing a previous answer. Restarting Quick tour restores its initial experiment.
+5. Export the Lab record with inputs, predictions and recomputed traces. **Notebook** separately reopens quiz attempts and AI answers with their original citations, without another model call. Its learning-report export is separate from the Lab export.
+6. For a second experiment, choose **Keys & closure**. Compare A with AD in the first schema, then test whether an extra B is removable.
 
-These demonstration actions are software tests, not evidence of improved student learning.
+These are software demonstrations, not evidence of improved learning. Old saved answers retain their original quote-only status; they are not retroactively labeled as support-reviewed.
 
-## Import your own material
+## Ask questions and import material
 
-PDF with extractable text, UTF-8 Markdown, or UTF-8 TXT. Maximum 10 MB and 50 PDF pages; text is limited to 175,000 characters and assigned virtual page segments. Scanned, mixed scanned, encrypted, damaged, empty, and unsupported files receive explicit errors. OCR is not implemented. Multi-column PDF reading order may need manual checking.
+**Ask the source** retrieves five passages. Code creates exact excerpt choices; the model writes one concise conclusion containing the requested result and essential reason, citing at most two of those excerpts. A separate call to the same local model reviews whether the requested information is established, the conclusion and its source attribution, and coverage of the applicable conditions. Exact quotation is checked by code; semantic support remains an automated judgment.
 
-Imported courses support source questions and AI-assisted verbatim cloze practice. Select any passage in **Browse passages**, then choose **Generate from this passage**. The planner chooses an unused eligible sentence from that passage, preserves the document hash and citation, and skips already-used statements. If all eligible sentences are used, it asks you to choose another passage or revisit an existing question. API callers may omit `sectionId` to scan the whole document; generation is no longer limited to the first five passages.
+The outcomes are `supported` (local checks accepted the answer), `insufficient` (selected sources do not establish a complete answer), and `unverified` (no complete explanation passed the checks). Neither a matched quote nor `supported` guarantees correctness. There are at most two draft/review rounds, four chat calls, and a 180-second answer-request deadline. Cancellation, unavailable models and timeouts return explicit errors; context overflow is rejected rather than silently trimming source text.
 
-The app accepts a question only when the keyed option exactly reconstructs the selected source sentence and all four options are distinct. Simultaneous requests cannot save duplicate questions for the same sentence. These are source-recall exercises, not conceptual transfer tests or independently reviewed questions. Early free-form question generation produced an all-incorrect option set, so the shipped generation path was deliberately narrowed. Built-in exercises stay in English to preserve technical terminology; the interface, built-in source translations, and AI responses support English/Chinese.
+Import a text PDF, UTF-8 Markdown or UTF-8 TXT. All files are limited to 10 MB. PDFs are limited to 50 pages; Markdown/TXT to 175,000 UTF-16 code units (a supplementary character such as an emoji uses two). Text imports receive virtual page segments. Scanned, mixed scanned, encrypted, damaged, empty and unsupported files receive errors; OCR is not included. Check multi-column PDF reading order.
+
+For cloze practice, select any passage in **Browse passages**, then **Generate from this passage**. The planner selects an unused eligible sentence and preserves its source and document hash. The answer comes from that sentence; the same `qwen3.5:9b` model proposes only distractors. Exact reconstruction and distinct options are checked before saving; concurrent requests cannot save the same sentence twice. Exhausted passages prompt you to choose another passage or revisit a question.
+
+A narrow SQL option check rejects known non-NULL aliases such as `non-NULL`, `not NULL` and `IS NOT NULL` appearing as competing options. Generation has at most two calls; this quality failure permits one extra repair with a different prompt, for at most three calls total. This is source recall, not a semantic transfer test or independently reviewed assessment. Built-in exercises stay in English to preserve terminology; the interface, built-in source translations and AI answers support English/Chinese.
 
 ## What the Lab computes
 
-SQL supports four fixed predicates: `value <> target`, `NOT (value = target)`, `value <> target OR value IS NULL`, and `value NOT IN (list)`. The interface accepts 1–6 numeric/NULL rows and 1–8 list entries. It preserves duplicate rows and shows why WHERE keeps only TRUE. This is a bounded simulator, not an arbitrary SQL editor.
+SQL supports `value <> target`, `NOT (value = target)`, `value <> target OR value IS NULL`, and `value NOT IN (list)`. It accepts 1–6 numeric/NULL rows and 1–8 list entries, preserves duplicate rows and explains why WHERE keeps only TRUE. It is a bounded simulator, not an arbitrary SQL editor.
 
-Keys & closure provides two original dependency schemas. Select attributes, predict whether they form a candidate key, a reducible superkey or neither, then inspect each applied dependency and single-attribute removal check. Results are conditional on the displayed dependencies; they do not infer universal constraints from a sample table or prove every normal form.
+Keys & closure provides two fixed dependency schemas. Predict candidate key, reducible superkey or neither, then inspect dependency applications and single-attribute removal checks. Results depend on the displayed dependencies; they do not infer universal constraints from sample data or prove every normal form.
 
-The [lab validation method](evidence/v1.2-lab-method.md) explains 1,600 row-result comparisons with real SQLite and checks of every subset of both schemas against a separately implemented finite-relation oracle. This is independent computation for checking the code, not independent human evaluation of learning.
+The [Lab validation method](evidence/v1.2-lab-method.md) documents 1,600 row-result comparisons with real SQLite and checks of all 24 subsets of the two schemas against a separately implemented finite-relation oracle. This checks code with different algorithms; it is not independent human evaluation of learning.
 
-## Architecture
+## Architecture and model settings
 
 ```text
-React reading workspace
-  |-- fixed SQL / attribute-closure model: editable inputs, deterministic traces
-  |-- browser storage: separate lab predictions and portable practice
+React workspace
+  |-- deterministic SQL / closure experiments and original exercises
+  |-- browser storage: separate Lab and portable practice records
   | same-origin HTTP, localhost only
-Node / Express
-  |-- SQLite: courses, source hashes, vectors, attempts, question records
-  |-- PDF.js / UTF-8 parser: page-aware source passages
-  |-- lexical overlap + cosine similarity --> top five passages
-  |-- Ollama qwen3-embedding:0.6b --> local vectors
-  |-- Ollama qwen3:4b --> structured answer / generated question
-  |-- Zod + exact-quote matching + echo/planning rejection
-  `-- deterministic exercise grading + Markdown report
+Node / Express / SQLite
+  |-- page-aware imports, document hashes, vectors, attempts and chats
+  |-- qwen3-embedding:0.6b + lexical overlap --> five source passages
+  |-- program-built exact excerpts --> qwen3.5:9b concise conclusion
+  |-- exact-quote validation --> separate same-model support review
+  |-- original sentence --> source-recall key + model distractors
+  `-- deterministic grading, saved-answer replay and Markdown exports
 ```
 
-The rank is 0.75 cosine similarity + 0.25 query-token overlap. This is an inspectable hybrid heuristic, not a trained reranker. For grounded answers the model sees only the top five passages. The comparison baseline sees all 20 passages. Both use the same model, prompt, schema and quote validator. Neither method can prove semantic entailment merely by matching a quote.
+Retrieval weights cosine similarity at 0.75 and query-token overlap at 0.25. It is a heuristic, not a trained reranker. The current generation adapter uses a 16,384-token context, a 1,800-token output limit, `think:false`, `truncate:false`, temperature 0 and seed 42. [local-model.ts](server/local-model.ts) defines full settings; [support-answer.ts](server/support-answer.ts) defines answering/review. [source-recall.ts](server/source-recall.ts) and [practice-generation.ts](server/practice-generation.ts) implement configurable cloze generation and bounded repair.
 
-`server/ai.ts` defines the frozen model tags and inference parameters. `evaluation/model-manifest.json` records actual model digests and Ollama version. `evaluation/dataset-lock.json` fixes the 80-case dataset. The pilot and its observed defects are retained separately from the final run.
+The frozen [server/ai.ts](server/ai.ts) retains the old Qwen3-4B answer path and shared retrieval/validation helpers. Its constants do not define current production generation. The new experiment compares complete old/current configurations, including changed model weights and review logic; it is not a single-variable ablation.
 
 ## Validation and reproducibility
 
-- `npm test`: 48 automated checks passed for v1.2, including unit and isolated HTTP integration tests. Coverage includes SQLite differential checks, the independent FD oracle, stored-record validation, stale-request handling, selected-passage generation, concurrent duplicate prevention and installation identity, plus the earlier core checks.
-- `npx tsx scripts/http-check.ts`: isolated SQLite database and local server; validates user routes, hidden answers, input checks, origin restrictions, history and export.
+- `npm test`: core, Lab, request recovery, local-model transport, generation, review and isolated HTTP checks. The final acceptance record gives the completed test count.
+- `npx tsx scripts/http-check.ts`: separate route-level checks with an isolated SQLite database and local server.
 - `npm run build`: TypeScript and production build.
-- `npm run build:portable`: regenerate the display projection of frozen records and create the self-contained HTML.
-- `evidence/v1.2-acceptance.md`: current browser, build and delivery evidence. Earlier `evidence/acceptance.md` and `evidence/v1.1-acceptance.md` are historical records, not the current submission status.
-- `evidence/v1.2-lab-method.md`: deterministic Lab validation, assumptions and reproduction commands.
-- `npm run evaluate`: runs missing evaluations and regenerates summary. Existing results are not overwritten. To independently rerun, copy the code to a fresh directory and archive `evaluation/raw-results.jsonl` first.
-- `evaluation/raw-results.jsonl`: accepted final model output, retrieved sources, timings and available retry records; rejected calls retain error records.
-- `evaluation/semantic-review.json`: agent-assisted review, explicitly not an independent human study.
-- `submission/TraceLearn-Technical-Report.pdf`: self-contained explanation and measured results.
+- `npm run prepare:current-review`: checks final raw/review hashes and each saved judgment against its raw record, then writes the v1.3 display projection without rescoring.
+- `npm run build:portable`: regenerates both historical and current projections, including those v1.3 checks, then builds the self-contained HTML.
+- [v1.3 acceptance](evidence/v1.3/acceptance.md): exact browser, setup, offline, build and delivery checks, including their limits.
+- [v1.3 final manifest](evidence/v1.3/final-manifest.json): complete development/holdout coverage, configuration, frozen source and raw-result provenance. Follow this record for the final comparison and reproduction.
+- [v1.3 evidence notes](evidence/v1.3/README.md): development history and the distinction between mocked UI checks and real inference.
+- [Technical report](submission/TraceLearn-Technical-Report.pdf): method, measured results and limitations.
 
-To reproduce the final measurements, use the recorded model digests and configuration. Inference timing depends on hardware, warm state and other workload. This small, author-created benchmark is not a general measure of educational effectiveness.
+The original `content/course.ts`, `server/ai.ts` and `evaluation/*` remain frozen. The original 80 cases, 160 requests, errors and saved agent-assisted reviews are historical evidence, not v1.3 performance. Earlier acceptance files describe their own versions. Development prefixes must not be reported as complete final scores.
+
+`npm run evaluate` is the **legacy** evaluation command. Do not overwrite historical results to reproduce a new comparison; use a separate output directory and the configuration in the new final manifest. A separate reproduction needs the additional old model described above. Timing depends on hardware, warm state and workload. The dataset-author Codex agent also performed the saved semantic scoring; this is neither blinded nor independent human assessment. See the [reproduction guide](evidence/v1.3/REPRODUCE.md) for new-output commands that preserve the historical records.
 
 ## Data and safety boundaries
 
-The full app's imported material, generated questions, quiz attempts and chats live in `.local/tracelearn.sqlite` by default. Portable quiz attempts and Lab experiments use browser storage; Lab keeps the latest 100 valid input/prediction records per source hash. Its export recomputes outcomes rather than trusting stored scores or traces. Browser clearing can remove these records, so export to retain them. No personal runtime database is included in the source ZIP or submission media.
+The full app stores imported material, generated questions, attempts and chats in `.local/tracelearn.sqlite` by default. Portable quiz attempts and Lab experiments use browser storage. Lab retains the latest 100 valid records per source hash; export recomputes outcomes instead of trusting stored scores. Personal runtime databases are excluded from the source ZIP and submission media.
 
-The server listens on 127.0.0.1 only and rejects unexpected Host and Origin headers. This is a single-user local application; no multi-user authentication is implemented. Do not expose this server or Ollama through a public tunnel. Installation identity exposes hashes, not an absolute filesystem path.
+The server listens on 127.0.0.1 and rejects unexpected Host and Origin headers. It is a single-user application without multi-user authentication. Do not expose it or Ollama through a public tunnel. Installation identity exposes hashes, not an absolute filesystem path.
 
-React renders model and document content as text. Documents cannot run application code. Instructions embedded in source text are treated as untrusted; prompt-injection resistance is tested on representative cases, not guaranteed against all attacks. Cancellation aborts the model request and prevents a partial answer from being saved; HTTP success immediately before cancellation may already have been persisted.
+React renders source/model content as text. Document instructions are untrusted data; representative prompt-injection tests do not guarantee resistance to every attack. Cancellation aborts requests and prevents stale results replacing the current course/question. The Ask cancel control does not submit a replacement request. A response saved immediately before cancellation may already exist in history.
 
 ## Troubleshooting
 
-- **Local AI unavailable**: start Ollama, run `npm run setup`, then **Check connection**.
-- **Model missing**: `ollama pull qwen3:4b` and `ollama pull qwen3-embedding:0.6b`.
-- **Slow first request**: first indexing and model loading take longer; subsequent requests reuse local vectors and model memory.
-- **Unverifiable response**: the model failed output checks twice. Ask a narrower question; the failed answer is not accepted.
-- **Import rejected**: export the source as a text PDF or UTF-8 notes; scanned files need OCR outside this app.
-- **No more questions in this passage**: pick another passage; the planner deliberately avoids repeating the same source sentence.
-- **Port in use**: the Mac launcher reuses only its own matching installation/build and otherwise selects another local port. With the CLI use `PORT=4321 npm start`.
+- **Local AI unavailable:** start Ollama, run `npm run setup`, then **Check connection**.
+- **Application model missing:** run `ollama pull qwen3.5:9b` and `ollama pull qwen3-embedding:0.6b`.
+- **Slow first request:** indexing/model loading take time; later calls can reuse local vectors and loaded weights.
+- **No answer passed the checks:** inspect the outcome, narrow the question or inspect the source. An `unverified` explanation is not accepted.
+- **Context limit exceeded:** shorten the question or material. The request is rejected rather than silently truncated.
+- **Import rejected:** export a text PDF or UTF-8 notes; scanned material needs external OCR.
+- **No more practice:** select another passage; the planner avoids repeating source sentences.
+- **Port in use:** the Mac launcher selects a free port unless the running installation/build matches. For CLI use `PORT=4321 npm start`.
 
-## AI contribution and limitations
+## AI contribution and report generation
 
-Codex assisted with concept design, implementation, original course and question drafting, test design, visual composition and documentation. Qwen generates runtime responses. Deterministic tests and agent-assisted content checks were used; no independent classroom study, real-user adoption claim or measured learning gain is asserted. The competition encourages AI projects; explicit organizer approval of this development workflow has not been obtained. See `submission/AI-DISCLOSURE.md` and `THIRD-PARTY-NOTICES.md`.
+Codex substantially assisted with design, code, original teaching material, tests, evaluation review, visuals and documentation. Qwen runs locally for generated answers and distractors. No independent classroom study, adoption or learning gain is claimed. Separate organizer approval of AI-assisted code authorship has not been obtained. See [AI-DISCLOSURE.md](submission/AI-DISCLOSURE.md) and [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
-## Report regeneration
-
-The finished PDF and actual screenshots are included. To regenerate the report on a machine with Python 3.11+, install `scripts/requirements-report.txt` in a virtual environment, then run `python scripts/make-report.py` after the complete 160-request summary exists. The script uses the included actual screenshots and saved review judgments; it does not create new evaluation evidence. `python scripts/write-review.py` only recounts the saved agent-assisted judgments. `submission/architecture.svg` is a standalone vector architecture diagram.
-
-Version 1.2 leaves `server/ai.ts`, the original course and all `evaluation/*` files unchanged from v1.1. The new planner wraps the existing generator with a selected source sentence; it does not tune the answering pipeline or change old benchmark results. The earlier narrowing to source-derived cloze is recorded in `evaluation/answer-pipeline-preservation.json`.
+To regenerate the report with Python 3.11+, install `scripts/requirements-report.txt` in a virtual environment and run `python scripts/make-report.py` after the complete final evidence is available. It uses saved measurements and actual software screenshots; it does not create evaluation evidence. `python scripts/write-review.py` recounts saved historical judgments only. [architecture.svg](submission/architecture.svg) is the standalone architecture diagram.

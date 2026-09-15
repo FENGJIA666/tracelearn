@@ -15,7 +15,8 @@ Original application code, course passages, question data, evaluation prompts, a
 | Lucide | ISC — https://github.com/lucide-icons/lucide |
 | pdf-lib (test fixtures) | MIT — https://github.com/Hopding/pdf-lib |
 | Ollama | MIT — https://github.com/ollama/ollama |
-| Qwen3-4B, Qwen3-Embedding-0.6B | Apache-2.0 — https://huggingface.co/Qwen/Qwen3-4B and https://huggingface.co/Qwen/Qwen3-Embedding-0.6B |
+| Qwen3.5-9B (production generation), Qwen3-Embedding-0.6B | Apache-2.0 — https://huggingface.co/Qwen/Qwen3.5-9B and https://huggingface.co/Qwen/Qwen3-Embedding-0.6B |
+| Qwen3-4B (historical comparator), Qwen3.5-4B (retained development trials) | Apache-2.0 — https://huggingface.co/Qwen/Qwen3-4B and https://huggingface.co/Qwen/Qwen3.5-4B |
 
 Exact installed package versions and declared licenses are listed in `submission/dependency-licenses.json`. License declarations should be checked against upstream files before redistribution of third-party binaries. System fonts are referenced by name, not distributed. The submission makes no claim of affiliation with these projects.
 

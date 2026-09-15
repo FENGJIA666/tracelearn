@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "name": "TraceLearn v1.3 semantic-support benchmark",
+  "state": "locked_before_candidate_evaluation",
+  "createdDate": "2026-09-15",
+  "author": "Codex",
+  "independentHumanValidation": false,
+  "purpose": "A new source-grounded correctness/refusal evaluation; it does not replace or revise the original v1.0 160-request results.",
+  "splitPolicy": "The root/candidate implementer may inspect development and shared documents only. The author retains holdout prompts, references and review until candidate code/configuration are frozen and the root explicitly requests the one-shot holdout run.",
+  "isolationLimit": "Files are sealed by process convention on a shared filesystem, not encrypted or protected from the same OS account.",
+  "randomization": "None; cases and split assignments are explicitly authored and fixed before candidate runs.",
+  "referenceReview": "Each reference and support assignment was checked by the Codex author against the complete relevant fictional document; rationale records are retained. This is not independent human adjudication.",
+  "caseContract": {
+    "categoryValues": [
+      "source-answerable",
+      "unanswerable",
+      "contradicted-premise"
+    ],
+    "expectedInsufficient": "true only for unanswerable; false-premise questions with an evidenced correction should be answered with that correction",
+    "requiredFacts": "Semantic requirements, not exact-substring grading. References are English even when the requested answer language is Chinese.",
+    "forbiddenClaims": "Propositions whose unsupported assertion is a failure. Mentioning them to reject an injected premise is not a failure.",
+    "supportIds": "Known legitimate evidence for the reference; unanswerable cases intentionally have no supporting answer passage."
+  },
+  "counts": {
+    "development": {
+      "count": 40,
+      "categories": {
+        "source-answerable": 16,
+        "unanswerable": 12,
+        "contradicted-premise": 12
+      },
+      "languages": {
+        "en": 20,
+        "zh": 20
+      },
+      "documents": {
+        "db-sandbox": 10,
+        "meridian-library": 10,
+        "orbit-lab": 10,
+        "arcadia-shuttle": 10
+      },
+      "tags": {
+        "arithmetic": 2,
+        "boundary": 3,
+        "conditions": 4,
+        "conjunction": 1,
+        "cross-language": 5,
+        "dependencies": 1,
+        "direction": 7,
+        "document-instruction": 5,
+        "entity-role": 2,
+        "entity-swap": 2,
+        "enumeration": 1,
+        "false-premise": 11,
+        "null": 4,
+        "numbers": 13,
+        "placement": 1,
+        "same-entity-missing-attribute": 10,
+        "same-topic-missing-policy": 2,
+        "scope": 2,
+        "time": 6,
+        "unsupported-recommendation": 1
+      }
+    },
+    "holdout": {
+      "count": 40,
+      "categories": {
+        "source-answerable": 16,
+        "unanswerable": 12,
+        "contradicted-premise": 12
+      },
+      "languages": {
+        "en": 20,
+        "zh": 20
+      },
+      "documents": {
+        "db-sandbox": 10,
+        "meridian-library": 10,
+        "orbit-lab": 10,
+        "arcadia-shuttle": 10
+      },
+      "tags": {
+        "arithmetic": 3,
+        "authority": 1,
+        "boundary": 3,
+        "composition": 2,
+        "conditions": 4,
+        "conjunction": 1,
+        "cross-language": 5,
+        "dependencies": 2,
+        "direction": 3,
+        "document-instruction": 3,
+        "entity-role": 2,
+        "entity-swap": 1,
+        "enumeration": 2,
+        "exclusion": 1,
+        "false-premise": 11,
+        "minimality": 1,
+        "null": 5,
+        "numbers": 15,
+        "same-entity-missing-attribute": 7,
+        "same-entity-missing-cause": 1,
+        "same-entity-missing-policy": 4,
+        "subset": 2,
+        "time": 9
+      }
+    }
+  },
+  "documents": [
+    {
+      "id": "db-sandbox",
+      "hash": "e7981112268954613df213f418b8a93a0c929ca25f09bc06283f3a8a61f65fc6",
+      "sections": 7
+    },
+    {
+      "id": "meridian-library",
+      "hash": "093c51f4a86dae7141e14b04190f09110f0d7c38c13def4d8fe0d27648625abf",
+      "sections": 7
+    },
+    {
+      "id": "orbit-lab",
+      "hash": "c186b23c1fe91940bc516aff2c96f8170b76932298af256a64cd24694a30fe51",
+      "sections": 7
+    },
+    {
+      "id": "arcadia-shuttle",
+      "hash": "baa4fe05312ac810090a29fd4a6fc8f0f5812b99b087ab6836a525a01cdef035",
+      "sections": 7
+    }
+  ],
+  "documentHashFormat": "SHA-256 of UTF-8 canonical JSON with recursively sorted keys and no whitespace, excluding the hash field itself.",
+  "files": [
+    {
+      "path": "documents.json",
+      "sha256": "8609e5a793fedc82159c63b6126a3ac1c884f65bacf8e3ba3f2d2d1fa9e605d3",
+      "bytes": 10703
+    },
+    {
+      "path": "development.json",
+      "sha256": "2c04c87e08034537e78ecbc43ed4c377c5742883c2839f527aed4f4880279906",
+      "bytes": 27278
+    },
+    {
+      "path": "development-author-review.json",
+      "sha256": "f7bdee6747e6589cebb6c981374beb4e93ddfbea9f97853fdfd40778b96ed269",
+      "bytes": 11654
+    },
+    {
+      "path": "holdout-sealed/questions.json",
+      "sha256": "cd0fe3060aa4b17fd77e1899e7a6c3171c89fa6a6856a58a38818025fd45777b",
+      "bytes": 26968
+    },
+    {
+      "path": "holdout-sealed/author-review.json",
+      "sha256": "a5e8e1d970e45afe36245120755f3a7651a3e5ff3349d4da9e9e648490f98040",
+      "bytes": 12019
+    }
+  ]
+}
