@@ -1,0 +1,753 @@
+
+> tracelearn@1.3.0 test
+> tsx --test tests/*.test.ts
+
+TAP version 13
+# Subtest: SQL NULL examples execute as taught
+ok 1 - SQL NULL examples execute as taught
+  ---
+  duration_ms: 1.117583
+  type: 'test'
+  ...
+# Subtest: all curated questions have distinct options, valid sources and transfer pairs
+ok 2 - all curated questions have distinct options, valid sources and transfer pairs
+  ---
+  duration_ms: 0.27775
+  type: 'test'
+  ...
+# Subtest: candidate keys and normal-form example checked with closure
+ok 3 - candidate keys and normal-form example checked with closure
+  ---
+  duration_ms: 0.143458
+  type: 'test'
+  ...
+# Subtest: accept exact source and reject fabricated citation or uncited assertion
+ok 4 - accept exact source and reject fabricated citation or uncited assertion
+  ---
+  duration_ms: 1.266584
+  type: 'test'
+  ...
+# Subtest: refusal does not carry accepted citations
+ok 5 - refusal does not carry accepted citations
+  ---
+  duration_ms: 0.081333
+  type: 'test'
+  ...
+# Subtest: UTF8 notes import retains hash and virtual page location
+ok 6 - UTF8 notes import retains hash and virtual page location
+  ---
+  duration_ms: 0.460959
+  type: 'test'
+  ...
+# Subtest: long notes do not lose characters between chunks
+ok 7 - long notes do not lose characters between chunks
+  ---
+  duration_ms: 0.159125
+  type: 'test'
+  ...
+# Warning: Indexing all PDF objects
+# Subtest: reject empty, invalid, oversized and unsupported files
+ok 8 - reject empty, invalid, oversized and unsupported files
+  ---
+  duration_ms: 275.38925
+  type: 'test'
+  ...
+# Subtest: text PDF accepted; blank scan and 51-page PDF rejected
+ok 9 - text PDF accepted; blank scan and 51-page PDF rejected
+  ---
+  duration_ms: 36.585167
+  type: 'test'
+  ...
+# Subtest: cosine similarity handles zero vectors
+ok 10 - cosine similarity handles zero vectors
+  ---
+  duration_ms: 0.300333
+  type: 'test'
+  ...
+# Subtest: a missing or changed freeze fails before a sealed file reader is called
+ok 11 - a missing or changed freeze fails before a sealed file reader is called
+  ---
+  duration_ms: 0.952125
+  type: 'test'
+  ...
+# Subtest: development cannot read a innocently named symlink to a sealed case file
+ok 12 - development cannot read a innocently named symlink to a sealed case file
+  ---
+  duration_ms: 1.678458
+  type: 'test'
+  ...
+# Subtest: resume identity changes when any case, mode, pipeline or material changes
+ok 13 - resume identity changes when any case, mode, pipeline or material changes
+  ---
+  duration_ms: 0.446792
+  type: 'test'
+  ...
+# Subtest: source fingerprint follows imported helpers and directory index imports
+ok 14 - source fingerprint follows imported helpers and directory index imports
+  ---
+  duration_ms: 10.690209
+  type: 'test'
+  ...
+# Subtest: exact supporting quotes never become an automatic semantic correctness score
+ok 15 - exact supporting quotes never become an automatic semantic correctness score
+  ---
+  duration_ms: 0.220708
+  type: 'test'
+  ...
+# Subtest: unverified is no-answer even when the legacy insufficient flag is true
+ok 16 - unverified is no-answer even when the legacy insufficient flag is true
+  ---
+  duration_ms: 0.072125
+  type: 'test'
+  ...
+# Subtest: model metadata retains the actual candidate and tag defaults without private show fields
+ok 17 - model metadata retains the actual candidate and tag defaults without private show fields
+  ---
+  duration_ms: 0.318875
+  type: 'test'
+  ...
+# Subtest: a missing supported model is named precisely and never falls back to the historical model
+ok 18 - a missing supported model is named precisely and never falls back to the historical model
+  ---
+  duration_ms: 0.115792
+  type: 'test'
+  ...
+# Subtest: changed candidate digest or tag defaults cannot reuse a resume manifest or holdout freeze
+ok 19 - changed candidate digest or tag defaults cannot reuse a resume manifest or holdout freeze
+  ---
+  duration_ms: 1.532333
+  type: 'test'
+  ...
+# Subtest: a shared generation tag is inspected once while preserving separate pipeline identities
+ok 20 - a shared generation tag is inspected once while preserving separate pipeline identities
+  ---
+  duration_ms: 0.890584
+  type: 'test'
+  ...
+# Subtest: a short section is one unchanged trimmed substring with original offsets
+ok 21 - a short section is one unchanged trimmed substring with original offsets
+  ---
+  duration_ms: 0.972708
+  type: 'test'
+  ...
+# Subtest: long prose keeps every original non-whitespace character and prefers sentence boundaries
+ok 22 - long prose keeps every original non-whitespace character and prefers sentence boundaries
+  ---
+  duration_ms: 1.224292
+  type: 'test'
+  ...
+# Subtest: every built-in course passage retains all source characters in literal bounded excerpts
+ok 23 - every built-in course passage retains all source characters in literal bounded excerpts
+  ---
+  duration_ms: 12.935333
+  type: 'test'
+  ...
+# Subtest: unbroken text uses bounded 32-character overlap and preserves a short tail
+ok 24 - unbroken text uses bounded 32-character overlap and preserves a short tail
+  ---
+  duration_ms: 0.347125
+  type: 'test'
+  ...
+# Subtest: Chinese and emoji remain literal with no split surrogate pairs
+ok 25 - Chinese and emoji remain literal with no split surrogate pairs
+  ---
+  duration_ms: 1.004958
+  type: 'test'
+  ...
+# Subtest: word boundaries are preferred when a long paragraph has no sentence punctuation
+ok 26 - word boundaries are preferred when a long paragraph has no sentence punctuation
+  ---
+  duration_ms: 0.23
+  type: 'test'
+  ...
+# Subtest: blank or entirely short sections have no choices, and the retrieval limit is enforced
+ok 27 - blank or entirely short sections have no choices, and the retrieval limit is enforced
+  ---
+  duration_ms: 0.306
+  type: 'test'
+  ...
+# Subtest: evidence selection deduplicates IDs and rejects empty, invented and excessive selections
+ok 28 - evidence selection deduplicates IDs and rejects empty, invented and excessive selections
+  ---
+  duration_ms: 0.164833
+  type: 'test'
+  ...
+# Subtest: widely separated isolated short text fails explicitly instead of losing source characters
+ok 29 - widely separated isolated short text fails explicitly instead of losing source characters
+  ---
+  duration_ms: 0.214542
+  type: 'test'
+  ...
+# Subtest: unusable source excerpts are recoverable 400 errors, but invalid model IDs remain validation failures
+ok 30 - unusable source excerpts are recoverable 400 errors, but invalid model IDs remain validation failures
+  ---
+  duration_ms: 1.049208
+  type: 'test'
+  ...
+# Subtest: offline Ollama gives an actionable 503
+ok 31 - offline Ollama gives an actionable 503
+  ---
+  duration_ms: 0.739458
+  type: 'test'
+  ...
+# Subtest: abort maps to cancellation instead of saving an answer
+ok 32 - abort maps to cancellation instead of saving an answer
+  ---
+  duration_ms: 0.216125
+  type: 'test'
+  ...
+# Subtest: deadline maps to unavailable/timeout without false success
+ok 33 - deadline maps to unavailable/timeout without false success
+  ---
+  duration_ms: 0.094083
+  type: 'test'
+  ...
+# Subtest: malformed answer is retried once then rejected
+ok 34 - malformed answer is retried once then rejected
+  ---
+  duration_ms: 24.715542
+  type: 'test'
+  ...
+# Subtest: duplicate generated options are rejected after one retry
+ok 35 - duplicate generated options are rejected after one retry
+  ---
+  duration_ms: 4.451167
+  type: 'test'
+  ...
+# Subtest: cloze derives its answer and explanation from the source, not model prose
+ok 36 - cloze derives its answer and explanation from the source, not model prose
+  ---
+  duration_ms: 1.700417
+  type: 'test'
+  ...
+# Subtest: cloze rejects a distractor that duplicates the source-derived correct phrase
+ok 37 - cloze rejects a distractor that duplicates the source-derived correct phrase
+  ---
+  duration_ms: 1.732125
+  type: 'test'
+  ...
+# Subtest: TXT and Markdown preserve emoji crossing virtual-page and paragraph cuts
+ok 38 - TXT and Markdown preserve emoji crossing virtual-page and paragraph cuts
+  ---
+  duration_ms: 1.616083
+  type: 'test'
+  ...
+# Subtest: word-boundary trimming and title truncation keep valid emoji without changing source characters
+ok 39 - word-boundary trimming and title truncation keep valid emoji without changing source characters
+  ---
+  duration_ms: 0.271792
+  type: 'test'
+  ...
+# Subtest: valid text at 175000 UTF-16 units stays within 50 virtual pages despite repeated boundary emoji
+ok 40 - valid text at 175000 UTF-16 units stays within 50 virtual pages despite repeated boundary emoji
+  ---
+  duration_ms: 2.446667
+  type: 'test'
+  ...
+# Subtest: normal text keeps its original sections, page numbers, ids and titles
+ok 41 - normal text keeps its original sections, page numbers, ids and titles
+  ---
+  duration_ms: 0.629125
+  type: 'test'
+  ...
+# Subtest: real PDF text extraction preserves emoji across the shared paragraph boundary
+ok 42 - real PDF text extraction preserves emoji across the shared paragraph boundary
+  ---
+  duration_ms: 300.133416
+  type: 'test'
+  ...
+# Subtest: existing byte and PDF-page limits remain enforced
+ok 43 - existing byte and PDF-page limits remain enforced
+  ---
+  duration_ms: 70.302333
+  type: 'test'
+  ...
+# Subtest: installation and build identities distinguish copies, versions and asset changes without paths
+ok 44 - installation and build identities distinguish copies, versions and asset changes without paths
+  ---
+  duration_ms: 5.02825
+  type: 'test'
+  ...
+# Subtest: launcher selection reuses only its exact installation and leaves conflicting local services alone
+ok 45 - launcher selection reuses only its exact installation and leaves conflicting local services alone
+  ---
+  duration_ms: 0.711292
+  type: 'test'
+  ...
+# Subtest: identity selection distinguishes two actual loopback servers and makes no mutation requests
+ok 46 - identity selection distinguishes two actual loopback servers and makes no mutation requests
+  ---
+  duration_ms: 33.148083
+  type: 'test'
+  ...
+# Subtest: portable exercises use every original key and preserve source provenance
+ok 47 - portable exercises use every original key and preserve source provenance
+  ---
+  duration_ms: 3.289
+  type: 'test'
+  ...
+# Subtest: portable restoration repairs altered grading fields and tolerates corrupted storage
+ok 48 - portable restoration repairs altered grading fields and tolerates corrupted storage
+  ---
+  duration_ms: 0.443
+  type: 'test'
+  ...
+# Subtest: review plan puts current confident mistakes first and untried transfer next
+ok 49 - review plan puts current confident mistakes first and untried transfer next
+  ---
+  duration_ms: 0.2935
+  type: 'test'
+  ...
+# Subtest: evidence viewer contains every frozen record, failure and unmodified answer
+ok 50 - evidence viewer contains every frozen record, failure and unmodified answer
+  ---
+  duration_ms: 18.488625
+  type: 'test'
+  ...
+# Subtest: portable artifact embeds script and style and denies network connections
+ok 51 - portable artifact embeds script and style and denies network connections
+  ---
+  duration_ms: 4.929292
+  type: 'test'
+  ...
+# Subtest: saved SQL and key predictions round-trip in order and retain source provenance
+ok 52 - saved SQL and key predictions round-trip in order and retain source provenance
+  ---
+  duration_ms: 4.668833
+  type: 'test'
+  ...
+# Subtest: history is isolated by exact source hash and cannot accept foreign or missing provenance
+ok 53 - history is isolated by exact source hash and cannot accept foreign or missing provenance
+  ---
+  duration_ms: 0.803
+  type: 'test'
+  ...
+# Subtest: malformed storage and metadata are rejected without losing adjacent valid records
+ok 54 - malformed storage and metadata are rejected without losing adjacent valid records
+  ---
+  duration_ms: 0.386
+  type: 'test'
+  ...
+# Subtest: SQL history checks finite bounded inputs, supported modes and one prediction per row
+ok 55 - SQL history checks finite bounded inputs, supported modes and one prediction per row
+  ---
+  duration_ms: 0.283
+  type: 'test'
+  ...
+# Subtest: key history permits the empty set but rejects unknown schemas, duplicate and foreign attributes
+ok 56 - key history permits the empty set but rejects unknown schemas, duplicate and foreign attributes
+  ---
+  duration_ms: 0.343791
+  type: 'test'
+  ...
+# Subtest: stored grades and computed traces are discarded; every exported result is recomputed
+ok 57 - stored grades and computed traces are discarded; every exported result is recomputed
+  ---
+  duration_ms: 0.848833
+  type: 'test'
+  ...
+# Subtest: history retains the latest 100 valid records in input order
+ok 58 - history retains the latest 100 valid records in input order
+  ---
+  duration_ms: 3.242708
+  type: 'test'
+  ...
+# Subtest: exports distinguish candidate keys from reducible superkeys and show both schemas
+ok 59 - exports distinguish candidate keys from reducible superkeys and show both schemas
+  ---
+  duration_ms: 0.328583
+  type: 'test'
+  ...
+# Subtest: display helpers preserve SQL negation meaning and new-attempt union retains variant-specific inputs
+ok 60 - display helpers preserve SQL negation meaning and new-attempt union retains variant-specific inputs
+  ---
+  duration_ms: 0.259625
+  type: 'test'
+  ...
+# Subtest: SQL experiment matches real SQLite for NULL, signed numbers, duplicates and varied NOT IN lists
+ok 61 - SQL experiment matches real SQLite for NULL, signed numbers, duplicates and varied NOT IN lists
+  ---
+  duration_ms: 28.555875
+  type: 'test'
+  ...
+# Subtest: every three-valued Boolean truth-table entry matches SQLite
+ok 62 - every three-valued Boolean truth-table entry matches SQLite
+  ---
+  duration_ms: 1.057125
+  type: 'test'
+  ...
+# Subtest: SQL model rejects malformed numeric inputs and does not mutate callers
+ok 63 - SQL model rejects malformed numeric inputs and does not mutate callers
+  ---
+  duration_ms: 0.466584
+  type: 'test'
+  ...
+# Subtest: all subsets of both schemas agree with an independent two-tuple FD oracle
+ok 64 - all subsets of both schemas agree with an independent two-tuple FD oracle
+  ---
+  duration_ms: 20.911292
+  type: 'test'
+  ...
+# Subtest: closure handles reordered rules, cycles, repeated inputs and empty determinants
+ok 65 - closure handles reordered rules, cycles, repeated inputs and empty determinants
+  ---
+  duration_ms: 0.209042
+  type: 'test'
+  ...
+# Subtest: lab schemas are deeply immutable and link only to existing original source passages
+ok 66 - lab schemas are deeply immutable and link only to existing original source passages
+  ---
+  duration_ms: 0.095375
+  type: 'test'
+  ...
+# Subtest: each Lab context routes to the matching original concept and its actual transfer sources
+ok 67 - each Lab context routes to the matching original concept and its actual transfer sources
+  ---
+  duration_ms: 1.692333
+  type: 'test'
+  ...
+# Subtest: unknown experiment contexts cannot silently fall back to an unrelated transfer question
+ok 68 - unknown experiment contexts cannot silently fall back to an unrelated transfer question
+  ---
+  duration_ms: 0.212333
+  type: 'test'
+  ...
+# Subtest: question-to-Lab shortcuts select the relevant experiment and unsupported concepts have no shortcut
+ok 69 - question-to-Lab shortcuts select the relevant experiment and unsupported concepts have no shortcut
+  ---
+  duration_ms: 0.308875
+  type: 'test'
+  ...
+# Subtest: every original question opens its own first source, including restored and sidebar selections
+ok 70 - every original question opens its own first source, including restored and sidebar selections
+  ---
+  duration_ms: 0.063625
+  type: 'test'
+  ...
+# Subtest: one chat request uses the actual configured model and refuses implicit source truncation
+ok 71 - one chat request uses the actual configured model and refuses implicit source truncation
+  ---
+  duration_ms: 17.941792
+  type: 'test'
+  ...
+# Subtest: official context-limit 400 families become an actionable 400 without retry
+ok 72 - official context-limit 400 families become an actionable 400 without retry
+  ---
+  duration_ms: 1.001792
+  type: 'test'
+  ...
+# Subtest: other 400 errors, including context settings errors, are not mislabeled as oversized sources
+ok 73 - other 400 errors, including context settings errors, are not mislabeled as oversized sources
+  ---
+  duration_ms: 0.606416
+  type: 'test'
+  ...
+# Subtest: a missing generation model names the configured model, not the legacy evaluation model
+ok 74 - a missing generation model names the configured model, not the legacy evaluation model
+  ---
+  duration_ms: 1.654625
+  type: 'test'
+  ...
+# Subtest: offline transport is one request and a recoverable 503
+ok 75 - offline transport is one request and a recoverable 503
+  ---
+  duration_ms: 1.935542
+  type: 'test'
+  ...
+# Subtest: an already cancelled request never reaches fetch
+ok 76 - an already cancelled request never reaches fetch
+  ---
+  duration_ms: 0.609667
+  type: 'test'
+  ...
+# Subtest: caller cancellation during response reading wins over a transport failure
+ok 77 - caller cancellation during response reading wins over a transport failure
+  ---
+  duration_ms: 0.340708
+  type: 'test'
+  ...
+# Subtest: a response that arrives after caller cancellation is discarded even when fetch ignores abort
+ok 78 - a response that arrives after caller cancellation is discarded even when fetch ignores abort
+  ---
+  duration_ms: 0.502542
+  type: 'test'
+  ...
+# Subtest: the per-call deadline covers reading the response, without waiting 120 seconds
+ok 79 - the per-call deadline covers reading the response, without waiting 120 seconds
+  ---
+  duration_ms: 0.544125
+  type: 'test'
+  ...
+# Subtest: malformed transport JSON and response envelopes become 503 errors
+ok 80 - malformed transport JSON and response envelopes become 503 errors
+  ---
+  duration_ms: 1.143458
+  type: 'test'
+  ...
+# Subtest: localChatJSON parses content and preserves invalid generated JSON for caller validation retry
+ok 81 - localChatJSON parses content and preserves invalid generated JSON for caller validation retry
+  ---
+  duration_ms: 0.25625
+  type: 'test'
+  ...
+# Subtest: ready depends only on the configured generation model and embedding model
+ok 82 - ready depends only on the configured generation model and embedding model
+  ---
+  duration_ms: 0.36275
+  type: 'test'
+  ...
+# Subtest: failed or malformed status responses never claim ready and retain compatibility fields
+ok 83 - failed or malformed status responses never claim ready and retain compatibility fields
+  ---
+  duration_ms: 0.390917
+  type: 'test'
+  ...
+# Subtest: practice HTTP route preserves late-passage provenance and rejects concurrent duplicate completion
+ok 84 - practice HTTP route preserves late-passage provenance and rejects concurrent duplicate completion
+  ---
+  duration_ms: 1246.52525
+  type: 'test'
+  ...
+# Subtest: good original options return without a repair or a second frozen-generator invocation
+ok 85 - good original options return without a repair or a second frozen-generator invocation
+  ---
+  duration_ms: 2.225417
+  type: 'test'
+  ...
+# Subtest: quality repair uses a new prompt with rejected options and preserves exact provenance and answer position
+ok 86 - quality repair uses a new prompt with rejected options and preserves exact provenance and answer position
+  ---
+  duration_ms: 3.044292
+  type: 'test'
+  ...
+# Subtest: a second ambiguous or malformed output fails clearly after one repair
+ok 87 - a second ambiguous or malformed output fails clearly after one repair
+  ---
+  duration_ms: 1.251625
+  type: 'test'
+  ...
+# Subtest: model unavailability and cancellation do not start an additional repair
+ok 88 - model unavailability and cancellation do not start an additional repair
+  ---
+  duration_ms: 0.178083
+  type: 'test'
+  ...
+# Subtest: body-read cancellation becomes 499 in both original and repair calls
+ok 89 - body-read cancellation becomes 499 in both original and repair calls
+  ---
+  duration_ms: 0.239375
+  type: 'test'
+  ...
+# Subtest: body-read interruption without caller cancellation becomes 503 and retains genuine AppError status
+ok 90 - body-read interruption without caller cancellation becomes 503 and retains genuine AppError status
+  ---
+  duration_ms: 0.424583
+  type: 'test'
+  ...
+# Subtest: rejects the known non-NULL alias ambiguity, regardless of answer position
+ok 91 - rejects the known non-NULL alias ambiguity, regardless of answer position
+  ---
+  duration_ms: 1.533625
+  type: 'test'
+  ...
+# Subtest: rejects duplicate wording after Unicode, case and whitespace normalization
+ok 92 - rejects duplicate wording after Unicode, case and whitespace normalization
+  ---
+  duration_ms: 0.108709
+  type: 'test'
+  ...
+# Subtest: retains distinct SQL concepts and does not invent a general synonym grader
+ok 93 - retains distinct SQL concepts and does not invent a general synonym grader
+  ---
+  duration_ms: 0.104875
+  type: 'test'
+  ...
+# Subtest: practice planner reaches eligible material beyond the first five passages without altering provenance
+ok 94 - practice planner reaches eligible material beyond the first five passages without altering provenance
+  ---
+  duration_ms: 2.182708
+  type: 'test'
+  ...
+# Subtest: selected-passage generation progresses, detects legacy cloze records, and reports exhaustion
+ok 95 - selected-passage generation progresses, detects legacy cloze records, and reports exhaustion
+  ---
+  duration_ms: 0.660083
+  type: 'test'
+  ...
+# Subtest: planned practice rejects altered source references, quotes and incorrect keys
+ok 96 - planned practice rejects altered source references, quotes and incorrect keys
+  ---
+  duration_ms: 0.230333
+  type: 'test'
+  ...
+# Subtest: export separates failed checks from source absence and preserves legacy status
+ok 97 - export separates failed checks from source absence and preserves legacy status
+  ---
+  duration_ms: 0.859583
+  type: 'test'
+  ...
+# Subtest: an older completion cannot replace a new course response even if transport ignores abort
+ok 98 - an older completion cannot replace a new course response even if transport ignores abort
+  ---
+  duration_ms: 0.570375
+  type: 'test'
+  ...
+# Subtest: cancelled request errors and cleanup cannot clear a newer request busy state
+ok 99 - cancelled request errors and cleanup cannot clear a newer request busy state
+  ---
+  duration_ms: 0.520583
+  type: 'test'
+  ...
+# Subtest: navigation invalidates an already-resolved grading or generation callback
+ok 100 - navigation invalidates an already-resolved grading or generation callback
+  ---
+  duration_ms: 0.08
+  type: 'test'
+  ...
+# Subtest: remembered missing courses recover to the built-in course without losing a valid selection
+ok 101 - remembered missing courses recover to the built-in course without losing a valid selection
+  ---
+  duration_ms: 0.06825
+  type: 'test'
+  ...
+# Subtest: source recall takes its exact answer, quote and source id from the real revision sentence
+ok 102 - source recall takes its exact answer, quote and source id from the real revision sentence
+  ---
+  duration_ms: 2.530959
+  type: 'test'
+  ...
+# Subtest: mocked new and frozen generators keep identical requests and results for legacy source-selection cases
+ok 103 - mocked new and frozen generators keep identical requests and results for legacy source-selection cases
+  ---
+  duration_ms: 12.285083
+  type: 'test'
+  ...
+# Subtest: invalid JSON, invalid schemas and duplicate options allow one bounded retry
+ok 104 - invalid JSON, invalid schemas and duplicate options allow one bounded retry
+  ---
+  duration_ms: 1.611584
+  type: 'test'
+  ...
+# Subtest: caller cancellation before a call, during body reads or before a returned result is never retried
+ok 105 - caller cancellation before a call, during body reads or before a returned result is never retried
+  ---
+  duration_ms: 0.377875
+  type: 'test'
+  ...
+# Subtest: unavailability, timeout and other adapter failures do not consume a retry
+ok 106 - unavailability, timeout and other adapter failures do not consume a retry
+  ---
+  duration_ms: 0.296667
+  type: 'test'
+  ...
+# Subtest: unusable source fails before calling the adapter and the legacy five-section boundary remains explicit
+ok 107 - unusable source fails before calling the adapter and the legacy five-section boundary remains explicit
+  ---
+  duration_ms: 0.225875
+  type: 'test'
+  ...
+# Subtest: only reviewed claims form final answer; full question, answer and sources reach reviewer
+ok 108 - only reviewed claims form final answer; full question, answer and sources reach reviewer
+  ---
+  duration_ms: 7.782166
+  type: 'test'
+  ...
+# Subtest: exact quote does not bypass a rejected semantic review; one draft retry can repair it
+ok 109 - exact quote does not bypass a rejected semantic review; one draft retry can repair it
+  ---
+  duration_ms: 1.569459
+  type: 'test'
+  ...
+# Subtest: every claim must be reviewed exactly once; duplicated, missing or inconsistent reviews fail
+ok 110 - every claim must be reviewed exactly once; duplicated, missing or inconsistent reviews fail
+  ---
+  duration_ms: 0.703208
+  type: 'test'
+  ...
+# Subtest: missing premises produce fixed refusal, never the draft negative assertion
+ok 111 - missing premises produce fixed refusal, never the draft negative assertion
+  ---
+  duration_ms: 3.191542
+  type: 'test'
+  ...
+# Subtest: premature draft refusal is itself reviewed and can be repaired
+ok 112 - premature draft refusal is itself reviewed and can be repaired
+  ---
+  duration_ms: 1.2365
+  type: 'test'
+  ...
+# Subtest: failed checks remain unverified rather than falsely claiming source absence
+ok 113 - failed checks remain unverified rather than falsely claiming source absence
+  ---
+  duration_ms: 1.308667
+  type: 'test'
+  ...
+# Subtest: malformed JSON raw outputs survive and retries stay bounded
+ok 114 - malformed JSON raw outputs survive and retries stay bounded
+  ---
+  duration_ms: 0.661417
+  type: 'test'
+  ...
+# Subtest: cancellation while reading a response does not become validation retry
+ok 115 - cancellation while reading a response does not become validation retry
+  ---
+  duration_ms: 0.880083
+  type: 'test'
+  ...
+# Subtest: overall deadline includes retrieval and remains timeout, not user cancellation
+ok 116 - overall deadline includes retrieval and remains timeout, not user cancellation
+  ---
+  duration_ms: 5.748042
+  type: 'test'
+  ...
+# Subtest: unavailable model propagates without retries or an invented refusal
+ok 117 - unavailable model propagates without retries or an invented refusal
+  ---
+  duration_ms: 1.046333
+  type: 'test'
+  ...
+# Subtest: a failed review retains its earlier draft and failed-stage audit
+ok 118 - a failed review retains its earlier draft and failed-stage audit
+  ---
+  duration_ms: 0.557458
+  type: 'test'
+  ...
+# Subtest: whitespace citations cannot exploit empty-string substring matching
+ok 119 - whitespace citations cannot exploit empty-string substring matching
+  ---
+  duration_ms: 0.123625
+  type: 'test'
+  ...
+# Subtest: retrieval response body timeout is actionable and retains its failure audit
+ok 120 - retrieval response body timeout is actionable and retains its failure audit
+  ---
+  duration_ms: 0.150792
+  type: 'test'
+  ...
+# Subtest: even an empty refusal review must explain whether the requested fact is established
+ok 121 - even an empty refusal review must explain whether the requested fact is established
+  ---
+  duration_ms: 0.549
+  type: 'test'
+  ...
+# Subtest: a review cannot accept full coverage while recording an omitted requirement
+ok 122 - a review cannot accept full coverage while recording an omitted requirement
+  ---
+  duration_ms: 0.130334
+  type: 'test'
+  ...
+# Subtest: reviewed Ask HTTP outcomes persist and export; cancellation and unavailable model do not save
+ok 123 - reviewed Ask HTTP outcomes persist and export; cancellation and unavailable model do not save
+  ---
+  duration_ms: 1465.062167
+  type: 'test'
+  ...
+1..123
+# tests 123
+# suites 0
+# pass 123
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2016.18475
